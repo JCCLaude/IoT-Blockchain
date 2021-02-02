@@ -1,7 +1,7 @@
 Requirements: 
 -nodejs (sudo apt install nodejs)
 -npm (sudo apt install npm)
--web3 (npm install -g web3)
+-web3 (sudo npm install -g web3)
 -static-server (npm install -g static-server)
 -truffle (npm install -g truffle)
 
