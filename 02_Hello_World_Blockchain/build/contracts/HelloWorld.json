@@ -1,0 +1,323 @@
+{
+  "contractName": "HelloWorld",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "hello",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "pure",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"hello\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"pure\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/masterarbeit/Blockchain/blockchain_base/Hello_World_Blockchain/contracts/HelloWorld.sol\":\"HelloWorld\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/masterarbeit/Blockchain/blockchain_base/Hello_World_Blockchain/contracts/HelloWorld.sol\":{\"keccak256\":\"0x05bcd5b361234493b1552e613f24141eba0798746a5e3c0951cb8f7041b9482c\",\"urls\":[\"bzz-raw://832dca1491cab89c4a6aaf0ff3bb4368c414805bd4b46d7a75de979488271d28\",\"dweb:/ipfs/QmQXhGmeLy3ARFka1KryNvjByizzX7nqxQ1jFqKXQLXNZ5\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5061011d806100206000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c806319ff1d2114602d575b600080fd5b603360ab565b6040518080602001828103825283818151815260200191508051906020019080838360005b8381101560715780820151818401526020810190506058565b50505050905090810190601f168015609d5780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b60606040518060400160405280600b81526020017f48656c6c6f20576f726c6400000000000000000000000000000000000000000081525090509056fea265627a7a72315820dc7f39cc00387fb9fa17cc0996a7d70c120131666893a45d7f99ba669926249a64736f6c63430005100032",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c806319ff1d2114602d575b600080fd5b603360ab565b6040518080602001828103825283818151815260200191508051906020019080838360005b8381101560715780820151818401526020810190506058565b50505050905090810190601f168015609d5780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b60606040518060400160405280600b81526020017f48656c6c6f20576f726c6400000000000000000000000000000000000000000081525090509056fea265627a7a72315820dc7f39cc00387fb9fa17cc0996a7d70c120131666893a45d7f99ba669926249a64736f6c63430005100032",
+  "sourceMap": "25:109:0:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:109:0;;;;;;;",
+  "deployedSourceMap": "25:109:0:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:109:0;;;;;;;;;;;;;;;;;;;49:83;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;49:83:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;86:13;107:20;;;;;;;;;;;;;;;;;;;49:83;:::o",
+  "source": "pragma solidity ^0.5.0;\n\ncontract HelloWorld {\n  function hello() pure public returns(string memory) {\n    return 'Hello World';\n  }\n}\n",
+  "sourcePath": "/home/masterarbeit/Blockchain/blockchain_base/Hello_World_Blockchain/contracts/HelloWorld.sol",
+  "ast": {
+    "absolutePath": "/home/masterarbeit/Blockchain/blockchain_base/Hello_World_Blockchain/contracts/HelloWorld.sol",
+    "exportedSymbols": {
+      "HelloWorld": [
+        10
+      ]
+    },
+    "id": 11,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:0"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 10,
+        "linearizedBaseContracts": [
+          10
+        ],
+        "name": "HelloWorld",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 8,
+              "nodeType": "Block",
+              "src": "101:31:0",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "hexValue": "48656c6c6f20576f726c64",
+                    "id": 6,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "string",
+                    "lValueRequested": false,
+                    "nodeType": "Literal",
+                    "src": "114:13:0",
+                    "subdenomination": null,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_stringliteral_592fa743889fc7f92ac2a37bb1f5ba1daf2a5c84741ca0e0061d243a2e6707ba",
+                      "typeString": "literal_string \"Hello World\""
+                    },
+                    "value": "Hello World"
+                  },
+                  "functionReturnParameters": 5,
+                  "id": 7,
+                  "nodeType": "Return",
+                  "src": "107:20:0"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 9,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "hello",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "63:2:0"
+            },
+            "returnParameters": {
+              "id": 5,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 9,
+                  "src": "86:13:0",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 3,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "86:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "85:15:0"
+            },
+            "scope": 10,
+            "src": "49:83:0",
+            "stateMutability": "pure",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 11,
+        "src": "25:109:0"
+      }
+    ],
+    "src": "0:135:0"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "/home/masterarbeit/Blockchain/blockchain_base/Hello_World_Blockchain/contracts/HelloWorld.sol",
+      "exportedSymbols": {
+        "HelloWorld": [
+          10
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.5",
+            ".0"
+          ]
+        },
+        "id": 1,
+        "name": "PragmaDirective",
+        "src": "0:23:0"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            10
+          ],
+          "name": "HelloWorld",
+          "scope": 11
+        },
+        "children": [
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "hello",
+              "scope": 10,
+              "stateMutability": "pure",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 2,
+                "name": "ParameterList",
+                "src": "63:2:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 9,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 3,
+                        "name": "ElementaryTypeName",
+                        "src": "86:6:0"
+                      }
+                    ],
+                    "id": 4,
+                    "name": "VariableDeclaration",
+                    "src": "86:13:0"
+                  }
+                ],
+                "id": 5,
+                "name": "ParameterList",
+                "src": "85:15:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 5
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "hexvalue": "48656c6c6f20576f726c64",
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "subdenomination": null,
+                          "token": "string",
+                          "type": "literal_string \"Hello World\"",
+                          "value": "Hello World"
+                        },
+                        "id": 6,
+                        "name": "Literal",
+                        "src": "114:13:0"
+                      }
+                    ],
+                    "id": 7,
+                    "name": "Return",
+                    "src": "107:20:0"
+                  }
+                ],
+                "id": 8,
+                "name": "Block",
+                "src": "101:31:0"
+              }
+            ],
+            "id": 9,
+            "name": "FunctionDefinition",
+            "src": "49:83:0"
+          }
+        ],
+        "id": 10,
+        "name": "ContractDefinition",
+        "src": "25:109:0"
+      }
+    ],
+    "id": 11,
+    "name": "SourceUnit",
+    "src": "0:135:0"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
+  },
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0xC8f718a3C094EF3cEA763bC44E14170e9bb8f909",
+      "transactionHash": "0xc2036a59e0e4e9979c6c76f9aa389c5911ca2526febf1bde00d18364028a5762"
+    }
+  },
+  "schemaVersion": "3.3.3",
+  "updatedAt": "2021-01-29T13:51:25.182Z",
+  "networkType": "ethereum",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
