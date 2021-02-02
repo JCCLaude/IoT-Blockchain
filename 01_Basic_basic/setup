@@ -1,0 +1,9 @@
+1. lokale Umgebung starten: truffle develop
+2. smart contracts kompilieren und bereitstellen (vorher alles bisherige zurücksetzen): migrate --reset
+3. Aus dem build-Ordner die entsprechende Datei auswählen:
+	wichtige Zeilen = contractName, abi (verfügbare Funktionen)
+4. frontend bearbeiten:
+	index.html => eigentliche Webseite
+	bundle.js => Code zum  interagieren mit der Blockchain: abi eintragen, Adresse aus Truffle Console eintragen
+	
+	

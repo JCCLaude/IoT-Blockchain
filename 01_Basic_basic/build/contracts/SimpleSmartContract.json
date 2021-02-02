@@ -1,0 +1,124 @@
+{
+  "contractName": "SimpleSmartContract",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/masterarbeit/Blockchain/blockchain_base/Basic_basic/contracts/SimpleSmartContract.sol\":\"SimpleSmartContract\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/masterarbeit/Blockchain/blockchain_base/Basic_basic/contracts/SimpleSmartContract.sol\":{\"keccak256\":\"0xf3b2d973846f1754962b2443eb40b625af72b46e68fa47c8c8d3d52838f449c8\",\"urls\":[\"bzz-raw://a88a4d45089c4ca81142c04b803a29b461465b1630cfff68aa11b63dd2f5201d\",\"dweb:/ipfs/QmcRRGtY32QFDhfWmd9yiwazysckHftbHRAFuL6CTtK5wR\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603e80601d6000396000f3fe6080604052600080fdfea265627a7a72315820636853712984384ed58cf5e5b54d087e003962c581f97e77267bcbf18e2acea064736f6c63430005100032",
+  "deployedBytecode": "0x6080604052600080fdfea265627a7a72315820636853712984384ed58cf5e5b54d087e003962c581f97e77267bcbf18e2acea064736f6c63430005100032",
+  "sourceMap": "25:31:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:31:1;;;;;;;",
+  "deployedSourceMap": "25:31:1:-;;;;;",
+  "source": "pragma solidity ^0.5.0;\n\ncontract SimpleSmartContract {}\n",
+  "sourcePath": "/home/masterarbeit/Blockchain/blockchain_base/Basic_basic/contracts/SimpleSmartContract.sol",
+  "ast": {
+    "absolutePath": "/home/masterarbeit/Blockchain/blockchain_base/Basic_basic/contracts/SimpleSmartContract.sol",
+    "exportedSymbols": {
+      "SimpleSmartContract": [
+        59
+      ]
+    },
+    "id": 60,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 58,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:1"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 59,
+        "linearizedBaseContracts": [
+          59
+        ],
+        "name": "SimpleSmartContract",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 60,
+        "src": "25:31:1"
+      }
+    ],
+    "src": "0:57:1"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "/home/masterarbeit/Blockchain/blockchain_base/Basic_basic/contracts/SimpleSmartContract.sol",
+      "exportedSymbols": {
+        "SimpleSmartContract": [
+          59
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.5",
+            ".0"
+          ]
+        },
+        "id": 58,
+        "name": "PragmaDirective",
+        "src": "0:23:1"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            59
+          ],
+          "name": "SimpleSmartContract",
+          "nodes": [
+            null
+          ],
+          "scope": 60
+        },
+        "id": 59,
+        "name": "ContractDefinition",
+        "src": "25:31:1"
+      }
+    ],
+    "id": 60,
+    "name": "SourceUnit",
+    "src": "0:57:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
+  },
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0xC8f718a3C094EF3cEA763bC44E14170e9bb8f909",
+      "transactionHash": "0xc1b477604c6b4583c8d099676c6f1fe1247e35e637eea0aa4453692b9c179f0d"
+    }
+  },
+  "schemaVersion": "3.3.3",
+  "updatedAt": "2021-01-29T13:13:41.806Z",
+  "networkType": "ethereum",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
