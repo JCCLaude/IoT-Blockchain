@@ -2,8 +2,8 @@ Requirements:
 -nodejs (sudo apt install nodejs)
 -npm (sudo apt install npm)
 -web3 (sudo npm install -g web3)
--static-server (npm install -g static-server)
--truffle (npm install -g truffle)
+-static-server (sudo npm install -g static-server)
+-truffle (sudo npm install -g truffle)
 
 Launch the Project:
 I: start Webserver: npm start in the project folder
