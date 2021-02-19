@@ -1,8 +1,8 @@
 # IoT-Blockchain
 System to let IoT devices write sensor data to a distributed ledger
 
-Setting up the blockchain:
-Dependencies Installation: Windows
+## Setting up the blockchain:
+_Dependencies Installation: Windows
 
 1. chocolatey packet manager:   https://chocolatey.org/install
 2. nodejs:                      choco install nodejs.install
@@ -12,8 +12,8 @@ Dependencies Installation: Windows
 6. truffle framework:           npm install -g truffle
 
 
-Setting up the Ethereum client:
-Dependencies Installation: Linux, Raspbian
+## Setting up the Ethereum client:
+_Dependencies Installation: Linux, Raspbian
 
 1. install golang:              https://golang.org/dl/ (v1.13.8) => wget https://dl.google.com/go/go1.13.8.linux-armv6l.tar.gz  (<= for raspbian, for linux vm => linux-amd64) 
 2. Extracting:                  sudo tar -C /usr/local -xvf go1.13.8.linux-armv6l.tar.gz
