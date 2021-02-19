@@ -2,7 +2,7 @@
 System to let IoT devices write sensor data to a distributed ledger
 
 ## Setting up the blockchain:
-_Dependencies Installation: Windows
+_Dependencies Installation: Windows_
 
 1. chocolatey packet manager:   https://chocolatey.org/install
 2. nodejs:                      choco install nodejs.install
@@ -13,7 +13,7 @@ _Dependencies Installation: Windows
 
 
 ## Setting up the Ethereum client:
-_Dependencies Installation: Linux, Raspbian
+_Dependencies Installation: Linux, Raspbian_
 
 1. install golang:              https://golang.org/dl/ (v1.13.8) => wget https://dl.google.com/go/go1.13.8.linux-armv6l.tar.gz  (<= for raspbian, for linux vm => linux-amd64) 
 2. Extracting:                  sudo tar -C /usr/local -xvf go1.13.8.linux-armv6l.tar.gz
