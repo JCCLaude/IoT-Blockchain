@@ -25,3 +25,15 @@ _Dependencies Installation: Linux, Raspbian_
 9. Setting geth up:             cd go-ethereum      =>    make geth (wait a couple of minutes)    => sudo mv ~/go-ethereum/build/bin/geth /usr/local/bin
 10. Testing:                    go version          => geth version
 11. Running script:             node data_transmission
+
+
+## Webserver:
+
+TBD
+
+
+
+## TODO
+[x] Create blockchain
+[x] Send data from client to blockchain 
+[ ] Set up webserver and connect it to blockchain
