@@ -21,7 +21,7 @@ _Dependencies Installation: Linux, Raspbian_
 4. Permissions:                 sudo chmod 755 /usr/local/go
 5. Environment variable:        sudo vi /etc/profile    =>  (write in last line)    export PATH=$PATH:/usr/local/go/bin
 6. Reboot                       sudo reboot
-8. install geth:                https://github.com/ethereum/go-ethereum/ (v1.9.26) => git clone https://github.com/ethereum/go-ethereum.git --branch v1.9.26
+8. install geth:                https://github.com/ethereum/go-ethereum/ (v1.9.25) => git clone https://github.com/ethereum/go-ethereum.git --branch v1.9.25
 9. Setting geth up:             cd go-ethereum      =>    make geth (wait a couple of minutes)    => sudo mv ~/go-ethereum/build/bin/geth /usr/local/bin
 10. Testing:                    go version          => geth version
 11. Running script:             node data_transmission
