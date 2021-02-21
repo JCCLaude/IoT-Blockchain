@@ -23,7 +23,7 @@ _Dependencies Installation: Linux, Raspbian_
 | 2. Extracting:           |       sudo tar -C /usr/local -xvf go1.13.8.linux-armv6l.tar.gz |
 | 3. Permissions:          |       sudo chown root:root /usr/local/go |
 | 4. Permissions:          |       sudo chmod 755 /usr/local/go |
-| 5. Environment variable: |       sudo vi /etc/profile   <br>=> ..*  (write in last line)    export PATH=$PATH:/usr/local/go/bin |
+| 5. Environment variable: |       sudo vi /etc/profile   <br>=>  *  (write in last line)    export PATH=$PATH:/usr/local/go/bin |
 | 6. Reboot                |       sudo reboot |
 | 7. install geth:         |       https://github.com/ethereum/go-ethereum/ (v1.9.25) <br>=> git clone https://github.com/ethereum/go-ethereum.git --branch v1.9.25 |
 | 8. Setting geth up:      |       cd go-ethereum      <br>=>    make geth (wait a couple of minutes)    <br>=> sudo mv ~/go-ethereum/build/bin/geth /usr/local/bin |
