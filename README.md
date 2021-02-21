@@ -5,7 +5,7 @@ System to let IoT devices write sensor data to a distributed ledger
 _Dependencies Installation: Windows_
 
 Task                           | Command
--------------------------------------------------
+-------------------------------|-----------------
 1. chocolatey packet manager:  | https://chocolatey.org/install
 2. nodejs:                     | choco install nodejs.install
 3. web3:                       | npm install web3
