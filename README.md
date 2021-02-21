@@ -34,6 +34,6 @@ TBD
 
 
 ## TODO
-[x] Create blockchain
-[x] Send data from client to blockchain 
-[ ] Set up webserver and connect it to blockchain
+- [x] Create blockchain 
+- [x] Send data from client to blockchain 
+- [ ] Set up webserver and connect it to blockchain
