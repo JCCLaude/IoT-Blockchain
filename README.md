@@ -18,7 +18,7 @@ _Dependencies Installation: Windows_
 _Dependencies Installation: Linux, Raspbian_
 
 | Task                     | Command                                                         |
-|--------------------------|-----------------------------------------------------------------|
+|--------------------------|:---------------------------------------------------------------:|
 | 1. install golang:        |     Link: https://golang.org/dl/ (v1.13.8) <br>=> wget https://dl.google.com/go/go1.13.8.linux-armv6l.tar.gz  (<= for raspbian, for linux vm => linux-amd64) |
 | 2. Extracting:           |       sudo tar -C /usr/local -xvf go1.13.8.linux-armv6l.tar.gz |
 | 3. Permissions:          |       sudo chown root:root /usr/local/go |
