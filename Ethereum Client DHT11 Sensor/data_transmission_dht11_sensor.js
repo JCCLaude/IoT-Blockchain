@@ -5,7 +5,9 @@ sensors first. These are then packed into a JSON string, which is encoded in hex
 blockchain in the form of a transaction. Also, temperature and humidity data is collected from a DHT11 sensor
 using a Python script and sent to the blockchain. */
 
-/*calling the all function*/
+/*calling the all function.
+Option to set the time in which the values are sent to the blockchain at intervals. 
+Time in milliseconds and over 5000 miliseconds recommended*/
 setInterval(all,3000);
 
 /*function for all*/
@@ -67,7 +69,7 @@ airhumidityvalue = parseInt(airstr);
 });
 
 /*setting measured and random vaues in JSON format with associated classification*/
-sleep(10).then(() => {
+sleep(2100).then(() => {
 if(tempvalue == 0 || tempvalue == "undefined") {tempvalue = "No Data"}
 if(airhumidityvalue == 0 || airhumidityvalue == "undefined") {airhumidityvalue = "No Data"}
 jsontext = JSON.stringify({ Carbon_Dioxide: CO2value, Temperatur:
@@ -88,7 +90,7 @@ jsonhex = "\"0x"+jsonhex+"\"";
 })
 
 /*creating a child process and executing the send transaction command in it*/
-sleep(10).then(() => {
+sleep(2200).then(() => {
 const { exec } = require('child_process');
 const sendT = exec('curl -X POST -H "Content-Type: application/json" --data \'{"jsonrpc":"2.0", "method":"eth_sendTransaction", "params":[{"from": ' + from_adr + ', "to": ' + to_adr+ ', "gas": "0x76c0", "gasPrice": "0x4A817C800", "value": "0x9184e72a", "data": ' + jsonhex +'}],"id":1}\' ' + ip_adr_port_blockchain + '', (error, stdout, stderr) =>
 {
