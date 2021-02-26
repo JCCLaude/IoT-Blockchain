@@ -28,7 +28,7 @@ _Dependencies Installation: Linux, Raspbian_
 | 7. install geth:         |       https://github.com/ethereum/go-ethereum/ (v1.9.25) <br>=> git clone https://github.com/ethereum/go-ethereum.git --branch v1.9.25 |
 | 8. Setting geth up:      |       cd go-ethereum      <br>=>    make geth (wait a couple of minutes)    <br>=> sudo mv ~/go-ethereum/build/bin/geth /usr/local/bin |
 | 9. Testing:              |       go version          <br>=> geth version |
-| 10. Running script:      |       node data_transmission |
+| 10. Running script:      |       node data_transmission.js |
 
 
 ## Webserver:
