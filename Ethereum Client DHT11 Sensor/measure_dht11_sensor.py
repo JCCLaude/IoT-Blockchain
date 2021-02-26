@@ -9,18 +9,14 @@ sensor=Adafruit_DHT.DHT11
 # Set GPIO sensor is connected to
 gpio=4
 
-file = open("values.txt","w")
 Data = ""
 
 timestamp = datetime.now()
 
 # Reading the DHT11 is very sensitive to timings and occasionally the Pi
 # might fail to get a valid reading. So check if readings are valid.
-#while (True):
 timestamp = datetime.now()
 humidity, temperature = Adafruit_DHT.read_retry(sensor, gpio)
 Data = 'Temp={0:0.1f}*C , Humidity={1:0.1f}%'.format(temperature, humidity)+$
-file.write(Data)
 print(Data, file=sys.stdout)
-file.flush()
-time.sleep(1)
+time.sleep(2)
