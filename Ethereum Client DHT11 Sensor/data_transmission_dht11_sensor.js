@@ -8,7 +8,7 @@ using a Python script and sent to the blockchain. */
 /*calling the all function.
 Option to set the time in which the values are sent to the blockchain at intervals. 
 Time in milliseconds and over 5000 miliseconds recommended*/
-setInterval(all,3000);
+setInterval(all,5000);
 
 /*function for all*/
 function all () {
