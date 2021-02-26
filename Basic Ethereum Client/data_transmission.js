@@ -11,6 +11,17 @@ string, which is encoded in hex format and then sent to
 the blockchain in the form of a transaction.
 */
 
+/*calling the all function after a set time in milliseconds*/
+setInterval(all,3000);
+
+/*function for all*/
+function all () {
+
+/*Various values such as the IP address and the addresses of the sender and $
+be entered here to configure the sensor.*/
+var from_adr = "\"" + "0x24C143d7B4761c7b4860447C7d5f46E1Df5Fdf1e" + "\"";
+var to_adr = "\"" + "0x636Eb4246AeA21f04215e349e7d8c3E868bEE03C" + "\"";
+var ip_adr_port_blockchain = "http://192.168.178.33:9545";
 
 	/*function to determine a value between realistic upper
 	and lower limit value*/
@@ -48,7 +59,7 @@ var jsonhex = jsontext.hexEncode();
 /*creating a child process and execute the send transaction command in it*/
 const { exec } = require('child_process');
 
-exec('curl -X POST -H "Content-Type: application/json" --data \'{"jsonrpc":"2.0", "method":"eth_sendTransaction", "params":[{"from": "0x24C143d7B4761c7b4860447C7d5f46E1Df5Fdf1e", "to": "0x636Eb4246AeA21f04215e349e7d8c3E868bEE03C", "gas": "0x76c0", "gasPrice": "0x4A817C800", "value": "0x9184e72a", "data": "0x' + jsonhex +'"}],"id":1}\' http://192.168.178.33:9545', (error, stdout, stderr) => {
+exec('curl -X POST -H "Content-Type: application/json" --data \'{"jsonrpc":"2.0", "method":"eth_sendTransaction", "params":[{"from": ' + from_adr + ', "to": '+ to_adr + ', "gas": "0x76c0", "gasPrice": "0x4A817C800", "value": "0x9184e72a", "data": "0x' + jsonhex +'"}],"id":1}\' ' + ip_adr_port_blockchain + '', (error, stdout, stderr) => {
   if (error) {
     console.error(`error: ${error.message}`);
     return;
@@ -61,3 +72,5 @@ exec('curl -X POST -H "Content-Type: application/json" --data \'{"jsonrpc":"2.0"
 
   console.log(`stdout:\n${stdout}`);
 });
+
+}
