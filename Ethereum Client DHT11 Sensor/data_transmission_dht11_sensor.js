@@ -59,13 +59,15 @@ pycall()
 
 sleep(2000).then(() => {
 buf = buf.toString();
-try{buf = buf.split(",");} catch(err) {}
+try{buf = buf.split(",");} 
 tempstr = buf[0];
 airstr = buf[1];
 tempstr = tempstr.slice(tempstr.indexOf("=")+1,tempstr.indexOf("."));
 airstr = airstr.slice(airstr.indexOf("=")+1,airstr.indexOf("."));
 tempvalue = parseInt(tempstr);
 airhumidityvalue = parseInt(airstr);
+catch(err) {}
+finally{return false;}
 });
 
 /*setting measured and random vaues in JSON format with associated classification*/
