@@ -59,7 +59,7 @@ pycall()
 
 sleep(2000).then(() => {
 buf = buf.toString();
-buf = buf.split(",");
+try{buf = buf.split(",");} catch(err) {}
 tempstr = buf[0];
 airstr = buf[1];
 tempstr = tempstr.slice(tempstr.indexOf("=")+1,tempstr.indexOf("."));
