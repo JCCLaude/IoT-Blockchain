@@ -19,4 +19,3 @@ timestamp = datetime.now()
 humidity, temperature = Adafruit_DHT.read_retry(sensor, gpio)
 Data = 'Temp={0:0.1f}*C , Humidity={1:0.1f}%'.format(temperature, humidity)+$
 print(Data, file=sys.stdout)
-time.sleep(2)
