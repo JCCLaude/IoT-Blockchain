@@ -1,4 +1,5 @@
-# IoT-Blockchain
+# I B E S 
+## IoT Blockchain Emission System
 System to let IoT devices write sensor data to a distributed ledger
 
 ## Setting up the blockchain:
