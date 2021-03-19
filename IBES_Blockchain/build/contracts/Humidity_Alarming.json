@@ -1,0 +1,1696 @@
+{
+  "contractName": "Humidity_Alarming",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint8",
+          "name": "currentValue",
+          "type": "uint8"
+        },
+        {
+          "indexed": true,
+          "internalType": "string",
+          "name": "alarmMessage",
+          "type": "string"
+        }
+      ],
+      "name": "StatusMessage",
+      "type": "event"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "uint8",
+          "name": "_measurement",
+          "type": "uint8"
+        }
+      ],
+      "name": "submit",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint8\",\"name\":\"currentValue\",\"type\":\"uint8\"},{\"indexed\":true,\"internalType\":\"string\",\"name\":\"alarmMessage\",\"type\":\"string\"}],\"name\":\"StatusMessage\",\"type\":\"event\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint8\",\"name\":\"_measurement\",\"type\":\"uint8\"}],\"name\":\"submit\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"Submit measured humidity and trigger a message for the frontend\",\"methods\":{\"submit(uint8)\":{\"details\":\"function to store humidity measurement to the blockchain\",\"params\":{\"_measurement\":\"the measured humidity in percent (has to be between 0 and 100)\"}}},\"title\":\"Humidity_Alarming\"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Users/Johannes/OneDrive/Studium/_temp/FT_20_Masterarbeit/IBES_Blockchain/contracts/Humidity_Alarming.sol\":\"Humidity_Alarming\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/Johannes/OneDrive/Studium/_temp/FT_20_Masterarbeit/IBES_Blockchain/contracts/Humidity_Alarming.sol\":{\"keccak256\":\"0xf01ca1caf68ffd60ce312f2da648a379575a8329ca8039bf93ad6d660beffb6b\",\"urls\":[\"bzz-raw://4f4633bc8f49e91150be4b09a045beac4b39c7b5e1e78591a779611aad1343e6\",\"dweb:/ipfs/QmVULqrnttAFwzsRHDgFNANKQECcLQ496MY8zwmmY18dkU\"]}},\"version\":1}",
+  "bytecode": "0x6080604052605a600060016101000a81548160ff021916908360ff1602179055506057600060026101000a81548160ff021916908360ff16021790555034801561004857600080fd5b5061028e806100586000396000f3fe608060405234801561001057600080fd5b506004361061002b5760003560e01c8063ad0ab03914610030575b600080fd5b61005f6004803603602081101561004657600080fd5b81019080803560ff169060200190929190505050610061565b005b806000806101000a81548160ff021916908360ff16021790555060646000809054906101000a900460ff1660ff16111561009a57600080fd5b600060019054906101000a900460ff1660ff166000809054906101000a900460ff1660ff161061013d5760405180807f5553202b204555206c696d697420737572706173736564210000000000000000815250601801905060405180910390206000809054906101000a900460ff1660ff167f415ccc44dc98d2a8c23a3871cdffb3490f6f34ad3c7e16318ce013078b435b0760405160405180910390a3610256565b600060029054906101000a900460ff1660ff166000809054906101000a900460ff1660ff16106101e05760405180807f4555206c696d6974207375727061737365642100000000000000000000000000815250601301905060405180910390206000809054906101000a900460ff1660ff167f415ccc44dc98d2a8c23a3871cdffb3490f6f34ad3c7e16318ce013078b435b0760405160405180910390a3610255565b60405180807f4e6f206c696d6974207375727061737365640000000000000000000000000000815250601201905060405180910390206000809054906101000a900460ff1660ff167f415ccc44dc98d2a8c23a3871cdffb3490f6f34ad3c7e16318ce013078b435b0760405160405180910390a35b5b5056fea265627a7a72315820737ba57f345bfb2f6cdef50b8efb110782f052b3a25a047b910857803863e4df64736f6c63430005100032",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061002b5760003560e01c8063ad0ab03914610030575b600080fd5b61005f6004803603602081101561004657600080fd5b81019080803560ff169060200190929190505050610061565b005b806000806101000a81548160ff021916908360ff16021790555060646000809054906101000a900460ff1660ff16111561009a57600080fd5b600060019054906101000a900460ff1660ff166000809054906101000a900460ff1660ff161061013d5760405180807f5553202b204555206c696d697420737572706173736564210000000000000000815250601801905060405180910390206000809054906101000a900460ff1660ff167f415ccc44dc98d2a8c23a3871cdffb3490f6f34ad3c7e16318ce013078b435b0760405160405180910390a3610256565b600060029054906101000a900460ff1660ff166000809054906101000a900460ff1660ff16106101e05760405180807f4555206c696d6974207375727061737365642100000000000000000000000000815250601301905060405180910390206000809054906101000a900460ff1660ff167f415ccc44dc98d2a8c23a3871cdffb3490f6f34ad3c7e16318ce013078b435b0760405160405180910390a3610255565b60405180807f4e6f206c696d6974207375727061737365640000000000000000000000000000815250601201905060405180910390206000809054906101000a900460ff1660ff167f415ccc44dc98d2a8c23a3871cdffb3490f6f34ad3c7e16318ce013078b435b0760405160405180910390a35b5b5056fea265627a7a72315820737ba57f345bfb2f6cdef50b8efb110782f052b3a25a047b910857803863e4df64736f6c63430005100032",
+  "sourceMap": "182:1175:1:-;;;313:2;290:25;;;;;;;;;;;;;;;;;;;;391:2;368:25;;;;;;;;;;;;;;;;;;;;182:1175;8:9:-1;5:2;;;30:1;27;20:12;5:2;182:1175:1;;;;;;;",
+  "deployedSourceMap": "182:1175:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;182:1175:1;;;;;;;;;;;;;;;;;;;718:633;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;718:633:1;;;;;;;;;;;;;;;;;;;:::i;:::-;;;786:12;772:11;;:26;;;;;;;;;;;;;;;;;;833:3;818:11;;;;;;;;;;;:18;;;;809:28;;;;;;868:14;;;;;;;;;;;853:29;;:11;;;;;;;;;;;:29;;;849:495;;903:103;;;;;;;;;;;;;;;;;;;935:11;;;;;;;;;;;903:103;;;;;;;;;;;;849:495;;;1053:14;;;;;;;;;;;1038:29;;:11;;;;;;;;;;;:29;;;1034:310;;1088:99;;;;;;;;;;;;;;;;;;;1120:11;;;;;;;;;;;1088:99;;;;;;;;;;;;1034:310;;;1234:98;;;;;;;;;;;;;;;;;;;1266:11;;;;;;;;;;;1234:98;;;;;;;;;;;;1034:310;849:495;718:633;:::o",
+  "source": "// SPDX-License-Identifier: GPL-3.0\r\n\r\npragma solidity >=0.5.0;\r\n\r\n/**\r\n * @title Humidity_Alarming\r\n * @dev Submit measured humidity and trigger a message for the frontend\r\n */\r\n\r\n contract Humidity_Alarming{\r\n\r\n    uint8 measurement; // humidity in percent measured by an IoT device\r\n    uint8 american_limit = 90; // example limit for environmental regulation\r\n    uint8 european_limit = 87; // different example limit\r\n\r\n    event StatusMessage(\r\n        uint8 indexed currentValue,\r\n        string indexed alarmMessage\r\n    );\r\n\r\n    /**\r\n     * @dev function to store humidity measurement to the blockchain\r\n     * @param _measurement the measured humidity in percent (has to be between 0 and 100)\r\n     */\r\n    function submit(uint8 _measurement) public {\r\n        measurement = _measurement;\r\n        require (measurement <= 100); \r\n        if( measurement >= american_limit){\r\n            emit StatusMessage(\r\n                measurement,\r\n                \"US + EU limit surpassed!\"\r\n            );\r\n        } \r\n        else if (measurement >= european_limit){\r\n            emit StatusMessage(\r\n                measurement, \r\n                \"EU limit surpassed!\"\r\n            );\r\n        }\r\n        else {\r\n            emit StatusMessage(\r\n                measurement, \r\n                \"No limit surpassed\"\r\n            );\r\n        }\r\n    }\r\n\r\n }",
+  "sourcePath": "C:/Users/Johannes/OneDrive/Studium/_temp/FT_20_Masterarbeit/IBES_Blockchain/contracts/Humidity_Alarming.sol",
+  "ast": {
+    "absolutePath": "/C/Users/Johannes/OneDrive/Studium/_temp/FT_20_Masterarbeit/IBES_Blockchain/contracts/Humidity_Alarming.sol",
+    "exportedSymbols": {
+      "Humidity_Alarming": [
+        111
+      ]
+    },
+    "id": 112,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 54,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:24:1"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": "@title Humidity_Alarming\n@dev Submit measured humidity and trigger a message for the frontend",
+        "fullyImplemented": true,
+        "id": 111,
+        "linearizedBaseContracts": [
+          111
+        ],
+        "name": "Humidity_Alarming",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 56,
+            "name": "measurement",
+            "nodeType": "VariableDeclaration",
+            "scope": 111,
+            "src": "217:17:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint8",
+              "typeString": "uint8"
+            },
+            "typeName": {
+              "id": 55,
+              "name": "uint8",
+              "nodeType": "ElementaryTypeName",
+              "src": "217:5:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint8",
+                "typeString": "uint8"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 59,
+            "name": "american_limit",
+            "nodeType": "VariableDeclaration",
+            "scope": 111,
+            "src": "290:25:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint8",
+              "typeString": "uint8"
+            },
+            "typeName": {
+              "id": 57,
+              "name": "uint8",
+              "nodeType": "ElementaryTypeName",
+              "src": "290:5:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint8",
+                "typeString": "uint8"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "3930",
+              "id": 58,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "313:2:1",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_90_by_1",
+                "typeString": "int_const 90"
+              },
+              "value": "90"
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 62,
+            "name": "european_limit",
+            "nodeType": "VariableDeclaration",
+            "scope": 111,
+            "src": "368:25:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint8",
+              "typeString": "uint8"
+            },
+            "typeName": {
+              "id": 60,
+              "name": "uint8",
+              "nodeType": "ElementaryTypeName",
+              "src": "368:5:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint8",
+                "typeString": "uint8"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "3837",
+              "id": 61,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "391:2:1",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_87_by_1",
+                "typeString": "int_const 87"
+              },
+              "value": "87"
+            },
+            "visibility": "internal"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 68,
+            "name": "StatusMessage",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 67,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 64,
+                  "indexed": true,
+                  "name": "currentValue",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 68,
+                  "src": "459:26:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 63,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "459:5:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 66,
+                  "indexed": true,
+                  "name": "alarmMessage",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 68,
+                  "src": "496:27:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 65,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "496:6:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "448:82:1"
+            },
+            "src": "429:102:1"
+          },
+          {
+            "body": {
+              "id": 109,
+              "nodeType": "Block",
+              "src": "761:590:1",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 75,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 73,
+                      "name": "measurement",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 56,
+                      "src": "772:11:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 74,
+                      "name": "_measurement",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 70,
+                      "src": "786:12:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      }
+                    },
+                    "src": "772:26:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "id": 76,
+                  "nodeType": "ExpressionStatement",
+                  "src": "772:26:1"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        },
+                        "id": 80,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "id": 78,
+                          "name": "measurement",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 56,
+                          "src": "818:11:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint8",
+                            "typeString": "uint8"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "<=",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "hexValue": "313030",
+                          "id": 79,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "833:3:1",
+                          "subdenomination": null,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_100_by_1",
+                            "typeString": "int_const 100"
+                          },
+                          "value": "100"
+                        },
+                        "src": "818:18:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 77,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        215,
+                        216
+                      ],
+                      "referencedDeclaration": 215,
+                      "src": "809:7:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
+                        "typeString": "function (bool) pure"
+                      }
+                    },
+                    "id": 81,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "809:28:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 82,
+                  "nodeType": "ExpressionStatement",
+                  "src": "809:28:1"
+                },
+                {
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    },
+                    "id": 85,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 83,
+                      "name": "measurement",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 56,
+                      "src": "853:11:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": ">=",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "id": 84,
+                      "name": "american_limit",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 59,
+                      "src": "868:14:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      }
+                    },
+                    "src": "853:29:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": {
+                    "condition": {
+                      "argumentTypes": null,
+                      "commonType": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      },
+                      "id": 94,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftExpression": {
+                        "argumentTypes": null,
+                        "id": 92,
+                        "name": "measurement",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 56,
+                        "src": "1038:11:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        }
+                      },
+                      "nodeType": "BinaryOperation",
+                      "operator": ">=",
+                      "rightExpression": {
+                        "argumentTypes": null,
+                        "id": 93,
+                        "name": "european_limit",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 62,
+                        "src": "1053:14:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        }
+                      },
+                      "src": "1038:29:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "falseBody": {
+                      "id": 106,
+                      "nodeType": "Block",
+                      "src": "1214:130:1",
+                      "statements": [
+                        {
+                          "eventCall": {
+                            "argumentTypes": null,
+                            "arguments": [
+                              {
+                                "argumentTypes": null,
+                                "id": 102,
+                                "name": "measurement",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 56,
+                                "src": "1266:11:1",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_uint8",
+                                  "typeString": "uint8"
+                                }
+                              },
+                              {
+                                "argumentTypes": null,
+                                "hexValue": "4e6f206c696d697420737572706173736564",
+                                "id": 103,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": true,
+                                "kind": "string",
+                                "lValueRequested": false,
+                                "nodeType": "Literal",
+                                "src": "1297:20:1",
+                                "subdenomination": null,
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_stringliteral_b052b161f720e76561db2d34c82b22d66952de62ba37917957254ea0fb8f979a",
+                                  "typeString": "literal_string \"No limit surpassed\""
+                                },
+                                "value": "No limit surpassed"
+                              }
+                            ],
+                            "expression": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint8",
+                                  "typeString": "uint8"
+                                },
+                                {
+                                  "typeIdentifier": "t_stringliteral_b052b161f720e76561db2d34c82b22d66952de62ba37917957254ea0fb8f979a",
+                                  "typeString": "literal_string \"No limit surpassed\""
+                                }
+                              ],
+                              "id": 101,
+                              "name": "StatusMessage",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 68,
+                              "src": "1234:13:1",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_function_event_nonpayable$_t_uint8_$_t_string_memory_ptr_$returns$__$",
+                                "typeString": "function (uint8,string memory)"
+                              }
+                            },
+                            "id": 104,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "kind": "functionCall",
+                            "lValueRequested": false,
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "1234:98:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_tuple$__$",
+                              "typeString": "tuple()"
+                            }
+                          },
+                          "id": 105,
+                          "nodeType": "EmitStatement",
+                          "src": "1229:103:1"
+                        }
+                      ]
+                    },
+                    "id": 107,
+                    "nodeType": "IfStatement",
+                    "src": "1034:310:1",
+                    "trueBody": {
+                      "id": 100,
+                      "nodeType": "Block",
+                      "src": "1068:131:1",
+                      "statements": [
+                        {
+                          "eventCall": {
+                            "argumentTypes": null,
+                            "arguments": [
+                              {
+                                "argumentTypes": null,
+                                "id": 96,
+                                "name": "measurement",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 56,
+                                "src": "1120:11:1",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_uint8",
+                                  "typeString": "uint8"
+                                }
+                              },
+                              {
+                                "argumentTypes": null,
+                                "hexValue": "4555206c696d69742073757270617373656421",
+                                "id": 97,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": true,
+                                "kind": "string",
+                                "lValueRequested": false,
+                                "nodeType": "Literal",
+                                "src": "1151:21:1",
+                                "subdenomination": null,
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_stringliteral_f74257281e91ba91d5e367736c7aff37550c93ad88d0afd33b6c7d8811fb8a79",
+                                  "typeString": "literal_string \"EU limit surpassed!\""
+                                },
+                                "value": "EU limit surpassed!"
+                              }
+                            ],
+                            "expression": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint8",
+                                  "typeString": "uint8"
+                                },
+                                {
+                                  "typeIdentifier": "t_stringliteral_f74257281e91ba91d5e367736c7aff37550c93ad88d0afd33b6c7d8811fb8a79",
+                                  "typeString": "literal_string \"EU limit surpassed!\""
+                                }
+                              ],
+                              "id": 95,
+                              "name": "StatusMessage",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 68,
+                              "src": "1088:13:1",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_function_event_nonpayable$_t_uint8_$_t_string_memory_ptr_$returns$__$",
+                                "typeString": "function (uint8,string memory)"
+                              }
+                            },
+                            "id": 98,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "kind": "functionCall",
+                            "lValueRequested": false,
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "1088:99:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_tuple$__$",
+                              "typeString": "tuple()"
+                            }
+                          },
+                          "id": 99,
+                          "nodeType": "EmitStatement",
+                          "src": "1083:104:1"
+                        }
+                      ]
+                    }
+                  },
+                  "id": 108,
+                  "nodeType": "IfStatement",
+                  "src": "849:495:1",
+                  "trueBody": {
+                    "id": 91,
+                    "nodeType": "Block",
+                    "src": "883:135:1",
+                    "statements": [
+                      {
+                        "eventCall": {
+                          "argumentTypes": null,
+                          "arguments": [
+                            {
+                              "argumentTypes": null,
+                              "id": 87,
+                              "name": "measurement",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 56,
+                              "src": "935:11:1",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint8",
+                                "typeString": "uint8"
+                              }
+                            },
+                            {
+                              "argumentTypes": null,
+                              "hexValue": "5553202b204555206c696d69742073757270617373656421",
+                              "id": 88,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "string",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "965:26:1",
+                              "subdenomination": null,
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_stringliteral_2e9b5656f92245513fa5c90b6cd8eaff0beb545b6adecb7356a01485bee15cea",
+                                "typeString": "literal_string \"US + EU limit surpassed!\""
+                              },
+                              "value": "US + EU limit surpassed!"
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_uint8",
+                                "typeString": "uint8"
+                              },
+                              {
+                                "typeIdentifier": "t_stringliteral_2e9b5656f92245513fa5c90b6cd8eaff0beb545b6adecb7356a01485bee15cea",
+                                "typeString": "literal_string \"US + EU limit surpassed!\""
+                              }
+                            ],
+                            "id": 86,
+                            "name": "StatusMessage",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 68,
+                            "src": "903:13:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_event_nonpayable$_t_uint8_$_t_string_memory_ptr_$returns$__$",
+                              "typeString": "function (uint8,string memory)"
+                            }
+                          },
+                          "id": 89,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "903:103:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_tuple$__$",
+                            "typeString": "tuple()"
+                          }
+                        },
+                        "id": 90,
+                        "nodeType": "EmitStatement",
+                        "src": "898:108:1"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "documentation": "@dev function to store humidity measurement to the blockchain\n@param _measurement the measured humidity in percent (has to be between 0 and 100)",
+            "id": 110,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "submit",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 71,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 70,
+                  "name": "_measurement",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 110,
+                  "src": "734:18:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 69,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "734:5:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "733:20:1"
+            },
+            "returnParameters": {
+              "id": 72,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "761:0:1"
+            },
+            "scope": 111,
+            "src": "718:633:1",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 112,
+        "src": "182:1175:1"
+      }
+    ],
+    "src": "39:1318:1"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "/C/Users/Johannes/OneDrive/Studium/_temp/FT_20_Masterarbeit/IBES_Blockchain/contracts/Humidity_Alarming.sol",
+      "exportedSymbols": {
+        "Humidity_Alarming": [
+          111
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">=",
+            "0.5",
+            ".0"
+          ]
+        },
+        "id": 54,
+        "name": "PragmaDirective",
+        "src": "39:24:1"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": "@title Humidity_Alarming\n@dev Submit measured humidity and trigger a message for the frontend",
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            111
+          ],
+          "name": "Humidity_Alarming",
+          "scope": 112
+        },
+        "children": [
+          {
+            "attributes": {
+              "constant": false,
+              "name": "measurement",
+              "scope": 111,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "uint8",
+              "value": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "uint8",
+                  "type": "uint8"
+                },
+                "id": 55,
+                "name": "ElementaryTypeName",
+                "src": "217:5:1"
+              }
+            ],
+            "id": 56,
+            "name": "VariableDeclaration",
+            "src": "217:17:1"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "american_limit",
+              "scope": 111,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "uint8",
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "uint8",
+                  "type": "uint8"
+                },
+                "id": 57,
+                "name": "ElementaryTypeName",
+                "src": "290:5:1"
+              },
+              {
+                "attributes": {
+                  "argumentTypes": null,
+                  "hexvalue": "3930",
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "lValueRequested": false,
+                  "subdenomination": null,
+                  "token": "number",
+                  "type": "int_const 90",
+                  "value": "90"
+                },
+                "id": 58,
+                "name": "Literal",
+                "src": "313:2:1"
+              }
+            ],
+            "id": 59,
+            "name": "VariableDeclaration",
+            "src": "290:25:1"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "european_limit",
+              "scope": 111,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "uint8",
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "uint8",
+                  "type": "uint8"
+                },
+                "id": 60,
+                "name": "ElementaryTypeName",
+                "src": "368:5:1"
+              },
+              {
+                "attributes": {
+                  "argumentTypes": null,
+                  "hexvalue": "3837",
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "lValueRequested": false,
+                  "subdenomination": null,
+                  "token": "number",
+                  "type": "int_const 87",
+                  "value": "87"
+                },
+                "id": 61,
+                "name": "Literal",
+                "src": "391:2:1"
+              }
+            ],
+            "id": 62,
+            "name": "VariableDeclaration",
+            "src": "368:25:1"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": null,
+              "name": "StatusMessage"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "name": "currentValue",
+                      "scope": 68,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint8",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint8",
+                          "type": "uint8"
+                        },
+                        "id": 63,
+                        "name": "ElementaryTypeName",
+                        "src": "459:5:1"
+                      }
+                    ],
+                    "id": 64,
+                    "name": "VariableDeclaration",
+                    "src": "459:26:1"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "name": "alarmMessage",
+                      "scope": 68,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 65,
+                        "name": "ElementaryTypeName",
+                        "src": "496:6:1"
+                      }
+                    ],
+                    "id": 66,
+                    "name": "VariableDeclaration",
+                    "src": "496:27:1"
+                  }
+                ],
+                "id": 67,
+                "name": "ParameterList",
+                "src": "448:82:1"
+              }
+            ],
+            "id": 68,
+            "name": "EventDefinition",
+            "src": "429:102:1"
+          },
+          {
+            "attributes": {
+              "documentation": "@dev function to store humidity measurement to the blockchain\n@param _measurement the measured humidity in percent (has to be between 0 and 100)",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "submit",
+              "scope": 111,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_measurement",
+                      "scope": 110,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint8",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint8",
+                          "type": "uint8"
+                        },
+                        "id": 69,
+                        "name": "ElementaryTypeName",
+                        "src": "734:5:1"
+                      }
+                    ],
+                    "id": 70,
+                    "name": "VariableDeclaration",
+                    "src": "734:18:1"
+                  }
+                ],
+                "id": 71,
+                "name": "ParameterList",
+                "src": "733:20:1"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 72,
+                "name": "ParameterList",
+                "src": "761:0:1"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "uint8"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 56,
+                              "type": "uint8",
+                              "value": "measurement"
+                            },
+                            "id": 73,
+                            "name": "Identifier",
+                            "src": "772:11:1"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 70,
+                              "type": "uint8",
+                              "value": "_measurement"
+                            },
+                            "id": 74,
+                            "name": "Identifier",
+                            "src": "786:12:1"
+                          }
+                        ],
+                        "id": 75,
+                        "name": "Assignment",
+                        "src": "772:26:1"
+                      }
+                    ],
+                    "id": 76,
+                    "name": "ExpressionStatement",
+                    "src": "772:26:1"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                215,
+                                216
+                              ],
+                              "referencedDeclaration": 215,
+                              "type": "function (bool) pure",
+                              "value": "require"
+                            },
+                            "id": 77,
+                            "name": "Identifier",
+                            "src": "809:7:1"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "commonType": {
+                                "typeIdentifier": "t_uint8",
+                                "typeString": "uint8"
+                              },
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": "<=",
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 56,
+                                  "type": "uint8",
+                                  "value": "measurement"
+                                },
+                                "id": 78,
+                                "name": "Identifier",
+                                "src": "818:11:1"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "hexvalue": "313030",
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "subdenomination": null,
+                                  "token": "number",
+                                  "type": "int_const 100",
+                                  "value": "100"
+                                },
+                                "id": 79,
+                                "name": "Literal",
+                                "src": "833:3:1"
+                              }
+                            ],
+                            "id": 80,
+                            "name": "BinaryOperation",
+                            "src": "818:18:1"
+                          }
+                        ],
+                        "id": 81,
+                        "name": "FunctionCall",
+                        "src": "809:28:1"
+                      }
+                    ],
+                    "id": 82,
+                    "name": "ExpressionStatement",
+                    "src": "809:28:1"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "commonType": {
+                            "typeIdentifier": "t_uint8",
+                            "typeString": "uint8"
+                          },
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": ">=",
+                          "type": "bool"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 56,
+                              "type": "uint8",
+                              "value": "measurement"
+                            },
+                            "id": 83,
+                            "name": "Identifier",
+                            "src": "853:11:1"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 59,
+                              "type": "uint8",
+                              "value": "american_limit"
+                            },
+                            "id": 84,
+                            "name": "Identifier",
+                            "src": "868:14:1"
+                          }
+                        ],
+                        "id": 85,
+                        "name": "BinaryOperation",
+                        "src": "853:29:1"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "isStructConstructorCall": false,
+                                  "lValueRequested": false,
+                                  "names": [
+                                    null
+                                  ],
+                                  "type": "tuple()",
+                                  "type_conversion": false
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": [
+                                        {
+                                          "typeIdentifier": "t_uint8",
+                                          "typeString": "uint8"
+                                        },
+                                        {
+                                          "typeIdentifier": "t_stringliteral_2e9b5656f92245513fa5c90b6cd8eaff0beb545b6adecb7356a01485bee15cea",
+                                          "typeString": "literal_string \"US + EU limit surpassed!\""
+                                        }
+                                      ],
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 68,
+                                      "type": "function (uint8,string memory)",
+                                      "value": "StatusMessage"
+                                    },
+                                    "id": 86,
+                                    "name": "Identifier",
+                                    "src": "903:13:1"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 56,
+                                      "type": "uint8",
+                                      "value": "measurement"
+                                    },
+                                    "id": 87,
+                                    "name": "Identifier",
+                                    "src": "935:11:1"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "hexvalue": "5553202b204555206c696d69742073757270617373656421",
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": true,
+                                      "lValueRequested": false,
+                                      "subdenomination": null,
+                                      "token": "string",
+                                      "type": "literal_string \"US + EU limit surpassed!\"",
+                                      "value": "US + EU limit surpassed!"
+                                    },
+                                    "id": 88,
+                                    "name": "Literal",
+                                    "src": "965:26:1"
+                                  }
+                                ],
+                                "id": 89,
+                                "name": "FunctionCall",
+                                "src": "903:103:1"
+                              }
+                            ],
+                            "id": 90,
+                            "name": "EmitStatement",
+                            "src": "898:108:1"
+                          }
+                        ],
+                        "id": 91,
+                        "name": "Block",
+                        "src": "883:135:1"
+                      },
+                      {
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "commonType": {
+                                "typeIdentifier": "t_uint8",
+                                "typeString": "uint8"
+                              },
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": ">=",
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 56,
+                                  "type": "uint8",
+                                  "value": "measurement"
+                                },
+                                "id": 92,
+                                "name": "Identifier",
+                                "src": "1038:11:1"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 62,
+                                  "type": "uint8",
+                                  "value": "european_limit"
+                                },
+                                "id": 93,
+                                "name": "Identifier",
+                                "src": "1053:14:1"
+                              }
+                            ],
+                            "id": 94,
+                            "name": "BinaryOperation",
+                            "src": "1038:29:1"
+                          },
+                          {
+                            "children": [
+                              {
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": false,
+                                      "isStructConstructorCall": false,
+                                      "lValueRequested": false,
+                                      "names": [
+                                        null
+                                      ],
+                                      "type": "tuple()",
+                                      "type_conversion": false
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": [
+                                            {
+                                              "typeIdentifier": "t_uint8",
+                                              "typeString": "uint8"
+                                            },
+                                            {
+                                              "typeIdentifier": "t_stringliteral_f74257281e91ba91d5e367736c7aff37550c93ad88d0afd33b6c7d8811fb8a79",
+                                              "typeString": "literal_string \"EU limit surpassed!\""
+                                            }
+                                          ],
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 68,
+                                          "type": "function (uint8,string memory)",
+                                          "value": "StatusMessage"
+                                        },
+                                        "id": 95,
+                                        "name": "Identifier",
+                                        "src": "1088:13:1"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 56,
+                                          "type": "uint8",
+                                          "value": "measurement"
+                                        },
+                                        "id": 96,
+                                        "name": "Identifier",
+                                        "src": "1120:11:1"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "hexvalue": "4555206c696d69742073757270617373656421",
+                                          "isConstant": false,
+                                          "isLValue": false,
+                                          "isPure": true,
+                                          "lValueRequested": false,
+                                          "subdenomination": null,
+                                          "token": "string",
+                                          "type": "literal_string \"EU limit surpassed!\"",
+                                          "value": "EU limit surpassed!"
+                                        },
+                                        "id": 97,
+                                        "name": "Literal",
+                                        "src": "1151:21:1"
+                                      }
+                                    ],
+                                    "id": 98,
+                                    "name": "FunctionCall",
+                                    "src": "1088:99:1"
+                                  }
+                                ],
+                                "id": 99,
+                                "name": "EmitStatement",
+                                "src": "1083:104:1"
+                              }
+                            ],
+                            "id": 100,
+                            "name": "Block",
+                            "src": "1068:131:1"
+                          },
+                          {
+                            "children": [
+                              {
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": false,
+                                      "isStructConstructorCall": false,
+                                      "lValueRequested": false,
+                                      "names": [
+                                        null
+                                      ],
+                                      "type": "tuple()",
+                                      "type_conversion": false
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": [
+                                            {
+                                              "typeIdentifier": "t_uint8",
+                                              "typeString": "uint8"
+                                            },
+                                            {
+                                              "typeIdentifier": "t_stringliteral_b052b161f720e76561db2d34c82b22d66952de62ba37917957254ea0fb8f979a",
+                                              "typeString": "literal_string \"No limit surpassed\""
+                                            }
+                                          ],
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 68,
+                                          "type": "function (uint8,string memory)",
+                                          "value": "StatusMessage"
+                                        },
+                                        "id": 101,
+                                        "name": "Identifier",
+                                        "src": "1234:13:1"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 56,
+                                          "type": "uint8",
+                                          "value": "measurement"
+                                        },
+                                        "id": 102,
+                                        "name": "Identifier",
+                                        "src": "1266:11:1"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "hexvalue": "4e6f206c696d697420737572706173736564",
+                                          "isConstant": false,
+                                          "isLValue": false,
+                                          "isPure": true,
+                                          "lValueRequested": false,
+                                          "subdenomination": null,
+                                          "token": "string",
+                                          "type": "literal_string \"No limit surpassed\"",
+                                          "value": "No limit surpassed"
+                                        },
+                                        "id": 103,
+                                        "name": "Literal",
+                                        "src": "1297:20:1"
+                                      }
+                                    ],
+                                    "id": 104,
+                                    "name": "FunctionCall",
+                                    "src": "1234:98:1"
+                                  }
+                                ],
+                                "id": 105,
+                                "name": "EmitStatement",
+                                "src": "1229:103:1"
+                              }
+                            ],
+                            "id": 106,
+                            "name": "Block",
+                            "src": "1214:130:1"
+                          }
+                        ],
+                        "id": 107,
+                        "name": "IfStatement",
+                        "src": "1034:310:1"
+                      }
+                    ],
+                    "id": 108,
+                    "name": "IfStatement",
+                    "src": "849:495:1"
+                  }
+                ],
+                "id": 109,
+                "name": "Block",
+                "src": "761:590:1"
+              }
+            ],
+            "id": 110,
+            "name": "FunctionDefinition",
+            "src": "718:633:1"
+          }
+        ],
+        "id": 111,
+        "name": "ContractDefinition",
+        "src": "182:1175:1"
+      }
+    ],
+    "id": 112,
+    "name": "SourceUnit",
+    "src": "39:1318:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
+  },
+  "networks": {
+    "5777": {
+      "events": {
+        "0x415ccc44dc98d2a8c23a3871cdffb3490f6f34ad3c7e16318ce013078b435b07": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "uint8",
+              "name": "currentValue",
+              "type": "uint8"
+            },
+            {
+              "indexed": true,
+              "internalType": "string",
+              "name": "alarmMessage",
+              "type": "string"
+            }
+          ],
+          "name": "StatusMessage",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x97Ff33be22c6c4F0334d5818C345178348A1A6b4",
+      "transactionHash": "0xc9f7e66a8c3a0f638f35bbf96341337abd62e8adf51a8ed42d507b4458ae5058"
+    }
+  },
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-03-19T13:22:22.193Z",
+  "networkType": "ethereum",
+  "devdoc": {
+    "details": "Submit measured humidity and trigger a message for the frontend",
+    "methods": {
+      "submit(uint8)": {
+        "details": "function to store humidity measurement to the blockchain",
+        "params": {
+          "_measurement": "the measured humidity in percent (has to be between 0 and 100)"
+        }
+      }
+    },
+    "title": "Humidity_Alarming"
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
