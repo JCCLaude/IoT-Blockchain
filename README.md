@@ -41,5 +41,6 @@ TBD
 ## TODO
 - [x] Create blockchain 
 - [x] Send data from IoT client to blockchain 
-- [ ] Set up webserver and connect it to blockchain
-- [ ] Set up database
+- [x] Set up webserver and connect it to database
+- [ ] Connect IoT client to database
+- [ ] Connect blockchain to webserver
