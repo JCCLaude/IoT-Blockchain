@@ -42,7 +42,7 @@ _Plattform Visual Studio Code:_ https://code.visualstudio.com/download
 | 1.2. install dotenv:     | npm install dotenv (^8.2.0)                                                        |
 | 1.3. install mongoose:   | npm install mongoose (^5.12.1)                                                     |
 | 1.4. install cors:       | npm install cors (^2.8.5)                                                          |
-|--------------------------|------------------------------------------------------------------------------------|
+|                          |                                                                                    |
 | 2. Frontend              |                                                                                    |
 | 2.1 install react:       | npm install react (^16.14.0)                                                       |
 | 2.2 install highcharts:  | npm install highcharts (^9.0.1) && npm install highcharts-react-official (^3.0.1)  |
