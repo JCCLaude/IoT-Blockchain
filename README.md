@@ -33,9 +33,9 @@ _Dependencies Installation: Linux, Raspbian_
 
 
 ## Webserver:
-_Plattform Visual Studio Code: https://code.visualstudio.com/download 
-1. Backend
-2. Frontend
+_Plattform Visual Studio Code:_ https://code.visualstudio.com/download 
+# 1. Backend
+# 2. Frontend
 
 | Task                     | Command                                                                            |
 |--------------------------|:----------------------------------------------------------------------------------:|
@@ -49,14 +49,10 @@ _Plattform Visual Studio Code: https://code.visualstudio.com/download
 | 2.3 install bootstrap:   | npm install bootstrap (^4.3.1)                                                     |
 
 
-"bootstrap": "^4.3.1",
-    "highcharts": "^9.0.1",
-    "highcharts-react-official": "^3.0.0",
-    "react": "^16.14.0",
 
 ## TODO
 - [x] Create blockchain 
-- [x] Send data from IoT client to blockchain 
+- [x] Connect IoT client to blockchain 
 - [x] Set up webserver and connect it to database
-- [ ] Connect IoT client to database
+- [x] Connect IoT client to database
 - [ ] Connect blockchain to webserver
