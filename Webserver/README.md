@@ -1,3 +1,5 @@
 # Webserver
 
-Install the dependencies from package.json and run backend and frontend separately.
+1. Download files and open seperately (frontend, backend) in Code 
+2. Go in backend folder and start server: nodemon server.js
+3. Go in parent folder (frontend) and start frontend: npm start
