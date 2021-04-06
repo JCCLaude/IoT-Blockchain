@@ -34,16 +34,16 @@ _Dependencies Installation: Linux, Raspbian_
 
 ## Webserver:
 _Plattform Visual Studio Code:_ https://code.visualstudio.com/download 
-## 1. Backend
-## 2. Frontend
 
 | Task                     | Command                                                                            |
 |--------------------------|:----------------------------------------------------------------------------------:|
+| 1. Backend               |                                                                                    |
 | 1.1. install express:    | npm install express (^4.17.1)                                                      |
 | 1.2. install dotenv:     | npm install dotenv (^8.2.0)                                                        |
 | 1.3. install mongoose:   | npm install mongoose (^5.12.1)                                                     |
 | 1.4. install cors:       | npm install cors (^2.8.5)                                                          |
 |--------------------------|------------------------------------------------------------------------------------|
+| 2. Frontend              |                                                                                    |
 | 2.1 install react:       | npm install react (^16.14.0)                                                       |
 | 2.2 install highcharts:  | npm install highcharts (^9.0.1) && npm install highcharts-react-official (^3.0.1)  |
 | 2.3 install bootstrap:   | npm install bootstrap (^4.3.1)                                                     |
