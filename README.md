@@ -34,8 +34,8 @@ _Dependencies Installation: Linux, Raspbian_
 
 ## Webserver:
 _Plattform Visual Studio Code:_ https://code.visualstudio.com/download 
-# 1. Backend
-# 2. Frontend
+### 1. Backend
+### 2. Frontend
 
 | Task                     | Command                                                                            |
 |--------------------------|:----------------------------------------------------------------------------------:|
