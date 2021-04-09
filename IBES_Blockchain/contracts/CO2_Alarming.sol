@@ -4,12 +4,14 @@ pragma solidity >=0.5.0;
 
 /**
  * @title CO2_Alarming
- * @dev Submit measured CO2 value (in ppm) and trigger a message for the frontend
+ * @dev Submit measured CO2 value (in ppm), a timestamp, a geolocation and trigger a message for the frontend
  */
 
 contract CO2_Alarming{
 
-    uint16 measurement; //latest measurement
+    uint16 measurement; // latest measurement
+    string timestamp; // latest timestamp
+    string geolocation; // latest geolocation
 
     // limits and alarm messages are set here
 
@@ -26,21 +28,29 @@ contract CO2_Alarming{
     uint8 danger_level = 0;
 
     event StatusMessage(
+        string timestamp,
         uint16 indexed measurement,
+        string geolocation,
         uint8 indexed critical,
         string alarmMessage
     );
 
     /**
      * @dev store CO2 measurement to the blockchain, trigger a message
-     * @param _measurement CO2 value measured in ppm
+     * @param _timestamp a timestamp provided as a string by the IoT device
+     * @param _measurement the measrued C02 value in ppm
+     * @param _geolocation a geolocation provided as a string by the IoT device
      */
-    function submit(uint16 _measurement) public {
+    function submit(string memory _timestamp, uint16 _measurement, string memory _geolocation) public {
         measurement = _measurement;
+        timestamp = _timestamp;
+        geolocation = _geolocation;
         if (measurement >= higher_limit){
             danger_level = 2;
             emit StatusMessage(
+                timestamp,
                 measurement, 
+                geolocation,
                 danger_level,
                 higher_limit_message
             );
@@ -48,7 +58,9 @@ contract CO2_Alarming{
         else if (measurement >= lower_limit){
             danger_level = 1;
             emit StatusMessage(                
+                timestamp,
                 measurement, 
+                geolocation,
                 danger_level,
                 lower_limit_message
             );
@@ -56,7 +68,9 @@ contract CO2_Alarming{
         else{
             danger_level = 0;
             emit StatusMessage(                
+                timestamp,
                 measurement, 
+                geolocation,
                 danger_level,
                 no_limit_message
             );
