@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import "./style.components.css";
+import IBESlogo from '../images/IBESlogo.png';
 
 const Blockchain = props => (
   <tr>
@@ -37,6 +39,9 @@ export default class BlockchainList extends Component {
   render() {
     return (
       <div>
+
+        <div className="flex-container" id="logo"><img src={IBESlogo} width="130" height="130" alt="IBES Logo"></img></div>
+        
         <h3>Blockchain Values</h3>
 
         <p>Hallo Johannes, anbei deine Blockchain Seite. Sie ist nicht mit dem Backend, also der MongoDB verknüpft, da sie ja die Daten von der Blockchain beziehen soll. Happy Hacking!</p>

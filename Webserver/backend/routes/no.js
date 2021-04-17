@@ -10,10 +10,12 @@ router.route('/').get((req, res) => {
 router.route('/add').post((req, res) => {
   const noval = req.body.noval;
   const nodate = req.body.nodate;
+  const nogeo = req.body.nogeo;
 
   const newNO = new NO2({ 
     noval,
-    nodate
+    nodate,
+    nogeo
   });
 
   newNO.save()
@@ -35,7 +37,7 @@ router.route('/:id').delete((req, res) => {
 
 router.route('/update/:id').post((req, res) => {
   NO2.findById(req.params.id)
-    .then(exercise => {
+    .then(no => {
       no.noval = req.body.noval;
       
       NO2.save()

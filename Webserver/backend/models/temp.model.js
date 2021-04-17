@@ -2,18 +2,18 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const noSchema = new Schema({
-  noval: { 
+const tempSchema = new Schema({
+  tempval: {
     type: Number,
     required: true,
     unique: false
   },
-  nodate:{
-    type: Date,
+  tempdate:{
+    type: Date, 
     required: true,
     unique: false
   },
-  nogeo: {
+  tempgeo: {
     type: String,
     required: true,
     unique: false
@@ -22,6 +22,6 @@ const noSchema = new Schema({
   timestamps: true,
 });
 
-const NO2 = mongoose.model('NO2', noSchema);
+const Temp = mongoose.model('temp2', tempSchema);
 
-module.exports = NO2;
+module.exports = Temp;

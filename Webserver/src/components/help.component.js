@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import IBESlogo from '../images/IBESlogo.png';
+import "./style.components.css";
 
 
 export default class HelpList extends Component {
@@ -37,6 +39,8 @@ export default class HelpList extends Component {
   render() {
     return (
      <div>
+       <div className="flex-container" id="logo"><img src={IBESlogo} width="130" height="130" alt="IBES Logo"></img></div>
+        
         <h3>Help Page</h3>
           <tbody>
             { this.HelpList() }

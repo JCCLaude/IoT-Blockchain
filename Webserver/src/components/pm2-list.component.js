@@ -7,33 +7,33 @@ import IBESlogo from '../images/IBESlogo.png';
 import greencert from '../images/greencert.png';
 import redcert from '../images/redcert.png';
 
+var pm2limitred = 1000;
+var pm2limitorange = 500;
+var pm2limitgreen = 0;
 
-var nolimitred = 1000;
-var nolimitorange = 500;
-var nolimitgreen = 0;
-
-var certificateboolNO2 = true;
+var certificateboolPM2 = true;
 var thumb_img = greencert;
 var thumb_alt ="Green Thumb Up";
 
-var text1 = "The NO2 emissions are ";
+var text1 = "The PM2.5 emissions are ";
 var text2 = "with government emission limits.";
 var textyesorno = "IN COMPLIANCE ";
-var infotext = "This page displays the measured nitrogen dioxide (NO2) emissions. NO2 is...";
+var infotext = "This page displays the measured particular matter (PM2.5) emissions. PM2.5 is...";
 var Arrayval = [];
 
-var nobv = "";
-var nobv1 = "";
-var nobd = "";
-var nobd1 = "";
+var pm2bv = "";
+var pm2bv1 = "";
+var pm2bd = "";
+var pm2bd1 = "";
 
 
-const NO2 = props => (
+
+const PM2 = props => (
   <tr>
-    <td>{props.no.nodate.substring(0,19).replace("T", " ")}</td>
-    <td id={props.no.noval >= nolimitred ? 'valuesred':'valuesgreen' && props.no.noval >= nolimitorange && props.no.noval < nolimitred ? 'valuesyellow':'valuesgreen'}> {props.no.noval}<img src={thumb_img} alt="" height="40" width="40"></img></td> 
+    <td>{props.pm2.pm2date.substring(0,19).replace("T", " ")}</td>
+    <td id={props.pm2.pm2val >= pm2limitred ? 'valuesred':'valuesgreen' && props.pm2.pm2val >= pm2limitorange && props.pm2.pm2val < pm2limitred ? 'valuesyellow':'valuesgreen'}> {props.pm2.pm2val}<img src={thumb_img} alt="" height="40" width="40"></img></td> 
     <td>
-      <a href={"https://maps.google.com/?q="+props.no.nogeo} target="_blank" rel="noopener noreferrer">Maps</a>
+      <a href={"https://maps.google.com/?q="+props.pm2.pm2geo} target="_blank" rel="noopener noreferrer">Maps</a>
     </td>
   </tr>
 )
@@ -52,65 +52,63 @@ const getCircularReplacer = () => {
 };
 
 
-export default class NO2List extends Component {
+export default class PM2List extends Component {
   constructor(props) {
     super(props);
-    this.deleteNO2 = this.deleteNO2.bind(this)
-    this.state = {
-      no: []
-    };
+    this.deletePM2 = this.deletePM2.bind(this)
+    this.state = {pm2: []};
     this.optionsMonth = {};
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5000/no/')
+    axios.get('http://localhost:5000/pm2/')
       .then(response => { 
-        this.setState({ no: response.data })
+        this.setState({ pm2: response.data })
       })
       .catch((error) => {
         console.log(error);
       })
   }
 
-  deleteNO2(id) {
-    axios.delete('http://localhost:5000/no/'+id)
+  deletePM2(id) {
+    axios.delete('http://localhost:5000/pm2/'+id)
       .then(response => { console.log(response.data)});
 
     this.setState({
-      no: this.state.ch.filter(el => el._id !== id)
+      pm2: this.state.pm2.filter(el => el._id !== id)
     })
   }
 
-  NO2List() {
-    return this.state.no.map(currentno => {
-      return <NO2 no={currentno} deleteNO2={this.deleteNO2} key={currentno._id}/>;
+  PM2List() {
+    return this.state.pm2.map(currentpm2 => {
+      return <PM2 pm2={currentpm2} deletePM2={this.deletePM2} key={currentpm2._id}/>;
     }).reverse()
   }
 
   getdata() {
-    return this.state.no.map(currentno => {
-      nobv = JSON.stringify((<NO2 no={currentno} key={currentno._id}/>), getCircularReplacer());
-      nobd = nobv.slice(nobv.indexOf('nodate'),nobv.indexOf('nogeo')); //dates
-      nobv =  nobv.slice(nobv.indexOf('noval'),nobv.indexOf('nodate')); //values
-      nobv1 = nobv.slice(nobv.indexOf(':')+1,nobv.indexOf(','));
-      nobd1 = nobd.slice(nobd.indexOf(':')+1,nobd.indexOf(','));
+    return this.state.pm2.map(currentpm2 => {
+      pm2bv = JSON.stringify((<PM2 pm2={currentpm2} key={currentpm2._id}/>), getCircularReplacer());
+      pm2bd = pm2bv.slice(pm2bv.indexOf('pm2date'),pm2bv.indexOf('pm2geo')); //dates
+      pm2bv =  pm2bv.slice(pm2bv.indexOf('pm2val'),pm2bv.indexOf('pm2date')); //values
+      pm2bv1 = pm2bv.slice(pm2bv.indexOf(':')+1,pm2bv.indexOf(','));
+      pm2bd1 = pm2bd.slice(pm2bd.indexOf(':')+1,pm2bd.indexOf(','));
       
-      nobd1 = nobd1.replace("T", " ").replace("Z", "").replaceAll('"','').slice(0,nobd1.indexOf(".")-1);
-      Arrayval.push( [(Date.parse(nobd1)+3600000), parseInt(nobv1) ] ); 
+      pm2bd1 = pm2bd1.replace("T", " ").replace("Z", "").replaceAll('"','').slice(0,pm2bd1.indexOf(".")-1);
+      Arrayval.push( [(Date.parse(pm2bd1)+3600000), parseInt(pm2bv1) ] ); 
 
-      if(parseInt(nobv1) > nolimitred) {
-        certificateboolNO2 = false;
+      if(parseInt(pm2bv1) > pm2limitred) {
+        certificateboolPM2 = false;
         thumb_img = redcert;
         thumb_alt = "Red Thumb Down";
         textyesorno = "NOT IN COMPLIANCE ";
       }
-      return certificateboolNO2;
+      return certificateboolPM2;
     })
   }
 
   gb(){
     this.getdata();
-    return certificateboolNO2;
+    return certificateboolPM2;
   }
 
 
@@ -120,7 +118,7 @@ export default class NO2List extends Component {
         type: 'spline'
       },
       title: {
-        text: 'NO2 Emissions Month'
+        text: 'PM2.5 Emissions Month'
       },
       xAxis: {
         title: {
@@ -130,26 +128,27 @@ export default class NO2List extends Component {
       },
       yAxis: {
         title: {
-            text: 'NO2 Emission in ppm'
+            text: 'PM2.5 Emission in ppm'
         },
         plotLines: [{
-          value: nolimitred,
+          value: pm2limitred,
           color: 'red',
           dashStyle: 'shortdash',
           width: 2,
           label: {
-              text: 'Limit '+nolimitred+' particel per million (ppm)'
+              text: 'Limit '+pm2limitred+' particel per million (ppm)'
           }
         }]
       },
       series: [
         {
-          name: 'NO2 Emissions',
+          name: 'PM2.5 Emissions',
           data: Arrayval
         }
       ]
     };
   }
+
 
   render() {
     return (
@@ -157,7 +156,7 @@ export default class NO2List extends Component {
 
         <div className="flex-container" id="logo"><img src={IBESlogo} width="130" height="130" alt="IBES Logo"></img></div>
         
-        <h3>Nitrogen Dioxide (NO2)</h3>
+        <h3>Particulate Matter 2,5 micrometers (PM2,5)</h3>
 
         {this.gb()}
 
@@ -168,7 +167,7 @@ export default class NO2List extends Component {
         {this.createArray()}
 
         <br></br> <br></br>
-         
+        
           <div>
             <HighchartsReact highcharts={Highcharts} options={this.optionsMonth} constructorType={'stockChart'}/>
           </div>
@@ -177,9 +176,9 @@ export default class NO2List extends Component {
         <h4>Legend of colors from the table shown below</h4>
         <br></br>
         <div class='flex-container' id='legendbox'>
-          <div id="boxgreen"> <p>Color Green:</p> <br></br> <p>NO2 value {'>'} {nolimitgreen} and {'<'} {nolimitorange}</p> </div>
-          <div id="boxorange"> <p>Color Orange: </p> <br></br> <p>NO2 value {'>'} {nolimitorange} and {'<'} {nolimitred}</p> </div> 
-          <div id="boxred"> <p>Color Red: </p> <br></br> <p>NO2 value {'>'} {nolimitred}</p> </div> 
+          <div id="boxgreen"> <p>Color Green:</p> <br></br> <p>PM2.5 value {'>'} {pm2limitgreen} and {'<'} {pm2limitorange}</p> </div>
+          <div id="boxorange"> <p>Color Orange: </p> <br></br> <p>PM2.5 value {'>'} {pm2limitorange} and {'<'} {pm2limitred}</p> </div> 
+          <div id="boxred"> <p>Color Red: </p> <br></br> <p>PM2.5 value {'>'} {pm2limitred}</p> </div> 
         </div>
 
         <br></br> <br></br>
@@ -188,13 +187,12 @@ export default class NO2List extends Component {
         <table className="table table-striped">
           <thead className="thead-light">
             <tr>
-              <th>NO2 values in ppm</th>
+              <th>PM2,5 values in ppm</th>
               <th>Date of measurement</th>
-              <th>Geo Location</th>  
             </tr>
           </thead>
           <tbody>
-            { this.NO2List() }
+            { this.PM2List() }
           </tbody>
         </table>
       </div>

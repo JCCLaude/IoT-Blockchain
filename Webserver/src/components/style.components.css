@@ -14,7 +14,8 @@
 h3 {
       font-weight: bold;
       text-align: center;
-  }
+      margin-left: 135px;
+    }    
 
 h4 {
   font-weight: bold;
@@ -22,15 +23,72 @@ h4 {
   font-size: large;
 }  
 
-#covaluesred {
+
+#overview_structure {
+  display: flex;
+  justify-content: center;
+}
+
+#overview_img_txt_cont {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    border: 2px solid #333;
+    flex-wrap: wrap;
+    background-color: #f1f1f1;
+    justify-content: center;
+    margin: 8px;
+    align-items: center;
+  /*display: flex;
+  margin: 8px;
+  padding: 2px;
+  font-size: 18px;
+  border: 10px black;
+  box-sizing: border-box; */
+}
+
+
+.flex-item1 {
+  line-height: 40px;
+  border: 2px solid #333;
+  padding: 10px;
+}
+
+.flex-item2 {
+  line-height: 40px;
+  border: 2px solid #333;
+  padding: 10px;
+}
+
+.flex-item3 {
+  line-height: 40px;
+  border: 2px solid #333;
+  padding: 10px;
+}
+
+.flex-item4 {
+  line-height: 40px;
+  border: 2px solid #333;
+  padding: 10px;
+}
+
+
+#logo {
+  display: flex;
+  justify-content: right;
+  margin-right: 5px;
+  float: right;
+}
+
+#valuesred {
   color: red;
 }
 
-#covaluesyellow {
+#valuesyellow {
   color: orange;
 }  
 
-#covaluesgreen {
+#valuesgreen {
   color: green;
 }  
 
@@ -146,7 +204,13 @@ h4 {
       #Help_navbar_item {
       margin: 4px 2px;
     }
+
+    #overview_structure {
+      width: 80%;
+      height: 80%;
+    }
   }
+  
 
 
 

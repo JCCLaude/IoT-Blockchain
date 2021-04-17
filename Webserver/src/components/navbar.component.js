@@ -26,22 +26,19 @@ export default class Navbar extends Component {
             <Link to="/no" id="linkno2" className="nav-link">NO2</Link>
             </li>
             <li className="navbar-item">
-            <Link to="/ch" id="linkch4" className="nav-link">CH4</Link>
+            <Link to="/pm2" id="linkpm2" className="nav-link">PM2.5</Link>
             </li>
             <li className="navbar-item">
-            <Link to="/hfc" id="linkhfc" className="nav-link">HFC</Link>
+            <Link to="/pm10" id="linkpm2" className="nav-link">PM10</Link>
             </li>
             <li className="navbar-item">
-            <Link to="/pfc" id="linkpfc" className="nav-link">PFC</Link>
+            <Link to="/so" id="linkpm2" className="nav-link">SO2</Link>
             </li>
             <li className="navbar-item">
-            <Link to="/sf" id="linksf6" className="nav-link">SF6</Link>
+            <Link to="/ah" id="linkah" className="nav-link">Air Humidity</Link>
             </li>
             <li className="navbar-item">
-            <Link to="/airhumidity" id="linkairhumidity" className="nav-link">Air Humidity</Link>
-            </li>
-            <li className="navbar-item">
-            <Link to="/temperature" id="linktemperature" className="nav-link">Temperature</Link>
+            <Link to="/temp" id="linktemp" className="nav-link">Temperature</Link>
             </li>
             <li className="navbar-item">
             <Link to="/bl" id="linkblockchain" className="nav-link">Blockchain</Link>

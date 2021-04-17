@@ -1,22 +1,31 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import redthumbdown from '../redthumbdown.png';
-import greenthumbup from '../greenthumbup.png';
-import "./style.components.css"
+//import redthumbdown from '../images/redthumbdown.png';
+//import greenthumbup from '../images/greenthumbup.png';
+import "./style.components.css";
 import HighchartsReact from 'highcharts-react-official';
 import Highcharts from 'highcharts/highstock';
+import IBESlogo from '../images/IBESlogo.png';
+import greencert from '../images/greencert.png';
+import redcert from '../images/redcert.png';
 
-var colimitred = 900;
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css"
+
+import api from '../api';
+
+
+var colimitred = 1000;
 var colimitorange = 500;
-var colimitgreen = 0
+var colimitgreen = 0;
 
 var certificateboolCO2 = true;
-var thumb_img;
-var thumb_alt ="";
+var thumb_img = greencert;
+var thumb_alt ="Green Thumb Up";
 
 var text1 = "The CO2 emissions are ";
 var text2 = "with government emission limits.";
-var textyesorno = "";
+var textyesorno = "IN COMPLIANCE ";
 var infotext = "This page displays the measured carbon dioxide (CO2) emissions. CO2 is the most common emission and stays in the atmosphere for more than a thousand years on average. Due to a too high CO2 content in the atmosphere, the ozone layer cannot completely intercept the sun's rays, which is why these can reach the earth's surface almost unhindered and increase climate change here.";
 var Arrayval = [];
 
@@ -29,7 +38,7 @@ var cobd1 = "";
 const CO2 = props => (
 <tr>
     <td>{props.co.codate.substring(0,19).replace("T", " ")}</td>
-    <td id={props.co.coval >= colimitred ? 'covaluesred':'covaluesgreen' && props.co.coval >= colimitorange && props.co.coval < colimitred ? 'covaluesyellow':'covaluesgreen'}> {props.co.coval}</td> {/*{props.co.coval} {if(props.co.coval >= 800) {id='covaluesgreen'}}*/}
+    <td id={props.co.coval >= colimitred ? 'valuesred':'valuesgreen' && props.co.coval >= colimitorange && props.co.coval < colimitred ? 'valuesyellow':'valuesgreen'}> {props.co.coval}<img src={thumb_img} alt="" height="40" width="40"></img></td> 
     <td>
       <a href={"https://maps.google.com/?q="+props.co.cogeo} target="_blank" rel="noopener noreferrer">Maps</a>
     </td>
@@ -49,20 +58,39 @@ const getCircularReplacer = () => {
   };
 };
 
-
-
 export default class CO2List extends Component {
   constructor(props) {
     super(props);
 
     this.deleteCO2 = this.deleteCO2.bind(this)
 
-    this.state = {co: []}; 
+    this.state = {
+      co: [] ,
+      value: new Date()
+      //id: this.props.id
+    }; 
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
 
     this.optionsMonth = {};
-
   }
 
+  findbyId =  async ()  =>  {
+    const codate = this.state.value
+    await api.findbyId(codate).then(codate => {
+             this.setState({codate: codate.data.data._id})
+             }).catch(err => {console.log(err); return ""})
+  } 
+
+  handleChange(event) {
+    this.setState({value: event});
+  }
+
+  handleSubmit(event) {
+    //alert('New Entry' + this.state.value);
+    event.preventDefault();
+  }
 
   componentDidMount() {
     axios.get('http://localhost:5000/co/')
@@ -83,25 +111,11 @@ export default class CO2List extends Component {
     })
   }
 
-  yesorno() {
-    if(1) {certificateboolCO2 = true}
-    else {certificateboolCO2 = false}
-
-    if(certificateboolCO2) {thumb_img = greenthumbup;
-      thumb_alt = "Green Thumb Up";
-      textyesorno = "IN COMPLIANCE ";
-    } 
-    else{thumb_img = redthumbdown
-      thumb_alt = "Red Thumb Down";
-      textyesorno = "NOT IN COMPLIANCE ";
-    }
-  }
 
   CO2List() {
-    this.yesorno();
     return this.state.co.map(currentco => {
       return <CO2 co={currentco} deleteCO2={this.deleteCO2} key={currentco._id}/>;
-    })
+    }).reverse()
   }
 
   getdata() {
@@ -114,12 +128,24 @@ export default class CO2List extends Component {
       
       cobd1 = cobd1.replace("T", " ").replace("Z", "").replaceAll('"','').slice(0,cobd1.indexOf(".")-1);
       Arrayval.push( [(Date.parse(cobd1)+3600000), parseInt(cobv1) ] ); 
-      return Arrayval;
+
+      if(parseInt(cobv1) > colimitred) {
+        certificateboolCO2 = false;
+        thumb_img = redcert;
+        thumb_alt = "Red Thumb Down";
+        textyesorno = "NOT IN COMPLIANCE ";
+      }
+      return certificateboolCO2;
     })
   }
 
-  createArray() {
+  gb(){
     this.getdata();
+    return certificateboolCO2;
+  }
+
+
+  createArray() {
     this.optionsMonth = {
       chart: {
         type: 'spline'
@@ -138,12 +164,12 @@ export default class CO2List extends Component {
             text: 'CO2 Emission in ppm'
         },
         plotLines: [{
-          value: 1200,
+          value: colimitred,
           color: 'red',
           dashStyle: 'shortdash',
           width: 2,
           label: {
-              text: 'Limit 1200 particel per million (ppm)'
+              text: 'Limit '+colimitred+' particel per million (ppm)'
           }
         }]
       },
@@ -157,16 +183,54 @@ export default class CO2List extends Component {
   }
 
   render() {
+    
+   /* this.getID()
+    const {value} = this.state*/
     return (
-      <div>
-        <div><h3 id="CO2_heading">Carbon dioxide (CO2)</h3></div>
 
-        <p><img src={thumb_img} width="80" height="80" alt={thumb_alt} /> {text1} <b>{textyesorno}</b> {text2} </p>
+      <div>
+
+        <div className="flex-container" id="logo"><img src={IBESlogo} width="130" height="130" alt="IBES Logo"></img></div>
+        
+
+        <h3 id="CO2_heading">Carbon dioxide (CO2)</h3>
+
+        {this.gb()}
+
+        <form method="POST" action="/co">
+          <input type="text" id="bar" name="bar" />
+          <button type="submit">Send</button>
+        </form>
+
+       {/*<div>{value}</div>*/}
+      
+        <p><img src={thumb_img} width="100" height="90" alt={thumb_alt} /> {text1} <b>{textyesorno}</b> {text2} </p>
         {infotext}
 
-        {this.createArray()}
+        <br></br><br></br>
 
-        <br></br> <br></br>
+        {this.createArray()}
+        
+        <div>
+          <p><b>Please select a time interval: </b></p>
+          <form onSubmit={this.onFormSubmit}>
+            <DatePicker
+              selected={ this.state.value }
+              onChange={ this.handleChange }
+              showTimeSelect
+              timeFormat="h:mm aa"
+              timeIntervals={30}
+              timeCaption="time"
+              dateFormat="MMMM d, yyyy h:mm aa"
+              maxDate={new Date()}
+              minDate={new Date('April 3, 2021 00:00:00')}
+            />
+            <button className="btn btn-primary">Submit</button>
+          </form>
+        </div>
+
+
+        <br></br>
          
           <div>
             <HighchartsReact highcharts={Highcharts} options={this.optionsMonth} constructorType={'stockChart'}/>
@@ -188,7 +252,7 @@ export default class CO2List extends Component {
             <tr>
               <th>Date of measurement</th>
               <th>CO2 in ppm</th>
-              <th>Geo Location</th> {/*or plz?*/} 
+              <th>Geo Location</th>  
             </tr>
           </thead>
           
