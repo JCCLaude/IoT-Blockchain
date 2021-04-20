@@ -3,9 +3,9 @@ import axios from 'axios';
 import "./style.components.css";
 import HighchartsReact from 'highcharts-react-official';
 import Highcharts from 'highcharts/highstock';
-import IBESlogo from '../images/IBESlogo.png';
-import greencert from '../images/greencert.png';
-import redcert from '../images/redcert.png';
+import IBESlogo from "../../images/IBESlogo.png";
+import greencert from "../../images/greencert.png";
+import redcert from "../../images/redcert.png";
 
 
 var solimitred = 1000;
@@ -52,7 +52,7 @@ const getCircularReplacer = () => {
 };
 
 
-export default class SO2List extends Component {
+export default class SulfurDioxide extends Component {
   constructor(props) {
     super(props);
     this.deleteSO2 = this.deleteSO2.bind(this)

@@ -1,39 +1,56 @@
-import React from 'react';
+import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router, Route} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import Navbar from "./components/navbar.component";
-import OverviewList from "./components/overview-list.component";
-import CO2List from "./components/co-list.component";
-import NO2List from "./components/no-list.component";
-import SO2List from "./components/so-list.component";
-import PM2List from "./components/pm2-list.component";
-import PM10List from "./components/pm10-list.component";
-import AHList from "./components/ah-list.component";
-import TempList from "./components/temp-list.component";
-import HelpList from "./components/help.component";
-import BlockchainList from "./components/blockchain-list.component"
-
+// general components
+import Navigation from "./components/General_Components/Navigation";
+import Homepage from "./components/General_Components/Homepage";
+import Overview from "./components/General_Components/Overview";
+import About from "./components/General_Components/About";
+import ErrorPage from "./components/General_Components/ErrorPage";
+// database components
+import LandingPageDataBase from "./components/Database_components/LandingPage";
+import AirHumidityDataBase from "./components/Database_components/AirHumidity";
+import CarbonDioxideDataBase from "./components/Database_components/CarbonDioxide";
+import NitrogenDioxideDataBase from "./components/Database_components/NitrogenDioxide";
+import ParticularMatter2DataBase from "./components/Database_components/ParticularMatter2";
+import ParticularMatter10DataBase from "./components/Database_components/ParticularMatter10";
+import SulfurDioxideDataBase from "./components/Database_components/SulfurDioxide";
+import TemperatureDataBase from "./components/Database_components/Temperature";
+// blockchain components
+import LandingPageBlockchain from "./components/Blockchain_components/LandingPage";
 
 function App() {
   return (
-    <Router>
-           {/* <meta http-equiv="refresh" content="30" ></meta> */}
-      <div className="container">
-      <Navbar />
-      <br/>
-      <Route path="/" exact component={OverviewList} />
-      <Route path="/co" component={CO2List} />
-      <Route path="/no" component={NO2List} />
-      <Route path="/so" component={SO2List} />
-      <Route path="/pm2" component={PM2List} />
-      <Route path="/pm10" component={PM10List} />
-      <Route path="/ah" component={AHList} />
-      <Route path="/temp" component={TempList} />
-      <Route path="/help" component={HelpList} />
-      <Route path="/bl" component={BlockchainList} />
-      </div>
-    </Router>
+    <>
+      <Router>
+        <Navigation />
+        <Switch>
+          <Route exact path="/" component={Homepage} />
+          <Route path="/overview" component={Overview} />
+          <Route exact path="/detail" component={LandingPageDataBase} />
+          <Route
+            path="/detail/carbondioxide"
+            component={CarbonDioxideDataBase}
+          />
+          <Route path="/detail/airhumidity" component={AirHumidityDataBase} />
+          <Route
+            path="/detail/nitrogendioxide"
+            component={NitrogenDioxideDataBase}
+          />
+          <Route path="/detail/pm2" component={ParticularMatter2DataBase} />
+          <Route path="/detail/pm10" component={ParticularMatter10DataBase} />
+          <Route
+            path="/detail/sulfurdioxide"
+            component={SulfurDioxideDataBase}
+          />
+          <Route path="/detail/temperature" component={TemperatureDataBase} />
+          <Route exact path="/verified" component={LandingPageBlockchain} />
+          <Route path="/about" component={About} />
+          <Route component={ErrorPage} />
+        </Switch>
+      </Router>
+    </>
   );
 }
 
