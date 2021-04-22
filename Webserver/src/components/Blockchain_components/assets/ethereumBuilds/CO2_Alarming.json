@@ -1,0 +1,3062 @@
+{
+  "contractName": "CO2_Alarming",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "timestamp",
+          "type": "string"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint16",
+          "name": "measurement",
+          "type": "uint16"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "geolocation",
+          "type": "string"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint8",
+          "name": "critical",
+          "type": "uint8"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "alarmMessage",
+          "type": "string"
+        }
+      ],
+      "name": "StatusMessage",
+      "type": "event"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_timestamp",
+          "type": "string"
+        },
+        {
+          "internalType": "uint16",
+          "name": "_measurement",
+          "type": "uint16"
+        },
+        {
+          "internalType": "string",
+          "name": "_geolocation",
+          "type": "string"
+        }
+      ],
+      "name": "submit",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"timestamp\",\"type\":\"string\"},{\"indexed\":true,\"internalType\":\"uint16\",\"name\":\"measurement\",\"type\":\"uint16\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"geolocation\",\"type\":\"string\"},{\"indexed\":true,\"internalType\":\"uint8\",\"name\":\"critical\",\"type\":\"uint8\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"alarmMessage\",\"type\":\"string\"}],\"name\":\"StatusMessage\",\"type\":\"event\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"string\",\"name\":\"_timestamp\",\"type\":\"string\"},{\"internalType\":\"uint16\",\"name\":\"_measurement\",\"type\":\"uint16\"},{\"internalType\":\"string\",\"name\":\"_geolocation\",\"type\":\"string\"}],\"name\":\"submit\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"Submit measured CO2 value (in ppm), a timestamp, a geolocation and trigger a message for the frontend\",\"methods\":{\"submit(string,uint16,string)\":{\"details\":\"store CO2 measurement to the blockchain, trigger a message\",\"params\":{\"_geolocation\":\"a geolocation provided as a string by the IoT device\",\"_measurement\":\"the measrued C02 value in ppm\",\"_timestamp\":\"a timestamp provided as a string by the IoT device\"}}},\"title\":\"CO2_Alarming\"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Users/Johannes/OneDrive/Studium/_temp/FT_20_Masterarbeit/IBES_Blockchain_Prototype/contracts/CO2_Alarming.sol\":\"CO2_Alarming\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/Johannes/OneDrive/Studium/_temp/FT_20_Masterarbeit/IBES_Blockchain_Prototype/contracts/CO2_Alarming.sol\":{\"keccak256\":\"0xd2ca87557f6de84561e1ace247cf54e8a9e063be1bba4c60d49583ca6f8c0a33\",\"urls\":[\"bzz-raw://75887cb0120a408a007861f327fc019a65858e5bb0ef8efc1ca4642decd3537e\",\"dweb:/ipfs/QmSePmiYcCQgRRCssrL8cEuFmG5DqwHxyEigdQRz5Wyji8\"]}},\"version\":1}",
+  "bytecode": "0x6080604052610578600360006101000a81548161ffff021916908361ffff1602179055506040518060400160405280601681526020017f486967686572206c696d697420657863656564656421000000000000000000008152506004908051906020019061006e929190610154565b506103e8600560006101000a81548161ffff021916908361ffff1602179055506040518060400160405280601581526020017f4c6f776572206c696d6974206578636565646564210000000000000000000000815250600690805190602001906100d9929190610154565b506040518060400160405280601381526020017f4e6f206c696d6974207375727061737365642e0000000000000000000000000081525060079080519060200190610125929190610154565b506000600860006101000a81548160ff021916908360ff16021790555034801561014e57600080fd5b506101f9565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061019557805160ff19168380011785556101c3565b828001600101855582156101c3579182015b828111156101c25782518255916020019190600101906101a7565b5b5090506101d091906101d4565b5090565b6101f691905b808211156101f25760008160009055506001016101da565b5090565b90565b61095a806102086000396000f3fe608060405234801561001057600080fd5b506004361061002b5760003560e01c8063082f4c0a14610030575b600080fd5b61018e6004803603606081101561004657600080fd5b810190808035906020019064010000000081111561006357600080fd5b82018360208201111561007557600080fd5b8035906020019184600183028401116401000000008311171561009757600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290803561ffff1690602001909291908035906020019064010000000081111561010857600080fd5b82018360208201111561011a57600080fd5b8035906020019184600183028401116401000000008311171561013c57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290505050610190565b005b816000806101000a81548161ffff021916908361ffff16021790555082600190805190602001906101c2929190610880565b5080600290805190602001906101d9929190610880565b50600360009054906101000a900461ffff1661ffff166000809054906101000a900461ffff1661ffff1610610420576002600860006101000a81548160ff021916908360ff160217905550600860009054906101000a900460ff1660ff166000809054906101000a900461ffff1661ffff167f0e7dea0bc4bc4f3c569a252b8f22a431bb3389a6661dc2d8d92815c9c069fd3c600160026004604051808060200180602001806020018481038452878181546001816001161561010002031660029004815260200191508054600181600116156101000203166002900480156103035780601f106102d857610100808354040283529160200191610303565b820191906000526020600020905b8154815290600101906020018083116102e657829003601f168201915b50508481038352868181546001816001161561010002031660029004815260200191508054600181600116156101000203166002900480156103865780601f1061035b57610100808354040283529160200191610386565b820191906000526020600020905b81548152906001019060200180831161036957829003601f168201915b50508481038252858181546001816001161561010002031660029004815260200191508054600181600116156101000203166002900480156104095780601f106103de57610100808354040283529160200191610409565b820191906000526020600020905b8154815290600101906020018083116103ec57829003601f168201915b5050965050505050505060405180910390a361087b565b600560009054906101000a900461ffff1661ffff166000809054906101000a900461ffff1661ffff1610610666576001600860006101000a81548160ff021916908360ff160217905550600860009054906101000a900460ff1660ff166000809054906101000a900461ffff1661ffff167f0e7dea0bc4bc4f3c569a252b8f22a431bb3389a6661dc2d8d92815c9c069fd3c600160026006604051808060200180602001806020018481038452878181546001816001161561010002031660029004815260200191508054600181600116156101000203166002900480156105495780601f1061051e57610100808354040283529160200191610549565b820191906000526020600020905b81548152906001019060200180831161052c57829003601f168201915b50508481038352868181546001816001161561010002031660029004815260200191508054600181600116156101000203166002900480156105cc5780601f106105a1576101008083540402835291602001916105cc565b820191906000526020600020905b8154815290600101906020018083116105af57829003601f168201915b505084810382528581815460018160011615610100020316600290048152602001915080546001816001161561010002031660029004801561064f5780601f106106245761010080835404028352916020019161064f565b820191906000526020600020905b81548152906001019060200180831161063257829003601f168201915b5050965050505050505060405180910390a361087a565b6000600860006101000a81548160ff021916908360ff160217905550600860009054906101000a900460ff1660ff166000809054906101000a900461ffff1661ffff167f0e7dea0bc4bc4f3c569a252b8f22a431bb3389a6661dc2d8d92815c9c069fd3c600160026007604051808060200180602001806020018481038452878181546001816001161561010002031660029004815260200191508054600181600116156101000203166002900480156107615780601f1061073657610100808354040283529160200191610761565b820191906000526020600020905b81548152906001019060200180831161074457829003601f168201915b50508481038352868181546001816001161561010002031660029004815260200191508054600181600116156101000203166002900480156107e45780601f106107b9576101008083540402835291602001916107e4565b820191906000526020600020905b8154815290600101906020018083116107c757829003601f168201915b50508481038252858181546001816001161561010002031660029004815260200191508054600181600116156101000203166002900480156108675780601f1061083c57610100808354040283529160200191610867565b820191906000526020600020905b81548152906001019060200180831161084a57829003601f168201915b5050965050505050505060405180910390a35b5b505050565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106108c157805160ff19168380011785556108ef565b828001600101855582156108ef579182015b828111156108ee5782518255916020019190600101906108d3565b5b5090506108fc9190610900565b5090565b61092291905b8082111561091e576000816000905550600101610906565b5090565b9056fea265627a7a7231582083d95caae4ac609cbdf1acbb279c2f3341172a8f2d156a66cd86cc298b4032d264736f6c63430005100032",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061002b5760003560e01c8063082f4c0a14610030575b600080fd5b61018e6004803603606081101561004657600080fd5b810190808035906020019064010000000081111561006357600080fd5b82018360208201111561007557600080fd5b8035906020019184600183028401116401000000008311171561009757600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290803561ffff1690602001909291908035906020019064010000000081111561010857600080fd5b82018360208201111561011a57600080fd5b8035906020019184600183028401116401000000008311171561013c57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290505050610190565b005b816000806101000a81548161ffff021916908361ffff16021790555082600190805190602001906101c2929190610880565b5080600290805190602001906101d9929190610880565b50600360009054906101000a900461ffff1661ffff166000809054906101000a900461ffff1661ffff1610610420576002600860006101000a81548160ff021916908360ff160217905550600860009054906101000a900460ff1660ff166000809054906101000a900461ffff1661ffff167f0e7dea0bc4bc4f3c569a252b8f22a431bb3389a6661dc2d8d92815c9c069fd3c600160026004604051808060200180602001806020018481038452878181546001816001161561010002031660029004815260200191508054600181600116156101000203166002900480156103035780601f106102d857610100808354040283529160200191610303565b820191906000526020600020905b8154815290600101906020018083116102e657829003601f168201915b50508481038352868181546001816001161561010002031660029004815260200191508054600181600116156101000203166002900480156103865780601f1061035b57610100808354040283529160200191610386565b820191906000526020600020905b81548152906001019060200180831161036957829003601f168201915b50508481038252858181546001816001161561010002031660029004815260200191508054600181600116156101000203166002900480156104095780601f106103de57610100808354040283529160200191610409565b820191906000526020600020905b8154815290600101906020018083116103ec57829003601f168201915b5050965050505050505060405180910390a361087b565b600560009054906101000a900461ffff1661ffff166000809054906101000a900461ffff1661ffff1610610666576001600860006101000a81548160ff021916908360ff160217905550600860009054906101000a900460ff1660ff166000809054906101000a900461ffff1661ffff167f0e7dea0bc4bc4f3c569a252b8f22a431bb3389a6661dc2d8d92815c9c069fd3c600160026006604051808060200180602001806020018481038452878181546001816001161561010002031660029004815260200191508054600181600116156101000203166002900480156105495780601f1061051e57610100808354040283529160200191610549565b820191906000526020600020905b81548152906001019060200180831161052c57829003601f168201915b50508481038352868181546001816001161561010002031660029004815260200191508054600181600116156101000203166002900480156105cc5780601f106105a1576101008083540402835291602001916105cc565b820191906000526020600020905b8154815290600101906020018083116105af57829003601f168201915b505084810382528581815460018160011615610100020316600290048152602001915080546001816001161561010002031660029004801561064f5780601f106106245761010080835404028352916020019161064f565b820191906000526020600020905b81548152906001019060200180831161063257829003601f168201915b5050965050505050505060405180910390a361087a565b6000600860006101000a81548160ff021916908360ff160217905550600860009054906101000a900460ff1660ff166000809054906101000a900461ffff1661ffff167f0e7dea0bc4bc4f3c569a252b8f22a431bb3389a6661dc2d8d92815c9c069fd3c600160026007604051808060200180602001806020018481038452878181546001816001161561010002031660029004815260200191508054600181600116156101000203166002900480156107615780601f1061073657610100808354040283529160200191610761565b820191906000526020600020905b81548152906001019060200180831161074457829003601f168201915b50508481038352868181546001816001161561010002031660029004815260200191508054600181600116156101000203166002900480156107e45780601f106107b9576101008083540402835291602001916107e4565b820191906000526020600020905b8154815290600101906020018083116107c757829003601f168201915b50508481038252858181546001816001161561010002031660029004815260200191508054600181600116156101000203166002900480156108675780601f1061083c57610100808354040283529160200191610867565b820191906000526020600020905b81548152906001019060200180831161084a57829003601f168201915b5050965050505050505060405180910390a35b5b505050565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106108c157805160ff19168380011785556108ef565b828001600101855582156108ef579182015b828111156108ee5782518255916020019190600101906108d3565b5b5090506108fc9190610900565b5090565b61092291905b8082111561091e576000816000905550600101610906565b5090565b9056fea265627a7a7231582083d95caae4ac609cbdf1acbb279c2f3341172a8f2d156a66cd86cc298b4032d264736f6c63430005100032",
+  "sourceMap": "214:2163:0:-;;;454:4;432:26;;;;;;;;;;;;;;;;;;;;465:54;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;549:4;528:25;;;;;;;;;;;;;;;;;;;;560:52;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;621:47;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;763:1;742:22;;;;;;;;;;;;;;;;;;;;214:2163;8:9:-1;5:2;;;30:1;27;20:12;5:2;214:2163:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;",
+  "deployedSourceMap": "214:2163:0:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;214:2163:0;;;;;;;;;;;;;;;;;;;1270:1102;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1270:1102:0;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;1270:1102:0;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;1270:1102:0;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;1270:1102:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;1270:1102:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;1270:1102:0;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;1270:1102:0;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;1270:1102:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;1270:1102:0;;;;;;;;;;;;;;;:::i;:::-;;;1393:12;1379:11;;:26;;;;;;;;;;;;;;;;;;1428:10;1416:9;:22;;;;;;;;;;;;:::i;:::-;;1463:12;1449:11;:26;;;;;;;;;;;;:::i;:::-;;1505:12;;;;;;;;;;;1490:27;;:11;;;;;;;;;;;:27;;;1486:869;;1548:1;1533:12;;:16;;;;;;;;;;;;;;;;;;1690:12;;;;;;;;;;;1569:187;;1629:11;;;;;;;;;;;1569:187;;;1601:9;1660:11;1721:20;1569:187;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1486:869;;;1802:11;;;;;;;;;;;1787:26;;:11;;;;;;;;;;;:26;;;1783:572;;1844:1;1829:12;;:16;;;;;;;;;;;;;;;;;;2002:12;;;;;;;;;;;1865:202;;1941:11;;;;;;;;;;;1865:202;;;1913:9;1972:11;2033:19;1865:202;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1783:572;;;2123:1;2108:12;;:16;;;;;;;;;;;;;;;;;;2281:12;;;;;;;;;;;2144:199;;2220:11;;;;;;;;;;;2144:199;;;2192:9;2251:11;2312:16;2144:199;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1783:572;1486:869;1270:1102;;;:::o;214:2163::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "// SPDX-License-Identifier: GPL-3.0\r\n\r\npragma solidity >=0.5.0;\r\n\r\n/**\r\n * @title CO2_Alarming\r\n * @dev Submit measured CO2 value (in ppm), a timestamp, a geolocation and trigger a message for the frontend\r\n */\r\n\r\ncontract CO2_Alarming{\r\n\r\n    uint16 measurement; // latest measurement\r\n    string timestamp; // latest timestamp\r\n    string geolocation; // latest geolocation\r\n\r\n    // limits and alarm messages are set here\r\n\r\n    uint16 higher_limit = 1400;\r\n    string higher_limit_message = \"Higher limit exceeded!\";\r\n\r\n    uint16 lower_limit = 1000;\r\n    string lower_limit_message = \"Lower limit exceeded!\";\r\n\r\n    string no_limit_message = \"No limit surpassed.\";\r\n\r\n    // danger limit changes according to the surpassed limits\r\n\r\n    uint8 danger_level = 0;\r\n\r\n    event StatusMessage(\r\n        string timestamp,\r\n        uint16 indexed measurement,\r\n        string geolocation,\r\n        uint8 indexed critical,\r\n        string alarmMessage\r\n    );\r\n\r\n    /**\r\n     * @dev store CO2 measurement to the blockchain, trigger a message\r\n     * @param _timestamp a timestamp provided as a string by the IoT device\r\n     * @param _measurement the measrued C02 value in ppm\r\n     * @param _geolocation a geolocation provided as a string by the IoT device\r\n     */\r\n    function submit(string memory _timestamp, uint16 _measurement, string memory _geolocation) public {\r\n        measurement = _measurement;\r\n        timestamp = _timestamp;\r\n        geolocation = _geolocation;\r\n        if (measurement >= higher_limit){\r\n            danger_level = 2;\r\n            emit StatusMessage(\r\n                timestamp,\r\n                measurement, \r\n                geolocation,\r\n                danger_level,\r\n                higher_limit_message\r\n            );\r\n        }\r\n        else if (measurement >= lower_limit){\r\n            danger_level = 1;\r\n            emit StatusMessage(                \r\n                timestamp,\r\n                measurement, \r\n                geolocation,\r\n                danger_level,\r\n                lower_limit_message\r\n            );\r\n        }\r\n        else{\r\n            danger_level = 0;\r\n            emit StatusMessage(                \r\n                timestamp,\r\n                measurement, \r\n                geolocation,\r\n                danger_level,\r\n                no_limit_message\r\n            );\r\n        }\r\n        \r\n    }\r\n\r\n}",
+  "sourcePath": "C:/Users/Johannes/OneDrive/Studium/_temp/FT_20_Masterarbeit/IBES_Blockchain_Prototype/contracts/CO2_Alarming.sol",
+  "ast": {
+    "absolutePath": "/C/Users/Johannes/OneDrive/Studium/_temp/FT_20_Masterarbeit/IBES_Blockchain_Prototype/contracts/CO2_Alarming.sol",
+    "exportedSymbols": {
+      "CO2_Alarming": [
+        107
+      ]
+    },
+    "id": 108,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "39:24:0"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": "@title CO2_Alarming\n@dev Submit measured CO2 value (in ppm), a timestamp, a geolocation and trigger a message for the frontend",
+        "fullyImplemented": true,
+        "id": 107,
+        "linearizedBaseContracts": [
+          107
+        ],
+        "name": "CO2_Alarming",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 3,
+            "name": "measurement",
+            "nodeType": "VariableDeclaration",
+            "scope": 107,
+            "src": "244:18:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint16",
+              "typeString": "uint16"
+            },
+            "typeName": {
+              "id": 2,
+              "name": "uint16",
+              "nodeType": "ElementaryTypeName",
+              "src": "244:6:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint16",
+                "typeString": "uint16"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 5,
+            "name": "timestamp",
+            "nodeType": "VariableDeclaration",
+            "scope": 107,
+            "src": "291:16:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 4,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "291:6:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 7,
+            "name": "geolocation",
+            "nodeType": "VariableDeclaration",
+            "scope": 107,
+            "src": "334:18:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 6,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "334:6:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 10,
+            "name": "higher_limit",
+            "nodeType": "VariableDeclaration",
+            "scope": 107,
+            "src": "432:26:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint16",
+              "typeString": "uint16"
+            },
+            "typeName": {
+              "id": 8,
+              "name": "uint16",
+              "nodeType": "ElementaryTypeName",
+              "src": "432:6:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint16",
+                "typeString": "uint16"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "31343030",
+              "id": 9,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "454:4:0",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_1400_by_1",
+                "typeString": "int_const 1400"
+              },
+              "value": "1400"
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 13,
+            "name": "higher_limit_message",
+            "nodeType": "VariableDeclaration",
+            "scope": 107,
+            "src": "465:54:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 11,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "465:6:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "486967686572206c696d697420657863656564656421",
+              "id": 12,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "string",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "495:24:0",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_stringliteral_d6f71531d48cdb6980dee52a9713460ee37da250d758ac34d0f823a3eb98972c",
+                "typeString": "literal_string \"Higher limit exceeded!\""
+              },
+              "value": "Higher limit exceeded!"
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 16,
+            "name": "lower_limit",
+            "nodeType": "VariableDeclaration",
+            "scope": 107,
+            "src": "528:25:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint16",
+              "typeString": "uint16"
+            },
+            "typeName": {
+              "id": 14,
+              "name": "uint16",
+              "nodeType": "ElementaryTypeName",
+              "src": "528:6:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint16",
+                "typeString": "uint16"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "31303030",
+              "id": 15,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "549:4:0",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_1000_by_1",
+                "typeString": "int_const 1000"
+              },
+              "value": "1000"
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 19,
+            "name": "lower_limit_message",
+            "nodeType": "VariableDeclaration",
+            "scope": 107,
+            "src": "560:52:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 17,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "560:6:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "4c6f776572206c696d697420657863656564656421",
+              "id": 18,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "string",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "589:23:0",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_stringliteral_1c946950cd58f1f280be88788f8aa675db3cbef3d917b10005c20dc944bbe0ff",
+                "typeString": "literal_string \"Lower limit exceeded!\""
+              },
+              "value": "Lower limit exceeded!"
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 22,
+            "name": "no_limit_message",
+            "nodeType": "VariableDeclaration",
+            "scope": 107,
+            "src": "621:47:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 20,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "621:6:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "4e6f206c696d6974207375727061737365642e",
+              "id": 21,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "string",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "647:21:0",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_stringliteral_b4a8e07944bf96caa3a45923e417ac7ce489ebaf84bfa4c61fa33a21ed75a1e1",
+                "typeString": "literal_string \"No limit surpassed.\""
+              },
+              "value": "No limit surpassed."
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 25,
+            "name": "danger_level",
+            "nodeType": "VariableDeclaration",
+            "scope": 107,
+            "src": "742:22:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint8",
+              "typeString": "uint8"
+            },
+            "typeName": {
+              "id": 23,
+              "name": "uint8",
+              "nodeType": "ElementaryTypeName",
+              "src": "742:5:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint8",
+                "typeString": "uint8"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "30",
+              "id": 24,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "763:1:0",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_0_by_1",
+                "typeString": "int_const 0"
+              },
+              "value": "0"
+            },
+            "visibility": "internal"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 37,
+            "name": "StatusMessage",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 36,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 27,
+                  "indexed": false,
+                  "name": "timestamp",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 37,
+                  "src": "803:16:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 26,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "803:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 29,
+                  "indexed": true,
+                  "name": "measurement",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 37,
+                  "src": "830:26:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint16",
+                    "typeString": "uint16"
+                  },
+                  "typeName": {
+                    "id": 28,
+                    "name": "uint16",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "830:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 31,
+                  "indexed": false,
+                  "name": "geolocation",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 37,
+                  "src": "867:18:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 30,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "867:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 33,
+                  "indexed": true,
+                  "name": "critical",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 37,
+                  "src": "896:22:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 32,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "896:5:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 35,
+                  "indexed": false,
+                  "name": "alarmMessage",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 37,
+                  "src": "929:19:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 34,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "929:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "792:163:0"
+            },
+            "src": "773:183:0"
+          },
+          {
+            "body": {
+              "id": 105,
+              "nodeType": "Block",
+              "src": "1368:1004:0",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 48,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 46,
+                      "name": "measurement",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 3,
+                      "src": "1379:11:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint16",
+                        "typeString": "uint16"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 47,
+                      "name": "_measurement",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 41,
+                      "src": "1393:12:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint16",
+                        "typeString": "uint16"
+                      }
+                    },
+                    "src": "1379:26:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "id": 49,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1379:26:0"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 52,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 50,
+                      "name": "timestamp",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5,
+                      "src": "1416:9:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage",
+                        "typeString": "string storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 51,
+                      "name": "_timestamp",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 39,
+                      "src": "1428:10:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "src": "1416:22:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "id": 53,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1416:22:0"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 56,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 54,
+                      "name": "geolocation",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 7,
+                      "src": "1449:11:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_storage",
+                        "typeString": "string storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 55,
+                      "name": "_geolocation",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 43,
+                      "src": "1463:12:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_string_memory_ptr",
+                        "typeString": "string memory"
+                      }
+                    },
+                    "src": "1449:26:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage",
+                      "typeString": "string storage ref"
+                    }
+                  },
+                  "id": 57,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1449:26:0"
+                },
+                {
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    },
+                    "id": 60,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 58,
+                      "name": "measurement",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 3,
+                      "src": "1490:11:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint16",
+                        "typeString": "uint16"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": ">=",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "id": 59,
+                      "name": "higher_limit",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 10,
+                      "src": "1505:12:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint16",
+                        "typeString": "uint16"
+                      }
+                    },
+                    "src": "1490:27:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": {
+                    "condition": {
+                      "argumentTypes": null,
+                      "commonType": {
+                        "typeIdentifier": "t_uint16",
+                        "typeString": "uint16"
+                      },
+                      "id": 76,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftExpression": {
+                        "argumentTypes": null,
+                        "id": 74,
+                        "name": "measurement",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 3,
+                        "src": "1787:11:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint16",
+                          "typeString": "uint16"
+                        }
+                      },
+                      "nodeType": "BinaryOperation",
+                      "operator": ">=",
+                      "rightExpression": {
+                        "argumentTypes": null,
+                        "id": 75,
+                        "name": "lower_limit",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 16,
+                        "src": "1802:11:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint16",
+                          "typeString": "uint16"
+                        }
+                      },
+                      "src": "1787:26:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "falseBody": {
+                      "id": 102,
+                      "nodeType": "Block",
+                      "src": "2093:262:0",
+                      "statements": [
+                        {
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 92,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "leftHandSide": {
+                              "argumentTypes": null,
+                              "id": 90,
+                              "name": "danger_level",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 25,
+                              "src": "2108:12:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint8",
+                                "typeString": "uint8"
+                              }
+                            },
+                            "nodeType": "Assignment",
+                            "operator": "=",
+                            "rightHandSide": {
+                              "argumentTypes": null,
+                              "hexValue": "30",
+                              "id": 91,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "number",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "2123:1:0",
+                              "subdenomination": null,
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              },
+                              "value": "0"
+                            },
+                            "src": "2108:16:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint8",
+                              "typeString": "uint8"
+                            }
+                          },
+                          "id": 93,
+                          "nodeType": "ExpressionStatement",
+                          "src": "2108:16:0"
+                        },
+                        {
+                          "eventCall": {
+                            "argumentTypes": null,
+                            "arguments": [
+                              {
+                                "argumentTypes": null,
+                                "id": 95,
+                                "name": "timestamp",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 5,
+                                "src": "2192:9:0",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_string_storage",
+                                  "typeString": "string storage ref"
+                                }
+                              },
+                              {
+                                "argumentTypes": null,
+                                "id": 96,
+                                "name": "measurement",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 3,
+                                "src": "2220:11:0",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_uint16",
+                                  "typeString": "uint16"
+                                }
+                              },
+                              {
+                                "argumentTypes": null,
+                                "id": 97,
+                                "name": "geolocation",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 7,
+                                "src": "2251:11:0",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_string_storage",
+                                  "typeString": "string storage ref"
+                                }
+                              },
+                              {
+                                "argumentTypes": null,
+                                "id": 98,
+                                "name": "danger_level",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 25,
+                                "src": "2281:12:0",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_uint8",
+                                  "typeString": "uint8"
+                                }
+                              },
+                              {
+                                "argumentTypes": null,
+                                "id": 99,
+                                "name": "no_limit_message",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 22,
+                                "src": "2312:16:0",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_string_storage",
+                                  "typeString": "string storage ref"
+                                }
+                              }
+                            ],
+                            "expression": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_string_storage",
+                                  "typeString": "string storage ref"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint16",
+                                  "typeString": "uint16"
+                                },
+                                {
+                                  "typeIdentifier": "t_string_storage",
+                                  "typeString": "string storage ref"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint8",
+                                  "typeString": "uint8"
+                                },
+                                {
+                                  "typeIdentifier": "t_string_storage",
+                                  "typeString": "string storage ref"
+                                }
+                              ],
+                              "id": 94,
+                              "name": "StatusMessage",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 37,
+                              "src": "2144:13:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_function_event_nonpayable$_t_string_memory_ptr_$_t_uint16_$_t_string_memory_ptr_$_t_uint8_$_t_string_memory_ptr_$returns$__$",
+                                "typeString": "function (string memory,uint16,string memory,uint8,string memory)"
+                              }
+                            },
+                            "id": 100,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "kind": "functionCall",
+                            "lValueRequested": false,
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "2144:199:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_tuple$__$",
+                              "typeString": "tuple()"
+                            }
+                          },
+                          "id": 101,
+                          "nodeType": "EmitStatement",
+                          "src": "2139:204:0"
+                        }
+                      ]
+                    },
+                    "id": 103,
+                    "nodeType": "IfStatement",
+                    "src": "1783:572:0",
+                    "trueBody": {
+                      "id": 89,
+                      "nodeType": "Block",
+                      "src": "1814:265:0",
+                      "statements": [
+                        {
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 79,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "leftHandSide": {
+                              "argumentTypes": null,
+                              "id": 77,
+                              "name": "danger_level",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 25,
+                              "src": "1829:12:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint8",
+                                "typeString": "uint8"
+                              }
+                            },
+                            "nodeType": "Assignment",
+                            "operator": "=",
+                            "rightHandSide": {
+                              "argumentTypes": null,
+                              "hexValue": "31",
+                              "id": 78,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "number",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "1844:1:0",
+                              "subdenomination": null,
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_rational_1_by_1",
+                                "typeString": "int_const 1"
+                              },
+                              "value": "1"
+                            },
+                            "src": "1829:16:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint8",
+                              "typeString": "uint8"
+                            }
+                          },
+                          "id": 80,
+                          "nodeType": "ExpressionStatement",
+                          "src": "1829:16:0"
+                        },
+                        {
+                          "eventCall": {
+                            "argumentTypes": null,
+                            "arguments": [
+                              {
+                                "argumentTypes": null,
+                                "id": 82,
+                                "name": "timestamp",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 5,
+                                "src": "1913:9:0",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_string_storage",
+                                  "typeString": "string storage ref"
+                                }
+                              },
+                              {
+                                "argumentTypes": null,
+                                "id": 83,
+                                "name": "measurement",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 3,
+                                "src": "1941:11:0",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_uint16",
+                                  "typeString": "uint16"
+                                }
+                              },
+                              {
+                                "argumentTypes": null,
+                                "id": 84,
+                                "name": "geolocation",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 7,
+                                "src": "1972:11:0",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_string_storage",
+                                  "typeString": "string storage ref"
+                                }
+                              },
+                              {
+                                "argumentTypes": null,
+                                "id": 85,
+                                "name": "danger_level",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 25,
+                                "src": "2002:12:0",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_uint8",
+                                  "typeString": "uint8"
+                                }
+                              },
+                              {
+                                "argumentTypes": null,
+                                "id": 86,
+                                "name": "lower_limit_message",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 19,
+                                "src": "2033:19:0",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_string_storage",
+                                  "typeString": "string storage ref"
+                                }
+                              }
+                            ],
+                            "expression": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_string_storage",
+                                  "typeString": "string storage ref"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint16",
+                                  "typeString": "uint16"
+                                },
+                                {
+                                  "typeIdentifier": "t_string_storage",
+                                  "typeString": "string storage ref"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint8",
+                                  "typeString": "uint8"
+                                },
+                                {
+                                  "typeIdentifier": "t_string_storage",
+                                  "typeString": "string storage ref"
+                                }
+                              ],
+                              "id": 81,
+                              "name": "StatusMessage",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 37,
+                              "src": "1865:13:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_function_event_nonpayable$_t_string_memory_ptr_$_t_uint16_$_t_string_memory_ptr_$_t_uint8_$_t_string_memory_ptr_$returns$__$",
+                                "typeString": "function (string memory,uint16,string memory,uint8,string memory)"
+                              }
+                            },
+                            "id": 87,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "kind": "functionCall",
+                            "lValueRequested": false,
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "1865:202:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_tuple$__$",
+                              "typeString": "tuple()"
+                            }
+                          },
+                          "id": 88,
+                          "nodeType": "EmitStatement",
+                          "src": "1860:207:0"
+                        }
+                      ]
+                    }
+                  },
+                  "id": 104,
+                  "nodeType": "IfStatement",
+                  "src": "1486:869:0",
+                  "trueBody": {
+                    "id": 73,
+                    "nodeType": "Block",
+                    "src": "1518:250:0",
+                    "statements": [
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 63,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "argumentTypes": null,
+                            "id": 61,
+                            "name": "danger_level",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 25,
+                            "src": "1533:12:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint8",
+                              "typeString": "uint8"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "argumentTypes": null,
+                            "hexValue": "32",
+                            "id": 62,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "number",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "1548:1:0",
+                            "subdenomination": null,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_rational_2_by_1",
+                              "typeString": "int_const 2"
+                            },
+                            "value": "2"
+                          },
+                          "src": "1533:16:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint8",
+                            "typeString": "uint8"
+                          }
+                        },
+                        "id": 64,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1533:16:0"
+                      },
+                      {
+                        "eventCall": {
+                          "argumentTypes": null,
+                          "arguments": [
+                            {
+                              "argumentTypes": null,
+                              "id": 66,
+                              "name": "timestamp",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 5,
+                              "src": "1601:9:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_string_storage",
+                                "typeString": "string storage ref"
+                              }
+                            },
+                            {
+                              "argumentTypes": null,
+                              "id": 67,
+                              "name": "measurement",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 3,
+                              "src": "1629:11:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint16",
+                                "typeString": "uint16"
+                              }
+                            },
+                            {
+                              "argumentTypes": null,
+                              "id": 68,
+                              "name": "geolocation",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 7,
+                              "src": "1660:11:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_string_storage",
+                                "typeString": "string storage ref"
+                              }
+                            },
+                            {
+                              "argumentTypes": null,
+                              "id": 69,
+                              "name": "danger_level",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 25,
+                              "src": "1690:12:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint8",
+                                "typeString": "uint8"
+                              }
+                            },
+                            {
+                              "argumentTypes": null,
+                              "id": 70,
+                              "name": "higher_limit_message",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 13,
+                              "src": "1721:20:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_string_storage",
+                                "typeString": "string storage ref"
+                              }
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_string_storage",
+                                "typeString": "string storage ref"
+                              },
+                              {
+                                "typeIdentifier": "t_uint16",
+                                "typeString": "uint16"
+                              },
+                              {
+                                "typeIdentifier": "t_string_storage",
+                                "typeString": "string storage ref"
+                              },
+                              {
+                                "typeIdentifier": "t_uint8",
+                                "typeString": "uint8"
+                              },
+                              {
+                                "typeIdentifier": "t_string_storage",
+                                "typeString": "string storage ref"
+                              }
+                            ],
+                            "id": 65,
+                            "name": "StatusMessage",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 37,
+                            "src": "1569:13:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_event_nonpayable$_t_string_memory_ptr_$_t_uint16_$_t_string_memory_ptr_$_t_uint8_$_t_string_memory_ptr_$returns$__$",
+                              "typeString": "function (string memory,uint16,string memory,uint8,string memory)"
+                            }
+                          },
+                          "id": 71,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1569:187:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_tuple$__$",
+                            "typeString": "tuple()"
+                          }
+                        },
+                        "id": 72,
+                        "nodeType": "EmitStatement",
+                        "src": "1564:192:0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "documentation": "@dev store CO2 measurement to the blockchain, trigger a message\n@param _timestamp a timestamp provided as a string by the IoT device\n@param _measurement the measrued C02 value in ppm\n@param _geolocation a geolocation provided as a string by the IoT device",
+            "id": 106,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "submit",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 44,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 39,
+                  "name": "_timestamp",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 106,
+                  "src": "1286:24:0",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 38,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1286:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 41,
+                  "name": "_measurement",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 106,
+                  "src": "1312:19:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint16",
+                    "typeString": "uint16"
+                  },
+                  "typeName": {
+                    "id": 40,
+                    "name": "uint16",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1312:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 43,
+                  "name": "_geolocation",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 106,
+                  "src": "1333:26:0",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 42,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1333:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1285:75:0"
+            },
+            "returnParameters": {
+              "id": 45,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1368:0:0"
+            },
+            "scope": 107,
+            "src": "1270:1102:0",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 108,
+        "src": "214:2163:0"
+      }
+    ],
+    "src": "39:2338:0"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "/C/Users/Johannes/OneDrive/Studium/_temp/FT_20_Masterarbeit/IBES_Blockchain_Prototype/contracts/CO2_Alarming.sol",
+      "exportedSymbols": {
+        "CO2_Alarming": [
+          107
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">=",
+            "0.5",
+            ".0"
+          ]
+        },
+        "id": 1,
+        "name": "PragmaDirective",
+        "src": "39:24:0"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": "@title CO2_Alarming\n@dev Submit measured CO2 value (in ppm), a timestamp, a geolocation and trigger a message for the frontend",
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            107
+          ],
+          "name": "CO2_Alarming",
+          "scope": 108
+        },
+        "children": [
+          {
+            "attributes": {
+              "constant": false,
+              "name": "measurement",
+              "scope": 107,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "uint16",
+              "value": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "uint16",
+                  "type": "uint16"
+                },
+                "id": 2,
+                "name": "ElementaryTypeName",
+                "src": "244:6:0"
+              }
+            ],
+            "id": 3,
+            "name": "VariableDeclaration",
+            "src": "244:18:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "timestamp",
+              "scope": 107,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "string",
+              "value": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "string",
+                  "type": "string"
+                },
+                "id": 4,
+                "name": "ElementaryTypeName",
+                "src": "291:6:0"
+              }
+            ],
+            "id": 5,
+            "name": "VariableDeclaration",
+            "src": "291:16:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "geolocation",
+              "scope": 107,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "string",
+              "value": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "string",
+                  "type": "string"
+                },
+                "id": 6,
+                "name": "ElementaryTypeName",
+                "src": "334:6:0"
+              }
+            ],
+            "id": 7,
+            "name": "VariableDeclaration",
+            "src": "334:18:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "higher_limit",
+              "scope": 107,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "uint16",
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "uint16",
+                  "type": "uint16"
+                },
+                "id": 8,
+                "name": "ElementaryTypeName",
+                "src": "432:6:0"
+              },
+              {
+                "attributes": {
+                  "argumentTypes": null,
+                  "hexvalue": "31343030",
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "lValueRequested": false,
+                  "subdenomination": null,
+                  "token": "number",
+                  "type": "int_const 1400",
+                  "value": "1400"
+                },
+                "id": 9,
+                "name": "Literal",
+                "src": "454:4:0"
+              }
+            ],
+            "id": 10,
+            "name": "VariableDeclaration",
+            "src": "432:26:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "higher_limit_message",
+              "scope": 107,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "string",
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "string",
+                  "type": "string"
+                },
+                "id": 11,
+                "name": "ElementaryTypeName",
+                "src": "465:6:0"
+              },
+              {
+                "attributes": {
+                  "argumentTypes": null,
+                  "hexvalue": "486967686572206c696d697420657863656564656421",
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "lValueRequested": false,
+                  "subdenomination": null,
+                  "token": "string",
+                  "type": "literal_string \"Higher limit exceeded!\"",
+                  "value": "Higher limit exceeded!"
+                },
+                "id": 12,
+                "name": "Literal",
+                "src": "495:24:0"
+              }
+            ],
+            "id": 13,
+            "name": "VariableDeclaration",
+            "src": "465:54:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "lower_limit",
+              "scope": 107,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "uint16",
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "uint16",
+                  "type": "uint16"
+                },
+                "id": 14,
+                "name": "ElementaryTypeName",
+                "src": "528:6:0"
+              },
+              {
+                "attributes": {
+                  "argumentTypes": null,
+                  "hexvalue": "31303030",
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "lValueRequested": false,
+                  "subdenomination": null,
+                  "token": "number",
+                  "type": "int_const 1000",
+                  "value": "1000"
+                },
+                "id": 15,
+                "name": "Literal",
+                "src": "549:4:0"
+              }
+            ],
+            "id": 16,
+            "name": "VariableDeclaration",
+            "src": "528:25:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "lower_limit_message",
+              "scope": 107,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "string",
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "string",
+                  "type": "string"
+                },
+                "id": 17,
+                "name": "ElementaryTypeName",
+                "src": "560:6:0"
+              },
+              {
+                "attributes": {
+                  "argumentTypes": null,
+                  "hexvalue": "4c6f776572206c696d697420657863656564656421",
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "lValueRequested": false,
+                  "subdenomination": null,
+                  "token": "string",
+                  "type": "literal_string \"Lower limit exceeded!\"",
+                  "value": "Lower limit exceeded!"
+                },
+                "id": 18,
+                "name": "Literal",
+                "src": "589:23:0"
+              }
+            ],
+            "id": 19,
+            "name": "VariableDeclaration",
+            "src": "560:52:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "no_limit_message",
+              "scope": 107,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "string",
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "string",
+                  "type": "string"
+                },
+                "id": 20,
+                "name": "ElementaryTypeName",
+                "src": "621:6:0"
+              },
+              {
+                "attributes": {
+                  "argumentTypes": null,
+                  "hexvalue": "4e6f206c696d6974207375727061737365642e",
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "lValueRequested": false,
+                  "subdenomination": null,
+                  "token": "string",
+                  "type": "literal_string \"No limit surpassed.\"",
+                  "value": "No limit surpassed."
+                },
+                "id": 21,
+                "name": "Literal",
+                "src": "647:21:0"
+              }
+            ],
+            "id": 22,
+            "name": "VariableDeclaration",
+            "src": "621:47:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "danger_level",
+              "scope": 107,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "uint8",
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "uint8",
+                  "type": "uint8"
+                },
+                "id": 23,
+                "name": "ElementaryTypeName",
+                "src": "742:5:0"
+              },
+              {
+                "attributes": {
+                  "argumentTypes": null,
+                  "hexvalue": "30",
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "lValueRequested": false,
+                  "subdenomination": null,
+                  "token": "number",
+                  "type": "int_const 0",
+                  "value": "0"
+                },
+                "id": 24,
+                "name": "Literal",
+                "src": "763:1:0"
+              }
+            ],
+            "id": 25,
+            "name": "VariableDeclaration",
+            "src": "742:22:0"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": null,
+              "name": "StatusMessage"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "timestamp",
+                      "scope": 37,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 26,
+                        "name": "ElementaryTypeName",
+                        "src": "803:6:0"
+                      }
+                    ],
+                    "id": 27,
+                    "name": "VariableDeclaration",
+                    "src": "803:16:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "name": "measurement",
+                      "scope": 37,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint16",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint16",
+                          "type": "uint16"
+                        },
+                        "id": 28,
+                        "name": "ElementaryTypeName",
+                        "src": "830:6:0"
+                      }
+                    ],
+                    "id": 29,
+                    "name": "VariableDeclaration",
+                    "src": "830:26:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "geolocation",
+                      "scope": 37,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 30,
+                        "name": "ElementaryTypeName",
+                        "src": "867:6:0"
+                      }
+                    ],
+                    "id": 31,
+                    "name": "VariableDeclaration",
+                    "src": "867:18:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "name": "critical",
+                      "scope": 37,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint8",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint8",
+                          "type": "uint8"
+                        },
+                        "id": 32,
+                        "name": "ElementaryTypeName",
+                        "src": "896:5:0"
+                      }
+                    ],
+                    "id": 33,
+                    "name": "VariableDeclaration",
+                    "src": "896:22:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "alarmMessage",
+                      "scope": 37,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 34,
+                        "name": "ElementaryTypeName",
+                        "src": "929:6:0"
+                      }
+                    ],
+                    "id": 35,
+                    "name": "VariableDeclaration",
+                    "src": "929:19:0"
+                  }
+                ],
+                "id": 36,
+                "name": "ParameterList",
+                "src": "792:163:0"
+              }
+            ],
+            "id": 37,
+            "name": "EventDefinition",
+            "src": "773:183:0"
+          },
+          {
+            "attributes": {
+              "documentation": "@dev store CO2 measurement to the blockchain, trigger a message\n@param _timestamp a timestamp provided as a string by the IoT device\n@param _measurement the measrued C02 value in ppm\n@param _geolocation a geolocation provided as a string by the IoT device",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "submit",
+              "scope": 107,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_timestamp",
+                      "scope": 106,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 38,
+                        "name": "ElementaryTypeName",
+                        "src": "1286:6:0"
+                      }
+                    ],
+                    "id": 39,
+                    "name": "VariableDeclaration",
+                    "src": "1286:24:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_measurement",
+                      "scope": 106,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint16",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint16",
+                          "type": "uint16"
+                        },
+                        "id": 40,
+                        "name": "ElementaryTypeName",
+                        "src": "1312:6:0"
+                      }
+                    ],
+                    "id": 41,
+                    "name": "VariableDeclaration",
+                    "src": "1312:19:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_geolocation",
+                      "scope": 106,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 42,
+                        "name": "ElementaryTypeName",
+                        "src": "1333:6:0"
+                      }
+                    ],
+                    "id": 43,
+                    "name": "VariableDeclaration",
+                    "src": "1333:26:0"
+                  }
+                ],
+                "id": 44,
+                "name": "ParameterList",
+                "src": "1285:75:0"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 45,
+                "name": "ParameterList",
+                "src": "1368:0:0"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "uint16"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 3,
+                              "type": "uint16",
+                              "value": "measurement"
+                            },
+                            "id": 46,
+                            "name": "Identifier",
+                            "src": "1379:11:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 41,
+                              "type": "uint16",
+                              "value": "_measurement"
+                            },
+                            "id": 47,
+                            "name": "Identifier",
+                            "src": "1393:12:0"
+                          }
+                        ],
+                        "id": 48,
+                        "name": "Assignment",
+                        "src": "1379:26:0"
+                      }
+                    ],
+                    "id": 49,
+                    "name": "ExpressionStatement",
+                    "src": "1379:26:0"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "string storage ref"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 5,
+                              "type": "string storage ref",
+                              "value": "timestamp"
+                            },
+                            "id": 50,
+                            "name": "Identifier",
+                            "src": "1416:9:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 39,
+                              "type": "string memory",
+                              "value": "_timestamp"
+                            },
+                            "id": 51,
+                            "name": "Identifier",
+                            "src": "1428:10:0"
+                          }
+                        ],
+                        "id": 52,
+                        "name": "Assignment",
+                        "src": "1416:22:0"
+                      }
+                    ],
+                    "id": 53,
+                    "name": "ExpressionStatement",
+                    "src": "1416:22:0"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "string storage ref"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 7,
+                              "type": "string storage ref",
+                              "value": "geolocation"
+                            },
+                            "id": 54,
+                            "name": "Identifier",
+                            "src": "1449:11:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 43,
+                              "type": "string memory",
+                              "value": "_geolocation"
+                            },
+                            "id": 55,
+                            "name": "Identifier",
+                            "src": "1463:12:0"
+                          }
+                        ],
+                        "id": 56,
+                        "name": "Assignment",
+                        "src": "1449:26:0"
+                      }
+                    ],
+                    "id": 57,
+                    "name": "ExpressionStatement",
+                    "src": "1449:26:0"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "commonType": {
+                            "typeIdentifier": "t_uint16",
+                            "typeString": "uint16"
+                          },
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": ">=",
+                          "type": "bool"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 3,
+                              "type": "uint16",
+                              "value": "measurement"
+                            },
+                            "id": 58,
+                            "name": "Identifier",
+                            "src": "1490:11:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 10,
+                              "type": "uint16",
+                              "value": "higher_limit"
+                            },
+                            "id": 59,
+                            "name": "Identifier",
+                            "src": "1505:12:0"
+                          }
+                        ],
+                        "id": 60,
+                        "name": "BinaryOperation",
+                        "src": "1490:27:0"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "operator": "=",
+                                  "type": "uint8"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 25,
+                                      "type": "uint8",
+                                      "value": "danger_level"
+                                    },
+                                    "id": 61,
+                                    "name": "Identifier",
+                                    "src": "1533:12:0"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "hexvalue": "32",
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": true,
+                                      "lValueRequested": false,
+                                      "subdenomination": null,
+                                      "token": "number",
+                                      "type": "int_const 2",
+                                      "value": "2"
+                                    },
+                                    "id": 62,
+                                    "name": "Literal",
+                                    "src": "1548:1:0"
+                                  }
+                                ],
+                                "id": 63,
+                                "name": "Assignment",
+                                "src": "1533:16:0"
+                              }
+                            ],
+                            "id": 64,
+                            "name": "ExpressionStatement",
+                            "src": "1533:16:0"
+                          },
+                          {
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "isStructConstructorCall": false,
+                                  "lValueRequested": false,
+                                  "names": [
+                                    null
+                                  ],
+                                  "type": "tuple()",
+                                  "type_conversion": false
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": [
+                                        {
+                                          "typeIdentifier": "t_string_storage",
+                                          "typeString": "string storage ref"
+                                        },
+                                        {
+                                          "typeIdentifier": "t_uint16",
+                                          "typeString": "uint16"
+                                        },
+                                        {
+                                          "typeIdentifier": "t_string_storage",
+                                          "typeString": "string storage ref"
+                                        },
+                                        {
+                                          "typeIdentifier": "t_uint8",
+                                          "typeString": "uint8"
+                                        },
+                                        {
+                                          "typeIdentifier": "t_string_storage",
+                                          "typeString": "string storage ref"
+                                        }
+                                      ],
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 37,
+                                      "type": "function (string memory,uint16,string memory,uint8,string memory)",
+                                      "value": "StatusMessage"
+                                    },
+                                    "id": 65,
+                                    "name": "Identifier",
+                                    "src": "1569:13:0"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 5,
+                                      "type": "string storage ref",
+                                      "value": "timestamp"
+                                    },
+                                    "id": 66,
+                                    "name": "Identifier",
+                                    "src": "1601:9:0"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 3,
+                                      "type": "uint16",
+                                      "value": "measurement"
+                                    },
+                                    "id": 67,
+                                    "name": "Identifier",
+                                    "src": "1629:11:0"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 7,
+                                      "type": "string storage ref",
+                                      "value": "geolocation"
+                                    },
+                                    "id": 68,
+                                    "name": "Identifier",
+                                    "src": "1660:11:0"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 25,
+                                      "type": "uint8",
+                                      "value": "danger_level"
+                                    },
+                                    "id": 69,
+                                    "name": "Identifier",
+                                    "src": "1690:12:0"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 13,
+                                      "type": "string storage ref",
+                                      "value": "higher_limit_message"
+                                    },
+                                    "id": 70,
+                                    "name": "Identifier",
+                                    "src": "1721:20:0"
+                                  }
+                                ],
+                                "id": 71,
+                                "name": "FunctionCall",
+                                "src": "1569:187:0"
+                              }
+                            ],
+                            "id": 72,
+                            "name": "EmitStatement",
+                            "src": "1564:192:0"
+                          }
+                        ],
+                        "id": 73,
+                        "name": "Block",
+                        "src": "1518:250:0"
+                      },
+                      {
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "commonType": {
+                                "typeIdentifier": "t_uint16",
+                                "typeString": "uint16"
+                              },
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": ">=",
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 3,
+                                  "type": "uint16",
+                                  "value": "measurement"
+                                },
+                                "id": 74,
+                                "name": "Identifier",
+                                "src": "1787:11:0"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 16,
+                                  "type": "uint16",
+                                  "value": "lower_limit"
+                                },
+                                "id": 75,
+                                "name": "Identifier",
+                                "src": "1802:11:0"
+                              }
+                            ],
+                            "id": 76,
+                            "name": "BinaryOperation",
+                            "src": "1787:26:0"
+                          },
+                          {
+                            "children": [
+                              {
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "operator": "=",
+                                      "type": "uint8"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 25,
+                                          "type": "uint8",
+                                          "value": "danger_level"
+                                        },
+                                        "id": 77,
+                                        "name": "Identifier",
+                                        "src": "1829:12:0"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "hexvalue": "31",
+                                          "isConstant": false,
+                                          "isLValue": false,
+                                          "isPure": true,
+                                          "lValueRequested": false,
+                                          "subdenomination": null,
+                                          "token": "number",
+                                          "type": "int_const 1",
+                                          "value": "1"
+                                        },
+                                        "id": 78,
+                                        "name": "Literal",
+                                        "src": "1844:1:0"
+                                      }
+                                    ],
+                                    "id": 79,
+                                    "name": "Assignment",
+                                    "src": "1829:16:0"
+                                  }
+                                ],
+                                "id": 80,
+                                "name": "ExpressionStatement",
+                                "src": "1829:16:0"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": false,
+                                      "isStructConstructorCall": false,
+                                      "lValueRequested": false,
+                                      "names": [
+                                        null
+                                      ],
+                                      "type": "tuple()",
+                                      "type_conversion": false
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": [
+                                            {
+                                              "typeIdentifier": "t_string_storage",
+                                              "typeString": "string storage ref"
+                                            },
+                                            {
+                                              "typeIdentifier": "t_uint16",
+                                              "typeString": "uint16"
+                                            },
+                                            {
+                                              "typeIdentifier": "t_string_storage",
+                                              "typeString": "string storage ref"
+                                            },
+                                            {
+                                              "typeIdentifier": "t_uint8",
+                                              "typeString": "uint8"
+                                            },
+                                            {
+                                              "typeIdentifier": "t_string_storage",
+                                              "typeString": "string storage ref"
+                                            }
+                                          ],
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 37,
+                                          "type": "function (string memory,uint16,string memory,uint8,string memory)",
+                                          "value": "StatusMessage"
+                                        },
+                                        "id": 81,
+                                        "name": "Identifier",
+                                        "src": "1865:13:0"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 5,
+                                          "type": "string storage ref",
+                                          "value": "timestamp"
+                                        },
+                                        "id": 82,
+                                        "name": "Identifier",
+                                        "src": "1913:9:0"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 3,
+                                          "type": "uint16",
+                                          "value": "measurement"
+                                        },
+                                        "id": 83,
+                                        "name": "Identifier",
+                                        "src": "1941:11:0"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 7,
+                                          "type": "string storage ref",
+                                          "value": "geolocation"
+                                        },
+                                        "id": 84,
+                                        "name": "Identifier",
+                                        "src": "1972:11:0"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 25,
+                                          "type": "uint8",
+                                          "value": "danger_level"
+                                        },
+                                        "id": 85,
+                                        "name": "Identifier",
+                                        "src": "2002:12:0"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 19,
+                                          "type": "string storage ref",
+                                          "value": "lower_limit_message"
+                                        },
+                                        "id": 86,
+                                        "name": "Identifier",
+                                        "src": "2033:19:0"
+                                      }
+                                    ],
+                                    "id": 87,
+                                    "name": "FunctionCall",
+                                    "src": "1865:202:0"
+                                  }
+                                ],
+                                "id": 88,
+                                "name": "EmitStatement",
+                                "src": "1860:207:0"
+                              }
+                            ],
+                            "id": 89,
+                            "name": "Block",
+                            "src": "1814:265:0"
+                          },
+                          {
+                            "children": [
+                              {
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "operator": "=",
+                                      "type": "uint8"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 25,
+                                          "type": "uint8",
+                                          "value": "danger_level"
+                                        },
+                                        "id": 90,
+                                        "name": "Identifier",
+                                        "src": "2108:12:0"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "hexvalue": "30",
+                                          "isConstant": false,
+                                          "isLValue": false,
+                                          "isPure": true,
+                                          "lValueRequested": false,
+                                          "subdenomination": null,
+                                          "token": "number",
+                                          "type": "int_const 0",
+                                          "value": "0"
+                                        },
+                                        "id": 91,
+                                        "name": "Literal",
+                                        "src": "2123:1:0"
+                                      }
+                                    ],
+                                    "id": 92,
+                                    "name": "Assignment",
+                                    "src": "2108:16:0"
+                                  }
+                                ],
+                                "id": 93,
+                                "name": "ExpressionStatement",
+                                "src": "2108:16:0"
+                              },
+                              {
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": false,
+                                      "isStructConstructorCall": false,
+                                      "lValueRequested": false,
+                                      "names": [
+                                        null
+                                      ],
+                                      "type": "tuple()",
+                                      "type_conversion": false
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": [
+                                            {
+                                              "typeIdentifier": "t_string_storage",
+                                              "typeString": "string storage ref"
+                                            },
+                                            {
+                                              "typeIdentifier": "t_uint16",
+                                              "typeString": "uint16"
+                                            },
+                                            {
+                                              "typeIdentifier": "t_string_storage",
+                                              "typeString": "string storage ref"
+                                            },
+                                            {
+                                              "typeIdentifier": "t_uint8",
+                                              "typeString": "uint8"
+                                            },
+                                            {
+                                              "typeIdentifier": "t_string_storage",
+                                              "typeString": "string storage ref"
+                                            }
+                                          ],
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 37,
+                                          "type": "function (string memory,uint16,string memory,uint8,string memory)",
+                                          "value": "StatusMessage"
+                                        },
+                                        "id": 94,
+                                        "name": "Identifier",
+                                        "src": "2144:13:0"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 5,
+                                          "type": "string storage ref",
+                                          "value": "timestamp"
+                                        },
+                                        "id": 95,
+                                        "name": "Identifier",
+                                        "src": "2192:9:0"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 3,
+                                          "type": "uint16",
+                                          "value": "measurement"
+                                        },
+                                        "id": 96,
+                                        "name": "Identifier",
+                                        "src": "2220:11:0"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 7,
+                                          "type": "string storage ref",
+                                          "value": "geolocation"
+                                        },
+                                        "id": 97,
+                                        "name": "Identifier",
+                                        "src": "2251:11:0"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 25,
+                                          "type": "uint8",
+                                          "value": "danger_level"
+                                        },
+                                        "id": 98,
+                                        "name": "Identifier",
+                                        "src": "2281:12:0"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 22,
+                                          "type": "string storage ref",
+                                          "value": "no_limit_message"
+                                        },
+                                        "id": 99,
+                                        "name": "Identifier",
+                                        "src": "2312:16:0"
+                                      }
+                                    ],
+                                    "id": 100,
+                                    "name": "FunctionCall",
+                                    "src": "2144:199:0"
+                                  }
+                                ],
+                                "id": 101,
+                                "name": "EmitStatement",
+                                "src": "2139:204:0"
+                              }
+                            ],
+                            "id": 102,
+                            "name": "Block",
+                            "src": "2093:262:0"
+                          }
+                        ],
+                        "id": 103,
+                        "name": "IfStatement",
+                        "src": "1783:572:0"
+                      }
+                    ],
+                    "id": 104,
+                    "name": "IfStatement",
+                    "src": "1486:869:0"
+                  }
+                ],
+                "id": 105,
+                "name": "Block",
+                "src": "1368:1004:0"
+              }
+            ],
+            "id": 106,
+            "name": "FunctionDefinition",
+            "src": "1270:1102:0"
+          }
+        ],
+        "id": 107,
+        "name": "ContractDefinition",
+        "src": "214:2163:0"
+      }
+    ],
+    "id": 108,
+    "name": "SourceUnit",
+    "src": "39:2338:0"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
+  },
+  "networks": {
+    "5777": {
+      "events": {
+        "0x0e7dea0bc4bc4f3c569a252b8f22a431bb3389a6661dc2d8d92815c9c069fd3c": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "timestamp",
+              "type": "string"
+            },
+            {
+              "indexed": true,
+              "internalType": "uint16",
+              "name": "measurement",
+              "type": "uint16"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "geolocation",
+              "type": "string"
+            },
+            {
+              "indexed": true,
+              "internalType": "uint8",
+              "name": "critical",
+              "type": "uint8"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "alarmMessage",
+              "type": "string"
+            }
+          ],
+          "name": "StatusMessage",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x50271bD3F8b6CE16839A5D0c1a35207066Eb89fE",
+      "transactionHash": "0x5a1c09a9f94bcec1526afce2645744a5b7f07547d152b9d9cafebabd7048d237"
+    }
+  },
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-04-17T13:21:49.302Z",
+  "networkType": "ethereum",
+  "devdoc": {
+    "details": "Submit measured CO2 value (in ppm), a timestamp, a geolocation and trigger a message for the frontend",
+    "methods": {
+      "submit(string,uint16,string)": {
+        "details": "store CO2 measurement to the blockchain, trigger a message",
+        "params": {
+          "_geolocation": "a geolocation provided as a string by the IoT device",
+          "_measurement": "the measrued C02 value in ppm",
+          "_timestamp": "a timestamp provided as a string by the IoT device"
+        }
+      }
+    },
+    "title": "CO2_Alarming"
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

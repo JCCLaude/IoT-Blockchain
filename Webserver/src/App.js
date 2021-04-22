@@ -19,6 +19,9 @@ import SulfurDioxideDataBase from "./components/Database_components/SulfurDioxid
 import TemperatureDataBase from "./components/Database_components/Temperature";
 // blockchain components
 import LandingPageBlockchain from "./components/Blockchain_components/LandingPage";
+import CarbondioxideBlockchain from "./components/Blockchain_components/Carbondioxide";
+import HumidityBlockchain from "./components/Blockchain_components/Humidity";
+import TemperatureBlockchain from "./components/Blockchain_components/Temperature";
 
 function App() {
   return (
@@ -46,6 +49,15 @@ function App() {
           />
           <Route path="/detail/temperature" component={TemperatureDataBase} />
           <Route exact path="/verified" component={LandingPageBlockchain} />
+          <Route
+            path="/verified/carbondioxide"
+            component={CarbondioxideBlockchain}
+          />
+          <Route path="/verified/humidity" component={HumidityBlockchain} />
+          <Route
+            path="/verified/temperature"
+            component={TemperatureBlockchain}
+          />
           <Route path="/about" component={About} />
           <Route component={ErrorPage} />
         </Switch>

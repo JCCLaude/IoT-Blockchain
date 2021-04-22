@@ -1,0 +1,40 @@
+.dark {
+  background-color: #3d550c;
+  color: #ccc;
+}
+.medium-dark {
+  background-color: #59981a;
+  color: #ccc;
+}
+.medium-light {
+  background-color: #81b622;
+  color: #ccc;
+}
+.light {
+  background-color: #ecf87f;
+  color: #322;
+}
+
+.jumbo {
+  background: url("./assets/images/LeafWithWater.jpeg") no-repeat fixed bottom;
+  background-size: cover;
+  color: #ccc;
+  height: 200px;
+  position: relative;
+  z-index: -2;
+}
+.overlay {
+  background-color: #000;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+.loading {
+  height: 20rem;
+  text-align: center;
+  background-color: #59981a;
+}
