@@ -22,57 +22,50 @@ function Navigation() {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav>
-          <Nav.Link as={Link} to="/">
-            Home
-          </Nav.Link>
-          <Nav.Link as={Link} to="/Overview">
-            Overview
-          </Nav.Link>
+          <Nav.Link href="/">Home</Nav.Link>
+          <Nav.Link href="/Overview">Overview</Nav.Link>
           <NavDropdown title="Detailed Information" variant="dark">
             <NavDropdown.Item
               variant="dark"
-              as={Link}
-              to="/detail"
+              href="/detail"
               className="navdropdown"
             >
               Why detailed?
             </NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item as={Link} to="/detail/carbondioxide">
+            <NavDropdown.Item href="/detail/carbondioxide">
               Carbondioxide (CO2)
             </NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/detail/airhumidity">
+            <NavDropdown.Item href="/detail/airhumidity">
               Airhumidity
             </NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/detail/temperature">
+            <NavDropdown.Item href="/detail/temperature">
               Temperature
             </NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/detail/nitrogendioxide">
+            <NavDropdown.Item href="/detail/nitrogendioxide">
               Nitrogen Dioxide (NO2)
             </NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/detail/pm2">
-              Particular Matter 2 (PM2)
+            <NavDropdown.Item href="/detail/pm2">
+              Particular Matter 2.5 (PM2.5)
             </NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/detail/pm10">
+            <NavDropdown.Item href="/detail/pm10">
               Particular Matter 10 (PM10)
             </NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/detail/sulfurdioxide">
+            <NavDropdown.Item href="/detail/sulfurdioxide">
               Sulfur Dioxide (SO2)
             </NavDropdown.Item>
           </NavDropdown>
 
           <NavDropdown title="Verified Information">
-            <NavDropdown.Item as={Link} to="/verified">
-              Why verified
-            </NavDropdown.Item>
+            <NavDropdown.Item href="/verified">Why verified</NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item as={Link} to="/verified/carbondioxide">
+            <NavDropdown.Item href="/verified/carbondioxide">
               Carbondioxide (CO2)
             </NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/verified/humidity">
+            <NavDropdown.Item href="/verified/humidity">
               Airhumidity
             </NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/verified/temperature">
+            <NavDropdown.Item href="/verified/temperature">
               Temperature
             </NavDropdown.Item>
           </NavDropdown>

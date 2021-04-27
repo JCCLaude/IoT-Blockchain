@@ -1,4 +1,4 @@
-#Help_navbar_item {
+/*#Help_navbar_item {
     text-align: center;
     color: black;
     font-weight: bold;
@@ -6,20 +6,20 @@
     border: none;
     text-decoration: none;
     display:inline-block; 
-    margin: 4px 330%; /*2px*/
+    margin: 4px 330%; 
     cursor: pointer;
     border-radius: 16px;
-    }
+    } */
 
 h3 {
       font-weight: bold;
-      text-align: center;
-      margin-left: 135px;
+    /*  text-align: center;
+      margin-left: 135px; */
     }    
 
 h4 {
   font-weight: bold;
-  text-align: center;
+/*  text-align: center; */
   font-size: large;
 }  
 
@@ -27,7 +27,7 @@ h4 {
 #overview_structure {
   display: flex;
   justify-content: center;
-}
+} /*
 
 #overview_img_txt_cont {
     display: -webkit-flex;
@@ -39,15 +39,19 @@ h4 {
     justify-content: center;
     margin: 8px;
     align-items: center;
-  /*display: flex;
-  margin: 8px;
-  padding: 2px;
-  font-size: 18px;
-  border: 10px black;
-  box-sizing: border-box; */
+} */
+
+.jumbo {
+  background: url("../../images/LeafWithWater.jpeg") no-repeat fixed bottom;
+  background-size: cover;
+  color: #ccc;
+  height: 200px;
+  position: relative;
+  z-index: -2;
 }
 
 
+/*
 .flex-item1 {
   line-height: 40px;
   border: 2px solid #333;
@@ -70,7 +74,7 @@ h4 {
   line-height: 40px;
   border: 2px solid #333;
   padding: 10px;
-}
+} */
 
 
 #logo {
@@ -108,6 +112,7 @@ h4 {
   font-size: 20px;
 }
 
+/*
 #boxred {
   color: red;
 }
@@ -118,7 +123,7 @@ h4 {
 
 #boxgreen {
   color: green;
-}
+} */
 
 #Overview_red_img_list {
     display: flex; 
@@ -126,6 +131,7 @@ h4 {
     align-items: center;
 }
 
+/*
 .Navbar .leftSide {
   flex: 50%;
   display: flex;
@@ -148,7 +154,7 @@ h4 {
     padding: 4px 16px;
     text-decoration: none;
     font-size: 17px;
-  }
+  } */
   
   /* Change the color of links on hover */
   .navbar a:hover {
@@ -191,13 +197,15 @@ h4 {
   .navbar #linktemperature:hover {
     color: black;
   } 
+
+  
   
   
   /* Add a color to the active/current link */
   .navbar a.active {
     background-color: #4CAF50;
     color: white;
-  }
+  } 
 
    
   @media (max-width: 1200px) {

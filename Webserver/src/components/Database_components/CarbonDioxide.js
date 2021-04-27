@@ -11,8 +11,13 @@ import redcert from "../../images/redcert.png";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Card, CardGroup, Container, Jumbotron } from "react-bootstrap";
 
-import api from "../../api";
+import setHours from "date-fns/setHours";
+import setMinutes from "date-fns/setMinutes";
+import dateFormat from "dateformat";
+import co2img from "../../images/CO2.jpg";
+
 
 var colimitred = 1000;
 var colimitorange = 500;
@@ -27,55 +32,14 @@ var text2 = "with government emission limits.";
 var textyesorno = "IN COMPLIANCE ";
 var infotext =
   "This page displays the measured carbon dioxide (CO2) emissions. CO2 is the most common emission and stays in the atmosphere for more than a thousand years on average. Due to a too high CO2 content in the atmosphere, the ozone layer cannot completely intercept the sun's rays, which is why these can reach the earth's surface almost unhindered and increase climate change here.";
-var Arrayval = [];
-
-var cobv = "";
-var cobv1 = "";
-var cobd = "";
-var cobd1 = "";
 
 const CO2 = (props) => (
   <tr>
     <td>{props.co.codate.substring(0, 19).replace("T", " ")}</td>
-    <td
-      id={
-        props.co.coval >= colimitred
-          ? "valuesred"
-          : "valuesgreen" &&
-            props.co.coval >= colimitorange &&
-            props.co.coval < colimitred
-          ? "valuesyellow"
-          : "valuesgreen"
-      }
-    >
-      {" "}
-      {props.co.coval}
-      <img src={thumb_img} alt="" height="40" width="40"></img>
-    </td>
-    <td>
-      <a
-        href={"https://maps.google.com/?q=" + props.co.cogeo}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Maps
-      </a>
-    </td>
+    <td id={props.co.coval >= colimitred ? "valuesred" : "valuesgreen" && props.co.coval >= colimitorange && props.co.coval < colimitred ? "valuesyellow" : "valuesgreen" }>{" "}{props.co.coval}<img src={thumb_img} alt="" height="40" width="40"></img></td>
+    <td><a href={"https://maps.google.com/?q=" + props.co.cogeo} target="_blank" rel="noopener noreferrer"> Maps </a> </td>
   </tr>
 );
-
-const getCircularReplacer = () => {
-  const seen = new WeakSet();
-  return (key, value) => {
-    if (typeof value === "object" && value !== null) {
-      if (seen.has(value)) {
-        return;
-      }
-      seen.add(value);
-    }
-    return value;
-  };
-};
 
 export default class CarbonDioxide extends Component {
   constructor(props) {
@@ -85,41 +49,50 @@ export default class CarbonDioxide extends Component {
 
     this.state = {
       co: [],
-      value: new Date(),
-      //id: this.props.id
+      startdate: new Date('March 21, 2021 01:00:00'),
+      enddate: new Date(),
+      optionsMonth: {},
+      Arrayval: []
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleStartDateChange = this.handleStartDateChange.bind(this); 
+    this.handleEndDateChange = this.handleEndDateChange.bind(this); 
     this.handleSubmit = this.handleSubmit.bind(this);
-
-    this.optionsMonth = {};
   }
 
-  findbyId = async () => {
-    const codate = this.state.value;
-    await api
-      .findbyId(codate)
-      .then((codate) => {
-        this.setState({ codate: codate.data.data._id });
-      })
-      .catch((err) => {
-        console.log(err);
-        return "";
-      });
-  };
+  handleStartDateChange(event) { 
+    this.setState({startdate: event});
+  }
 
-  handleChange(event) {
-    this.setState({ value: event });
+  handleEndDateChange(event) { 
+    this.setState({enddate: event});
   }
 
   handleSubmit(event) {
-    //alert('New Entry' + this.state.value);
     event.preventDefault();
+
+    axios.get('http://localhost:5000/co/')
+    .then(response => { 
+      this.setState({
+        co: response.data.filter((el) => new Date(el.codate).getTime() >= (this.state.startdate.getTime()+3600000) && new Date(el.codate).getTime() <= (this.state.enddate.getTime()+3600000)),
+      });
+    }).catch((error) => {})
+
+    var i;
+    for(i = 0; i < this.state.co.length; i++){
+      this.state.co[i].codate = dateFormat(new Date(new Date(this.state.co[i].codate).getTime()),("yyyy-mm-dd hh:mm:ss"));
+    }
+
+     this.state.startdate = new Date(this.state.startdate);
+     this.state.enddate = new Date(this.state.enddate); 
+    
+    this.state.Arrayval = [];
+    this.state.optionsMonth = {};
+    this.render();
   }
 
   componentDidMount() {
-    axios
-      .get("http://localhost:5000/co/")
+    axios.get("http://localhost:5000/co/")
       .then((response) => {
         this.setState({ co: response.data });
       })
@@ -139,50 +112,43 @@ export default class CarbonDioxide extends Component {
   }
 
   CO2List() {
-    return this.state.co
-      .map((currentco) => {
-        return (
-          <CO2 co={currentco} deleteCO2={this.deleteCO2} key={currentco._id} />
-        );
-      })
-      .reverse();
+    return this.state.co.map((currentco) => {
+        return (<CO2 co={currentco} deleteCO2={this.deleteCO2} key={currentco._id} />);
+      }).reverse();
   }
 
   getdata() {
+    this.state.Arrayval = []
     return this.state.co.map((currentco) => {
-      cobv = JSON.stringify(
-        <CO2 co={currentco} key={currentco._id} />,
-        getCircularReplacer()
-      );
-      cobd = cobv.slice(cobv.indexOf("codate"), cobv.indexOf("cogeo")); //dates
-      cobv = cobv.slice(cobv.indexOf("coval"), cobv.indexOf("codate")); //values
-      cobv1 = cobv.slice(cobv.indexOf(":") + 1, cobv.indexOf(","));
-      cobd1 = cobd.slice(cobd.indexOf(":") + 1, cobd.indexOf(","));
-
-      cobd1 = cobd1
-        .replace("T", " ")
-        .replace("Z", "")
-        .replaceAll('"', "")
-        .slice(0, cobd1.indexOf(".") - 1);
-      Arrayval.push([Date.parse(cobd1) + 3600000, parseInt(cobv1)]);
-
-      if (parseInt(cobv1) > colimitred) {
-        certificateboolCO2 = false;
-        thumb_img = redcert;
-        thumb_alt = "Red Thumb Down";
-        textyesorno = "NOT IN COMPLIANCE ";
-      }
+      this.state.Arrayval.push([Date.parse(currentco.codate), parseInt(currentco.coval)])
       return certificateboolCO2;
     });
   }
 
   gb() {
     this.getdata();
+    var i = 0;
+    var j = 1;
+    for(i = 0; i < this.state.Arrayval.length; i++){
+      if(this.state.Arrayval[i][j] < colimitred){
+        certificateboolCO2 = true;
+        thumb_img = greencert;
+        thumb_alt = "Green Thumb Up";
+        textyesorno = "IN COMPLIANCE ";
+      }
+      if(this.state.Arrayval[i][j] >= colimitred){
+        certificateboolCO2 = false;
+        thumb_img = redcert;
+        thumb_alt = "Red Thumb Down";
+        textyesorno = "NOT IN COMPLIANCE ";
+        return;
+      }
+    }
     return certificateboolCO2;
   }
 
   createArray() {
-    this.optionsMonth = {
+    this.state.optionsMonth = {
       chart: {
         type: "spline",
       },
@@ -214,50 +180,65 @@ export default class CarbonDioxide extends Component {
       series: [
         {
           name: "CO2 Emissions",
-          data: Arrayval,
+          data: this.state.Arrayval,
         },
       ],
     };
   }
+  
 
   render() {
-    /* this.getID()
-    const {value} = this.state*/
     return (
-      <div>
-        <div className="flex-container" id="logo">
-          <img src={IBESlogo} width="130" height="130" alt="IBES Logo"></img>
-        </div>
-        <h3 id="CO2_heading">Carbon dioxide (CO2)</h3>
+      <div className="container text-center">
+        <h1 id="CO2_heading">Carbon dioxide (CO2)</h1>
+         {/*  <img className="img-fluid float-right" src={IBESlogo} width="130" height="130" alt="IBES Logo"></img>*/}
+
         {this.gb()}
-        <form method="POST" action="/co">
-          <input type="text" id="bar" name="bar" />
-          <button type="submit">Send</button>
-        </form>
-        {/*<div>{value}</div>*/}
+        
         <p>
           <img src={thumb_img} width="100" height="90" alt={thumb_alt} />{" "}
           {text1} <b>{textyesorno}</b> {text2}{" "}
         </p>
-        {infotext}
-        <br></br>
-        <br></br>
+
+        <Card border="secondary">
+          <Card.Header><b>Basic Information about CO2</b></Card.Header>
+          <Card.Body>{infotext}</Card.Body>
+        </Card>
+
+        <br></br><br></br>
+
         {this.createArray()}
+
         <div>
-          <p>
-            <b>Please select a time interval: </b>
-          </p>
-          <form onSubmit={this.onFormSubmit}>
-            <DatePicker
-              selected={this.state.value}
-              onChange={this.handleChange}
+          <p><b>Please select a time interval: </b></p>
+          <form onSubmit={this.handleSubmit}>
+           From:{" "} <DatePicker
+              selected={ this.state.startdate }
+              onChange={ this.handleStartDateChange }
               showTimeSelect
-              timeFormat="h:mm aa"
+              timeFormat="HH:mm"
               timeIntervals={30}
               timeCaption="time"
-              dateFormat="MMMM d, yyyy h:mm aa"
+              dateFormat="MMMM d, yyyy HH:mm"
               maxDate={new Date()}
-              minDate={new Date("April 3, 2021 00:00:00")}
+              minDate={new Date('March 19, 2021 00:00:00')}
+            />
+            To: {" "}<DatePicker
+              selected={ this.state.enddate }
+              //closeOnScroll={true}
+              onChange={ this.handleEndDateChange }
+              showTimeSelect
+              timeFormat="HH:mm"
+              timeIntervals={30}
+              timeCaption="time"
+              dateFormat="MMMM d, yyyy HH:mm"
+              maxDate={new Date()}
+              minDate={this.state.startdate}
+              
+              /*excludeTimes={[
+                setHours(setMinutes(new Date(this.state.startdate), this.state.startdate.getMinutes), this.state.startdate.getHours)
+              ]}*/ 
+              //minTime={setHours(setMinutes(new Date(this.state.startdate), this.state.startdate.getMinutes), this.state.startdate.getHours)}
             />
             <button className="btn btn-primary">Submit</button>
           </form>
@@ -266,37 +247,49 @@ export default class CarbonDioxide extends Component {
         <div>
           <HighchartsReact
             highcharts={Highcharts}
-            options={this.optionsMonth}
+            options={this.state.optionsMonth}
             constructorType={"stockChart"}
           />
         </div>
         <br></br> <br></br>
         <h4>Legend of colors from the table shown below</h4>
         <br></br>
-        <div class="flex-container" id="legendbox">
-          <div id="boxgreen">
-            {" "}
-            <p>Color Green:</p> <br></br>{" "}
-            <p>
-              CO2 value {">"} {colimitgreen} and {"<"} {colimitorange}
-            </p>{" "}
-          </div>
-          <div id="boxorange">
-            {" "}
-            <p>Color Orange: </p> <br></br>{" "}
-            <p>
-              CO2 value {">"} {colimitorange} and {"<"} {colimitred}
-            </p>{" "}
-          </div>
-          <div id="boxred">
-            {" "}
-            <p>Color Red: </p> <br></br>{" "}
-            <p>
-              CO2 value {">"} {colimitred}
-            </p>{" "}
-          </div>
-        </div>
+
+      <CardGroup>
+        <Card border="success" bg="success" style={{ width: '18rem' }}>
+          <Card.Body>
+            <Card.Title><b>Color Green</b></Card.Title>
+            <Card.Text>
+            <b>CO2 value {">"} {colimitgreen} and {"<"} {colimitorange}</b>
+            </Card.Text>
+          </Card.Body>
+        </Card>
+        <br />
+
+        <Card border="warning" bg="warning" style={{ width: '18rem' }}>
+          <Card.Body>
+            <Card.Title><b>Color Orange</b></Card.Title>
+            <Card.Text>
+            <b>CO2 value {">"} {colimitorange} and {"<"} {colimitred}</b>
+            </Card.Text>
+          </Card.Body>
+        </Card>
+        <br />
+
+        <Card border="danger" bg="danger" style={{ width: '18rem' }}>
+          <Card.Body>
+            <Card.Title><b>Color Red</b></Card.Title>
+            <Card.Text>
+            <b>CO2 value {">"} {colimitred}</b>
+            </Card.Text>
+          </Card.Body>
+        </Card>
+        <br />
+
+      </CardGroup>
+
         <br></br> <br></br>
+
         <table className="table table-striped">
           <thead className="thead-light">
             <tr>
