@@ -1,0 +1,22 @@
+.sticky-right {
+  border-style: dashed;
+  text-align: center;
+  position: sticky;
+  top: 0px;
+  opacity: 80%;
+  padding: 5px;
+  font-size: 20px;
+  z-index: 2;
+}
+
+.non-critical {
+  background-color: green;
+  opacity: 80%;
+}
+.critical {
+  background-color: red;
+  opacity: 80%;
+}
+.btn {
+  margin-left: 6px;
+}
