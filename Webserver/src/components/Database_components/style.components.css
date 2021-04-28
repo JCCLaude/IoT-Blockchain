@@ -12,17 +12,16 @@
     } */
 
 h3 {
-      font-weight: bold;
-    /*  text-align: center;
+  font-weight: bold;
+  /*  text-align: center;
       margin-left: 135px; */
-    }    
+}
 
 h4 {
   font-weight: bold;
-/*  text-align: center; */
+  /*  text-align: center; */
   font-size: large;
-}  
-
+}
 
 #overview_structure {
   display: flex;
@@ -42,14 +41,14 @@ h4 {
 } */
 
 .jumbo {
-  background: url("../../images/LeafWithWater.jpeg") no-repeat fixed bottom;
+  background: url("../../assets/images/LeafWithWater.jpeg") no-repeat fixed
+    bottom;
   background-size: cover;
   color: #ccc;
   height: 200px;
   position: relative;
   z-index: -2;
 }
-
 
 /*
 .flex-item1 {
@@ -76,7 +75,6 @@ h4 {
   padding: 10px;
 } */
 
-
 #logo {
   display: flex;
   justify-content: right;
@@ -90,11 +88,11 @@ h4 {
 
 #valuesyellow {
   color: orange;
-}  
+}
 
 #valuesgreen {
   color: green;
-}  
+}
 
 .flex-container {
   display: flex;
@@ -126,9 +124,9 @@ h4 {
 } */
 
 #Overview_red_img_list {
-    display: flex; 
-    justify-content: center; 
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /*
@@ -155,70 +153,62 @@ h4 {
     text-decoration: none;
     font-size: 17px;
   } */
-  
-  /* Change the color of links on hover */
-  .navbar a:hover {
-    background-color: #ddd;
-    color: black;
+
+/* Change the color of links on hover */
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.navbar #linkem:hover {
+  color: black;
+}
+
+.navbar #linkco2:hover {
+  color: black;
+}
+
+.navbar #linkno2:hover {
+  color: black;
+}
+
+.navbar #linkch4:hover {
+  color: black;
+}
+
+.navbar #linkhfc:hover {
+  color: black;
+}
+
+.navbar #linkpfc:hover {
+  color: black;
+}
+
+.navbar #linksf6:hover {
+  color: black;
+}
+
+.navbar #linkairhumidity:hover {
+  color: black;
+}
+
+.navbar #linktemperature:hover {
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.navbar a.active {
+  background-color: #4caf50;
+  color: white;
+}
+
+@media (max-width: 1200px) {
+  #Help_navbar_item {
+    margin: 4px 2px;
   }
 
-  .navbar #linkem:hover{
-    color: black;
+  #overview_structure {
+    width: 80%;
+    height: 80%;
   }
-  
-  .navbar #linkco2:hover{
-    color: black;
-  }
-
-  .navbar #linkno2:hover{
-    color: black;
-  }
-
-  .navbar #linkch4:hover{
-    color: black;
-  }
-
-  .navbar #linkhfc:hover{
-    color: black;
-  }
-
-  .navbar #linkpfc:hover{
-    color: black;
-  }
-
-  .navbar #linksf6:hover{
-    color: black;
-  }
-
-  .navbar #linkairhumidity:hover{
-    color: black;
-  }
-
-  .navbar #linktemperature:hover {
-    color: black;
-  } 
-
-  
-  
-  
-  /* Add a color to the active/current link */
-  .navbar a.active {
-    background-color: #4CAF50;
-    color: white;
-  } 
-
-   
-  @media (max-width: 1200px) {
-      #Help_navbar_item {
-      margin: 4px 2px;
-    }
-
-    #overview_structure {
-      width: 80%;
-      height: 80%;
-    }
-  }
-  
-
-
-
+}

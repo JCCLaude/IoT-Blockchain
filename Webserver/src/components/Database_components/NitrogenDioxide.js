@@ -3,9 +3,9 @@ import axios from "axios";
 import "./style.components.css";
 import HighchartsReact from "highcharts-react-official";
 import Highcharts from "highcharts/highstock";
-import IBESlogo from "../../images/IBESlogo.png";
-import greencert from "../../images/greencert.png";
-import redcert from "../../images/redcert.png";
+import IBESlogo from "../../assets/images/IBESlogo.png";
+import greencert from "../../assets/images/greencert.png";
+import redcert from "../../assets/images/redcert.png";
 
 var nolimitred = 1000;
 var nolimitorange = 500;

@@ -5,19 +5,14 @@ import axios from "axios";
 import "./style.components.css";
 import HighchartsReact from "highcharts-react-official";
 import Highcharts from "highcharts/highstock";
-import IBESlogo from "../../images/IBESlogo.png";
-import greencert from "../../images/greencert.png";
-import redcert from "../../images/redcert.png";
+import greencert from "../../assets/images/greencert.png";
+import redcert from "../../assets/images/redcert.png";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Card, CardGroup, Container, Jumbotron } from "react-bootstrap";
 
-import setHours from "date-fns/setHours";
-import setMinutes from "date-fns/setMinutes";
 import dateFormat from "dateformat";
-import co2img from "../../images/CO2.jpg";
-
 
 var colimitred = 1000;
 var colimitorange = 500;
@@ -36,8 +31,31 @@ var infotext =
 const CO2 = (props) => (
   <tr>
     <td>{props.co.codate.substring(0, 19).replace("T", " ")}</td>
-    <td id={props.co.coval >= colimitred ? "valuesred" : "valuesgreen" && props.co.coval >= colimitorange && props.co.coval < colimitred ? "valuesyellow" : "valuesgreen" }>{" "}{props.co.coval}<img src={thumb_img} alt="" height="40" width="40"></img></td>
-    <td><a href={"https://maps.google.com/?q=" + props.co.cogeo} target="_blank" rel="noopener noreferrer"> Maps </a> </td>
+    <td
+      id={
+        props.co.coval >= colimitred
+          ? "valuesred"
+          : "valuesgreen" &&
+            props.co.coval >= colimitorange &&
+            props.co.coval < colimitred
+          ? "valuesyellow"
+          : "valuesgreen"
+      }
+    >
+      {" "}
+      {props.co.coval}
+      <img src={thumb_img} alt="" height="40" width="40"></img>
+    </td>
+    <td>
+      <a
+        href={"https://maps.google.com/?q=" + props.co.cogeo}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {" "}
+        Maps{" "}
+      </a>{" "}
+    </td>
   </tr>
 );
 
@@ -49,50 +67,62 @@ export default class CarbonDioxide extends Component {
 
     this.state = {
       co: [],
-      startdate: new Date('March 21, 2021 01:00:00'),
+      startdate: new Date("March 21, 2021 01:00:00"),
       enddate: new Date(),
       optionsMonth: {},
-      Arrayval: []
+      Arrayval: [],
     };
 
-    this.handleStartDateChange = this.handleStartDateChange.bind(this); 
-    this.handleEndDateChange = this.handleEndDateChange.bind(this); 
+    this.handleStartDateChange = this.handleStartDateChange.bind(this);
+    this.handleEndDateChange = this.handleEndDateChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleStartDateChange(event) { 
-    this.setState({startdate: event});
+  handleStartDateChange(event) {
+    this.setState({ startdate: event });
   }
 
-  handleEndDateChange(event) { 
-    this.setState({enddate: event});
+  handleEndDateChange(event) {
+    this.setState({ enddate: event });
   }
 
   handleSubmit(event) {
     event.preventDefault();
 
-    axios.get('http://localhost:5000/co/')
-    .then(response => { 
-      this.setState({
-        co: response.data.filter((el) => new Date(el.codate).getTime() >= (this.state.startdate.getTime()+3600000) && new Date(el.codate).getTime() <= (this.state.enddate.getTime()+3600000)),
-      });
-    }).catch((error) => {})
+    axios
+      .get("http://localhost:5000/co/")
+      .then((response) => {
+        this.setState({
+          co: response.data.filter(
+            (el) =>
+              new Date(el.codate).getTime() >=
+                this.state.startdate.getTime() + 3600000 &&
+              new Date(el.codate).getTime() <=
+                this.state.enddate.getTime() + 3600000
+          ),
+        });
+      })
+      .catch((error) => {});
 
     var i;
-    for(i = 0; i < this.state.co.length; i++){
-      this.state.co[i].codate = dateFormat(new Date(new Date(this.state.co[i].codate).getTime()),("yyyy-mm-dd hh:mm:ss"));
+    for (i = 0; i < this.state.co.length; i++) {
+      this.state.co[i].codate = dateFormat(
+        new Date(new Date(this.state.co[i].codate).getTime()),
+        "yyyy-mm-dd hh:mm:ss"
+      );
     }
 
-     this.state.startdate = new Date(this.state.startdate);
-     this.state.enddate = new Date(this.state.enddate); 
-    
+    this.state.startdate = new Date(this.state.startdate);
+    this.state.enddate = new Date(this.state.enddate);
+
     this.state.Arrayval = [];
     this.state.optionsMonth = {};
     this.render();
   }
 
   componentDidMount() {
-    axios.get("http://localhost:5000/co/")
+    axios
+      .get("http://localhost:5000/co/")
       .then((response) => {
         this.setState({ co: response.data });
       })
@@ -112,15 +142,22 @@ export default class CarbonDioxide extends Component {
   }
 
   CO2List() {
-    return this.state.co.map((currentco) => {
-        return (<CO2 co={currentco} deleteCO2={this.deleteCO2} key={currentco._id} />);
-      }).reverse();
+    return this.state.co
+      .map((currentco) => {
+        return (
+          <CO2 co={currentco} deleteCO2={this.deleteCO2} key={currentco._id} />
+        );
+      })
+      .reverse();
   }
 
   getdata() {
-    this.state.Arrayval = []
+    this.state.Arrayval = [];
     return this.state.co.map((currentco) => {
-      this.state.Arrayval.push([Date.parse(currentco.codate), parseInt(currentco.coval)])
+      this.state.Arrayval.push([
+        Date.parse(currentco.codate),
+        parseInt(currentco.coval),
+      ]);
       return certificateboolCO2;
     });
   }
@@ -129,14 +166,14 @@ export default class CarbonDioxide extends Component {
     this.getdata();
     var i = 0;
     var j = 1;
-    for(i = 0; i < this.state.Arrayval.length; i++){
-      if(this.state.Arrayval[i][j] < colimitred){
+    for (i = 0; i < this.state.Arrayval.length; i++) {
+      if (this.state.Arrayval[i][j] < colimitred) {
         certificateboolCO2 = true;
         thumb_img = greencert;
         thumb_alt = "Green Thumb Up";
         textyesorno = "IN COMPLIANCE ";
       }
-      if(this.state.Arrayval[i][j] >= colimitred){
+      if (this.state.Arrayval[i][j] >= colimitred) {
         certificateboolCO2 = false;
         thumb_img = redcert;
         thumb_alt = "Red Thumb Down";
@@ -185,48 +222,48 @@ export default class CarbonDioxide extends Component {
       ],
     };
   }
-  
 
   render() {
     return (
       <div className="container text-center">
         <h1 id="CO2_heading">Carbon dioxide (CO2)</h1>
-         {/*  <img className="img-fluid float-right" src={IBESlogo} width="130" height="130" alt="IBES Logo"></img>*/}
-
+        {/*  <img className="img-fluid float-right" src={IBESlogo} width="130" height="130" alt="IBES Logo"></img>*/}
         {this.gb()}
-        
         <p>
           <img src={thumb_img} width="100" height="90" alt={thumb_alt} />{" "}
           {text1} <b>{textyesorno}</b> {text2}{" "}
         </p>
-
         <Card border="secondary">
-          <Card.Header><b>Basic Information about CO2</b></Card.Header>
+          <Card.Header>
+            <b>Basic Information about CO2</b>
+          </Card.Header>
           <Card.Body>{infotext}</Card.Body>
         </Card>
-
-        <br></br><br></br>
-
+        <br></br>
+        <br></br>
         {this.createArray()}
-
         <div>
-          <p><b>Please select a time interval: </b></p>
+          <p>
+            <b>Please select a time interval: </b>
+          </p>
           <form onSubmit={this.handleSubmit}>
-           From:{" "} <DatePicker
-              selected={ this.state.startdate }
-              onChange={ this.handleStartDateChange }
+            From:{" "}
+            <DatePicker
+              selected={this.state.startdate}
+              onChange={this.handleStartDateChange}
               showTimeSelect
               timeFormat="HH:mm"
               timeIntervals={30}
               timeCaption="time"
               dateFormat="MMMM d, yyyy HH:mm"
               maxDate={new Date()}
-              minDate={new Date('March 19, 2021 00:00:00')}
+              minDate={new Date("March 19, 2021 00:00:00")}
             />
-            To: {" "}<DatePicker
-              selected={ this.state.enddate }
+            To:{" "}
+            <DatePicker
+              selected={this.state.enddate}
               //closeOnScroll={true}
-              onChange={ this.handleEndDateChange }
+              onChange={this.handleEndDateChange}
               showTimeSelect
               timeFormat="HH:mm"
               timeIntervals={30}
@@ -234,10 +271,10 @@ export default class CarbonDioxide extends Component {
               dateFormat="MMMM d, yyyy HH:mm"
               maxDate={new Date()}
               minDate={this.state.startdate}
-              
+
               /*excludeTimes={[
                 setHours(setMinutes(new Date(this.state.startdate), this.state.startdate.getMinutes), this.state.startdate.getHours)
-              ]}*/ 
+              ]}*/
               //minTime={setHours(setMinutes(new Date(this.state.startdate), this.state.startdate.getMinutes), this.state.startdate.getHours)}
             />
             <button className="btn btn-primary">Submit</button>
@@ -254,42 +291,50 @@ export default class CarbonDioxide extends Component {
         <br></br> <br></br>
         <h4>Legend of colors from the table shown below</h4>
         <br></br>
+        <CardGroup>
+          <Card border="success" bg="success" style={{ width: "18rem" }}>
+            <Card.Body>
+              <Card.Title>
+                <b>Color Green</b>
+              </Card.Title>
+              <Card.Text>
+                <b>
+                  CO2 value {">"} {colimitgreen} and {"<"} {colimitorange}
+                </b>
+              </Card.Text>
+            </Card.Body>
+          </Card>
+          <br />
 
-      <CardGroup>
-        <Card border="success" bg="success" style={{ width: '18rem' }}>
-          <Card.Body>
-            <Card.Title><b>Color Green</b></Card.Title>
-            <Card.Text>
-            <b>CO2 value {">"} {colimitgreen} and {"<"} {colimitorange}</b>
-            </Card.Text>
-          </Card.Body>
-        </Card>
-        <br />
+          <Card border="warning" bg="warning" style={{ width: "18rem" }}>
+            <Card.Body>
+              <Card.Title>
+                <b>Color Orange</b>
+              </Card.Title>
+              <Card.Text>
+                <b>
+                  CO2 value {">"} {colimitorange} and {"<"} {colimitred}
+                </b>
+              </Card.Text>
+            </Card.Body>
+          </Card>
+          <br />
 
-        <Card border="warning" bg="warning" style={{ width: '18rem' }}>
-          <Card.Body>
-            <Card.Title><b>Color Orange</b></Card.Title>
-            <Card.Text>
-            <b>CO2 value {">"} {colimitorange} and {"<"} {colimitred}</b>
-            </Card.Text>
-          </Card.Body>
-        </Card>
-        <br />
-
-        <Card border="danger" bg="danger" style={{ width: '18rem' }}>
-          <Card.Body>
-            <Card.Title><b>Color Red</b></Card.Title>
-            <Card.Text>
-            <b>CO2 value {">"} {colimitred}</b>
-            </Card.Text>
-          </Card.Body>
-        </Card>
-        <br />
-
-      </CardGroup>
-
+          <Card border="danger" bg="danger" style={{ width: "18rem" }}>
+            <Card.Body>
+              <Card.Title>
+                <b>Color Red</b>
+              </Card.Title>
+              <Card.Text>
+                <b>
+                  CO2 value {">"} {colimitred}
+                </b>
+              </Card.Text>
+            </Card.Body>
+          </Card>
+          <br />
+        </CardGroup>
         <br></br> <br></br>
-
         <table className="table table-striped">
           <thead className="thead-light">
             <tr>

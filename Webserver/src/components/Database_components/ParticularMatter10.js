@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, { Component } from "react";
+import axios from "axios";
 import "./style.components.css";
-import HighchartsReact from 'highcharts-react-official';
-import Highcharts from 'highcharts/highstock';
-import IBESlogo from "../../images/IBESlogo.png";
-import greencert from "../../images/greencert.png";
-import redcert from "../../images/redcert.png";
+import HighchartsReact from "highcharts-react-official";
+import Highcharts from "highcharts/highstock";
+import IBESlogo from "../../assets/images/IBESlogo.png";
+import greencert from "../../assets/images/greencert.png";
+import redcert from "../../assets/images/redcert.png";
 
 var pm10limitred = 1000;
 var pm10limitorange = 500;
@@ -13,12 +13,13 @@ var pm10limitgreen = 0;
 
 var certificateboolPM10 = true;
 var thumb_img = greencert;
-var thumb_alt ="Green Thumb Up";
+var thumb_alt = "Green Thumb Up";
 
 var text1 = "The PM10 emissions are ";
 var text2 = "with government emission limits.";
 var textyesorno = "IN COMPLIANCE ";
-var infotext = "This page displays the measured particular matter (PM10) emissions. PM10 is...";
+var infotext =
+  "This page displays the measured particular matter (PM10) emissions. PM10 is...";
 var Arrayval = [];
 
 var pm10bv = "";
@@ -26,17 +27,35 @@ var pm10bv1 = "";
 var pm10bd = "";
 var pm10bd1 = "";
 
-
-
-const PM10 = props => (
+const PM10 = (props) => (
   <tr>
-    <td>{props.pm10.pm10date.substring(0,19).replace("T", " ")}</td>
-    <td id={props.pm10.pm10val >= pm10limitred ? 'valuesred':'valuesgreen' && props.pm10.pm10val >= pm10limitorange && props.pm10.pm10val < pm10limitred ? 'valuesyellow':'valuesgreen'}> {props.pm10.pm10val}<img src={thumb_img} alt="" height="40" width="40"></img></td> 
+    <td>{props.pm10.pm10date.substring(0, 19).replace("T", " ")}</td>
+    <td
+      id={
+        props.pm10.pm10val >= pm10limitred
+          ? "valuesred"
+          : "valuesgreen" &&
+            props.pm10.pm10val >= pm10limitorange &&
+            props.pm10.pm10val < pm10limitred
+          ? "valuesyellow"
+          : "valuesgreen"
+      }
+    >
+      {" "}
+      {props.pm10.pm10val}
+      <img src={thumb_img} alt="" height="40" width="40"></img>
+    </td>
     <td>
-      <a href={"https://maps.google.com/?q="+props.pm10.pm10geo} target="_blank" rel="noopener noreferrer">Maps</a>
+      <a
+        href={"https://maps.google.com/?q=" + props.pm10.pm10geo}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Maps
+      </a>
     </td>
   </tr>
-)
+);
 
 const getCircularReplacer = () => {
   const seen = new WeakSet();
@@ -50,7 +69,6 @@ const getCircularReplacer = () => {
     return value;
   };
 };
-
 
 export default class ParticularMatter10 extends Component {
   constructor(props) {

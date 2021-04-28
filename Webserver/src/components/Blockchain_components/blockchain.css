@@ -16,7 +16,8 @@
 }
 
 .jumbo {
-  background: url("./assets/images/LeafWithWater.jpeg") no-repeat fixed bottom;
+  background: url("../../assets/images/LeafWithWater.jpeg") no-repeat fixed
+    bottom;
   background-size: cover;
   color: #ccc;
   height: 200px;

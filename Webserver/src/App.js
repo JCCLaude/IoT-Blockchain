@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // general components
 import Navigation from "./components/General_Components/Navigation";
-import Homepage from "./components/General_Components/Homepage";
 import Overview from "./components/General_Components/Overview";
 import About from "./components/General_Components/About";
 import ErrorPage from "./components/General_Components/ErrorPage";
@@ -29,8 +28,7 @@ function App() {
       <Router>
         <Navigation />
         <Switch>
-          <Route exact path="/" component={Homepage} />
-          <Route path="/overview" component={Overview} />
+          <Route exact path="/" component={Overview} />
           <Route exact path="/detail" component={LandingPageDataBase} />
           <Route
             path="/detail/carbondioxide"

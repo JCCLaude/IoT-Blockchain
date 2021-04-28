@@ -1,9 +1,8 @@
 import React from "react";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "./general.css";
 
-import IBESlogo from "../../images/IBESlogo.png";
+import IBESlogo from "../../assets/images/IBESlogo.png";
 
 function Navigation() {
   return (
@@ -22,50 +21,54 @@ function Navigation() {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav>
-          <Nav.Link href="/">Home</Nav.Link>
-          <Nav.Link href="/Overview">Overview</Nav.Link>
+          <Nav.Link as={Link} to="/">
+            Overview
+          </Nav.Link>
           <NavDropdown title="Detailed Information" variant="dark">
             <NavDropdown.Item
               variant="dark"
-              href="/detail"
+              as={Link}
+              to="/detail"
               className="navdropdown"
             >
               Why detailed?
             </NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item href="/detail/carbondioxide">
+            <NavDropdown.Item as={Link} to="/detail/carbondioxide">
               Carbondioxide (CO2)
             </NavDropdown.Item>
-            <NavDropdown.Item href="/detail/airhumidity">
+            <NavDropdown.Item as={Link} to="/detail/airhumidity">
               Airhumidity
             </NavDropdown.Item>
-            <NavDropdown.Item href="/detail/temperature">
+            <NavDropdown.Item as={Link} to="/detail/temperature">
               Temperature
             </NavDropdown.Item>
-            <NavDropdown.Item href="/detail/nitrogendioxide">
+            <NavDropdown.Item as={Link} to="/detail/nitrogendioxide">
               Nitrogen Dioxide (NO2)
             </NavDropdown.Item>
-            <NavDropdown.Item href="/detail/pm2">
+            <NavDropdown.Item as={Link} to="/detail/pm2">
               Particular Matter 2.5 (PM2.5)
             </NavDropdown.Item>
-            <NavDropdown.Item href="/detail/pm10">
+            <NavDropdown.Item as={Link} to="/detail/pm10">
               Particular Matter 10 (PM10)
             </NavDropdown.Item>
-            <NavDropdown.Item href="/detail/sulfurdioxide">
+            <NavDropdown.Item as={Link} to="/detail/sulfurdioxide">
               Sulfur Dioxide (SO2)
             </NavDropdown.Item>
           </NavDropdown>
 
           <NavDropdown title="Verified Information">
-            <NavDropdown.Item href="/verified">Why verified</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/verified">
+              Why verified
+            </NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item href="/verified/carbondioxide">
+            <NavDropdown.Item as={Link} to="/verified/carbondioxide">
               Carbondioxide (CO2)
             </NavDropdown.Item>
-            <NavDropdown.Item href="/verified/humidity">
+            <NavDropdown.Item as={Link} to="/verified/humidity">
               Airhumidity
             </NavDropdown.Item>
-            <NavDropdown.Item href="/verified/temperature">
+            <NavDropdown.Item as={Link} to="/verified/temperature">
               Temperature
             </NavDropdown.Item>
           </NavDropdown>

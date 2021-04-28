@@ -5,9 +5,9 @@ import CurrentStatus from "./CurrentStatus.js";
 import "./blockchain.css";
 
 const Web3 = require("web3");
-const CO2Build = require("./assets/ethereumBuilds/CO2_Alarming.json");
-const TemperatureBuild = require("./assets/ethereumBuilds/Temperature_Alarming.json");
-const HumidityBuild = require("./assets/ethereumBuilds/Humidity_Alarming.json");
+const CO2Build = require("../../assets/ethereumBuilds/CO2_Alarming.json");
+const TemperatureBuild = require("../../assets/ethereumBuilds/Temperature_Alarming.json");
+const HumidityBuild = require("../../assets/ethereumBuilds/Humidity_Alarming.json");
 
 function LandingPage() {
   const [error, setError] = useState(false);
