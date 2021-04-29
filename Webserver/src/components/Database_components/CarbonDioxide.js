@@ -5,9 +5,9 @@ import axios from "axios";
 import "./style.components.css";
 import HighchartsReact from "highcharts-react-official";
 import Highcharts from "highcharts/highstock";
-import IBESlogo from "../../images/IBESlogo.png";
-import greencert from "../../images/greencert.png";
-import redcert from "../../images/redcert.png";
+import IBESlogo from "../../assets/images/IBESlogo.png";
+import greencert from "../../assets/images/greencert.png";
+import redcert from "../../assets/images/redcert.png";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -16,7 +16,7 @@ import { Card, CardGroup, Container, Jumbotron, Alert, Button } from "react-boot
 import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
 import dateFormat from "dateformat";
-import co2img from "../../images/CO2.jpg";
+import co2img from "../../assets/images/CO2.jpg";
 
 
 var colimitred = 1000;
@@ -40,23 +40,6 @@ const CO2 = (props) => (
     <td><a href={"https://maps.google.com/?q=" + props.co.cogeo} target="_blank" rel="noopener noreferrer"> Maps </a> </td>
   </tr>
 );
-
-function AlertDismissibleExample() {
-  const [show, setShow] = useState(false);
-
-  if (show) {
-    return (
-      <Alert variant="danger" onClose={() => setShow(false)} dismissible>
-        <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
-        <p>
-          Change this and that and try again. Duis mollis, est non commodo
-          luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-          Cras mattis consectetur purus sit amet fermentum.
-        </p>
-      </Alert>
-    );
-  } return null;
-}
 
 export default class CarbonDioxide extends Component {
   constructor(props) {
@@ -260,8 +243,6 @@ export default class CarbonDioxide extends Component {
           </form>
         </div>
         <br></br>
-
-        <AlertDismissibleExample />
 
         <div>
           <HighchartsReact
