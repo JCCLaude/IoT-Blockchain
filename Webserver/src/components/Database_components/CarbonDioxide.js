@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState, setShow } from "react";
 import axios from "axios";
 //import redthumbdown from '../images/redthumbdown.png';
 //import greenthumbup from '../images/greenthumbup.png';
@@ -10,7 +10,7 @@ import redcert from "../../assets/images/redcert.png";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Card, CardGroup, Container, Jumbotron } from "react-bootstrap";
+import { Card, CardGroup, Container, Jumbotron, Alert, Button } from "react-bootstrap";
 
 import dateFormat from "dateformat";
 
@@ -59,6 +59,23 @@ const CO2 = (props) => (
   </tr>
 );
 
+function AlertDismissibleExample() {
+  const [show, setShow] = useState(false);
+
+  if (show) {
+    return (
+      <Alert variant="danger" onClose={() => setShow(false)} dismissible>
+        <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
+        <p>
+          Change this and that and try again. Duis mollis, est non commodo
+          luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
+          Cras mattis consectetur purus sit amet fermentum.
+        </p>
+      </Alert>
+    );
+  } return null;
+}
+
 export default class CarbonDioxide extends Component {
   constructor(props) {
     super(props);
@@ -89,6 +106,7 @@ export default class CarbonDioxide extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
+<<<<<<< Updated upstream
     axios
       .get("http://localhost:5000/co/")
       .then((response) => {
@@ -103,6 +121,19 @@ export default class CarbonDioxide extends Component {
         });
       })
       .catch((error) => {});
+=======
+    if(this.state.enddate < this.state.startdate) {
+      this.setState({enddate: this.state.startdate});
+    }
+    
+
+    axios.get('http://localhost:5000/co/')
+    .then(response => { 
+      this.setState({
+        co: response.data.filter((el) => new Date(el.codate).getTime() >= (this.state.startdate.getTime()+3600000) && new Date(el.codate).getTime() <= (this.state.enddate.getTime()+3600000)),
+      });
+    }).catch((error) => {})
+>>>>>>> Stashed changes
 
     var i;
     for (i = 0; i < this.state.co.length; i++) {
@@ -222,6 +253,10 @@ export default class CarbonDioxide extends Component {
       ],
     };
   }
+<<<<<<< Updated upstream
+=======
+ 
+>>>>>>> Stashed changes
 
   render() {
     return (
@@ -259,11 +294,17 @@ export default class CarbonDioxide extends Component {
               maxDate={new Date()}
               minDate={new Date("March 19, 2021 00:00:00")}
             />
+<<<<<<< Updated upstream
             To:{" "}
             <DatePicker
               selected={this.state.enddate}
               //closeOnScroll={true}
               onChange={this.handleEndDateChange}
+=======
+            To: {" "}<DatePicker
+              selected={ this.state.enddate }
+              onChange={ this.handleEndDateChange }
+>>>>>>> Stashed changes
               showTimeSelect
               timeFormat="HH:mm"
               timeIntervals={30}
@@ -271,16 +312,23 @@ export default class CarbonDioxide extends Component {
               dateFormat="MMMM d, yyyy HH:mm"
               maxDate={new Date()}
               minDate={this.state.startdate}
+<<<<<<< Updated upstream
 
               /*excludeTimes={[
                 setHours(setMinutes(new Date(this.state.startdate), this.state.startdate.getMinutes), this.state.startdate.getHours)
               ]}*/
               //minTime={setHours(setMinutes(new Date(this.state.startdate), this.state.startdate.getMinutes), this.state.startdate.getHours)}
             />
+=======
+             />
+>>>>>>> Stashed changes
             <button className="btn btn-primary">Submit</button>
           </form>
         </div>
         <br></br>
+
+        <AlertDismissibleExample />
+
         <div>
           <HighchartsReact
             highcharts={Highcharts}
