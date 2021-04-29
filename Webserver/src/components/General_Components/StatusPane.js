@@ -22,10 +22,7 @@ function StatusPane() {
           : "sticky-right critical"
       }`}
     >
-      Currently {totalCritical} critical value(s)
-      <Button variant="info" as={Link} to="/verified">
-        Check out
-      </Button>
+      <Link to="/">Currently {totalCritical} alarm(s)</Link>
     </div>
   );
 }
