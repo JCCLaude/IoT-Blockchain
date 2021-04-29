@@ -1,13 +1,5 @@
 import { React, useEffect, useState } from "react";
-import {
-  Card,
-  Accordion,
-  Button,
-  Jumbotron,
-  Container,
-  Row,
-  CardGroup,
-} from "react-bootstrap";
+import { Card, Accordion, Button, Jumbotron, Container, Row, CardGroup, } from "react-bootstrap";
 import CurrentStatus from "./CurrentStatus.js";
 import { Link } from "react-router-dom";
 import "./style.components.css";
@@ -20,166 +12,21 @@ import no2img from "../../assets/images/no2.jpg";
 import pm2img from "../../assets/images/pm2.jpg";
 import pm10img from "../../assets/images/pm10.jpg";
 import so2img from "../../assets/images/so2.jpg";
+import { useGlobalContext } from "../../context";
 
 const colimitred = 1000;
 
 function LandingPage() {
-  const [co2Event, setCo2Event] = useState({
-    timestamp: "loading...",
-    measurement: "loading...",
-    geolocation: "loading...",
-    critical: "loading...",
-  });
-  const [airhumidityEvent, setAirHumidityEvent] = useState({
-    timestamp: "loading...",
-    measurement: "loading...",
-    geolocation: "loading...",
-    critical: "loading...",
-  });
-  const [temperatureEvent, setTemperatureEvent] = useState({
-    timestamp: "loading...",
-    measurement: "loading...",
-    geolocation: "loading...",
-    critical: "loading...",
-  });
-  const [nitrogendioxideEvent, setNitrogendioxideEvent] = useState({
-    timestamp: "loading...",
-    measurement: "loading...",
-    geolocation: "loading...",
-    critical: "loading...",
-  });
-  const [particularmatter2Event, setParticularmatter2Event] = useState({
-    timestamp: "loading...",
-    measurement: "loading...",
-    geolocation: "loading...",
-    critical: "loading...",
-  });
-  const [particularmatter10Event, setParticularmatter10Event] = useState({
-    timestamp: "loading...",
-    measurement: "loading...",
-    geolocation: "loading...",
-    critical: "loading...",
-  });
-  const [sulfurdioxideEvent, setSulfurdioxideEvent] = useState({
-    timestamp: "loading...",
-    measurement: "loading...",
-    geolocation: "loading...",
-    critical: "loading...",
-  });
-
-  const fetchEvents = async () => {
-    axios
-      .get("http://localhost:5000/co/")
-      .then((response) => {
-        var co = response.data;
-        var covals = co.map(function (item) {
-          return item["coval"];
-        });
-        var codates = co.map(function (item) {
-          return item["codate"];
-        });
-        var cogeos = co.map(function (item) {
-          return item["cogeo"];
-        });
-        var test;
-        var i = 0;
-        for (i = 0; i < covals.length - 1; i++) {
-          if (parseInt(covals[i]) > colimitred) {
-            console.log("danger!! " + covals[i]);
-          }
-        }
-        var CO2message = {
-          timestamp: new Date(codates[codates.length - 1]).toString(),
-          measurement: covals[covals.length - 1] + " ppm",
-          geolocation: (
-            <a
-              href={"https://maps.google.com/?q=" + cogeos[cogeos.length - 1]}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {cogeos[cogeos.length - 1]}
-            </a>
-          ),
-        };
-        setCo2Event(CO2message);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    axios
-      .get("http://localhost:5000/ah/")
-      .then((response) => {
-        var ah = response.data;
-        var ahvals = ah.map(function (item) {
-          return item["ahval"];
-        });
-        var ahdates = ah.map(function (item) {
-          return item["ahdate"];
-        });
-        var ahgeos = ah.map(function (item) {
-          return item["ahgeo"];
-        });
-        var AHmessage = {
-          timestamp: new Date(ahdates[ahdates.length - 1]).toString(),
-          measurement: ahvals[ahvals.length - 1] + " %",
-          geolocation: (
-            <a
-              href={"https://maps.google.com/?q=" + ahgeos[ahgeos.length - 1]}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {ahgeos[ahgeos.length - 1]}
-            </a>
-          ),
-        };
-        setAirHumidityEvent(AHmessage);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    axios
-      .get("http://localhost:5000/temp/")
-      .then((response) => {
-        var temp = response.data;
-        var tempvals = temp.map(function (item) {
-          return item["tempval"];
-        });
-        var tempdates = temp.map(function (item) {
-          return item["tempdate"];
-        });
-        var tempgeos = temp.map(function (item) {
-          return item["tempgeo"];
-        });
-        var TEMPmessage = {
-          timestamp: new Date(tempdates[tempdates.length - 1]).toString(),
-          measurement: tempvals[tempvals.length - 1] + " °C",
-          geolocation: (
-            <a
-              href={
-                "https://maps.google.com/?q=" + tempgeos[tempgeos.length - 1]
-              }
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {tempgeos[tempgeos.length - 1]}
-            </a>
-          ),
-        };
-        setTemperatureEvent(TEMPmessage);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  useEffect(() => {
-    fetchEvents();
-    return () => {
-      //cleanup
-    };
-  }, []);
+  const {
+    co2Eventdb, 
+    airhumidityEventdb, 
+    temperatureEventdb, 
+    errordb, 
+    nitrogendioxideEventdb, 
+    particularmatter2Eventdb, 
+    particularmatter10Eventdb, 
+    sulfurdioxideEventdb,
+  } = useGlobalContext();
 
   return (
     <>
@@ -202,22 +49,13 @@ function LandingPage() {
 
           <Container className="dark rounded text-center">
             <Row>
-              <CurrentStatus name={"Carbon Dioxide"} {...co2Event} />
-              <CurrentStatus name={"Air Humidity"} {...airhumidityEvent} />
-              <CurrentStatus name={"Temperature"} {...temperatureEvent} />
-              <CurrentStatus
-                name={"Nitrogen Dioxide"}
-                {...nitrogendioxideEvent}
-              />
-              <CurrentStatus
-                name={"Particular Matter 2.5"}
-                {...particularmatter2Event}
-              />
-              <CurrentStatus
-                name={"Particular Matter 10"}
-                {...particularmatter10Event}
-              />
-              <CurrentStatus name={"Sulfur Dioxdie"} {...sulfurdioxideEvent} />
+              <CurrentStatus name={"Carbon Dioxide"} {...co2Eventdb} />
+              <CurrentStatus name={"Air Humidity"} {...airhumidityEventdb} />
+              <CurrentStatus name={"Temperature"} {...temperatureEventdb} />
+              <CurrentStatus name={"Nitrogen Dioxide"} {...nitrogendioxideEventdb} />
+              <CurrentStatus name={"Particular Matter 2.5"} {...particularmatter2Eventdb} />
+              <CurrentStatus name={"Particular Matter 10"} {...particularmatter10Eventdb} />
+              <CurrentStatus name={"Sulfur Dioxdie"} {...sulfurdioxideEventdb} />
             </Row>
           </Container>
 

@@ -30,11 +30,11 @@
 }
 
 .non-critical a {
-  background-color: #3e0;
+  background-color: #4d1;
   opacity: 80%;
 }
 .non-critical a:hover {
-  background-color: #4d1;
+  background-color: #4a1;
   opacity: 100%;
 }
 .critical a {

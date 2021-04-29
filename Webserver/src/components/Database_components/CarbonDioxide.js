@@ -36,7 +36,7 @@ var infotext =
 const CO2 = (props) => (
   <tr>
     <td>{props.co.codate.substring(0, 19).replace("T", " ")}</td>
-    <td id={props.co.coval >= colimitred ? "valuesred" : "valuesgreen" && props.co.coval >= colimitorange && props.co.coval < colimitred ? "valuesyellow" : "valuesgreen" }>{" "}{props.co.coval}<img src={thumb_img} alt="" height="40" width="40"></img></td>
+    <td id={props.co.coval >= colimitred ? "valuesred" : "valuesgreen" && props.co.coval >= colimitorange && props.co.coval < colimitred ? "valuesyellow" : "valuesgreen" }>{" "}{props.co.coval}</td>
     <td><a href={"https://maps.google.com/?q=" + props.co.cogeo} target="_blank" rel="noopener noreferrer"> Maps </a> </td>
   </tr>
 );
@@ -194,9 +194,18 @@ export default class CarbonDioxide extends Component {
 
   render() {
     return (
+      <>
+      <Jumbotron fluid className="jumboco2">
+        <div className="overlay "> </div>
+        <Container className="d-none d-lg-block">
+          <h1>Carbon Dioxide (CO2)</h1>
+          <p>Find detailed information about all measured CO2 emissions!</p>
+        </Container>
+      </Jumbotron>
+      
       <div className="container text-center">
-        <h1 id="CO2_heading">Carbon dioxide (CO2)</h1>
-         {/*  <img className="img-fluid float-right" src={IBESlogo} width="130" height="130" alt="IBES Logo"></img>*/}
+        {/*<h1 id="CO2_heading">Carbon dioxide (CO2)</h1>
+           <img className="img-fluid float-right" src={IBESlogo} width="130" height="130" alt="IBES Logo"></img>*/}
 
         {this.gb()}
         
@@ -302,6 +311,7 @@ export default class CarbonDioxide extends Component {
           <tbody>{this.CO2List()}</tbody>
         </table>
       </div>
+      </>
     );
   }
 }

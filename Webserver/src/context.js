@@ -32,6 +32,7 @@ export const AppProvider = ({ children }) => {
   });
   
   const [errordb, setErrordb] = useState(false);
+
   const [co2Eventdb, setCo2Eventdb] = useState({
     timestamp: "loading...",
     measurement: "loading...",
@@ -75,6 +76,13 @@ export const AppProvider = ({ children }) => {
     critical: "loading...",
   });
 
+  const [co2Eventdb7, setCo2Eventdb7] = useState({
+    timestamp: "loading...",
+    measurement: "loading...",
+    geolocation: "loading...",
+    critical: "0",
+  });
+
   const fetchEvents = async () => {
     try{    
       axios
@@ -100,17 +108,21 @@ export const AppProvider = ({ children }) => {
         var CO2message = {
           timestamp: new Date(codates[codates.length - 1]).toString(),
           measurement: covals[covals.length - 1] + " ppm",
-          geolocation: (
-            <a
-              href={"https://maps.google.com/?q=" + cogeos[cogeos.length - 1]}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {cogeos[cogeos.length - 1]}
-            </a>
-          ),
+          geolocation: (<a href={"https://maps.google.com/?q=" + cogeos[cogeos.length - 1]} target="_blank" rel="noopener noreferrer" > {cogeos[cogeos.length - 1]} </a> ),
         };
+        var i=0;
+        var codatesStr="";
+        var covalsStr="";
+          for(i=0; i < codates.length-1; i++){
+            codatesStr += new Date(codates[i]).toString() + "|"
+            covalsStr += covals[i] + " ppm" +"|"
+          }
+        var CO2message7 = {
+          timestamp: codatesStr,
+          measurement: covalsStr,
+        }
         setCo2Eventdb(CO2message);
+        setCo2Eventdb7(CO2message7);
       })
       .catch((error) => {
         console.log(error);
@@ -132,15 +144,7 @@ export const AppProvider = ({ children }) => {
         var AHmessage = {
           timestamp: new Date(ahdates[ahdates.length - 1]).toString(),
           measurement: ahvals[ahvals.length - 1] + " %",
-          geolocation: (
-            <a
-              href={"https://maps.google.com/?q=" + ahgeos[ahgeos.length - 1]}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {ahgeos[ahgeos.length - 1]}
-            </a>
-          ),
+          geolocation: (<a href={"https://maps.google.com/?q=" + ahgeos[ahgeos.length - 1]} target="_blank" rel="noopener noreferrer" > {ahgeos[ahgeos.length - 1]} </a> ),
         };
         setAirHumidityEventdb(AHmessage);
       })
@@ -235,7 +239,7 @@ export const AppProvider = ({ children }) => {
 
   return (
     <AppContext.Provider
-      value={{ co2Event, humidityEvent, temperatureEvent, error, co2Eventdb, airhumidityEventdb, temperatureEventdb, errordb, nitrogendioxideEventdb, particularmatter2Eventdb, particularmatter10Eventdb, sulfurdioxideEventdb }}
+      value={{ co2Event, humidityEvent, temperatureEvent, error, co2Eventdb, airhumidityEventdb, temperatureEventdb, errordb, nitrogendioxideEventdb, particularmatter2Eventdb, particularmatter10Eventdb, sulfurdioxideEventdb, co2Eventdb7 }}
     >
       {children}
     </AppContext.Provider>

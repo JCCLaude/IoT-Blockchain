@@ -50,6 +50,17 @@ h4 {
   z-index: -2;
 }
 
+.jumboco2 {
+  background: url("../../assets/images/CO2.jpg") no-repeat fixed
+    bottom;
+  background-size: cover;
+  color: #ccc;
+  height: 200px;
+  position: relative;
+  z-index: -2;
+  background-position: 0 50%;
+}
+
 /*
 .flex-item1 {
   line-height: 40px;
