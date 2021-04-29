@@ -1,0 +1,47 @@
+.sticky-right {
+  position: fixed;
+  top: 50%;
+  right: 0px;
+  width: 115px;
+  height: 0px;
+  z-index: 9999;
+}
+
+.sticky-right a {
+  transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+  display: block;
+  text-align: center;
+  color: #fff;
+  width: 200px;
+  padding: 8px 16px;
+  font-family: Arial, sans-serif;
+  font-size: 17px;
+  font-weight: bold;
+  text-decoration: none;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  border-style: solid;
+  border-width: 3px;
+  border-color: #777;
+}
+
+.non-critical a {
+  background-color: #3e0;
+  opacity: 80%;
+}
+.non-critical a:hover {
+  background-color: #4d1;
+  opacity: 100%;
+}
+.critical a {
+  background-color: #e11;
+  opacity: 80%;
+}
+.critical a:hover {
+  background-color: #d22;
+  opacity: 100%;
+}
