@@ -30,7 +30,7 @@ to get the values of the DHT11 sensor. Values of the Python script are piped to 
 and then used in this script.*/
 function pycall() {
 const { exec } = require('child_process');
-const script = exec('python3 kkk.py', (error, stdout, stderr) =>
+const script = exec('python3 measure_dht11_sensor.py', (error, stdout, stderr) =>
 {
   if (error) { console.error(`error: ${error.message}`); return;
   }
