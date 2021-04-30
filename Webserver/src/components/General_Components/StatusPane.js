@@ -1,19 +1,35 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Button from "react-bootstrap/Button";
 import "./StatusPane.css";
-import { useGlobalContext } from "../../context";
+import { useGlobalContext } from "../../BlockchainContext";
 
 function StatusPane() {
-  const { co2Event, humidityEvent, temperatureEvent } = useGlobalContext();
-  const totalCritical = [co2Event, humidityEvent, temperatureEvent].reduce(
-    (total, event) => {
-      const critical = parseInt(event.critical) === 0 ? 0 : 1;
-      return total + critical;
-    },
-    0
-  );
+  const {
+    co2Events,
+    humidityEvents,
+    temperatureEvents,
+    co2Loading,
+    humidityLoading,
+    temperatureLoading,
+    error,
+  } = useGlobalContext();
 
+  const latestCO2Event = co2Events[co2Events.length - 1].returnValues;
+  const latestHumidityEvent =
+    humidityEvents[humidityEvents.length - 1].returnValues;
+  const latestTemperatureEvent =
+    temperatureEvents[temperatureEvents.length - 1].returnValues;
+
+  const totalCritical = [
+    latestCO2Event,
+    latestHumidityEvent,
+    latestTemperatureEvent,
+  ].reduce((total, event) => {
+    if (parseInt(event.critical) === 0) {
+      return total;
+    }
+    return total + 1;
+  }, 0);
   return (
     <div
       className={`${
@@ -22,7 +38,13 @@ function StatusPane() {
           : "sticky-right critical"
       }`}
     >
-      <Link to="/">Currently {totalCritical} alarm(s)</Link>
+      {error ? (
+        <Link to="/detail">Check alarm(s)</Link>
+      ) : co2Loading || humidityLoading || temperatureLoading ? (
+        <Link to="/verified">Loading data</Link>
+      ) : (
+        <Link to="/verified">Currently {totalCritical} alarm(s)</Link>
+      )}
     </div>
   );
 }

@@ -1,9 +1,28 @@
 import React from "react";
-import HistoryChart from "./BlockchainFetcher";
 
-const HumidityBuild = require("../../assets/ethereumBuilds/Humidity_Alarming.json");
+import { useGlobalContext } from "../../BlockchainContext";
+
+import HistoryGraph from "./HistoryGraph";
+import HistoryTable from "./HistoryTable";
 
 function Humidity() {
-  return <HistoryChart build={HumidityBuild} name="Humidity" unit="%" />;
+  const {
+    humidityLoading,
+    humidityEventsChart,
+    humidityEventsTable,
+  } = useGlobalContext();
+  return (
+    <>
+      {humidityLoading ? (
+        <div className="container">
+          <h4>Loading Blockchain-data</h4>
+        </div>
+      ) : (
+        <HistoryGraph data={humidityEventsChart} name="Humidity" unit="%" />
+      )}
+      <hr />
+      <HistoryTable data={humidityEventsTable} loading={humidityLoading} />
+    </>
+  );
 }
 export default Humidity;

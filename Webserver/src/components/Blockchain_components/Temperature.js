@@ -1,10 +1,36 @@
 import React from "react";
-import HistoryChart from "./BlockchainFetcher";
 
-const TemperatureBuild = require("../../assets/ethereumBuilds/Temperature_Alarming.json");
+import { useGlobalContext } from "../../BlockchainContext";
+
+import HistoryGraph from "./HistoryGraph";
+import HistoryTable from "./HistoryTable";
 
 function Temperature() {
-  return <HistoryChart build={TemperatureBuild} name="Temperature" unit="°C" />;
+  const {
+    temperatureLoading,
+    temperatureEventsChart,
+    temperatureEventsTable,
+  } = useGlobalContext();
+  return (
+    <>
+      {temperatureLoading ? (
+        <div className="container">
+          <h4>Loading Blockchain-data</h4>
+        </div>
+      ) : (
+        <HistoryGraph
+          data={temperatureEventsChart}
+          name="Temperature"
+          unit="°C"
+        />
+      )}
+      <hr />
+      <HistoryTable
+        data={temperatureEventsTable}
+        loading={temperatureLoading}
+      />
+    </>
+  );
 }
 
 export default Temperature;
