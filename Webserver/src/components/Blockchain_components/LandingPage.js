@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from "react";
+import React from "react";
 import { Jumbotron, Container, Row, Col } from "react-bootstrap";
 import CurrentStatus from "./CurrentStatus.js";
 
@@ -10,6 +10,7 @@ const TemperatureBuild = require("../../assets/ethereumBuilds/Temperature_Alarmi
 const HumidityBuild = require("../../assets/ethereumBuilds/Humidity_Alarming.json");
 
 function LandingPage() {
+<<<<<<< Updated upstream
   const [error, setError] = useState(false);
   const [co2Event, setCo2Event] = useState({
     timestamp: "loading...",
@@ -85,6 +86,20 @@ function LandingPage() {
       //cleanup
     };
   }, []);
+=======
+  const {
+    co2Events,
+    humidityEvents,
+    temperatureEvents,
+    error,
+  } = useGlobalContext();
+
+  const latestCO2Event = co2Events[co2Events.length - 1].returnValues;
+  const latestHumidityEvent =
+    humidityEvents[humidityEvents.length - 1].returnValues;
+  const latestTemperatureEvent =
+    temperatureEvents[temperatureEvents.length - 1].returnValues;
+>>>>>>> Stashed changes
 
   return (
     <>
@@ -107,9 +122,9 @@ function LandingPage() {
           </Row>
         ) : (
           <Row>
-            <CurrentStatus name={"Carbondioxide"} {...co2Event} />
-            <CurrentStatus name={"Humidity"} {...humidityEvent} />
-            <CurrentStatus name={"Temperature"} {...temperatureEvent} />
+            <CurrentStatus name={"Carbondioxide"} {...latestCO2Event} />
+            <CurrentStatus name={"Humidity"} {...latestHumidityEvent} />
+            <CurrentStatus name={"Temperature"} {...latestTemperatureEvent} />
           </Row>
         )}
       </Container>

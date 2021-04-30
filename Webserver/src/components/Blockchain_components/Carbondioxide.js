@@ -1,10 +1,25 @@
 import React from "react";
-import HistoryChart from "./BlockchainFetcher";
 
-const CO2Build = require("../../assets/ethereumBuilds/CO2_Alarming.json");
+import { useGlobalContext } from "../../BlockchainContext";
+
+import HistoryTable from "./HistoryTable";
+import HistoryGraph from "./HistoryGraph";
 
 function Carbondioxide() {
-  return <HistoryChart build={CO2Build} name="CO2" unit="ppm" />;
+  const { co2Loading, co2EventsTable, co2EventsChart } = useGlobalContext();
+  return (
+    <>
+      {co2Loading ? (
+        <div className="container">
+          <h4>Loading Blockchain-data</h4>
+        </div>
+      ) : (
+        <HistoryGraph data={co2EventsChart} name="CO2" unit="ppm" />
+      )}
+      <hr />
+      <HistoryTable data={co2EventsTable} loading={co2Loading} />
+    </>
+  );
 }
 
 export default Carbondioxide;
