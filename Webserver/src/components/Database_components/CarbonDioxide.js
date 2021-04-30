@@ -1,11 +1,11 @@
-import React, { Component, useState, setShow } from "react";
+import React, { Component } from "react";
 import axios from "axios";
 //import redthumbdown from '../images/redthumbdown.png';
 //import greenthumbup from '../images/greenthumbup.png';
 import "./style.components.css";
 import HighchartsReact from "highcharts-react-official";
 import Highcharts from "highcharts/highstock";
-import IBESlogo from "../../assets/images/IBESlogo.png";
+//import IBESlogo from "../../assets/images/IBESlogo.png";
 import greencert from "../../assets/images/greencert.png";
 import redcert from "../../assets/images/redcert.png";
 
@@ -13,10 +13,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Card, CardGroup, Container, Jumbotron, Alert, Button } from "react-bootstrap";
 
-import setHours from "date-fns/setHours";
-import setMinutes from "date-fns/setMinutes";
 import dateFormat from "dateformat";
-import co2img from "../../assets/images/CO2.jpg";
 
 
 var colimitred = 1000;
@@ -28,7 +25,7 @@ var thumb_img = greencert;
 var thumb_alt = "Green Thumb Up";
 
 var text1 = "The CO2 emissions are ";
-var text2 = "with government emission limits.";
+var text2 = "with government emission limits in the selected time range.";
 var textyesorno = "IN COMPLIANCE ";
 var infotext =
   "This page displays the measured carbon dioxide (CO2) emissions. CO2 is the most common emission and stays in the atmosphere for more than a thousand years on average. Due to a too high CO2 content in the atmosphere, the ozone layer cannot completely intercept the sun's rays, which is why these can reach the earth's surface almost unhindered and increase climate change here.";

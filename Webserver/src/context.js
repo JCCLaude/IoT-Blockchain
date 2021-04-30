@@ -99,10 +99,10 @@ export const AppProvider = ({ children }) => {
           return item["cogeo"];
         });
         var test;
-        var i = 0;
-        for (i = 0; i < covals.length - 1; i++) {
-          if (parseInt(covals[i]) > colimitred) {
-            console.log("danger!! " + covals[i]);
+        var j = 0;
+        for (j = 0; j < covals.length - 1; j++) {
+          if (parseInt(covals[j]) > colimitred) {
+            console.log("danger!! " + covals[j]);
           }
         }
         var CO2message = {
