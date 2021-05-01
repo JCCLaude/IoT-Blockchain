@@ -8,6 +8,7 @@ import Overview from "./components/General_Components/Overview";
 import About from "./components/General_Components/About";
 import ErrorPage from "./components/General_Components/ErrorPage";
 import StatusPane from "./components/General_Components/StatusPane";
+
 // database components
 import LandingPageDataBase from "./components/Database_components/LandingPage";
 import AirHumidityDataBase from "./components/Database_components/AirHumidity";

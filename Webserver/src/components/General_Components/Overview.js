@@ -5,9 +5,11 @@ import greenthumbup from "../../assets/images/greenthumbup.png";
 import greencert from "../../assets/images/greencert.png";
 import redcert from "../../assets/images/redcert.png";
 import Overview_structure from "../../assets/images/Overview_structure.png";
-import { Card, CardGroup } from "react-bootstrap";
-
+import { Card, CardGroup, Container, Jumbotron } from "react-bootstrap";
+import "../Database_components/style.components.css";
 import CO2List from "../Database_components/CarbonDioxide";
+import { useGlobalContext } from "../../context";
+
 
 var nC; // = new CO2List();
 var certboolCO2;
@@ -23,45 +25,24 @@ var noalt = "Green Thumb Up";
 var noemissions = "";
 
 var text1 = "The greenhouse gas emissions in your area are ";
-var text2 = "with government emission limits.";
+var text2 = "with government emission limits the last 7 days.";
 var textyesorno = "IN COMPLIANCE ";
 
-export default class Overview extends Component {
-  constructor(props) {
-    super(props);
+function Overview() {
 
-    this.deleteOverview = this.deleteOverview.bind(this);
+  const {
+    co2Eventdb, 
+    airhumidityEventdb, 
+    temperatureEventdb, 
+    errordb, 
+    nitrogendioxideEventdb, 
+    particularmatter2Eventdb, 
+    particularmatter10Eventdb, 
+    sulfurdioxideEventdb,
+    co2Eventdb7,
+  } = useGlobalContext();
 
-    this.state = { ov: [] };
-  }
-
-  componentDidMount() {
-    axios
-      .get("http://localhost:5000/ov/")
-      .then((response) => {
-        this.setState({ ov: response.data });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
-  deleteOverview(id) {
-    axios.delete("http://localhost:5000/ov/" + id).then((response) => {
-      console.log(response.data);
-    });
-
-    this.setState({
-      ov: this.state.ov.filter((el) => el._id !== id),
-    });
-  }
-
-  yesorno() {
-    nC = new CO2List();
-    certboolCO2 = nC.gb();
-
-    //test = nC.getdata().toString();
-    //   test = certboolCO2.toString();
+   const kkk = co2Eventdb7.measurement;
 
     if (!certboolCO2) {
       certificateboolOverview = false;
@@ -79,22 +60,24 @@ export default class Overview extends Component {
       noalt = "Red Thumb Down";
       noemissions = "CO2, SF6";
     }
-  }
-
-  OverviewList() {
-    //this.yesorno();
-    return "";
-  }
-
-  render() {
+  
     return (
+      <>
+      <Jumbotron fluid className="jumbo">
+        <div className="overlay "> </div>
+        <Container className="d-none d-lg-block">
+          <h1>Overview</h1>
+          <p>Get a quick overview of the emission values in your area!</p>
+        </Container>
+      </Jumbotron>
       <div className="container">
         {/*   <div className="flex-container" id="logo">
           <img src={IBESlogo} width="130" height="130" alt="IBES Logo"></img>
         </div>*/}
-        {this.yesorno()}
+        {/*this.yesorno()*/}
+        {/*<p>{kkk}</p>*/}
         <div>
-          <h1 className="text-center">Overview</h1>
+          {/*<h1 className="text-center">Overview</h1>*/}
         </div>
         <p>
           <img src={thumb_img} width="130" height="120" alt={thumb_alt} />{" "}
@@ -211,9 +194,9 @@ export default class Overview extends Component {
           </Card.Body>
         </Card>
         <br />
-        <br></br> <br></br>
-        <tbody>{this.OverviewList()}</tbody>
       </div>
+      </>
     );
-  }
 }
+
+export default Overview;
