@@ -8,8 +8,6 @@ import Overview_structure from "../../assets/images/Overview_structure.png";
 import { Card, CardGroup, Container, Jumbotron } from "react-bootstrap";
 import "../Database_components/style.components.css";
 import CO2List from "../Database_components/CarbonDioxide";
-import { useGlobalContext } from "../../context";
-
 
 var nC; // = new CO2List();
 var certboolCO2;
@@ -29,40 +27,25 @@ var text2 = "with government emission limits the last 7 days.";
 var textyesorno = "IN COMPLIANCE ";
 
 function Overview() {
+  if (!certboolCO2) {
+    certificateboolOverview = false;
+  }
 
-  const {
-    co2Eventdb, 
-    airhumidityEventdb, 
-    temperatureEventdb, 
-    errordb, 
-    nitrogendioxideEventdb, 
-    particularmatter2Eventdb, 
-    particularmatter10Eventdb, 
-    sulfurdioxideEventdb,
-    co2Eventdb7,
-  } = useGlobalContext();
+  if (!certificateboolOverview) {
+    thumb_img = redcert;
+    thumb_alt = "Red Thumb Down";
+    textyesorno = "NOT IN COMPLIANCE ";
 
-   const kkk = co2Eventdb7.measurement;
+    notext1 = "The following greenhouse gases in your area are ";
+    notext2 = "NOT IN COMPLIANCE ";
+    notext3 = "with the government emission limits:";
+    noimg = redcert;
+    noalt = "Red Thumb Down";
+    noemissions = "CO2, SF6";
+  }
 
-    if (!certboolCO2) {
-      certificateboolOverview = false;
-    }
-
-    if (!certificateboolOverview) {
-      thumb_img = redcert;
-      thumb_alt = "Red Thumb Down";
-      textyesorno = "NOT IN COMPLIANCE ";
-
-      notext1 = "The following greenhouse gases in your area are ";
-      notext2 = "NOT IN COMPLIANCE ";
-      notext3 = "with the government emission limits:";
-      noimg = redcert;
-      noalt = "Red Thumb Down";
-      noemissions = "CO2, SF6";
-    }
-  
-    return (
-      <>
+  return (
+    <>
       <Jumbotron fluid className="jumbo">
         <div className="overlay "> </div>
         <Container className="d-none d-lg-block">
@@ -76,9 +59,7 @@ function Overview() {
         </div>*/}
         {/*this.yesorno()*/}
         {/*<p>{kkk}</p>*/}
-        <div>
-          {/*<h1 className="text-center">Overview</h1>*/}
-        </div>
+        <div>{/*<h1 className="text-center">Overview</h1>*/}</div>
         <p>
           <img src={thumb_img} width="130" height="120" alt={thumb_alt} />{" "}
           {text1} <b>{textyesorno}</b> {text2}{" "}
@@ -195,8 +176,8 @@ function Overview() {
         </Card>
         <br />
       </div>
-      </>
-    );
+    </>
+  );
 }
 
 export default Overview;
