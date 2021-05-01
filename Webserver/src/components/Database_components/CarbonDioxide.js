@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import axios from "axios";
 //import redthumbdown from '../images/redthumbdown.png';
 //import greenthumbup from '../images/greenthumbup.png';
@@ -11,7 +11,16 @@ import redcert from "../../assets/images/redcert.png";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Card, CardGroup, Container, Jumbotron, Alert, Button } from "react-bootstrap";
+
+import {
+  Card,
+  CardGroup,
+  Container,
+  Jumbotron,
+  Alert,
+  Button,
+} from "react-bootstrap";
+
 
 import dateFormat from "dateformat";
 
@@ -37,6 +46,25 @@ const CO2 = (props) => (
     <td><a href={"https://maps.google.com/?q=" + props.co.cogeo} target="_blank" rel="noopener noreferrer"> Maps </a> </td>
   </tr>
 );
+
+
+function AlertDismissibleExample() {
+  const [show, setShow] = useState(false);
+
+  if (show) {
+    return (
+      <Alert variant="danger" onClose={() => setShow(false)} dismissible>
+        <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
+        <p>
+          Change this and that and try again. Duis mollis, est non commodo
+          luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
+          Cras mattis consectetur purus sit amet fermentum.
+        </p>
+      </Alert>
+    );
+  }
+  return null;
+}
 
 export default class CarbonDioxide extends Component {
   constructor(props) {
@@ -68,17 +96,29 @@ export default class CarbonDioxide extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    if(this.state.enddate < this.state.startdate) {
-      this.setState({enddate: this.state.startdate});
+
+    if (this.state.enddate < this.state.startdate) {
+      this.setState({ enddate: this.state.startdate });
+
     }
     
 
-    axios.get('http://localhost:5000/co/')
-    .then(response => { 
-      this.setState({
-        co: response.data.filter((el) => new Date(el.codate).getTime() >= (this.state.startdate.getTime()+3600000) && new Date(el.codate).getTime() <= (this.state.enddate.getTime()+3600000)),
-      });
-    }).catch((error) => {})
+
+    axios
+      .get("http://localhost:5000/co/")
+      .then((response) => {
+        this.setState({
+          co: response.data.filter(
+            (el) =>
+              new Date(el.codate).getTime() >=
+                this.state.startdate.getTime() + 3600000 &&
+              new Date(el.codate).getTime() <=
+                this.state.enddate.getTime() + 3600000
+          ),
+        });
+      })
+      .catch((error) => {});
+
 
     var i;
     for(i = 0; i < this.state.co.length; i++){
@@ -234,9 +274,11 @@ export default class CarbonDioxide extends Component {
               maxDate={new Date()}
               minDate={new Date('March 19, 2021 00:00:00')}
             />
-            To: {" "}<DatePicker
-              selected={ this.state.enddate }
-              onChange={ this.handleEndDateChange }
+
+            To:{" "}
+            <DatePicker
+              selected={this.state.enddate}
+              onChange={this.handleEndDateChange}
               showTimeSelect
               timeFormat="HH:mm"
               timeIntervals={30}
@@ -244,11 +286,14 @@ export default class CarbonDioxide extends Component {
               dateFormat="MMMM d, yyyy HH:mm"
               maxDate={new Date()}
               minDate={this.state.startdate}
-             />
+            />
+
             <button className="btn btn-primary">Submit</button>
           </form>
         </div>
         <br></br>
+
+        <AlertDismissibleExample />
 
         <div>
           <HighchartsReact
