@@ -1,7 +1,7 @@
 import React from "react";
 import { Jumbotron, Container, Row, Col } from "react-bootstrap";
 import CurrentStatus from "./CurrentStatus.js";
-import { useGlobalContext } from "../../BlockchainContext";
+import { useGlobalContext } from "../../context";
 
 import "./blockchain.css";
 

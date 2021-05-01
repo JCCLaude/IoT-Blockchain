@@ -48,24 +48,6 @@ const CO2 = (props) => (
 );
 
 
-function AlertDismissibleExample() {
-  const [show, setShow] = useState(false);
-
-  if (show) {
-    return (
-      <Alert variant="danger" onClose={() => setShow(false)} dismissible>
-        <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
-        <p>
-          Change this and that and try again. Duis mollis, est non commodo
-          luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-          Cras mattis consectetur purus sit amet fermentum.
-        </p>
-      </Alert>
-    );
-  }
-  return null;
-}
-
 export default class CarbonDioxide extends Component {
   constructor(props) {
     super(props);
@@ -246,10 +228,21 @@ export default class CarbonDioxide extends Component {
 
         {this.gb()}
         
-        <p>
+        {/*<p>
           <img src={thumb_img} width="100" height="90" alt={thumb_alt} />{" "}
           {text1} <b>{textyesorno}</b> {text2}{" "}
-        </p>
+        </p>*/}
+      <div className="container text-center">
+        <div className="row justify-content-center">
+          <div class="col sm-2">
+              <img class="img" src={thumb_img} width="145" height="140" alt={thumb_alt} ></img>
+          </div>
+          <div class="col md-6">
+            The CO2 emissions are <b>{textyesorno}</b> with government emission limits in the selected time range.
+          </div>
+        </div>
+      </div>
+      
 
         <Card border="secondary">
           <Card.Header><b>Basic Information about CO2</b></Card.Header>
@@ -292,8 +285,6 @@ export default class CarbonDioxide extends Component {
           </form>
         </div>
         <br></br>
-
-        <AlertDismissibleExample />
 
         <div>
           <HighchartsReact

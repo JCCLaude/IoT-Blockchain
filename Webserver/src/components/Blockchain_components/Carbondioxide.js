@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useGlobalContext } from "../../BlockchainContext";
+import { useGlobalContext } from "../../context";
 
 import HistoryTable from "./HistoryTable";
 import HistoryGraph from "./HistoryGraph";
