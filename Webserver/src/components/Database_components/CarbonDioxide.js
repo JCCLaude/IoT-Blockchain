@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import axios from "axios";
 //import redthumbdown from '../images/redthumbdown.png';
 //import greenthumbup from '../images/greenthumbup.png';
@@ -10,9 +10,6 @@ import redcert from "../../assets/images/redcert.png";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-<<<<<<< Updated upstream
-import { Card, CardGroup, Container, Jumbotron } from "react-bootstrap";
-=======
 import {
   Card,
   CardGroup,
@@ -21,7 +18,6 @@ import {
   Alert,
   Button,
 } from "react-bootstrap";
->>>>>>> Stashed changes
 
 import dateFormat from "dateformat";
 
@@ -70,8 +66,6 @@ const CO2 = (props) => (
   </tr>
 );
 
-<<<<<<< Updated upstream
-=======
 function AlertDismissibleExample() {
   const [show, setShow] = useState(false);
 
@@ -90,7 +84,6 @@ function AlertDismissibleExample() {
   return null;
 }
 
->>>>>>> Stashed changes
 export default class CarbonDioxide extends Component {
   constructor(props) {
     super(props);
@@ -121,13 +114,10 @@ export default class CarbonDioxide extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
-<<<<<<< Updated upstream
-=======
     if (this.state.enddate < this.state.startdate) {
       this.setState({ enddate: this.state.startdate });
     }
 
->>>>>>> Stashed changes
     axios
       .get("http://localhost:5000/co/")
       .then((response) => {
@@ -301,10 +291,6 @@ export default class CarbonDioxide extends Component {
             To:{" "}
             <DatePicker
               selected={this.state.enddate}
-<<<<<<< Updated upstream
-              //closeOnScroll={true}
-=======
->>>>>>> Stashed changes
               onChange={this.handleEndDateChange}
               showTimeSelect
               timeFormat="HH:mm"
@@ -313,23 +299,12 @@ export default class CarbonDioxide extends Component {
               dateFormat="MMMM d, yyyy HH:mm"
               maxDate={new Date()}
               minDate={this.state.startdate}
-<<<<<<< Updated upstream
-
-              /*excludeTimes={[
-                setHours(setMinutes(new Date(this.state.startdate), this.state.startdate.getMinutes), this.state.startdate.getHours)
-              ]}*/
-              //minTime={setHours(setMinutes(new Date(this.state.startdate), this.state.startdate.getMinutes), this.state.startdate.getHours)}
-=======
->>>>>>> Stashed changes
             />
             <button className="btn btn-primary">Submit</button>
           </form>
         </div>
         <br></br>
-<<<<<<< Updated upstream
-=======
         <AlertDismissibleExample />
->>>>>>> Stashed changes
         <div>
           <HighchartsReact
             highcharts={Highcharts}
