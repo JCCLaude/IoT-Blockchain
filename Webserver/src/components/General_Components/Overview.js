@@ -1,26 +1,23 @@
-import React, { Component } from "react";
+import React from "react";
+import redthumbdown from "../../assets/images/redthumbdown.png";
 import greenthumbup from "../../assets/images/greenthumbup.png";
 import greencert from "../../assets/images/greencert.png";
 import redcert from "../../assets/images/redcert.png";
 import Overview_structure from "../../assets/images/Overview_structure.png";
-import { Card, CardGroup, Container, Jumbotron } from "react-bootstrap";
+import { Card, CardGroup, Container, Jumbotron, Button } from "react-bootstrap";
 import "../Database_components/style.components.css";
 import { useGlobalContext } from "../../context";
 
 var colimitred=1000; var ahlimitred=95; var templimitred=60; var nolimitred=1000; 
 var pm2limitred=1000; var pm10limitred=1000; var solimitred=1000;
 
-var text1 = "The greenhouse gas emissions in your area are ";
-var text2 = "with government emission limits the last 7 days.";
 var textyesorno = "IN COMPLIANCE ";
 
 function Overview() {
   var certificateboolOverview = true;
   var thumb_img = greencert;
   var thumb_alt = "Green Thumb Up";
-  var notext1 = "";
-  var notext2 = "";
-  var notext3 = "";
+  var notext1 = ""; var notext2 = ""; var notext3 = "";
   var noimg = greenthumbup;
   var noalt = "Green Thumb Up";
   var noemissions = "";
@@ -66,9 +63,6 @@ for(i=0; i<pm2valarray7.length-1; i++){
   if(parseInt(sovalarray7[i]) >= solimitred){certboolSO = false;}
 }
 
-
-var kkk="";
-
   if (certboolCO2 === false) {certificateboolOverview = false; COStr = "Carbon Dioxide (CO2)";}
   if (certboolAH === false) {certificateboolOverview = false; AHStr = "Air Humidity";}
   if (certboolTEMP === false) {certificateboolOverview = false; TEMPStr = "Temperature";}
@@ -81,11 +75,10 @@ var kkk="";
     thumb_img = redcert;
     thumb_alt = "Red Thumb Down";
     textyesorno = "NOT IN COMPLIANCE ";
-
     notext1 = "The following greenhouse gases in your area are ";
     notext2 = "NOT IN COMPLIANCE ";
     notext3 = "with the government emission limits:";
-    noimg = redcert;
+    noimg = redthumbdown;
     noalt = "Red Thumb Down";
     noemissions = COStr+", "+AHStr+", "+TEMPStr+", "+NOStr+", "+PM2Str+", "+PM10Str+", "+SOStr;
   } 
@@ -99,10 +92,15 @@ var kkk="";
           <p>Get a quick overview of the emission values in your area!</p>
         </Container>
       </Jumbotron>
+      <img class="mx-auto d-block" src={thumb_img} width="145" height="135" alt={thumb_alt} ></img>
+      <div className="container text-center">
+        <p>The greenhouse gas emissions in your area are <b>{textyesorno}</b> with government emission limits the last 7 days.</p>  
+      </div>  
+
+      <br></br><br></br>
+
       <div className="container">
-        <p><img src={thumb_img} width="130" height="120" alt={thumb_alt} />{" "}
-          {text1} <b>{textyesorno}</b> {text2}{" "}</p>
-        <p>{notext1} <b>{notext2}</b> {notext3}</p>
+        <p>{notext1}<b>{notext2}</b>{notext3}</p>
         <div className="container" id="Overview_red_img_list">
           <img src={noimg} width="100" height="90" alt={noalt}></img>
           <figcaption>
@@ -111,6 +109,22 @@ var kkk="";
           </figcaption>
         </div>
         <br></br> <br></br>
+
+        <div className="container text-center">
+          <div className="row">
+            <div className="col sm-4">
+              Get more info at detail: <br></br>
+              <a class="btn btn-primary btn-lg" href="/detail" role="button">Detailed</a>
+            </div>
+            <div className="col sm-4">
+            Get more info at verified: <br></br>
+              <a class="btn btn-success btn-lg" href="/verified" role="button">Verified</a>
+            </div>
+          </div>
+        </div>
+    
+    <br></br><br></br>
+
         <div className="flex-container">
           <img
             id="overview_structure"

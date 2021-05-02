@@ -8,7 +8,6 @@ const HumidityBuild = require("./assets/ethereumBuilds/Humidity_Alarming.json");
 
 const AppContext = React.createContext();
 
-
 export const AppProvider = ({ children }) => {
   const [error, setError] = useState(false);
   const [co2Loading, setCo2Loading] = useState(true);
@@ -124,8 +123,8 @@ export const AppProvider = ({ children }) => {
           return item["cogeo"];
         });
         var CO2message = {
-          timestamp: new Date(codates[codates.length - 1]).toString(),
-          measurement: covals[covals.length - 1] + " ppm",
+          timestamp: new Date(new Date(codates[codates.length - 1]).getTime() + 3600000).toUTCString(),
+          measurement: covals[covals.length - 1],
           geolocation: (<a href={"https://maps.google.com/?q=" + cogeos[cogeos.length - 1]} target="_blank" rel="noopener noreferrer" > {cogeos[cogeos.length - 1]} </a> ),
         };
         
@@ -166,8 +165,8 @@ export const AppProvider = ({ children }) => {
           return item["ahgeo"];
         });
         var AHmessage = {
-          timestamp: new Date(ahdates[ahdates.length - 1]).toString(),
-          measurement: ahvals[ahvals.length - 1] + " %",
+          timestamp: new Date(new Date(ahdates[ahdates.length - 1]).getTime() + 3600000).toUTCString(),
+          measurement: ahvals[ahvals.length - 1],
           geolocation: (<a href={"https://maps.google.com/?q=" + ahgeos[ahgeos.length - 1]} target="_blank" rel="noopener noreferrer" > {ahgeos[ahgeos.length - 1]} </a> ),
         };
 
@@ -202,8 +201,8 @@ export const AppProvider = ({ children }) => {
           return item["tempgeo"];
         });
         var TEMPmessage = {
-          timestamp: new Date(tempdates[tempdates.length - 1]).toString(),
-          measurement: tempvals[tempvals.length - 1] + " °C",
+          timestamp: new Date(new Date(tempdates[tempdates.length - 1]).getTime() + 3600000).toUTCString(),
+          measurement: tempvals[tempvals.length - 1],
           geolocation: (<a href={"https://maps.google.com/?q=" + tempgeos[tempgeos.length - 1]} target="_blank" rel="noopener noreferrer">{tempgeos[tempgeos.length - 1]}</a>),
         };
 
@@ -238,8 +237,8 @@ export const AppProvider = ({ children }) => {
           return item["nogeo"];
         });
         var NOmessage = {
-          timestamp: new Date(nodates[nodates.length - 1]).toString(),
-          measurement: novals[novals.length - 1] + " ppm",
+          timestamp: new Date(new Date(nodates[nodates.length - 1]).getTime() + 3600000).toUTCString(),
+          measurement: novals[novals.length - 1],
           geolocation: (<a href={"https://maps.google.com/?q=" + nogeos[nogeos.length - 1]} target="_blank" rel="noopener noreferrer">{nogeos[nogeos.length - 1]}</a>),
         };
 
@@ -274,8 +273,8 @@ export const AppProvider = ({ children }) => {
           return item["pm2geo"];
         });
         var PM2message = {
-          timestamp: new Date(pm2dates[pm2dates.length - 1]).toString(),
-          measurement: pm2vals[pm2vals.length - 1] + " °C",
+          timestamp: new Date(new Date(pm2dates[pm2dates.length - 1]).getTime() + 3600000).toUTCString(),
+          measurement: pm2vals[pm2vals.length - 1],
           geolocation: (<a href={"https://maps.google.com/?q=" + pm2geos[pm2geos.length - 1]} target="_blank" rel="noopener noreferrer">{pm2geos[pm2geos.length - 1]}</a>),
         };
 
@@ -310,8 +309,8 @@ export const AppProvider = ({ children }) => {
           return item["pm10geo"];
         });
         var PM10message = {
-          timestamp: new Date(pm10dates[pm10dates.length - 1]).toString(),
-          measurement: pm10vals[pm10vals.length - 1] + " °C",
+          timestamp: new Date(new Date(pm10dates[pm10dates.length - 1]).getTime() + 3600000).toUTCString(),
+          measurement: pm10vals[pm10vals.length - 1],
           geolocation: (<a href={"https://maps.google.com/?q=" + pm10geos[pm10geos.length - 1]} target="_blank" rel="noopener noreferrer">{pm10geos[pm10geos.length - 1]}</a>),
         };
 
@@ -346,8 +345,8 @@ export const AppProvider = ({ children }) => {
           return item["sogeo"];
         });
         var SOmessage = {
-          timestamp: new Date(sodates[sodates.length - 1]).toString(),
-          measurement: sovals[sovals.length - 1] + " °C",
+          timestamp: new Date(new Date(sodates[sodates.length - 1]).getTime() + 3600000).toUTCString(),
+          measurement: sovals[sovals.length - 1],
           geolocation: (<a href={"https://maps.google.com/?q=" + sogeos[sogeos.length - 1]} target="_blank" rel="noopener noreferrer">{sogeos[sogeos.length - 1]}</a>),
         };
 
