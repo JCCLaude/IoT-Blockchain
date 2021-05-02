@@ -1,37 +1,83 @@
 import React, { Component } from "react";
-import axios from "axios";
-//import redthumbdown from '../images/redthumbdown.png';
 import greenthumbup from "../../assets/images/greenthumbup.png";
 import greencert from "../../assets/images/greencert.png";
 import redcert from "../../assets/images/redcert.png";
 import Overview_structure from "../../assets/images/Overview_structure.png";
 import { Card, CardGroup, Container, Jumbotron } from "react-bootstrap";
 import "../Database_components/style.components.css";
-import CO2List from "../Database_components/CarbonDioxide";
+import { useGlobalContext } from "../../context";
 
-var nC; // = new CO2List();
-var certboolCO2;
-
-var certificateboolOverview = true;
-var thumb_img = greencert;
-var thumb_alt = "Green Thumb Up";
-var notext1 = "";
-var notext2 = "";
-var notext3 = "";
-var noimg = greenthumbup;
-var noalt = "Green Thumb Up";
-var noemissions = "";
+var colimitred=1000; var ahlimitred=95; var templimitred=60; var nolimitred=1000; 
+var pm2limitred=1000; var pm10limitred=1000; var solimitred=1000;
 
 var text1 = "The greenhouse gas emissions in your area are ";
 var text2 = "with government emission limits the last 7 days.";
 var textyesorno = "IN COMPLIANCE ";
 
 function Overview() {
-  if (!certboolCO2) {
-    certificateboolOverview = false;
-  }
+  var certificateboolOverview = true;
+  var thumb_img = greencert;
+  var thumb_alt = "Green Thumb Up";
+  var notext1 = "";
+  var notext2 = "";
+  var notext3 = "";
+  var noimg = greenthumbup;
+  var noalt = "Green Thumb Up";
+  var noemissions = "";
 
-  if (!certificateboolOverview) {
+  var certboolCO2=true; var certboolAH=true; var certboolTEMP=true; var certboolNO=true;
+  var certboolPM2=true; var certboolPM10=true; var certboolSO=true; 
+
+  const {
+    co2Eventdb7, 
+    airhumidityEventdb7, 
+    temperatureEventdb7, 
+    nitrogendioxideEventdb7, 
+    particularmatter2Eventdb7, 
+    particularmatter10Eventdb7, 
+    sulfurdioxideEventdb7,
+  } = useGlobalContext();
+
+var covalarray7 = co2Eventdb7.measurement.split('|'); 
+var ahvalarray7 = airhumidityEventdb7.measurement.split('|'); 
+var tempvalarray7 = temperatureEventdb7.measurement.split('|'); 
+var novalarray7 = nitrogendioxideEventdb7.measurement.split('|'); 
+var pm2valarray7 = particularmatter2Eventdb7.measurement.split('|'); 
+var pm10valarray7 = particularmatter10Eventdb7.measurement.split('|'); 
+var sovalarray7 = sulfurdioxideEventdb7.measurement.split('|'); 
+
+var codatearray7 = co2Eventdb7.timestamp.split('|');
+var covalhigharray7 = []; 
+var COStr = ""; var AHStr = ""; var TEMPStr=""; var NOStr=""; var PM2Str=""; var PM10Str=""; var SOStr="";
+
+var i=0;
+
+for(i=0; i<covalarray7.length-1; i++){
+  if(parseInt(covalarray7[i]) >= colimitred){certboolCO2 = false; covalhigharray7.push(covalarray7[i]+" ppm",new Date(codatearray7[i]))}
+}  
+for(i=0; i<ahvalarray7.length-1; i++){
+  if(parseInt(ahvalarray7[i]) >= ahlimitred){certboolAH = false;}
+  if(parseInt(tempvalarray7[i]) >= templimitred){certboolTEMP = false;}
+}
+for(i=0; i<pm2valarray7.length-1; i++){
+  if(parseInt(novalarray7[i]) >= nolimitred){certboolNO = false;}
+  if(parseInt(pm2valarray7[i]) >= pm2limitred){certboolPM2 = false;}
+  if(parseInt(pm10valarray7[i]) >= pm10limitred){certboolPM10 = false;}
+  if(parseInt(sovalarray7[i]) >= solimitred){certboolSO = false;}
+}
+
+
+var kkk="";
+
+  if (certboolCO2 === false) {certificateboolOverview = false; COStr = "Carbon Dioxide (CO2)";}
+  if (certboolAH === false) {certificateboolOverview = false; AHStr = "Air Humidity";}
+  if (certboolTEMP === false) {certificateboolOverview = false; TEMPStr = "Temperature";}
+  if (certboolNO === false) {certificateboolOverview = false; NOStr = "Nitrogen Dioxide (NO2)";}
+  if (certboolPM2 === false) {certificateboolOverview = false; PM2Str = "Particular Matter 2.5 (PM2.5)";}
+  if (certboolPM10 === false) {certificateboolOverview = false; PM10Str = "Particular Matter 10 (PM10)";}
+  if (certboolSO === false) {certificateboolOverview = false; SOStr = "Sulfur Dioxide (SO2)";}
+
+  if (certificateboolOverview === false) {
     thumb_img = redcert;
     thumb_alt = "Red Thumb Down";
     textyesorno = "NOT IN COMPLIANCE ";
@@ -41,8 +87,8 @@ function Overview() {
     notext3 = "with the government emission limits:";
     noimg = redcert;
     noalt = "Red Thumb Down";
-    noemissions = "CO2, SF6";
-  }
+    noemissions = COStr+", "+AHStr+", "+TEMPStr+", "+NOStr+", "+PM2Str+", "+PM10Str+", "+SOStr;
+  } 
 
   return (
     <>
@@ -54,24 +100,14 @@ function Overview() {
         </Container>
       </Jumbotron>
       <div className="container">
-        {/*   <div className="flex-container" id="logo">
-          <img src={IBESlogo} width="130" height="130" alt="IBES Logo"></img>
-        </div>*/}
-        {/*this.yesorno()*/}
-        {/*<p>{kkk}</p>*/}
-        <div>{/*<h1 className="text-center">Overview</h1>*/}</div>
-        <p>
-          <img src={thumb_img} width="130" height="120" alt={thumb_alt} />{" "}
-          {text1} <b>{textyesorno}</b> {text2}{" "}
-        </p>
-        <p>
-          {notext1} <b>{notext2}</b> {notext3}
-        </p>
+        <p><img src={thumb_img} width="130" height="120" alt={thumb_alt} />{" "}
+          {text1} <b>{textyesorno}</b> {text2}{" "}</p>
+        <p>{notext1} <b>{notext2}</b> {notext3}</p>
         <div className="container" id="Overview_red_img_list">
           <img src={noimg} width="100" height="90" alt={noalt}></img>
           <figcaption>
             {" "}
-            <b>{noemissions}</b>{" "}
+            <b>{COStr}<br></br>{AHStr}<br></br>{TEMPStr}<br></br>{NOStr}<br></br>{PM2Str}<br></br>{PM10Str}<br></br>{SOStr}</b>
           </figcaption>
         </div>
         <br></br> <br></br>

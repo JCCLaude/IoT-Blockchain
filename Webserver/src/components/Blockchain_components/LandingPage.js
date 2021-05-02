@@ -9,10 +9,9 @@ import {
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import CurrentStatus from "./CurrentStatus.js";
-import { useGlobalContext } from "../../BlockchainContext";
-import co2img from "../../assets/images/CO2.jpg";
-import airhumidityimg from "../../assets/images/airhumidity.jpg";
-import temperatureimg from "../../assets/images/temperature.jpg";
+
+import { useGlobalContext } from "../../context";
+
 import "./blockchain.css";
 
 function LandingPage() {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Jumbotron, Container, Tabs, Tab, Card } from "react-bootstrap";
 
-import { useGlobalContext } from "../../BlockchainContext";
+import { useGlobalContext } from "../../context";
 
 import HistoryGraph from "./HistoryGraph";
 import HistoryTable from "./HistoryTable";

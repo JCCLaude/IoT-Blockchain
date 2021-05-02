@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./StatusPane.css";
-import { useGlobalContext } from "../../BlockchainContext";
+import { useGlobalContext } from "../../context";
 
 function StatusPane() {
   const {
