@@ -1,9 +1,9 @@
 import React from "react";
 import HighchartsReact from "highcharts-react-official";
 import Highcharts from "highcharts/highstock";
-import { Container, Button } from "react-bootstrap";
+import { Container, Button, Spinner } from "react-bootstrap";
 
-function HistoryGraph({ data, unit, name }) {
+function HistoryGraph({ data, unit, name, loading, lowerLimit, higherLimit }) {
   const options = {
     chart: {
       type: "spline",
@@ -32,12 +32,12 @@ function HistoryGraph({ data, unit, name }) {
         data: data,
         zones: [
           {
-            value: 10,
-            color: "#00ff00",
+            value: lowerLimit,
+            color: "#008000",
           },
           {
-            value: 15,
-            color: "#ffff00",
+            value: higherLimit,
+            color: "#ffa500",
           },
           {
             color: "#ff0000",
@@ -49,17 +49,22 @@ function HistoryGraph({ data, unit, name }) {
 
   return (
     <Container className="text-center">
-      <Container>
-        <HighchartsReact
-          highcharts={Highcharts}
-          options={options}
-          constructorType={"chart"}
-        />
-        <br />
-        <Button variant="info" onClick={() => console.log(data)}>
-          Log values to console
-        </Button>
-      </Container>
+      <h1>Check history data as a chart</h1>
+      {loading ? (
+        <Spinner animation="border" />
+      ) : (
+        <Container>
+          <HighchartsReact
+            highcharts={Highcharts}
+            options={options}
+            constructorType={"chart"}
+          />
+          <br />
+          <Button variant="info" onClick={() => console.log(data)}>
+            Log values to console
+          </Button>
+        </Container>
+      )}
       <br />
     </Container>
   );

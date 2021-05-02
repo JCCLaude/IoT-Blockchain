@@ -1,11 +1,49 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
-import { Container, Button, Row, Col, Modal } from "react-bootstrap";
+import { Container, Button, Row, Col, Modal, Table } from "react-bootstrap";
 
-function HistoryTable({ data, loading }) {
+function HistoryTable({ data, loading, lowerLimit, higherLimit }) {
   const [show, setShow] = useState(false);
+  const [tableData, setTableData] = useState([, ,]);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+
+  const filterData = (startDate, endDate) => {
+    const displayData = data.filter(
+      (item) => startDate.getTime() <= item[0] && item[0] <= endDate.getTime()
+    );
+    console.log(startDate.getTime(), endDate.getTime(), "test:", displayData);
+    setTableData(displayData);
+    setShow(true);
+  };
+
+  const checkValueArea = (lowerLimit, higherLimit, value) => {
+    if (value >= higherLimit) {
+      return "extreme";
+    }
+    if (value >= lowerLimit) {
+      return "medium";
+    }
+    return "low";
+  };
+
+  const formatDate = (timestamp) => {
+    var date = new Date(timestamp);
+    return (
+      date.getDate() +
+      "/" +
+      (date.getMonth() + 1) +
+      "/" +
+      date.getFullYear() +
+      " " +
+      date.getHours() +
+      ":" +
+      date.getMinutes() +
+      ":" +
+      date.getSeconds()
+    );
+  };
+
   return (
     <Container className="text-center">
       <Container>
@@ -50,7 +88,7 @@ function HistoryTable({ data, loading }) {
         </Row>
         <Button
           variant="danger"
-          onClick={() => setShow(true)}
+          onClick={() => filterData(startDate, endDate)}
           className="dateselector-button"
         >
           Check timespan
@@ -71,27 +109,36 @@ function HistoryTable({ data, loading }) {
           {loading ? (
             <h3>Loading...</h3>
           ) : (
-            <table>
-              <tbody>
+            <Table striped bordered hover responsive>
+              <thead>
                 <tr>
-                  <th>Time of measurement</th>
+                  <th>Timestamp</th>
                   <th>Measured Value</th>
                   <th>Geolocation</th>
                 </tr>
-
-                {data.map((item) => {
+              </thead>
+              <tbody>
+                {tableData.map((item) => {
                   return (
                     <tr key={item[0]}>
-                      <td>{item[0]}</td>
-                      <td>{item[1]}</td>
+                      <td>{formatDate(item[0])}</td>
+                      <td
+                        className={`${checkValueArea(
+                          lowerLimit,
+                          higherLimit,
+                          item[1]
+                        )}`}
+                      >
+                        {item[1]}
+                      </td>
                       <td>{item[2]}</td>
                     </tr>
                   );
                 })}
               </tbody>
-            </table>
+            </Table>
           )}
-          <Button onClick={() => console.log(data)}>log</Button>
+          <Button onClick={() => console.log(data[0][0])}>log</Button>
         </Modal.Body>
       </Modal>
     </Container>
