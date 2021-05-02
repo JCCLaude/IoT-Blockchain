@@ -1,76 +1,195 @@
-/*
-Script to send values of IoT sensors to Ethereum Blockchain
-in form of a transaction. This creates a new block with the
-measured values of the IoT sensors encoded as a hex value
-for everyone to see.
+setInterval(all,15000); //15s, for every hour input: 3600000
 
-In this process, realistic random values are initially
-generated, which are to simulate the measured data of
-the IoT sensors first. These are then packed into a JSON
-string, which is encoded in hex format and then sent to
-the blockchain in the form of a transaction.
-*/
+var cnt_blockchain_send_temp = 0;
+var cnt_blockchain_send_air = 0;
+var air_limit = 95;
+var temp_limit = 50;
 
-/*calling the all function after a set time in milliseconds*/
-setInterval(all,3000);
+const Web3 = require("web3");
 
 /*function for all*/
 function all () {
 
-/*Various values such as the IP address and the addresses of the sender and $
-be entered here to configure the sensor.*/
-var from_adr = "\"" + "0x24C143d7B4761c7b4860447C7d5f46E1Df5Fdf1e" + "\"";
-var to_adr = "\"" + "0x636Eb4246AeA21f04215e349e7d8c3E868bEE03C" + "\"";
-var ip_adr_port_blockchain = "http://192.168.178.33:9545";
 
-	/*function to determine a value between realistic upper
-	and lower limit value*/
-	var CO2value = Math.round(Math.random() * (2000 - 200) + 200);
-	var tempvalue = Math.round(Math.random() * (50 - 10) + 10);
-	var airhumidityvalue = Math.round(Math.random() * (95 - 20) + 20);
-	var NOxvalue = Math.round(Math.random() * (250 - 40) + 40);
-	var SO2value = Math.round(Math.random() * (400 - 40) + 40);
-	var oxygenvalue = Math.round(Math.random() * (25 - 10) + 10);
+        /*function to determine a value between realistic upper and
+        lower limit value*/
+        var tempvalue = Math.round(Math.random() * (50 - 10) + 10);
+        var airvalue = Math.round(Math.random() * (95 - 20) + 20);
 
+var date = new Date().toString();
+var geo = "48.07995006393222, 11.641947021581451";
 
-/*setting random vaues in JSON format with associated classification*/
-var jsontext = JSON.stringify({
-Carbon_Dioxide: CO2value, Temperatur: tempvalue, Air_Humidity: airhumidityvalue,
-Nitrogen_Dioxide: NOxvalue, Sulfur_Dioxide: SO2value, Oxygen: oxygenvalue});
+const { promisify } = require('util')
+const sleep = promisify(setTimeout)
 
+const init = async () => {
+
+  //connect to the local running blockchain (ganache)
+  const web3 = new Web3("ws://192.168.178.33:7545");
+
+  // get the contract information from the build folder
+  const id = await web3.eth.net.getId();
 
 
-/*function for encoding in hex format by stepping through the chars of the string*/
-String.prototype.hexEncode = function(){
-var hex, i;
+  const accounts = await web3.eth.getAccounts();
+  const deployedNetwork = 5777;
+  const temperatureEvent = new web3.eth.Contract(
+   [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "timestamp",
+          "type": "string"
+        },
+        {
+          "indexed": true,
+          "internalType": "int8",
+          "name": "measurement",
+          "type": "int8"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "geolocation",
+          "type": "string"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint8",
+          "name": "critical",
+          "type": "uint8"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "alarmMessage",
+          "type": "string"
+        }
+      ],
+      "name": "StatusMessage",
+      "type": "event"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_timestamp",
+          "type": "string"
+        },
+        {
+          "internalType": "int8",
+          "name": "_measurement",
+          "type": "int8"
+        },
+        {
+          "internalType": "string",
+          "name": "_geolocation",
+          "type": "string"
+        }
+      ],
+      "name": "submit",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ], "0x823580575C42AAB1f4a4ecfaa638dDF9e300d6D3"
 
-var result = "";
-for(i=0; i<this.length; i++){
-	hex = this.charCodeAt(i).toString(16);
-	result += ("000"+hex).slice(-4);
-	}
-return result;
-}
+  );
 
-var jsonhex = jsontext.hexEncode();
-
-
-
-/*creating a child process and execute the send transaction command in it*/
-const { exec } = require('child_process');
-
-exec('curl -X POST -H "Content-Type: application/json" --data \'{"jsonrpc":"2.0", "method":"eth_sendTransaction", "params":[{"from": ' + from_adr + ', "to": '+ to_adr + ', "gas": "0x76c0", "gasPrice": "0x4A817C800", "value": "0x9184e72a", "data": "0x' + jsonhex +'"}],"id":1}\' ' + ip_adr_port_blockchain + '', (error, stdout, stderr) => {
-  if (error) {
-    console.error(`error: ${error.message}`);
-    return;
+  if(cnt_blockchain_send_temp >= 1 || tempvalue >= temp_limit) {
+    cnt_blockchain_send_temp = 0; //so every two loops
+    const receipt = await temperatureEvent.methods
+      .submit(date, tempvalue, geo)
+      .send({ from: accounts[0], gasLimit: "6721975" });
   }
 
-  if (stderr) {
-    console.error(`stderr: ${stderr}`);
-    return;
-  }
+  const humidityEvent = new web3.eth.Contract(
+    [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "timestamp",
+          "type": "string"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint8",
+          "name": "measurement",
+          "type": "uint8"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "geolocation",
+          "type": "string"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint8",
+          "name": "critical",
+          "type": "uint8"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "alarmMessage",
+          "type": "string"
+        }
+      ],
+      "name": "StatusMessage",
+      "type": "event"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_timestamp",
+          "type": "string"
+        },
+        {
+          "internalType": "uint8",
+          "name": "_measurement",
+          "type": "uint8"
+        },
+        {
+          "internalType": "string",
+          "name": "_geolocation",
+          "type": "string"
+        }
+      ],
+      "name": "submit",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ], "0x4a821bD1642bbD442c94147C0cD97E5ef73Ec4E7"
+  );
 
-  console.log(`stdout:\n${stdout}`);
+  if(cnt_blockchain_send_air >= 1 || airvalue >= air_limit) {
+    cnt_blockchain_send_air = 0; //so every two loops
+
+    const receipt1 = await humidityEvent.methods
+      .submit(date, airvalue, geo)
+      .send({ from: accounts[0], gasLimit: "6721975" });
+    };
+ }
+
+
+cnt_blockchain_send_temp += 1;
+cnt_blockchain_send_air += 1;
+
+init();
+
 });
 
 }
