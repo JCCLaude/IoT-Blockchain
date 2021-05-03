@@ -1,5 +1,5 @@
 ## Description of the file
-This is the file that send random values to an Ethereum Blockchain and register them there. 
+This is the file that send _random_ values to an Ethereum Blockchain and register them there. This file is for development purposes only and works without a sensor.
 
 Generating the values and entering them into the blockchain is executed with the command `node data_transmission.js`.  
 
