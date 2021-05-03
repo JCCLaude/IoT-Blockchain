@@ -1,93 +1,109 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import axios from "axios";
-//import redthumbdown from '../images/redthumbdown.png';
-//import greenthumbup from '../images/greenthumbup.png';
 import "./style.components.css";
 import HighchartsReact from "highcharts-react-official";
 import Highcharts from "highcharts/highstock";
-import IBESlogo from "../../assets/images/IBESlogo.png";
 import greencert from "../../assets/images/greencert.png";
 import redcert from "../../assets/images/redcert.png";
 
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
+import { Card, CardGroup, Container, Jumbotron, Alert, Button,} from "react-bootstrap";
+import dateFormat from "dateformat";
+
 var ahlimitred = 95;
-var ahlimitorange = 80;
+var ahlimitorange = 50;
 var ahlimitgreen = 0;
 
-var certificateboolAH = true;
+var certificateboolAirHum = true;
 var thumb_img = greencert;
 var thumb_alt = "Green Thumb Up";
 
-var text1 = "The CO2 emissions are ";
-var text2 = "with government emission limits.";
+var text1 = "The Air Humidity values are ";
+var text2 = "with government emission limits in the selected time range.";
 var textyesorno = "IN COMPLIANCE ";
 var infotext =
-  "This page displays the measured Air Humidity. Air Humidity is...";
-var Arrayval = [];
-
-var ahbv = "";
-var ahbv1 = "";
-var ahbd = "";
-var ahbd1 = "";
+  "This page displays the measured air humidity values. Air Humidity is important...";
 
 const AH = (props) => (
   <tr>
     <td>{props.ah.ahdate.substring(0, 19).replace("T", " ")}</td>
-    <td
-      id={
-        props.ah.ahval >= ahlimitred
-          ? "valuesred"
-          : "valuesgreen" &&
-            props.ah.ahval >= ahlimitorange &&
-            props.ah.ahval < ahlimitred
-          ? "valuesyellow"
-          : "valuesgreen"
-      }
-    >
-      {" "}
-      {props.ah.ahval}
-    </td>{" "}
-    {/*{props.co.coval} {if(props.co.coval >= 800) {id='covaluesgreen'}}*/}
-    <td>
-      <a
-        href={"https://maps.google.com/?q=" + props.ah.ahgeo}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Maps
-      </a>
-    </td>
+    <td id={props.ah.ahval >= ahlimitred ? "valuesred" : "valuesgreen" && props.ah.ahval >= ahlimitorange && props.ah.ahval < ahlimitred ? "valuesyellow" : "valuesgreen" }>{" "}{props.ah.ahval}</td>
+    <td><a href={"https://maps.google.com/?q=" + props.ah.ahgeo} target="_blank" rel="noopener noreferrer"> Maps </a> </td>
   </tr>
 );
 
-const getCircularReplacer = () => {
-  const seen = new WeakSet();
-  return (key, value) => {
-    if (typeof value === "object" && value !== null) {
-      if (seen.has(value)) {
-        return;
-      }
-      seen.add(value);
-    }
-    return value;
-  };
-};
 
 export default class AirHumidity extends Component {
   constructor(props) {
     super(props);
 
-    this.deleteAH = this.deleteAH.bind(this);
+    this.deleteAirHum = this.deleteAirHum.bind(this);
 
     this.state = {
       ah: [],
+      startdate: new Date('March 21, 2021 01:00:00'),
+      enddate: new Date(),
+      optionsMonth: {},
+      Arrayval: []
     };
 
-    this.optionsMonth = {};
+    this.handleStartDateChange = this.handleStartDateChange.bind(this); 
+    this.handleEndDateChange = this.handleEndDateChange.bind(this); 
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleStartDateChange(event) { 
+    this.setState({startdate: event});
+  }
+
+  handleEndDateChange(event) { 
+    this.setState({enddate: event});
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+
+
+    if (this.state.enddate < this.state.startdate) {
+      this.setState({ enddate: this.state.startdate });
+
+    }
+    
+
+
+    axios
+      .get("http://localhost:5000/ah/")
+      .then((response) => {
+        this.setState({
+          ah: response.data.filter(
+            (el) =>
+              new Date(el.ahdate).getTime() >=
+                this.state.startdate.getTime() + 3600000 &&
+              new Date(el.ahdate).getTime() <=
+                this.state.enddate.getTime() + 3600000
+          ),
+        });
+      })
+      .catch((error) => {});
+
+
+    var i;
+    for(i = 0; i < this.state.ah.length; i++){
+      this.state.ah[i].ahdate = dateFormat(new Date(new Date(this.state.ah[i].ahdate).getTime()),("yyyy-mm-dd hh:mm:ss"));
+    }
+
+     this.state.startdate = new Date(this.state.startdate);
+     this.state.enddate = new Date(this.state.enddate); 
+    
+    this.state.Arrayval = [];
+    this.state.optionsMonth = {};
+    this.render();
   }
 
   componentDidMount() {
-    axios
-      .get("http://localhost:5000/ah/")
+    axios.get("http://localhost:5000/ah/")
       .then((response) => {
         this.setState({ ah: response.data });
       })
@@ -96,7 +112,7 @@ export default class AirHumidity extends Component {
       });
   }
 
-  deleteAH(id) {
+  deleteAirHum(id) {
     axios.delete("http://localhost:5000/ah/" + id).then((response) => {
       console.log(response.data);
     });
@@ -106,56 +122,55 @@ export default class AirHumidity extends Component {
     });
   }
 
-  AHList() {
-    return this.state.ah
-      .map((currentah) => {
-        return (
-          <AH ah={currentah} deleteAH={this.deleteAH} key={currentah._id} />
-        );
-      })
-      .reverse();
+  AirHumidityList() {
+    return this.state.ah.map((currentah) => {
+        return (<AH ah={currentah} deleteAirHum={this.deleteAirHum} key={currentah._id} />);
+      }).reverse();
   }
 
   getdata() {
+    this.state.Arrayval = []
     return this.state.ah.map((currentah) => {
-      ahbv = JSON.stringify(
-        <AH ah={currentah} key={currentah._id} />,
-        getCircularReplacer()
-      );
-      ahbd = ahbv.slice(ahbv.indexOf("ahdate"), ahbv.indexOf("ahgeo")); //dates
-      ahbv = ahbv.slice(ahbv.indexOf("ahval"), ahbv.indexOf("ahdate")); //values
-      ahbv1 = ahbv.slice(ahbv.indexOf(":") + 1, ahbv.indexOf(","));
-      ahbd1 = ahbd.slice(ahbd.indexOf(":") + 1, ahbd.indexOf(","));
-
-      ahbd1 = ahbd1
-        .replace("T", " ")
-        .replace("Z", "")
-        .replaceAll('"', "")
-        .slice(0, ahbd1.indexOf(".") - 1);
-      Arrayval.push([Date.parse(ahbd1) + 7200000, parseInt(ahbv1)]);
-
-      if (parseInt(ahbv1) >= ahlimitred) {
-        certificateboolAH = false;
-        thumb_img = redcert;
-        thumb_alt = "Red Thumb Down";
-        textyesorno = "NOT IN COMPLIANCE ";
-      }
-      return certificateboolAH;
+      this.state.Arrayval.push([Date.parse(currentah.ahdate), parseInt(currentah.ahval)])
+      return certificateboolAirHum;
     });
   }
 
   gb() {
     this.getdata();
-    return certificateboolAH;
+    var i = 0;
+    var j = 1;
+    for(i = 0; i < this.state.Arrayval.length; i++){
+      if(this.state.Arrayval[i][j] < ahlimitred){
+        certificateboolAirHum = true;
+        thumb_img = greencert;
+        thumb_alt = "Green Thumb Up";
+        textyesorno = "IN COMPLIANCE ";
+      }
+      if(this.state.Arrayval[i][j] >= ahlimitred){
+        certificateboolAirHum = false;
+        thumb_img = redcert;
+        thumb_alt = "Red Thumb Down";
+        textyesorno = "NOT IN COMPLIANCE ";
+        return;
+      }
+    }
+    if( this.state.Arrayval.length < 1){
+      certificateboolAirHum = true;
+      thumb_img = greencert;
+      thumb_alt = "Green Thumb Up";
+      textyesorno = "IN COMPLIANCE ";
+    }
+    return certificateboolAirHum;
   }
 
   createArray() {
-    this.optionsMonth = {
+    this.state.optionsMonth = {
       chart: {
         type: "spline",
       },
       title: {
-        text: "Air Humidity  Month",
+        text: "Air Humidity Values Month",
       },
       xAxis: {
         title: {
@@ -165,7 +180,7 @@ export default class AirHumidity extends Component {
       },
       yAxis: {
         title: {
-          text: "Air Humidity in percent",
+          text: "Air Humidity values in %",
         },
         plotLines: [
           {
@@ -174,82 +189,144 @@ export default class AirHumidity extends Component {
             dashStyle: "shortdash",
             width: 2,
             label: {
-              text: "Limit " + ahlimitred + " percent",
+              text: "Limit " + ahlimitred + " percent (%)",
             },
           },
         ],
       },
       series: [
         {
-          name: "Air Humidity",
-          data: Arrayval,
+          name: "Air Humidity values",
+          data: this.state.Arrayval,
         },
       ],
     };
   }
+ 
 
   render() {
     return (
-      <div>
-        <div className="flex-container" id="logo">
-          <img src={IBESlogo} width="130" height="130" alt="IBES Logo"></img>
-        </div>
-        <h3 id="AH_heading">Air Humidity</h3>
+      <>
+      <Jumbotron fluid className="jumboah">
+        <div className="overlay "> </div>
+        <Container className="d-none d-lg-block">
+          <h1>Air Humidity</h1>
+          <p>Find detailed information about all measured Air Humidity values!</p>
+        </Container>
+      </Jumbotron>
+      
+      <div className="container text-center">
+
         {this.gb()}
-        <p>
-          <img src={thumb_img} width="100" height="90" alt={thumb_alt} />{" "}
-          {text1} <b>{textyesorno}</b> {text2}{" "}
-        </p>
-        {infotext}
+        
+      
+      <img class="mx-auto d-block" src={thumb_img} width="145" height="135" alt={thumb_alt} ></img>
+      <div className="container text-center">
+        <p>The Air Humidity values are <b>{textyesorno}</b> with government emission limits in the selected time range.</p>  
+      </div>  
+      
+
+        <Card border="secondary">
+          <Card.Header><b>Basic Information about Air Humidity</b></Card.Header>
+          <Card.Body>{infotext}</Card.Body>
+        </Card>
+
+        <br></br><br></br>
+
         {this.createArray()}
-        <br></br> <br></br>
+
+        <div>
+          <p><b>Please select a time interval: </b></p>
+          <form onSubmit={this.handleSubmit}>
+           From:{" "} <DatePicker
+              selected={ this.state.startdate }
+              onChange={ this.handleStartDateChange }
+              showTimeSelect
+              timeFormat="HH:mm"
+              timeIntervals={30}
+              timeCaption="time"
+              dateFormat="MMMM d, yyyy HH:mm"
+              maxDate={new Date()}
+              minDate={new Date('March 19, 2021 00:00:00')}
+            />
+
+            To:{" "}
+            <DatePicker
+              selected={this.state.enddate}
+              onChange={this.handleEndDateChange}
+              showTimeSelect
+              timeFormat="HH:mm"
+              timeIntervals={30}
+              timeCaption="time"
+              dateFormat="MMMM d, yyyy HH:mm"
+              maxDate={new Date()}
+              minDate={this.state.startdate}
+            />
+
+            <button className="btn btn-primary">Submit</button>
+          </form>
+        </div>
+        <br></br>
+
         <div>
           <HighchartsReact
             highcharts={Highcharts}
-            options={this.optionsMonth}
+            options={this.state.optionsMonth}
             constructorType={"stockChart"}
           />
         </div>
         <br></br> <br></br>
         <h4>Legend of colors from the table shown below</h4>
         <br></br>
-        <div class="flex-container" id="legendbox">
-          <div id="boxgreen">
-            {" "}
-            <p>Color Green:</p> <br></br>{" "}
-            <p>
-              Air Humidity value {">="} {ahlimitgreen}% and {"<="}{" "}
-              {ahlimitorange}%
-            </p>{" "}
-          </div>
-          <div id="boxorange">
-            {" "}
-            <p>Color Orange: </p> <br></br>{" "}
-            <p>
-              Air Humidity value {">"} {ahlimitorange}% and {"<"} {ahlimitred}%
-            </p>{" "}
-          </div>
-          <div id="boxred">
-            {" "}
-            <p>Color Red: </p> <br></br>{" "}
-            <p>
-              Air Humidity value {">="} {ahlimitred}%
-            </p>{" "}
-          </div>
-        </div>
+
+      <CardGroup>
+        <Card border="success" bg="success" style={{ width: '18rem' }}>
+          <Card.Body>
+            <Card.Title><b>Color Green</b></Card.Title>
+            <Card.Text>
+            <b>Air Humidity value {">"} {ahlimitgreen} and {"<"} {ahlimitorange}</b>
+            </Card.Text>
+          </Card.Body>
+        </Card>
+        <br />
+
+        <Card border="warning" bg="warning" style={{ width: '18rem' }}>
+          <Card.Body>
+            <Card.Title><b>Color Orange</b></Card.Title>
+            <Card.Text>
+            <b>Air Humidity value {">"} {ahlimitorange} and {"<"} {ahlimitred}</b>
+            </Card.Text>
+          </Card.Body>
+        </Card>
+        <br />
+
+        <Card border="danger" bg="danger" style={{ width: '18rem' }}>
+          <Card.Body>
+            <Card.Title><b>Color Red</b></Card.Title>
+            <Card.Text>
+            <b>Air Humidity value {">"} {ahlimitred}</b>
+            </Card.Text>
+          </Card.Body>
+        </Card>
+        <br />
+
+      </CardGroup>
+
         <br></br> <br></br>
+
         <table className="table table-striped">
           <thead className="thead-light">
             <tr>
               <th>Date of measurement</th>
               <th>Air Humidity in %</th>
-              <th>Geo Location</th> {/*or plz?*/}
+              <th>Geo Location</th>
             </tr>
           </thead>
 
-          <tbody>{this.AHList()}</tbody>
+          <tbody>{this.AirHumidityList()}</tbody>
         </table>
       </div>
+      </>
     );
   }
 }

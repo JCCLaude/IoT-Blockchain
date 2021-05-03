@@ -1,44 +1,17 @@
-/*#Help_navbar_item {
-    text-align: center;
-    color: black;
-    font-weight: bold;
-    background-color:dodgerblue;
-    border: none;
-    text-decoration: none;
-    display:inline-block; 
-    margin: 4px 330%; 
-    cursor: pointer;
-    border-radius: 16px;
-    } */
 
 h3 {
   font-weight: bold;
-  /*  text-align: center;
-      margin-left: 135px; */
 }
 
 h4 {
   font-weight: bold;
-  /*  text-align: center; */
   font-size: large;
 }
 
 #overview_structure {
   display: flex;
   justify-content: center;
-} /*
-
-#overview_img_txt_cont {
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    border: 2px solid #333;
-    flex-wrap: wrap;
-    background-color: #f1f1f1;
-    justify-content: center;
-    margin: 8px;
-    align-items: center;
-} */
+}
 
 .jumbo {
   background: url("../../assets/images/LeafWithWater.jpeg") no-repeat fixed
@@ -61,30 +34,27 @@ h4 {
   background-position: 0 50%;
 }
 
-/*
-.flex-item1 {
-  line-height: 40px;
-  border: 2px solid #333;
-  padding: 10px;
+.jumbotemp {
+  background: url("../../assets/images/temperature.jpg") no-repeat fixed
+    bottom;
+  background-size: cover;
+  color: #ccc;
+  height: 200px;
+  position: relative;
+  z-index: -2;
+  background-position: 0 50%;
 }
 
-.flex-item2 {
-  line-height: 40px;
-  border: 2px solid #333;
-  padding: 10px;
+.jumboah {
+  background: url("../../assets/images/airhumidity.jpg") no-repeat fixed
+    bottom;
+  background-size: cover;
+  color: #ccc;
+  height: 200px;
+  position: relative;
+  z-index: -2;
+  background-position: 0 50%;
 }
-
-.flex-item3 {
-  line-height: 40px;
-  border: 2px solid #333;
-  padding: 10px;
-}
-
-.flex-item4 {
-  line-height: 40px;
-  border: 2px solid #333;
-  padding: 10px;
-} */
 
 #logo {
   display: flex;
@@ -109,7 +79,6 @@ h4 {
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
-  /*background-color: DodgerBlue;*/
 }
 
 .flex-container > div {
@@ -121,49 +90,11 @@ h4 {
   font-size: 20px;
 }
 
-/*
-#boxred {
-  color: red;
-}
-
-#boxorange {
-  color: orange;
-}
-
-#boxgreen {
-  color: green;
-} */
-
 #Overview_red_img_list {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
-/*
-.Navbar .leftSide {
-  flex: 50%;
-  display: flex;
-  justify-content: left;
-  align-items: center;
-}  
-
-.Navbar .rigthSide {
-  flex: 50%;
-  display: flex;
-  justify-content: right;
-  align-items: right;
-  padding-right: 25px; 
-} 
-
-  .navbar a {
-    float: left;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 4px 16px;
-    text-decoration: none;
-    font-size: 17px;
-  } */
 
 /* Change the color of links on hover */
 .navbar a:hover {

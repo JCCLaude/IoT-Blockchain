@@ -1,29 +1,16 @@
 import React, { Component, useState } from "react";
 import axios from "axios";
-//import redthumbdown from '../images/redthumbdown.png';
-//import greenthumbup from '../images/greenthumbup.png';
 import "./style.components.css";
 import HighchartsReact from "highcharts-react-official";
 import Highcharts from "highcharts/highstock";
-//import IBESlogo from "../../assets/images/IBESlogo.png";
 import greencert from "../../assets/images/greencert.png";
 import redcert from "../../assets/images/redcert.png";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-import {
-  Card,
-  CardGroup,
-  Container,
-  Jumbotron,
-  Alert,
-  Button,
-} from "react-bootstrap";
-
-
+import { Card, CardGroup, Container, Jumbotron, Alert, Button,} from "react-bootstrap";
 import dateFormat from "dateformat";
-
 
 var colimitred = 1000;
 var colimitorange = 500;
@@ -168,6 +155,12 @@ export default class CarbonDioxide extends Component {
         return;
       }
     }
+    if( this.state.Arrayval.length < 1){
+      certificateboolCO2 = true;
+      thumb_img = greencert;
+      thumb_alt = "Green Thumb Up";
+      textyesorno = "IN COMPLIANCE ";
+    }
     return certificateboolCO2;
   }
 
@@ -223,15 +216,9 @@ export default class CarbonDioxide extends Component {
       </Jumbotron>
       
       <div className="container text-center">
-        {/*<h1 id="CO2_heading">Carbon dioxide (CO2)</h1>
-           <img className="img-fluid float-right" src={IBESlogo} width="130" height="130" alt="IBES Logo"></img>*/}
 
         {this.gb()}
         
-        {/*<p>
-          <img src={thumb_img} width="100" height="90" alt={thumb_alt} />{" "}
-          {text1} <b>{textyesorno}</b> {text2}{" "}
-        </p>*/}
       
       <img class="mx-auto d-block" src={thumb_img} width="145" height="135" alt={thumb_alt} ></img>
       <div className="container text-center">

@@ -1,13 +1,16 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import axios from "axios";
-//import redthumbdown from '../images/redthumbdown.png';
-//import greenthumbup from '../images/greenthumbup.png';
 import "./style.components.css";
 import HighchartsReact from "highcharts-react-official";
 import Highcharts from "highcharts/highstock";
-import IBESlogo from "../../assets/images/IBESlogo.png";
 import greencert from "../../assets/images/greencert.png";
 import redcert from "../../assets/images/redcert.png";
+
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
+import { Card, CardGroup, Container, Jumbotron, Alert, Button,} from "react-bootstrap";
+import dateFormat from "dateformat";
 
 var templimitred = 100;
 var templimitorange = 50;
@@ -17,76 +20,90 @@ var certificateboolTemp = true;
 var thumb_img = greencert;
 var thumb_alt = "Green Thumb Up";
 
-var text1 = "The CO2 emissions are ";
-var text2 = "with government emission limits.";
+var text1 = "The Temperature values are ";
+var text2 = "with government emission limits in the selected time range.";
 var textyesorno = "IN COMPLIANCE ";
-var infotext = "This page displays the measured temperature. Temperature is...";
-var Arrayval = [];
+var infotext =
+  "This page displays the measured temperature values. Temperature is important...";
 
-var tempbv = "";
-var tempbv1 = "";
-var tempbd = "";
-var tempbd1 = "";
-
-const Temp = (props) => (
+const TEMP = (props) => (
   <tr>
     <td>{props.temp.tempdate.substring(0, 19).replace("T", " ")}</td>
-    <td
-      id={
-        props.temp.tempval >= templimitred
-          ? "valuesred"
-          : "valuesgreen" &&
-            props.temp.tempval >= templimitorange &&
-            props.temp.tempval < templimitred
-          ? "valuesyellow"
-          : "valuesgreen"
-      }
-    >
-      {" "}
-      {props.temp.tempval}
-    </td>{" "}
-    {/*{props.co.coval} {if(props.co.coval >= 800) {id='covaluesgreen'}}*/}
-    <td>
-      <a
-        href={"https://maps.google.com/?q=" + props.temp.tempgeo}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Maps
-      </a>
-    </td>
+    <td id={props.temp.tempval >= templimitred ? "valuesred" : "valuesgreen" && props.temp.tempval >= templimitorange && props.temp.tempval < templimitred ? "valuesyellow" : "valuesgreen" }>{" "}{props.temp.tempval}</td>
+    <td><a href={"https://maps.google.com/?q=" + props.temp.tempgeo} target="_blank" rel="noopener noreferrer"> Maps </a> </td>
   </tr>
 );
 
-const getCircularReplacer = () => {
-  const seen = new WeakSet();
-  return (key, value) => {
-    if (typeof value === "object" && value !== null) {
-      if (seen.has(value)) {
-        return;
-      }
-      seen.add(value);
-    }
-    return value;
-  };
-};
 
 export default class Temperature extends Component {
   constructor(props) {
     super(props);
 
-    this.deleteTemp = this.deleteTemp.bind(this);
+    this.deleteTemperature = this.deleteTemperature.bind(this);
 
     this.state = {
       temp: [],
+      startdate: new Date('March 21, 2021 01:00:00'),
+      enddate: new Date(),
+      optionsMonth: {},
+      Arrayval: []
     };
 
-    this.optionsMonth = {};
+    this.handleStartDateChange = this.handleStartDateChange.bind(this); 
+    this.handleEndDateChange = this.handleEndDateChange.bind(this); 
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleStartDateChange(event) { 
+    this.setState({startdate: event});
+  }
+
+  handleEndDateChange(event) { 
+    this.setState({enddate: event});
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+
+
+    if (this.state.enddate < this.state.startdate) {
+      this.setState({ enddate: this.state.startdate });
+
+    }
+    
+
+
+    axios
+      .get("http://localhost:5000/temp/")
+      .then((response) => {
+        this.setState({
+          temp: response.data.filter(
+            (el) =>
+              new Date(el.tempdate).getTime() >=
+                this.state.startdate.getTime() + 3600000 &&
+              new Date(el.tempdate).getTime() <=
+                this.state.enddate.getTime() + 3600000
+          ),
+        });
+      })
+      .catch((error) => {});
+
+
+    var i;
+    for(i = 0; i < this.state.temp.length; i++){
+      this.state.temp[i].tempdate = dateFormat(new Date(new Date(this.state.temp[i].tempdate).getTime()),("yyyy-mm-dd hh:mm:ss"));
+    }
+
+     this.state.startdate = new Date(this.state.startdate);
+     this.state.enddate = new Date(this.state.enddate); 
+    
+    this.state.Arrayval = [];
+    this.state.optionsMonth = {};
+    this.render();
   }
 
   componentDidMount() {
-    axios
-      .get("http://localhost:5000/temp/")
+    axios.get("http://localhost:5000/temp/")
       .then((response) => {
         this.setState({ temp: response.data });
       })
@@ -95,7 +112,7 @@ export default class Temperature extends Component {
       });
   }
 
-  deleteTemp(id) {
+  deleteTemperature(id) {
     axios.delete("http://localhost:5000/temp/" + id).then((response) => {
       console.log(response.data);
     });
@@ -105,66 +122,55 @@ export default class Temperature extends Component {
     });
   }
 
-  TempList() {
-    return this.state.temp
-      .map((currenttemp) => {
-        return (
-          <Temp
-            temp={currenttemp}
-            deleteTemp={this.deleteTemp}
-            key={currenttemp._id}
-          />
-        );
-      })
-      .reverse();
+  TemperatureList() {
+    return this.state.temp.map((currenttemp) => {
+        return (<TEMP temp={currenttemp} deleteTemperature={this.deleteTemperature} key={currenttemp._id} />);
+      }).reverse();
   }
 
   getdata() {
+    this.state.Arrayval = []
     return this.state.temp.map((currenttemp) => {
-      tempbv = JSON.stringify(
-        <Temp temp={currenttemp} key={currenttemp._id} />,
-        getCircularReplacer()
-      );
-      tempbd = tempbv.slice(
-        tempbv.indexOf("tempdate"),
-        tempbv.indexOf("tempgeo")
-      ); //dates
-      tempbv = tempbv.slice(
-        tempbv.indexOf("tempval"),
-        tempbv.indexOf("tempdate")
-      ); //values
-      tempbv1 = tempbv.slice(tempbv.indexOf(":") + 1, tempbv.indexOf(","));
-      tempbd1 = tempbd.slice(tempbd.indexOf(":") + 1, tempbd.indexOf(","));
-
-      tempbd1 = tempbd1
-        .replace("T", " ")
-        .replace("Z", "")
-        .replaceAll('"', "")
-        .slice(0, tempbd1.indexOf(".") - 1);
-      Arrayval.push([Date.parse(tempbd1) + 7200000, parseInt(tempbv1)]);
-
-      if (parseInt(tempbv1) > templimitred) {
-        certificateboolTemp = false;
-        thumb_img = redcert;
-        thumb_alt = "Red Thumb Down";
-        textyesorno = "NOT IN COMPLIANCE ";
-      }
+      this.state.Arrayval.push([Date.parse(currenttemp.tempdate), parseInt(currenttemp.tempval)])
       return certificateboolTemp;
     });
   }
 
   gb() {
     this.getdata();
+    var i = 0;
+    var j = 1;
+    for(i = 0; i < this.state.Arrayval.length; i++){
+      if(this.state.Arrayval[i][j] < templimitred){
+        certificateboolTemp = true;
+        thumb_img = greencert;
+        thumb_alt = "Green Thumb Up";
+        textyesorno = "IN COMPLIANCE ";
+      }
+      if(this.state.Arrayval[i][j] >= templimitred){
+        certificateboolTemp = false;
+        thumb_img = redcert;
+        thumb_alt = "Red Thumb Down";
+        textyesorno = "NOT IN COMPLIANCE ";
+        return;
+      }
+    }
+    if( this.state.Arrayval.length < 1){
+      certificateboolTemp = true;
+      thumb_img = greencert;
+      thumb_alt = "Green Thumb Up";
+      textyesorno = "IN COMPLIANCE ";
+    }
     return certificateboolTemp;
   }
 
   createArray() {
-    this.optionsMonth = {
+    this.state.optionsMonth = {
       chart: {
         type: "spline",
       },
       title: {
-        text: "Temperature Month",
+        text: "Temperature Values Month",
       },
       xAxis: {
         title: {
@@ -174,7 +180,7 @@ export default class Temperature extends Component {
       },
       yAxis: {
         title: {
-          text: "Temperature in degree celsius",
+          text: "Temperature values in °C",
         },
         plotLines: [
           {
@@ -183,7 +189,7 @@ export default class Temperature extends Component {
             dashStyle: "shortdash",
             width: 2,
             label: {
-              text: "Limit " + templimitred + " degree celsius",
+              text: "Limit " + templimitred + " degress celsius (°C)",
             },
           },
         ],
@@ -191,75 +197,136 @@ export default class Temperature extends Component {
       series: [
         {
           name: "Temperature values",
-          data: Arrayval,
+          data: this.state.Arrayval,
         },
       ],
     };
   }
+ 
 
   render() {
     return (
-      <div>
-        <div className="flex-container" id="logo">
-          <img src={IBESlogo} width="130" height="130" alt="IBES Logo"></img>
-        </div>
-        <h3 id="Temp_heading">Temperature</h3>
+      <>
+      <Jumbotron fluid className="jumbotemp">
+        <div className="overlay "> </div>
+        <Container className="d-none d-lg-block">
+          <h1>Temperature</h1>
+          <p>Find detailed information about all measured Temperature values!</p>
+        </Container>
+      </Jumbotron>
+      
+      <div className="container text-center">
+
         {this.gb()}
-        <p>
-          <img src={thumb_img} width="100" height="90" alt={thumb_alt} />{" "}
-          {text1} <b>{textyesorno}</b> {text2}{" "}
-        </p>
-        {infotext}
+        
+      
+      <img class="mx-auto d-block" src={thumb_img} width="145" height="135" alt={thumb_alt} ></img>
+      <div className="container text-center">
+        <p>The Temperature values are <b>{textyesorno}</b> with government emission limits in the selected time range.</p>  
+      </div>  
+      
+
+        <Card border="secondary">
+          <Card.Header><b>Basic Information about Temperature</b></Card.Header>
+          <Card.Body>{infotext}</Card.Body>
+        </Card>
+
+        <br></br><br></br>
+
         {this.createArray()}
-        <br></br> <br></br>
+
+        <div>
+          <p><b>Please select a time interval: </b></p>
+          <form onSubmit={this.handleSubmit}>
+           From:{" "} <DatePicker
+              selected={ this.state.startdate }
+              onChange={ this.handleStartDateChange }
+              showTimeSelect
+              timeFormat="HH:mm"
+              timeIntervals={30}
+              timeCaption="time"
+              dateFormat="MMMM d, yyyy HH:mm"
+              maxDate={new Date()}
+              minDate={new Date('March 19, 2021 00:00:00')}
+            />
+
+            To:{" "}
+            <DatePicker
+              selected={this.state.enddate}
+              onChange={this.handleEndDateChange}
+              showTimeSelect
+              timeFormat="HH:mm"
+              timeIntervals={30}
+              timeCaption="time"
+              dateFormat="MMMM d, yyyy HH:mm"
+              maxDate={new Date()}
+              minDate={this.state.startdate}
+            />
+
+            <button className="btn btn-primary">Submit</button>
+          </form>
+        </div>
+        <br></br>
+
         <div>
           <HighchartsReact
             highcharts={Highcharts}
-            options={this.optionsMonth}
+            options={this.state.optionsMonth}
             constructorType={"stockChart"}
           />
         </div>
         <br></br> <br></br>
         <h4>Legend of colors from the table shown below</h4>
         <br></br>
-        <div class="flex-container" id="legendbox">
-          <div id="boxgreen">
-            {" "}
-            <p>Color Green:</p> <br></br>{" "}
-            <p>
-              Temperature value {">"} {templimitgreen} °C and {"<"}{" "}
-              {templimitorange} °C
-            </p>{" "}
-          </div>
-          <div id="boxorange">
-            {" "}
-            <p>Color Orange: </p> <br></br>{" "}
-            <p>
-              Temperature value {">"} {templimitorange} °C and {"<"}{" "}
-              {templimitred} °C
-            </p>{" "}
-          </div>
-          <div id="boxred">
-            {" "}
-            <p>Color Red: </p> <br></br>{" "}
-            <p>
-              Temperature value {">"} {templimitred} °C
-            </p>{" "}
-          </div>
-        </div>
+
+      <CardGroup>
+        <Card border="success" bg="success" style={{ width: '18rem' }}>
+          <Card.Body>
+            <Card.Title><b>Color Green</b></Card.Title>
+            <Card.Text>
+            <b>Temperature value {">"} {templimitgreen} and {"<"} {templimitorange}</b>
+            </Card.Text>
+          </Card.Body>
+        </Card>
+        <br />
+
+        <Card border="warning" bg="warning" style={{ width: '18rem' }}>
+          <Card.Body>
+            <Card.Title><b>Color Orange</b></Card.Title>
+            <Card.Text>
+            <b>Temperature value {">"} {templimitorange} and {"<"} {templimitred}</b>
+            </Card.Text>
+          </Card.Body>
+        </Card>
+        <br />
+
+        <Card border="danger" bg="danger" style={{ width: '18rem' }}>
+          <Card.Body>
+            <Card.Title><b>Color Red</b></Card.Title>
+            <Card.Text>
+            <b>Temperature value {">"} {templimitred}</b>
+            </Card.Text>
+          </Card.Body>
+        </Card>
+        <br />
+
+      </CardGroup>
+
         <br></br> <br></br>
+
         <table className="table table-striped">
           <thead className="thead-light">
             <tr>
               <th>Date of measurement</th>
-              <th>Temperature in degree celsius</th>
-              <th>Geo Location</th> {/*or plz?*/}
+              <th>Temperature in °C</th>
+              <th>Geo Location</th>
             </tr>
           </thead>
 
-          <tbody>{this.TempList()}</tbody>
+          <tbody>{this.TemperatureList()}</tbody>
         </table>
       </div>
+      </>
     );
   }
 }
