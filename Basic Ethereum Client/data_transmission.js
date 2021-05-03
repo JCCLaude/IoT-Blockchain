@@ -16,11 +16,45 @@ function all () {
         var tempvalue = Math.round(Math.random() * (50 - 10) + 10);
         var airvalue = Math.round(Math.random() * (95 - 20) + 20);
 
-var date = new Date().toString();
-var geo = "48.07995006393222, 11.641947021581451";
+var date = "";
+var geo = "";
 
 const { promisify } = require('util')
 const sleep = promisify(setTimeout)
+var buf="";
+
+
+/*Starting a child process and running the Python script "measure_dht11_sens$
+to get the values of the DHT11 sensor. Values of the Python script are piped$
+and then used in this script.*/
+function pycall() {
+const { exec } = require('child_process');
+const script = exec('python3 measure.py', (error, stdout, stderr) =>
+{
+  if (error) { console.error(`error: ${error.message}`); return;
+  }
+  if (stderr) { console.error(`stderr: ${stderr}`); return;
+  }
+  buf = `${stdout}`;
+script.kill('SIGINT');
+});
+}
+
+pycall();
+
+sleep(3000).then(() => {
+        try{
+                buf = buf.toString();
+                buf = buf.split("'");
+                tempvalue = parseInt(buf[3]);
+                airvalue = parseInt(buf[7]);
+                date = buf[11];
+                geo = buf[15];
+        }
+        catch(error){}
+
+        if(tempvalue == 0 || tempvalue == "undefined") {tempvalue = 404};
+        if(airvalue == 0 || airvalue == "undefined") {airvalue = 404};
 
 const init = async () => {
 
@@ -193,3 +227,8 @@ init();
 });
 
 }
+
+
+
+
+
