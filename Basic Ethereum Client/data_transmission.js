@@ -24,8 +24,8 @@ const sleep = promisify(setTimeout)
 var buf="";
 
 
-/*Starting a child process and running the Python script "measure_dht11_sens$
-to get the values of the DHT11 sensor. Values of the Python script are piped$
+/*Starting a child process and running the Python script "measure.py"
+to get random values. Values of the Python script are piped to stdout
 and then used in this script.*/
 function pycall() {
 const { exec } = require('child_process');
