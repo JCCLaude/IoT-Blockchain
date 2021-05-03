@@ -232,16 +232,11 @@ export default class CarbonDioxide extends Component {
           <img src={thumb_img} width="100" height="90" alt={thumb_alt} />{" "}
           {text1} <b>{textyesorno}</b> {text2}{" "}
         </p>*/}
+      
+      <img class="mx-auto d-block" src={thumb_img} width="145" height="135" alt={thumb_alt} ></img>
       <div className="container text-center">
-        <div className="row justify-content-center">
-          <div class="col sm-2">
-              <img class="img" src={thumb_img} width="145" height="140" alt={thumb_alt} ></img>
-          </div>
-          <div class="col md-6">
-            The CO2 emissions are <b>{textyesorno}</b> with government emission limits in the selected time range.
-          </div>
-        </div>
-      </div>
+        <p>The CO2 emissions are <b>{textyesorno}</b> with government emission limits in the selected time range.</p>  
+      </div>  
       
 
         <Card border="secondary">

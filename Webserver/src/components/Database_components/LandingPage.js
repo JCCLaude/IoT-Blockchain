@@ -1,5 +1,5 @@
 import { React, useEffect, useState } from "react";
-import { Card, Jumbotron, Container, Row, } from "react-bootstrap";
+import { Card, Jumbotron, Container, Row, CardDeck, CardGroup, } from "react-bootstrap";
 import CurrentStatus from "./CurrentStatus.js";
 import { Link } from "react-router-dom";
 import "./style.components.css";
@@ -49,23 +49,27 @@ function LandingPage() {
             the air quality.
             Below are links to the websites of the individual values and more 
             detailed information there.
+            <br></br><br></br>
+            <b>On this page you will find the current database values as well as a link to the history data for every measured emission.</b>
           </p>
+          <br></br>
 
           <Container className="dark rounded text-center">
             <Row>
-              <CurrentStatus name={"Carbon Dioxide"} {...co2Eventdb} />
-              <CurrentStatus name={"Air Humidity"} {...airhumidityEventdb} />
-              <CurrentStatus name={"Temperature"} {...temperatureEventdb} />
-              <CurrentStatus name={"Nitrogen Dioxide"} {...nitrogendioxideEventdb} />
-              <CurrentStatus name={"Particular Matter 2.5"} {...particularmatter2Eventdb} />
-              <CurrentStatus name={"Particular Matter 10"} {...particularmatter10Eventdb} />
-              <CurrentStatus name={"Sulfur Dioxdie"} {...sulfurdioxideEventdb} />
+              <CurrentStatus name={"Carbon Dioxide"} {...co2Eventdb} unit="ppm" demoCritical={"0"} />
+              <CurrentStatus name={"Air Humidity"} {...airhumidityEventdb} unit="%" demoCritical={"1"}/>
+              <CurrentStatus name={"Temperature"} {...temperatureEventdb} unit="°C" demoCritical={"2"}/>
+              <CurrentStatus name={"Nitrogen Dioxide"} {...nitrogendioxideEventdb} unit="ppm" />
+              <CurrentStatus name={"Particular Matter 2.5"} {...particularmatter2Eventdb} unit="ppm" />
+              <CurrentStatus name={"Particular Matter 10"} {...particularmatter10Eventdb} unit="ppm" />
+              <CurrentStatus name={"Sulfur Dioxdie"} {...sulfurdioxideEventdb} unit="ppm"/>
             </Row>
           </Container>
 
           <br></br>
 
-          <h2>Measured values</h2>
+          <h2>Measured values - History Data</h2>
+          <p>Click on a picture to get more information.</p>
           <div className="row">
             <div class="col-sm-4">
               <Card>
