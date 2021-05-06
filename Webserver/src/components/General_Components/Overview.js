@@ -17,8 +17,8 @@ import so2img from "../../assets/images/so2.jpg";
 import CurrentStatus from "../Database_components/CurrentStatus";
 import { Link } from "react-router-dom";
 
-var colimitred = 1000; var ahlimitred = 100; var templimitred = 100; var nolimitred = 1000; 
-var pm2limitred = 1000; var pm10limitred = 1000; var solimitred = 1000;
+var colimitred = 2000; var ahlimitred = 95; var templimitred = 30; var nolimitred = 200; 
+var pm2limitred = 25; var pm10limitred = 50; var solimitred = 20;
 
 var textyesorno = "IN COMPLIANCE ";
 

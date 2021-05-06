@@ -13,7 +13,7 @@ import { Card, CardGroup, Container, Jumbotron, Alert, Button,} from "react-boot
 import dateFormat from "dateformat";
 
 var ahlimitred = 95;
-var ahlimitorange = 50;
+var ahlimitorange = 70;
 var ahlimitgreen = 0;
 
 var certificateboolAirHum = true;
