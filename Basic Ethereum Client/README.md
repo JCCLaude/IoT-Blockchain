@@ -1,3 +1,14 @@
+## Installing the dependencies
+
+| Task                           | Command                                      |
+|--------------------------------|:--------------------------------------------:|
+| 1. Pyhton 3:                   | sudo apt install python3                     |
+| 2. pip3:                       | sudo apt install python-pip                  |
+| 3. time:                       | sudo pip3 install time                       |
+| 4. datetime:                   | sudo pip3 install datetime                   |
+| 5. pymongo:                    | sudo pip3 install pymongo                    |
+
+
 ## Description of the file
 This is the file that send __random__ values to an Ethereum Blockchain and register them there. This file is for development purposes only and works without a sensor.
 
