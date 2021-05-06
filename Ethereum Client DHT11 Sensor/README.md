@@ -6,6 +6,9 @@
 | 2. pip3:                       | sudo apt install python-pip                  |
 | 3. Adafruit:                   | sudo pip3 install adafruit-circuitpython-dht |
 | 4. DHT11 Library:              | sudo apt-get install libgpiod2               |
+| 5. time:                       | sudo pip3 install time                       |
+| 6. datetime:                   | sudo pip3 install datetime                   |
+| 7. pymongo:                    | sudo pip3 install pymongo                    |
 
 ## Description of the files
 These are the files that send __real values of a DHT11 sensor__ to an Ethereum Blockchain and register them there. The DHT11 sensor measures the temperature and humidity and using the Python script "measure_dht11_sensor.py" the values measured by the sensor are sent to the javascript file "data_transmission_dht11_sensor.js". The Javascript file "data_transmission_dht11_sensor.js" enters the measured values in the blockchain. The Python script "dht11_save_values.py" allows saving the measured values in a file. 
