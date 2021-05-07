@@ -3,37 +3,41 @@ import { Jumbotron, Container, Tabs, Tab, Card } from "react-bootstrap";
 
 import { useGlobalContext } from "../../context";
 
-import HistoryTable from "./HistoryTable";
-import HistoryGraph from "./HistoryGraph";
-import AlarmBanner from "./AlarmBanner";
+import HistoryGraph from "../Core_components/HistoryGraph";
+import HistoryTable from "../Core_components/HistoryTable";
+import AlarmBanner from "../Core_components/CertificateBanner";
 
-function Carbondioxide() {
-  const { co2Loading, co2EventsTable, co2EventsChart } = useGlobalContext();
+function Humidity() {
+  const {
+    humidityLoading,
+    humidityEventsChart,
+    humidityEventsTable,
+  } = useGlobalContext();
+
   const [key, setKey] = useState("about");
-
-  const lowerEmissionLimit = 15;
-  const higherEmissionLimit = 20;
+  const lowerEmissionLimit = 30;
+  const higherEmissionLimit = 40;
 
   return (
     <>
-      <Jumbotron fluid className="jumboco2">
+      <Jumbotron fluid className="jumbo-humidity">
         <div className="overlay "> </div>
         <Container className="d-none d-lg-block">
-          <h1>Carbon Dioxide (CO2)</h1>
-          <p>Find verified information about all measured CO2 emissions!</p>
+          <h1>Humidity</h1>
+          <p>Find verified information about humidity measurements!</p>
         </Container>
       </Jumbotron>
       <AlarmBanner
-        data={co2EventsChart}
-        limit={higherEmissionLimit}
-        loading={co2Loading}
+        data={humidityEventsChart}
+        limit={lowerEmissionLimit}
+        loading={humidityLoading}
       />
       <hr />
       <HistoryGraph
-        data={co2EventsChart}
-        loading={co2Loading}
-        name="CO2"
-        unit="ppm"
+        data={humidityEventsChart}
+        loading={humidityLoading}
+        name="Humidity"
+        unit="%"
         lowerLimit={lowerEmissionLimit}
         higherLimit={higherEmissionLimit}
       />
@@ -44,16 +48,14 @@ function Carbondioxide() {
           activeKey={key}
           onSelect={(k) => setKey(k)}
         >
-          <Tab eventKey="about" title="About CO2">
+          <Tab eventKey="about" title="About Humidity">
             <Card>
               <Card.Body>
-                <Card.Title>The Survivor</Card.Title>
+                <Card.Title>Getting wet</Card.Title>
                 <Card.Text>
-                  CO2 is the most common greenhouse gas. Even though it enters
-                  the atmosphere naturally, the concentration has been massively
-                  increased by humans. Through natural biochemical processes,
-                  carbon dioxide is only degraded very slowly (60-85% in 1000
-                  years)
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                  Labore animi distinctio libero quia repellat porro ratione
+                  exercitationem, fugiat voluptatem asperiores.
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -89,13 +91,12 @@ function Carbondioxide() {
       </Container>
       <hr />
       <HistoryTable
-        data={co2EventsTable}
-        loading={co2Loading}
+        data={humidityEventsTable}
+        loading={humidityLoading}
         lowerLimit={lowerEmissionLimit}
         higherLimit={higherEmissionLimit}
       />
     </>
   );
 }
-
-export default Carbondioxide;
+export default Humidity;

@@ -3,41 +3,42 @@ import { Jumbotron, Container, Tabs, Tab, Card } from "react-bootstrap";
 
 import { useGlobalContext } from "../../context";
 
-import HistoryGraph from "./HistoryGraph";
-import HistoryTable from "./HistoryTable";
-import AlarmBanner from "./AlarmBanner";
+import HistoryGraph from "../Core_components/HistoryGraph";
+import HistoryTable from "../Core_components/HistoryTable";
+import AlarmBanner from "../Core_components/CertificateBanner";
 
-function Humidity() {
+function Temperature() {
   const {
-    humidityLoading,
-    humidityEventsChart,
-    humidityEventsTable,
+    temperatureLoading,
+    temperatureEventsChart,
+    temperatureEventsTable,
   } = useGlobalContext();
 
   const [key, setKey] = useState("about");
-  const lowerEmissionLimit = 30;
-  const higherEmissionLimit = 40;
+
+  const lowerEmissionLimit = 25;
+  const higherEmissionLimit = 30;
 
   return (
     <>
-      <Jumbotron fluid className="jumbo-humidity">
+      <Jumbotron fluid className="jumbo-temperature">
         <div className="overlay "> </div>
         <Container className="d-none d-lg-block">
-          <h1>Humidity</h1>
-          <p>Find verified information about humidity measurements!</p>
+          <h1>Temperature</h1>
+          <p>Find information about all verified temperature measurements!</p>
         </Container>
       </Jumbotron>
       <AlarmBanner
-        data={humidityEventsChart}
-        limit={lowerEmissionLimit}
-        loading={humidityLoading}
+        data={temperatureEventsChart}
+        limit={higherEmissionLimit}
+        loading={temperatureLoading}
       />
       <hr />
       <HistoryGraph
-        data={humidityEventsChart}
-        loading={humidityLoading}
-        name="Humidity"
-        unit="%"
+        data={temperatureEventsChart}
+        loading={temperatureLoading}
+        name="Temperature"
+        unit="°C"
         lowerLimit={lowerEmissionLimit}
         higherLimit={higherEmissionLimit}
       />
@@ -48,10 +49,10 @@ function Humidity() {
           activeKey={key}
           onSelect={(k) => setKey(k)}
         >
-          <Tab eventKey="about" title="About Humidity">
+          <Tab eventKey="about" title="About Temperature">
             <Card>
               <Card.Body>
-                <Card.Title>Getting wet</Card.Title>
+                <Card.Title>Getting hot</Card.Title>
                 <Card.Text>
                   Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                   Labore animi distinctio libero quia repellat porro ratione
@@ -91,12 +92,12 @@ function Humidity() {
       </Container>
       <hr />
       <HistoryTable
-        data={humidityEventsTable}
-        loading={humidityLoading}
+        data={temperatureEventsTable}
+        loading={temperatureLoading}
         lowerLimit={lowerEmissionLimit}
         higherLimit={higherEmissionLimit}
       />
     </>
   );
 }
-export default Humidity;
+export default Temperature;

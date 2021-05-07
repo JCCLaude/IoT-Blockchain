@@ -5,7 +5,7 @@ import Spinner from "react-bootstrap/Spinner";
 import greenCertificate from "../../assets/images/greencert.png";
 import redCertificate from "../../assets/images/redcert.png";
 
-function AlarmBanner({ data, limit, loading }) {
+function CertificateBanner({ data, limit, loading }) {
   const [certificateGranted, setCertificateGranted] = useState(false);
   const checkLatest = (data, limit) => {
     const checkExceeded = data.reduce((total, item) => {
@@ -51,4 +51,4 @@ function AlarmBanner({ data, limit, loading }) {
   );
 }
 
-export default AlarmBanner;
+export default CertificateBanner;
