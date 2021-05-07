@@ -20,58 +20,42 @@ function Navigation() {
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav>
+        <Nav className="mr-auto">
           <Nav.Link as={Link} to="/">
             Overview
           </Nav.Link>
-          <NavDropdown title="Detailed Information" variant="dark">
-            <NavDropdown.Item
-              variant="dark"
-              as={Link}
-              to="/detail"
-              className="navdropdown"
-            >
-              Why detailed?
+          <Nav.Link as={Link} to="/co2">
+            Carbondioxide
+          </Nav.Link>
+          <Nav.Link as={Link} to="/humidity">
+            Airhumidity
+          </Nav.Link>
+          <Nav.Link as={Link} to="/temperature">
+            Temperature
+          </Nav.Link>
+          <NavDropdown title="Greenhouse Gases">
+            <NavDropdown.Item as={Link} to="/greenhousegas">
+              About Greenhouse-Gases
             </NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item as={Link} to="/detail/carbondioxide">
-              Carbondioxide (CO2)
+            <NavDropdown.Item as={Link} to="/greenhousegas/one">
+              Nitrogen Dioxide
             </NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/detail/airhumidity">
-              Airhumidity
+            <NavDropdown.Item as={Link} to="/greenhousegas/two">
+              Sulfur Dioxide
             </NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/detail/temperature">
-              Temperature
-            </NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/detail/nitrogendioxide">
-              Nitrogen Dioxide (NO2)
-            </NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/detail/pm2">
-              Particular Matter 2.5 (PM2.5)
-            </NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/detail/pm10">
-              Particular Matter 10 (PM10)
-            </NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/detail/sulfurdioxide">
-              Sulfur Dioxide (SO2)
+            <NavDropdown.Item as={Link} to="/greenhousegas/three">
+              Particular Matter (2+10)
             </NavDropdown.Item>
           </NavDropdown>
-
-          <NavDropdown title="Verified Information">
-            <NavDropdown.Item as={Link} to="/verified">
-              Why verified
-            </NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item as={Link} to="/verified/carbondioxide">
-              Carbondioxide (CO2)
-            </NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/verified/humidity">
-              Airhumidity
-            </NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/verified/temperature">
-              Temperature
-            </NavDropdown.Item>
-          </NavDropdown>
+        </Nav>
+        <Nav>
+          <Nav.Link as={Link} to="/blockchain">
+            IBES and the Blockchain
+          </Nav.Link>
+          <Nav.Link as={Link} to="/about">
+            About
+          </Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

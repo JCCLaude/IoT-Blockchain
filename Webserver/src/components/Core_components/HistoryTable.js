@@ -4,7 +4,7 @@ import { Container, Button, Row, Col, Modal, Table } from "react-bootstrap";
 
 function HistoryTable({ data, loading, lowerLimit, higherLimit }) {
   const [show, setShow] = useState(false);
-  const [tableData, setTableData] = useState([, ,]);
+  const [tableData, setTableData] = useState([]);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 

@@ -2,43 +2,39 @@ import React, { useState } from "react";
 import { Jumbotron, Container, Tabs, Tab, Card } from "react-bootstrap";
 
 import { useGlobalContext } from "../../context";
+import "./emissions.css";
 
-import HistoryGraph from "./HistoryGraph";
-import HistoryTable from "./HistoryTable";
-import AlarmBanner from "./AlarmBanner";
+import HistoryTable from "../Core_components/HistoryTable";
+import HistoryGraph from "../Core_components/HistoryGraph";
+import CertificateBanner from "../Core_components/CertificateBanner";
 
-function Temperature() {
-  const {
-    temperatureLoading,
-    temperatureEventsChart,
-    temperatureEventsTable,
-  } = useGlobalContext();
-
+function Carbondioxide() {
+  const { co2Loading, co2EventsTable, co2EventsChart } = useGlobalContext();
   const [key, setKey] = useState("about");
 
-  const lowerEmissionLimit = 25;
-  const higherEmissionLimit = 30;
+  const lowerEmissionLimit = 1000;
+  const higherEmissionLimit = 2000;
 
   return (
     <>
-      <Jumbotron fluid className="jumbo-temperature">
+      <Jumbotron fluid className="jumboco2">
         <div className="overlay "> </div>
         <Container className="d-none d-lg-block">
-          <h1>Temperature</h1>
-          <p>Find information about all verified temperature measurements!</p>
+          <h1>Carbon Dioxide (CO2)</h1>
+          <p>Find verified information about all measured CO2 emissions!</p>
         </Container>
       </Jumbotron>
-      <AlarmBanner
-        data={temperatureEventsChart}
+      <CertificateBanner
+        data={co2EventsChart}
         limit={higherEmissionLimit}
-        loading={temperatureLoading}
+        loading={co2Loading}
       />
       <hr />
       <HistoryGraph
-        data={temperatureEventsChart}
-        loading={temperatureLoading}
-        name="Temperature"
-        unit="°C"
+        data={co2EventsChart}
+        loading={co2Loading}
+        name="CO2"
+        unit="ppm"
         lowerLimit={lowerEmissionLimit}
         higherLimit={higherEmissionLimit}
       />
@@ -49,14 +45,16 @@ function Temperature() {
           activeKey={key}
           onSelect={(k) => setKey(k)}
         >
-          <Tab eventKey="about" title="About Temperature">
+          <Tab eventKey="about" title="About CO2">
             <Card>
               <Card.Body>
-                <Card.Title>Getting hot</Card.Title>
+                <Card.Title>The Survivor</Card.Title>
                 <Card.Text>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Labore animi distinctio libero quia repellat porro ratione
-                  exercitationem, fugiat voluptatem asperiores.
+                  CO2 is the most common greenhouse gas. Even though it enters
+                  the atmosphere naturally, the concentration has been massively
+                  increased by humans. Through natural biochemical processes,
+                  carbon dioxide is only degraded very slowly (60-85% in 1000
+                  years)
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -92,12 +90,13 @@ function Temperature() {
       </Container>
       <hr />
       <HistoryTable
-        data={temperatureEventsTable}
-        loading={temperatureLoading}
+        data={co2EventsTable}
+        loading={co2Loading}
         lowerLimit={lowerEmissionLimit}
         higherLimit={higherEmissionLimit}
       />
     </>
   );
 }
-export default Temperature;
+
+export default Carbondioxide;
