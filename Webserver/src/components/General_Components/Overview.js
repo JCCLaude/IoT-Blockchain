@@ -5,10 +5,12 @@ import greencert from "../../assets/images/greencert.png";
 import redcert from "../../assets/images/redcert.png";
 import Overview_structure from "../../assets/images/Overview_structure.png";
 import { Card, CardGroup, Container, Jumbotron, Row } from "react-bootstrap";
+
 import { Link } from "react-router-dom";
 import "../Database_components/style.components.css";
 import { useGlobalContext } from "../../context";
 import CurrentStatus from "../Database_components/CurrentStatus";
+
 import co2img from "../../assets/images/CO2.jpg";
 import airhumidityimg from "../../assets/images/airhumidity.jpg";
 import temperatureimg from "../../assets/images/temperature.jpg";
@@ -35,8 +37,10 @@ function Overview() {
   var certboolPM2=true; var certboolPM10=true; var certboolSO=true; 
 
   const {
+
     co2Eventdb, airhumidityEventdb, temperatureEventdb, nitrogendioxideEventdb, 
     particularmatter2Eventdb, particularmatter10Eventdb, sulfurdioxideEventdb,
+
   } = useGlobalContext();
 
 var lastCO2 = {
@@ -77,6 +81,7 @@ var nodates = []; var novals = [];
 var pm2dates = []; var pm2vals = [];
 var pm10dates = []; var pm10vals = [];
 var sodates = []; var sovals = [];
+
 
 
 //604800000 = 1 week
@@ -125,6 +130,7 @@ for (i = 0; i < nitrogendioxideEventdb.timestamp.length - 1; i++) {
   } 
     
 var COStr = ""; var AHStr = ""; var TEMPStr=""; var NOStr=""; var PM2Str=""; var PM10Str=""; var SOStr="";
+
 
   if (certboolCO2 === false) {certificateboolOverview = false; COStr = "Carbon Dioxide (CO2)";}
   if (certboolAH === false) {certificateboolOverview = false; AHStr = "Air Humidity";}
@@ -187,12 +193,14 @@ var COStr = ""; var AHStr = ""; var TEMPStr=""; var NOStr=""; var PM2Str=""; var
 
           <br></br><br></br>
 
+
           <h2>Measured values - History Data</h2>
           <p>Click on a picture to get more information.</p>
           <div className="row">
             <div class="col-sm-4">
               <Card>
               <Link to="/carbondioxide">
+
                 <img class="card-img-top" src={co2img} width="150" height="150" alt="CO2" ></img>
                 <Card.Header>
                   <b>Carbon Dioxide</b>
@@ -297,7 +305,6 @@ var COStr = ""; var AHStr = ""; var TEMPStr=""; var NOStr=""; var PM2Str=""; var
           </div>
 
     <br></br><br></br>
-
         <div className="flex-container">
           <img
             id="overview_structure"
