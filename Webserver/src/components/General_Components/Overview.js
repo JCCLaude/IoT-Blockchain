@@ -4,12 +4,21 @@ import greenthumbup from "../../assets/images/greenthumbup.png";
 import greencert from "../../assets/images/greencert.png";
 import redcert from "../../assets/images/redcert.png";
 import Overview_structure from "../../assets/images/Overview_structure.png";
-import { Card, CardGroup, Container, Jumbotron, Button } from "react-bootstrap";
+import { Card, CardGroup, Container, Jumbotron, Row } from "react-bootstrap";
 import "../Database_components/style.components.css";
 import { useGlobalContext } from "../../context";
+import co2img from "../../assets/images/CO2.jpg";
+import airhumidityimg from "../../assets/images/airhumidity.jpg";
+import temperatureimg from "../../assets/images/temperature.jpg";
+import no2img from "../../assets/images/no2.jpg";
+import pm2img from "../../assets/images/pm2.jpg";
+import pm10img from "../../assets/images/pm10.jpg";
+import so2img from "../../assets/images/so2.jpg";
+import CurrentStatus from "../Database_components/CurrentStatus";
+import { Link } from "react-router-dom";
 
-var colimitred=1000; var ahlimitred=95; var templimitred=60; var nolimitred=1000; 
-var pm2limitred=1000; var pm10limitred=1000; var solimitred=1000;
+var colimitred = 2000; var ahlimitred = 95; var templimitred = 30; var nolimitred = 200; 
+var pm2limitred = 25; var pm10limitred = 50; var solimitred = 20;
 
 var textyesorno = "IN COMPLIANCE ";
 
@@ -26,13 +35,13 @@ function Overview() {
   var certboolPM2=true; var certboolPM10=true; var certboolSO=true; 
 
   const {
-    co2Eventdb7, 
-    airhumidityEventdb7, 
-    temperatureEventdb7, 
-    nitrogendioxideEventdb7, 
-    particularmatter2Eventdb7, 
-    particularmatter10Eventdb7, 
-    sulfurdioxideEventdb7,
+    co2Eventdb, co2Eventdb7, 
+    airhumidityEventdb, airhumidityEventdb7, 
+    temperatureEventdb, temperatureEventdb7, 
+    nitrogendioxideEventdb, nitrogendioxideEventdb7, 
+    particularmatter2Eventdb, particularmatter2Eventdb7, 
+    particularmatter10Eventdb, particularmatter10Eventdb7, 
+    sulfurdioxideEventdb, sulfurdioxideEventdb7,
   } = useGlobalContext();
 
 var covalarray7 = co2Eventdb7.measurement.split('|'); 
@@ -50,6 +59,8 @@ var COStr = ""; var AHStr = ""; var TEMPStr=""; var NOStr=""; var PM2Str=""; var
 var i=0;
 
 for(i=0; i<covalarray7.length-1; i++){
+  console.log("kk: "+covalarray7[i])
+  console.log("ii: "+colimitred)
   if(parseInt(covalarray7[i]) >= colimitred){certboolCO2 = false; covalhigharray7.push(covalarray7[i]+" ppm",new Date(codatearray7[i]))}
 }  
 for(i=0; i<ahvalarray7.length-1; i++){
@@ -109,21 +120,130 @@ for(i=0; i<pm2valarray7.length-1; i++){
           </figcaption>
         </div>
         <br></br> <br></br>
-
-        <div className="container text-center">
+    <article>
+        <Container className="dark rounded text-center">
+            <Row>
+              <CurrentStatus name={"Carbon Dioxide"} {...co2Eventdb} unit="ppm" demoCritical={"0"} />
+              <CurrentStatus name={"Air Humidity"} {...airhumidityEventdb} unit="%" demoCritical={"1"}/>
+              <CurrentStatus name={"Temperature"} {...temperatureEventdb} unit="°C" demoCritical={"2"}/>
+              <CurrentStatus name={"Nitrogen Dioxide"} {...nitrogendioxideEventdb} unit="ppm" />
+              <CurrentStatus name={"Particular Matter 2.5"} {...particularmatter2Eventdb} unit="ppm" />
+              <CurrentStatus name={"Particular Matter 10"} {...particularmatter10Eventdb} unit="ppm" />
+              <CurrentStatus name={"Sulfur Dioxdie"} {...sulfurdioxideEventdb} unit="ppm"/>
+            </Row>
+          </Container>
+          <br></br><br></br>
+          <h2>Measured values - History Data</h2>
+          <p>Click on a picture to get more information.</p>
           <div className="row">
-            <div className="col sm-4">
-              Get more info at detail: <br></br>
-              <a class="btn btn-primary btn-lg" href="/detail" role="button">Detailed</a>
+            <div class="col-sm-4">
+              <Card>
+              <Link to="/detail/carbondioxide">
+                <img class="card-img-top" src={co2img} width="150" height="150" alt="CO2" ></img>
+                <Card.Header>
+                  <b>Carbon Dioxide</b>
+                </Card.Header>
+                </Link>
+                <Card.Body>
+                  Here you will find a link to the Carbon Dioxide (CO2) website.
+                  <br></br><br></br>
+                </Card.Body>
+              </Card>
             </div>
-            <div className="col sm-4">
-            Get more info at verified: <br></br>
-              <a class="btn btn-success btn-lg" href="/verified" role="button">Verified</a>
+
+            <div class="col-sm-4">
+              <Card>
+              <Link to="/detail/airhumidity">
+                <img class="card-img-top" src={airhumidityimg} width="150" height="150" alt="Air Humidity" ></img>
+                <Card.Header>
+                  <b>Air Humidity</b>
+                </Card.Header>
+                </Link>
+                <Card.Body>
+                  Here you will find a link to the Air Humidity website.
+                  <br></br><br></br>
+                </Card.Body>
+              </Card>
+            </div>
+
+            <div class="col-sm-4">
+              <Card>
+              <Link to="/detail/temperature">
+                <img class="card-img-top" src={temperatureimg} width="150" height="150" alt="Temperature" ></img>
+                <Card.Header>
+                  <b>Temperature</b>
+                </Card.Header>
+                </Link>
+                <Card.Body>
+                  Here you will find a link to the Temperature website.
+                  <br></br><br></br>
+                </Card.Body>
+              </Card>
+            </div>
+
+            <div class="col-sm-4">
+              <Card>
+              <Link to="/detail/nitrogendioxide">
+                <img class="card-img-top" src={no2img} width="150" height="150" alt="NO2" ></img>
+                <Card.Header>
+                  <b>Nitrogen Dioxide</b>
+                </Card.Header>
+                </Link>
+                <Card.Body>
+                  Here you will find a link to the Nitrogen Dioxide (NO2) website.
+                  <br></br><br></br>
+                </Card.Body>
+              </Card>
+            </div>
+
+            <div class="col-sm-4">
+              <Card>
+              <Link to="/detail/particularmatter2">
+                <img class="card-img-top" src={pm2img} width="150" height="150" alt="PM2.5" ></img>
+                <Card.Header>
+                  <b>Particular Matter 2.5</b>
+                </Card.Header>
+                </Link>
+                <Card.Body>
+                  Here you will find a link to the Particular Matter 2.5 (PM2.5) website.
+                  <br></br><br></br>
+                </Card.Body>
+                </Card>
+            </div>
+
+            <div class="col-sm-4">
+              <Card>
+              <Link to="/detail/particularmatter10">
+                <img class="card-img-top" src={pm10img} width="150" height="150"  alt="PM10" ></img>
+                <Card.Header>
+                  <b>Particular Matter 10</b>
+                </Card.Header>
+                </Link>
+                <Card.Body>
+                  Here you will find a link to the Particular Matter 10 (PM10) website.
+                  <br></br><br></br>
+                </Card.Body>
+              </Card>
+            </div>
+
+            <div class="col-sm-4 mx-auto">
+              <Card>
+              <Link to="/detail/sulfurdioxdie">
+                <img class="card-img-top" src={so2img} width="150" height="150" alt="SO2" ></img>
+                <Card.Header>
+                  <b>Sulfur Dioxdie</b>
+                </Card.Header>
+                </Link>
+                <Card.Body>
+                  Here you will find a link to the Sulfur Dioxdie (SO2) website.
+                  <br></br><br></br>
+                </Card.Body>
+              </Card>
             </div>
           </div>
-        </div>
-    
-    <br></br><br></br>
+        </article>
+
+        <br></br><br></br>
 
         <div className="flex-container">
           <img

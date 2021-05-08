@@ -7,8 +7,8 @@ import IBESlogo from "../../assets/images/IBESlogo.png";
 import greencert from "../../assets/images/greencert.png";
 import redcert from "../../assets/images/redcert.png";
 
-var solimitred = 1000;
-var solimitorange = 500;
+var solimitred = 20;
+var solimitorange = 10;
 var solimitgreen = 0;
 
 var certificateboolSO2 = true;

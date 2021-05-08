@@ -7,8 +7,8 @@ import IBESlogo from "../../assets/images/IBESlogo.png";
 import greencert from "../../assets/images/greencert.png";
 import redcert from "../../assets/images/redcert.png";
 
-var pm10limitred = 1000;
-var pm10limitorange = 500;
+var pm10limitred = 50;
+var pm10limitorange = 25;
 var pm10limitgreen = 0;
 
 var certificateboolPM10 = true;
