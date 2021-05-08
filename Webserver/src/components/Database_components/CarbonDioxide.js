@@ -12,8 +12,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import { Card, CardGroup, Container, Jumbotron, Alert, Button,} from "react-bootstrap";
 import dateFormat from "dateformat";
 
-var colimitred = 1000;
-var colimitorange = 500;
+var colimitred = 2000;
+var colimitorange = 1000;
 var colimitgreen = 0;
 
 var certificateboolCO2 = true;

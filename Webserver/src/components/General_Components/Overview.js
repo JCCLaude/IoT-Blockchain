@@ -4,12 +4,21 @@ import greenthumbup from "../../assets/images/greenthumbup.png";
 import greencert from "../../assets/images/greencert.png";
 import redcert from "../../assets/images/redcert.png";
 import Overview_structure from "../../assets/images/Overview_structure.png";
-import { Card, CardGroup, Container, Jumbotron, Button } from "react-bootstrap";
+import { Card, CardGroup, Container, Jumbotron, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "../Database_components/style.components.css";
 import { useGlobalContext } from "../../context";
+import CurrentStatus from "../Database_components/CurrentStatus";
+import co2img from "../../assets/images/CO2.jpg";
+import airhumidityimg from "../../assets/images/airhumidity.jpg";
+import temperatureimg from "../../assets/images/temperature.jpg";
+import no2img from "../../assets/images/no2.jpg";
+import pm2img from "../../assets/images/pm2.jpg";
+import pm10img from "../../assets/images/pm10.jpg";
+import so2img from "../../assets/images/so2.jpg";
 
-var colimitred=1000; var ahlimitred=95; var templimitred=60; var nolimitred=1000; 
-var pm2limitred=1000; var pm10limitred=1000; var solimitred=1000;
+var colimitred=2000; var ahlimitred=95; var templimitred=30; var nolimitred=200; 
+var pm2limitred=25; var pm10limitred=50; var solimitred=20;
 
 var textyesorno = "IN COMPLIANCE ";
 
@@ -26,42 +35,96 @@ function Overview() {
   var certboolPM2=true; var certboolPM10=true; var certboolSO=true; 
 
   const {
-    co2Eventdb7, 
-    airhumidityEventdb7, 
-    temperatureEventdb7, 
-    nitrogendioxideEventdb7, 
-    particularmatter2Eventdb7, 
-    particularmatter10Eventdb7, 
-    sulfurdioxideEventdb7,
+    co2Eventdb, airhumidityEventdb, temperatureEventdb, nitrogendioxideEventdb, 
+    particularmatter2Eventdb, particularmatter10Eventdb, sulfurdioxideEventdb,
   } = useGlobalContext();
 
-var covalarray7 = co2Eventdb7.measurement.split('|'); 
-var ahvalarray7 = airhumidityEventdb7.measurement.split('|'); 
-var tempvalarray7 = temperatureEventdb7.measurement.split('|'); 
-var novalarray7 = nitrogendioxideEventdb7.measurement.split('|'); 
-var pm2valarray7 = particularmatter2Eventdb7.measurement.split('|'); 
-var pm10valarray7 = particularmatter10Eventdb7.measurement.split('|'); 
-var sovalarray7 = sulfurdioxideEventdb7.measurement.split('|'); 
+var lastCO2 = {
+  timestamp: new Date(new Date(co2Eventdb.timestamp[co2Eventdb.timestamp.length-1]).getTime() + 3600000).toUTCString(),
+  measurement: co2Eventdb.measurement[co2Eventdb.measurement.length-1],
+}
+var lastAH = {
+  timestamp: new Date(new Date(airhumidityEventdb.timestamp[airhumidityEventdb.timestamp.length-1]).getTime() + 3600000).toUTCString(),
+  measurement: airhumidityEventdb.measurement[airhumidityEventdb.measurement.length-1],
+}
+var lastTEMP = {
+  timestamp: new Date(new Date(temperatureEventdb.timestamp[temperatureEventdb.timestamp.length-1]).getTime() + 3600000).toUTCString(),
+  measurement: temperatureEventdb.measurement[temperatureEventdb.measurement.length-1],
+}
+var lastNO = {
+  timestamp: new Date(new Date(nitrogendioxideEventdb.timestamp[nitrogendioxideEventdb.timestamp.length-1]).getTime() + 3600000).toUTCString(),
+  measurement: nitrogendioxideEventdb.measurement[nitrogendioxideEventdb.measurement.length-1],
+}
+var lastPM2 = {
+  timestamp: new Date(new Date(particularmatter2Eventdb.timestamp[particularmatter2Eventdb.timestamp.length-1]).getTime() + 3600000).toUTCString(),
+  measurement: particularmatter2Eventdb.measurement[particularmatter2Eventdb.measurement.length-1],
+}
+var lastPM10 = {
+  timestamp: new Date(new Date(particularmatter10Eventdb.timestamp[particularmatter10Eventdb.timestamp.length-1]).getTime() + 3600000).toUTCString(),
+  measurement: particularmatter10Eventdb.measurement[particularmatter10Eventdb.measurement.length-1],
+}
+var lastSO = {
+  timestamp: new Date(new Date(sulfurdioxideEventdb.timestamp[sulfurdioxideEventdb.timestamp.length-1]).getTime() + 3600000).toUTCString(),
+  measurement: sulfurdioxideEventdb.measurement[sulfurdioxideEventdb.measurement.length-1],
+}
 
-var codatearray7 = co2Eventdb7.timestamp.split('|');
-var covalhigharray7 = []; 
+var i = 0; 
+
+var codates = []; var covals = []; 
+var ahdates = []; var ahvals = [];
+var tempdates = []; var tempvals = [];
+var nodates = []; var novals = [];
+var pm2dates = []; var pm2vals = [];
+var pm10dates = []; var pm10vals = [];
+var sodates = []; var sovals = [];
+
+
+//604800000 = 1 week
+// replace v with time range like 1 week (7 days)
+var v = new Date().getTime() - new Date("March 21, 2021 01:00:00").getTime();
+for (i = 0; i < co2Eventdb.timestamp.length - 1; i++) {
+  if (new Date(co2Eventdb.timestamp[i]).getTime() > new Date().getTime() - v) {
+      codates.push(co2Eventdb.timestamp[i]);
+      covals.push(co2Eventdb.measurement[i]);
+      if(parseInt(co2Eventdb.measurement[i]) >= colimitred){certboolCO2 = false;}  
+    }
+  } 
+for (i = 0; i < airhumidityEventdb.timestamp.length - 1; i++) {
+  if (new Date(airhumidityEventdb.timestamp[i]).getTime() > new Date().getTime() - v) {
+      ahdates.push(airhumidityEventdb.timestamp[i]);
+      ahvals.push(airhumidityEventdb.measurement[i]);
+      if(parseInt(airhumidityEventdb.measurement[i]) >= ahlimitred){certboolAH = false;}  
+    }
+  if (new Date(temperatureEventdb.timestamp[i]).getTime() > new Date().getTime() - v) {
+      tempdates.push(temperatureEventdb.timestamp[i]);
+      tempvals.push(temperatureEventdb.measurement[i]);
+      if(parseInt(temperatureEventdb.measurement[i]) >= templimitred){certboolTEMP = false;}  
+    }  
+  } 
+for (i = 0; i < nitrogendioxideEventdb.timestamp.length - 1; i++) {
+  if (new Date(nitrogendioxideEventdb.timestamp[i]).getTime() > new Date().getTime() - v) {
+      nodates.push(nitrogendioxideEventdb.timestamp[i]);
+      novals.push(nitrogendioxideEventdb.measurement[i]);
+      if(parseInt(nitrogendioxideEventdb.measurement[i]) >= nolimitred){certboolNO = false;}  
+    }
+  if (new Date(particularmatter2Eventdb.timestamp[i]).getTime() > new Date().getTime() - v) {
+      pm2dates.push(particularmatter2Eventdb.timestamp[i]);
+      pm2vals.push(particularmatter2Eventdb.measurement[i]);
+      if(parseInt(particularmatter2Eventdb.measurement[i]) >= pm2limitred){certboolPM2 = false;}  
+    }
+  if (new Date(particularmatter10Eventdb.timestamp[i]).getTime() > new Date().getTime() - v) {
+      pm10dates.push(particularmatter10Eventdb.timestamp[i]);
+      pm10vals.push(particularmatter10Eventdb.measurement[i]);
+      if(parseInt(particularmatter10Eventdb.measurement[i]) >= pm10limitred){certboolPM10 = false;}  
+    }
+  if (new Date(sulfurdioxideEventdb.timestamp[i]).getTime() > new Date().getTime() - v) {
+      sodates.push(sulfurdioxideEventdb.timestamp[i]);
+      sovals.push(sulfurdioxideEventdb.measurement[i]);
+      if(parseInt(sulfurdioxideEventdb.measurement[i]) >= solimitred){certboolSO = false;}  
+    }      
+  } 
+    
 var COStr = ""; var AHStr = ""; var TEMPStr=""; var NOStr=""; var PM2Str=""; var PM10Str=""; var SOStr="";
-
-var i=0;
-
-for(i=0; i<covalarray7.length-1; i++){
-  if(parseInt(covalarray7[i]) >= colimitred){certboolCO2 = false; covalhigharray7.push(covalarray7[i]+" ppm",new Date(codatearray7[i]))}
-}  
-for(i=0; i<ahvalarray7.length-1; i++){
-  if(parseInt(ahvalarray7[i]) >= ahlimitred){certboolAH = false;}
-  if(parseInt(tempvalarray7[i]) >= templimitred){certboolTEMP = false;}
-}
-for(i=0; i<pm2valarray7.length-1; i++){
-  if(parseInt(novalarray7[i]) >= nolimitred){certboolNO = false;}
-  if(parseInt(pm2valarray7[i]) >= pm2limitred){certboolPM2 = false;}
-  if(parseInt(pm10valarray7[i]) >= pm10limitred){certboolPM10 = false;}
-  if(parseInt(sovalarray7[i]) >= solimitred){certboolSO = false;}
-}
 
   if (certboolCO2 === false) {certificateboolOverview = false; COStr = "Carbon Dioxide (CO2)";}
   if (certboolAH === false) {certificateboolOverview = false; AHStr = "Air Humidity";}
@@ -92,7 +155,7 @@ for(i=0; i<pm2valarray7.length-1; i++){
           <p>Get a quick overview of the emission values in your area!</p>
         </Container>
       </Jumbotron>
-      <img class="mx-auto d-block" src={thumb_img} width="145" height="135" alt={thumb_alt} ></img>
+      <img className="mx-auto d-block" src={thumb_img} width="145" height="135" alt={thumb_alt} ></img>
       <div className="container text-center">
         <p>The greenhouse gas emissions in your area are <b>{textyesorno}</b> with government emission limits the last 7 days.</p>  
       </div>  
@@ -110,19 +173,129 @@ for(i=0; i<pm2valarray7.length-1; i++){
         </div>
         <br></br> <br></br>
 
-        <div className="container text-center">
+        <Container className="dark rounded text-center">
+            <Row>
+              <CurrentStatus name={"Carbon Dioxide"} {...lastCO2} unit="ppm" demoCritical={"0"} />
+              <CurrentStatus name={"Air Humidity"} {...lastAH} unit="%" demoCritical={"1"}/>
+              <CurrentStatus name={"Temperature"} {...lastTEMP} unit="°C" demoCritical={"2"}/>
+              <CurrentStatus name={"Nitrogen Dioxide"} {...lastNO} unit="ppm" />
+              <CurrentStatus name={"Particular Matter 2.5"} {...lastPM2} unit="ppm" />
+              <CurrentStatus name={"Particular Matter 10"} {...lastPM10} unit="ppm" />
+              <CurrentStatus name={"Sulfur Dioxdie"} {...lastSO} unit="ppm"/>
+            </Row>
+          </Container>
+
+          <br></br><br></br>
+
+          <h2>Measured values - History Data</h2>
+          <p>Click on a picture to get more information.</p>
           <div className="row">
-            <div className="col sm-4">
-              Get more info at detail: <br></br>
-              <a class="btn btn-primary btn-lg" href="/detail" role="button">Detailed</a>
+            <div class="col-sm-4">
+              <Card>
+              <Link to="/carbondioxide">
+                <img class="card-img-top" src={co2img} width="150" height="150" alt="CO2" ></img>
+                <Card.Header>
+                  <b>Carbon Dioxide</b>
+                </Card.Header>
+                </Link>
+                <Card.Body>
+                  Here you will find a link to the Carbon Dioxide (CO2) website.
+                  <br></br><br></br>
+                </Card.Body>
+              </Card>
             </div>
-            <div className="col sm-4">
-            Get more info at verified: <br></br>
-              <a class="btn btn-success btn-lg" href="/verified" role="button">Verified</a>
+
+            <div class="col-sm-4">
+              <Card>
+              <Link to="/airhumidity">
+                <img class="card-img-top" src={airhumidityimg} width="150" height="150" alt="Air Humidity" ></img>
+                <Card.Header>
+                  <b>Air Humidity</b>
+                </Card.Header>
+                </Link>
+                <Card.Body>
+                  Here you will find a link to the Air Humidity website.
+                  <br></br><br></br>
+                </Card.Body>
+              </Card>
+            </div>
+
+            <div class="col-sm-4">
+              <Card>
+              <Link to="/temperature">
+                <img class="card-img-top" src={temperatureimg} width="150" height="150" alt="Temperature" ></img>
+                <Card.Header>
+                  <b>Temperature</b>
+                </Card.Header>
+                </Link>
+                <Card.Body>
+                  Here you will find a link to the Temperature website.
+                  <br></br><br></br>
+                </Card.Body>
+              </Card>
+            </div>
+
+            <div class="col-sm-4">
+              <Card>
+              <Link to="/nitrogendioxide">
+                <img class="card-img-top" src={no2img} width="150" height="150" alt="NO2" ></img>
+                <Card.Header>
+                  <b>Nitrogen Dioxide</b>
+                </Card.Header>
+                </Link>
+                <Card.Body>
+                  Here you will find a link to the Nitrogen Dioxide (NO2) website.
+                  <br></br><br></br>
+                </Card.Body>
+              </Card>
+            </div>
+
+            <div class="col-sm-4">
+              <Card>
+              <Link to="/particularmatter2">
+                <img class="card-img-top" src={pm2img} width="150" height="150" alt="PM2.5" ></img>
+                <Card.Header>
+                  <b>Particular Matter 2.5</b>
+                </Card.Header>
+                </Link>
+                <Card.Body>
+                  Here you will find a link to the Particular Matter 2.5 (PM2.5) website.
+                  <br></br><br></br>
+                </Card.Body>
+                </Card>
+            </div>
+
+            <div class="col-sm-4">
+              <Card>
+              <Link to="/particularmatter10">
+                <img class="card-img-top" src={pm10img} width="150" height="150"  alt="PM10" ></img>
+                <Card.Header>
+                  <b>Particular Matter 10</b>
+                </Card.Header>
+                </Link>
+                <Card.Body>
+                  Here you will find a link to the Particular Matter 10 (PM10) website.
+                  <br></br><br></br>
+                </Card.Body>
+              </Card>
+            </div>
+
+            <div class="col-sm-4 mx-auto">
+              <Card>
+              <Link to="/sulfurdioxdie">
+                <img class="card-img-top" src={so2img} width="150" height="150" alt="SO2" ></img>
+                <Card.Header>
+                  <b>Sulfur Dioxdie</b>
+                </Card.Header>
+                </Link>
+                <Card.Body>
+                  Here you will find a link to the Sulfur Dioxdie (SO2) website.
+                  <br></br><br></br>
+                </Card.Body>
+              </Card>
             </div>
           </div>
-        </div>
-    
+
     <br></br><br></br>
 
         <div className="flex-container">

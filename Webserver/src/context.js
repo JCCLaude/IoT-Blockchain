@@ -62,29 +62,6 @@ export const AppProvider = ({ children }) => {
     geolocation: "loading...",
   });
 
-  const [co2Eventdb7, setCo2Eventdb7] = useState({
-    timestamp: "loading...",
-    measurement: "loading...",
-  });
-  const [airhumidityEventdb7, setAirHumidityEventdb7] = useState({
-    measurement: "loading...",
-  });
-  const [temperatureEventdb7, setTemperatureEventdb7] = useState({
-    measurement: "loading...",
-  });
-  const [nitrogendioxideEventdb7, setNitrogenDioxideEventdb7] = useState({
-    measurement: "loading...",
-  });
-  const [particularmatter2Eventdb7, setParticularMatter2Eventdb7] = useState({
-    measurement: "loading...",
-  });
-  const [particularmatter10Eventdb7, setParticularMatter10Eventdb7] = useState({
-    measurement: "loading...",
-  });
-  const [sulfurdioxideEventdb7, setSulfurDioxideEventdb7] = useState({
-    measurement: "loading...",
-  });
-
   const formatEventsToChart = (events) => {
     const timeAndMeasurement = events.map((event) => {
       const timevalue =
@@ -122,42 +99,11 @@ export const AppProvider = ({ children }) => {
             return item["cogeo"];
           });
           var CO2message = {
-            timestamp: new Date(
-              new Date(codates[codates.length - 1]).getTime() + 3600000
-            ).toUTCString(),
-            measurement: covals[covals.length - 1],
-            geolocation: (
-              <a
-                href={"https://maps.google.com/?q=" + cogeos[cogeos.length - 1]}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {" "}
-                {cogeos[cogeos.length - 1]}{" "}
-              </a>
-            ),
-          };
-
-          var i = 0;
-          var codatesStr = "";
-          var covalsStr = "";
-          //604800000 = 1 week
-          // replace v with time range like 1 week (7 days)
-          var v =
-            new Date().getTime() -
-            new Date("March 21, 2021 01:00:00").getTime();
-          for (i = 0; i < codates.length - 1; i++) {
-            if (new Date(codates[i]).getTime() > new Date().getTime() - v) {
-              codatesStr += new Date(codates[i]).toString() + "|";
-              covalsStr += covals[i] + "|";
-            }
+            timestamp: codates,
+            measurement: covals,
+            geolocation: cogeos,
           }
-          var CO2message7 = {
-            timestamp: codatesStr,
-            measurement: covalsStr,
-          };
           setCo2Eventdb(CO2message);
-          setCo2Eventdb7(CO2message7);
         })
         .catch((error) => {
           console.log(error);
@@ -177,37 +123,12 @@ export const AppProvider = ({ children }) => {
             return item["ahgeo"];
           });
           var AHmessage = {
-            timestamp: new Date(
-              new Date(ahdates[ahdates.length - 1]).getTime() + 3600000
-            ).toUTCString(),
-            measurement: ahvals[ahvals.length - 1],
-            geolocation: (
-              <a
-                href={"https://maps.google.com/?q=" + ahgeos[ahgeos.length - 1]}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {" "}
-                {ahgeos[ahgeos.length - 1]}{" "}
-              </a>
-            ),
+            timestamp: ahdates,
+            measurement: ahvals,
+            geolocation: ahgeos,
           };
 
-          var i = 0;
-          var ahvalsStr = "";
-          for (i = 0; i < ahdates.length - 1; i++) {
-            if (
-              new Date(ahdates[i]).getTime() >
-              new Date().getTime() - 604800000
-            ) {
-              ahvalsStr += ahvals[i] + "|";
-            }
-          }
-          var AHmessage7 = {
-            measurement: ahvalsStr,
-          };
           setAirHumidityEventdb(AHmessage);
-          setAirHumidityEventdb7(AHmessage7);
         })
         .catch((error) => {
           console.log(error);
@@ -227,38 +148,11 @@ export const AppProvider = ({ children }) => {
             return item["tempgeo"];
           });
           var TEMPmessage = {
-            timestamp: new Date(
-              new Date(tempdates[tempdates.length - 1]).getTime() + 3600000
-            ).toUTCString(),
-            measurement: tempvals[tempvals.length - 1],
-            geolocation: (
-              <a
-                href={
-                  "https://maps.google.com/?q=" + tempgeos[tempgeos.length - 1]
-                }
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {tempgeos[tempgeos.length - 1]}
-              </a>
-            ),
-          };
-
-          var i = 0;
-          var tempvalsStr = "";
-          for (i = 0; i < tempdates.length - 1; i++) {
-            if (
-              new Date(tempdates[i]).getTime() >
-              new Date().getTime() - 604800000
-            ) {
-              tempvalsStr += tempvals[i] + "|";
-            }
-          }
-          var TEMPmessage7 = {
-            measurement: tempvalsStr,
+            timestamp: tempdates,
+            measurement: tempvals,
+            geolocation: tempgeos,
           };
           setTemperatureEventdb(TEMPmessage);
-          setTemperatureEventdb7(TEMPmessage7);
         })
         .catch((error) => {
           console.log(error);
@@ -278,36 +172,11 @@ export const AppProvider = ({ children }) => {
             return item["nogeo"];
           });
           var NOmessage = {
-            timestamp: new Date(
-              new Date(nodates[nodates.length - 1]).getTime() + 3600000
-            ).toUTCString(),
-            measurement: novals[novals.length - 1],
-            geolocation: (
-              <a
-                href={"https://maps.google.com/?q=" + nogeos[nogeos.length - 1]}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {nogeos[nogeos.length - 1]}
-              </a>
-            ),
-          };
-
-          var i = 0;
-          var novalsStr = "";
-          for (i = 0; i < nodates.length - 1; i++) {
-            if (
-              new Date(nodates[i]).getTime() >
-              new Date().getTime() - 604800000
-            ) {
-              novalsStr += novals[i] + "|";
-            }
-          }
-          var NOmessage7 = {
-            measurement: novalsStr,
+            timestamp: nodates,
+            measurement: novals,
+            geolocation: nogeos,
           };
           setNitrogenDioxideEventdb(NOmessage);
-          setNitrogenDioxideEventdb7(NOmessage7);
         })
         .catch((error) => {
           console.log(error);
@@ -327,38 +196,11 @@ export const AppProvider = ({ children }) => {
             return item["pm2geo"];
           });
           var PM2message = {
-            timestamp: new Date(
-              new Date(pm2dates[pm2dates.length - 1]).getTime() + 3600000
-            ).toUTCString(),
-            measurement: pm2vals[pm2vals.length - 1],
-            geolocation: (
-              <a
-                href={
-                  "https://maps.google.com/?q=" + pm2geos[pm2geos.length - 1]
-                }
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {pm2geos[pm2geos.length - 1]}
-              </a>
-            ),
-          };
-
-          var i = 0;
-          var pm2valsStr = "";
-          for (i = 0; i < pm2dates.length - 1; i++) {
-            if (
-              new Date(pm2dates[i]).getTime() >
-              new Date().getTime() - 604800000
-            ) {
-              pm2valsStr += pm2vals[i] + "|";
-            }
-          }
-          var PM2message7 = {
-            measurement: pm2valsStr,
+            timestamp: pm2dates,
+            measurement: pm2vals,
+            geolocation: pm2geos,
           };
           setParticularMatter2Eventdb(PM2message);
-          setParticularMatter2Eventdb7(PM2message7);
         })
         .catch((error) => {
           console.log(error);
@@ -378,38 +220,11 @@ export const AppProvider = ({ children }) => {
             return item["pm10geo"];
           });
           var PM10message = {
-            timestamp: new Date(
-              new Date(pm10dates[pm10dates.length - 1]).getTime() + 3600000
-            ).toUTCString(),
-            measurement: pm10vals[pm10vals.length - 1],
-            geolocation: (
-              <a
-                href={
-                  "https://maps.google.com/?q=" + pm10geos[pm10geos.length - 1]
-                }
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {pm10geos[pm10geos.length - 1]}
-              </a>
-            ),
-          };
-
-          var i = 0;
-          var pm10valsStr = "";
-          for (i = 0; i < pm10dates.length - 1; i++) {
-            if (
-              new Date(pm10dates[i]).getTime() >
-              new Date().getTime() - 604800000
-            ) {
-              pm10valsStr += pm10vals[i] + "|";
-            }
-          }
-          var PM10message7 = {
-            measurement: pm10valsStr,
+            timestamp: pm10dates,
+            measurement: pm10vals,
+            geolocation: pm10geos,
           };
           setParticularMatter10Eventdb(PM10message);
-          setParticularMatter10Eventdb7(PM10message7);
         })
         .catch((error) => {
           console.log(error);
@@ -429,36 +244,11 @@ export const AppProvider = ({ children }) => {
             return item["sogeo"];
           });
           var SOmessage = {
-            timestamp: new Date(
-              new Date(sodates[sodates.length - 1]).getTime() + 3600000
-            ).toUTCString(),
-            measurement: sovals[sovals.length - 1],
-            geolocation: (
-              <a
-                href={"https://maps.google.com/?q=" + sogeos[sogeos.length - 1]}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {sogeos[sogeos.length - 1]}
-              </a>
-            ),
-          };
-
-          var i = 0;
-          var sovalsStr = "";
-          for (i = 0; i < sodates.length - 1; i++) {
-            if (
-              new Date(sodates[i]).getTime() >
-              new Date().getTime() - 604800000
-            ) {
-              sovalsStr += sovals[i] + "|";
-            }
-          }
-          var SOmessage7 = {
-            measurement: sovalsStr,
+            timestamp: sodates,
+            measurement: sovals,
+            geolocation: sogeos,
           };
           setSulfurDioxideEventdb(SOmessage);
-          setSulfurDioxideEventdb7(SOmessage7);
         })
         .catch((error) => {
           console.log(error);
@@ -546,20 +336,8 @@ export const AppProvider = ({ children }) => {
         temperatureEvents: temperatureEvents,
         temperatureEventsChart: temperatureEventsChart,
         temperatureEventsTable: temperatureEventsTable,
-        co2Eventdb,
-        airhumidityEventdb,
-        temperatureEventdb,
-        nitrogendioxideEventdb,
-        particularmatter2Eventdb,
-        particularmatter10Eventdb,
-        sulfurdioxideEventdb,
-        co2Eventdb7,
-        airhumidityEventdb7,
-        temperatureEventdb7,
-        nitrogendioxideEventdb7,
-        particularmatter2Eventdb7,
-        particularmatter10Eventdb7,
-        sulfurdioxideEventdb7,
+        co2Eventdb, airhumidityEventdb, temperatureEventdb, nitrogendioxideEventdb, 
+        particularmatter2Eventdb, particularmatter10Eventdb, sulfurdioxideEventdb,
       }}
     >
       {children}
