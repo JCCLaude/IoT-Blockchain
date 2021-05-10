@@ -33,19 +33,22 @@ function Navigation() {
           <Nav.Link as={Link} to="/temperature">
             Temperature
           </Nav.Link>
-          <NavDropdown title="Greenhouse Gases">
-            <NavDropdown.Item as={Link} to="/greenhousegas">
-              About Greenhouse-Gases
+          <NavDropdown title="Other Emissions">
+            <NavDropdown.Item as={Link} to="/emissions">
+              About other emissions
             </NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item as={Link} to="/greenhousegas/one">
+            <NavDropdown.Item as={Link} to="/emissions/one">
               Nitrogen Dioxide
             </NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/greenhousegas/two">
+            <NavDropdown.Item as={Link} to="/emissions/two">
               Sulfur Dioxide
             </NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/greenhousegas/three">
-              Particular Matter (2+10)
+            <NavDropdown.Item as={Link} to="/emissions/three">
+              Particular Matter 2,5
+            </NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/emissions/three">
+              Particular Matter 10
             </NavDropdown.Item>
           </NavDropdown>
         </Nav>

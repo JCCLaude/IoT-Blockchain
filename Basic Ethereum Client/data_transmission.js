@@ -1,5 +1,5 @@
 // setInterval(all, 15000); //15s, for every hour input: 3600000
-setInterval(all, 300000); //for every hour input: 3600000
+setInterval(all, 30000); //for every hour input: 3600000
 
 var cnt_blockchain_send_temp = 0;
 var cnt_blockchain_send_air = 0;

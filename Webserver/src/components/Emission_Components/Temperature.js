@@ -12,11 +12,12 @@ function Temperature() {
     temperatureLoading,
     temperatureEventsChart,
     temperatureEventsTable,
+    temperatureEventdb,
   } = useGlobalContext();
 
   const [key, setKey] = useState("about");
 
-  const lowerEmissionLimit = 25;
+  const lowerEmissionLimit = 20;
   const higherEmissionLimit = 30;
 
   return (
@@ -35,7 +36,8 @@ function Temperature() {
       />
       <hr />
       <HistoryGraph
-        data={temperatureEventsChart}
+        blockchainData={temperatureEventsChart}
+        databaseData={temperatureEventdb}
         loading={temperatureLoading}
         name="Temperature"
         unit="°C"
