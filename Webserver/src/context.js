@@ -26,41 +26,13 @@ export const AppProvider = ({ children }) => {
   const [temperatureEventsChart, setTemperatureEventsChart] = useState([]);
 
   const [errordb, setErrordb] = useState(false);
-  const [co2Eventdb, setCo2Eventdb] = useState({
-    timestamp: "loading...",
-    measurement: "loading...",
-    geolocation: "loading...",
-  });
-  const [airhumidityEventdb, setAirHumidityEventdb] = useState({
-    timestamp: "loading...",
-    measurement: "loading...",
-    geolocation: "loading...",
-  });
-  const [temperatureEventdb, setTemperatureEventdb] = useState({
-    timestamp: "loading...",
-    measurement: "loading...",
-    geolocation: "loading...",
-  });
-  const [nitrogendioxideEventdb, setNitrogenDioxideEventdb] = useState({
-    timestamp: "loading...",
-    measurement: "loading...",
-    geolocation: "loading...",
-  });
-  const [particularmatter2Eventdb, setParticularMatter2Eventdb] = useState({
-    timestamp: "loading...",
-    measurement: "loading...",
-    geolocation: "loading...",
-  });
-  const [particularmatter10Eventdb, setParticularMatter10Eventdb] = useState({
-    timestamp: "loading...",
-    measurement: "loading...",
-    geolocation: "loading...",
-  });
-  const [sulfurdioxideEventdb, setSulfurDioxideEventdb] = useState({
-    timestamp: "loading...",
-    measurement: "loading...",
-    geolocation: "loading...",
-  });
+  const [co2Eventdb, setCo2Eventdb] = useState();
+  const [airhumidityEventdb, setAirHumidityEventdb] = useState();
+  const [temperatureEventdb, setTemperatureEventdb] = useState();
+  const [nitrogendioxideEventdb, setNitrogenDioxideEventdb] = useState();
+  const [particularmatter2Eventdb, setParticularMatter2Eventdb] = useState();
+  const [particularmatter10Eventdb, setParticularMatter10Eventdb] = useState();
+  const [sulfurdioxideEventdb, setSulfurDioxideEventdb] = useState();
 
   const formatEventsToChart = (events) => {
     const timeAndMeasurement = events.map((event) => {
@@ -102,7 +74,7 @@ export const AppProvider = ({ children }) => {
             timestamp: codates,
             measurement: covals,
             geolocation: cogeos,
-          }
+          };
           setCo2Eventdb(CO2message);
         })
         .catch((error) => {
@@ -260,7 +232,6 @@ export const AppProvider = ({ children }) => {
 
     try {
       const web3 = new Web3("ws://81.169.221.233:8545");
-      const id = await web3.eth.net.getId();
       const co2Contract = new web3.eth.Contract(
         CO2Build.abi,
         "0xBc6Ee8d2e83e2407A24c6daFCccE72fdc16b9416"
@@ -279,7 +250,6 @@ export const AppProvider = ({ children }) => {
           toBlock: "latest",
         })
         .then((events) => {
-          console.log("co2: ", events);
           setCo2Events(events);
           setCo2EventsChart(formatEventsToChart(events));
           setCo2EventsTable(formatEventsToTable(events));
@@ -336,8 +306,14 @@ export const AppProvider = ({ children }) => {
         temperatureEvents: temperatureEvents,
         temperatureEventsChart: temperatureEventsChart,
         temperatureEventsTable: temperatureEventsTable,
-        co2Eventdb, airhumidityEventdb, temperatureEventdb, nitrogendioxideEventdb, 
-        particularmatter2Eventdb, particularmatter10Eventdb, sulfurdioxideEventdb,
+        co2Eventdb,
+        airhumidityEventdb,
+        temperatureEventdb,
+        nitrogendioxideEventdb,
+        particularmatter2Eventdb,
+        particularmatter10Eventdb,
+        sulfurdioxideEventdb,
+        errordb,
       }}
     >
       {children}

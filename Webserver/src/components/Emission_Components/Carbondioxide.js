@@ -9,7 +9,12 @@ import HistoryGraph from "../Core_components/HistoryGraph";
 import CertificateBanner from "../Core_components/CertificateBanner";
 
 function Carbondioxide() {
-  const { co2Loading, co2EventsTable, co2EventsChart } = useGlobalContext();
+  const {
+    co2Loading,
+    co2EventsTable,
+    co2EventsChart,
+    co2Eventdb,
+  } = useGlobalContext();
   const [key, setKey] = useState("about");
 
   const lowerEmissionLimit = 1000;
@@ -31,7 +36,8 @@ function Carbondioxide() {
       />
       <hr />
       <HistoryGraph
-        data={co2EventsChart}
+        blockchainData={co2EventsChart}
+        databaseData={co2Eventdb}
         loading={co2Loading}
         name="CO2"
         unit="ppm"

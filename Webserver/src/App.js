@@ -8,6 +8,7 @@ import Overview from "./components/General_Components/Overview";
 import About from "./components/General_Components/About";
 import ErrorPage from "./components/General_Components/ErrorPage";
 import StatusPane from "./components/General_Components/StatusPane";
+import BlockchainExplanation from "./components/General_Components/BlockchainExplanation";
 
 // emission components
 import Carbondioxide from "./components/Emission_Components/Carbondioxide";
@@ -26,6 +27,7 @@ function App() {
           <Route path="/humidity" component={Humidity} />
           <Route path="/temperature" component={Temperature} />
           <Route path="/about" component={About} />
+          <Route path="/blockchain" component={BlockchainExplanation} />
           <Route component={ErrorPage} />
         </Switch>
       </Router>

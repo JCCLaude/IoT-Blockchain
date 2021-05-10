@@ -1,9 +1,37 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import HighchartsReact from "highcharts-react-official";
 import Highcharts from "highcharts/highstock";
-import { Container, Button, Spinner } from "react-bootstrap";
+import { Container, Button, Spinner, Alert } from "react-bootstrap";
+import { FaInfoCircle } from "react-icons/fa";
 
-function HistoryGraph({ data, unit, name, loading, lowerLimit, higherLimit }) {
+function HistoryGraph({
+  blockchainData,
+  databaseData,
+  unit,
+  name,
+  loading,
+  lowerLimit,
+  higherLimit,
+}) {
+  const [databaseDataFormated, setDatabaseDataFormated] = useState([]);
+  const [formatLoading, setFormatLoading] = useState(true);
+  const formatDatabase = (dbEvents) => {
+    if (typeof dbEvents !== "undefined") {
+      const newData = [];
+      for (let i = 0; i < dbEvents.timestamp.length - 1; i++) {
+        const formatedDate = new Date(dbEvents.timestamp[i]).getTime();
+        newData.push([formatedDate, dbEvents.measurement[i]]);
+      }
+      setDatabaseDataFormated(newData);
+      setFormatLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    console.log(databaseData);
+    formatDatabase(databaseData);
+  }, [databaseData]);
+
   const options = {
     chart: {
       type: "spline",
@@ -23,13 +51,33 @@ function HistoryGraph({ data, unit, name, loading, lowerLimit, higherLimit }) {
         text: "Measured Values",
       },
     },
+    tooltip: {
+      formatter: function () {
+        return (
+          "<b>" +
+          new Date(this.x) +
+          "</b>" +
+          "</br>" +
+          (this.points.length === 1
+            ? `${name} (${unit}): ` +
+              this.points[0].y +
+              "<br /> Blockchain confirmed: " +
+              "✖"
+            : `${name} (${unit}): ` +
+              this.points[0].y +
+              "<br /> Blockchain confirmed: " +
+              "✔")
+        );
+      },
+      shared: true,
+    },
     credits: {
       text: "made with ❤ by Johannes",
     },
     series: [
       {
         name: `${name} (${unit})`,
-        data: data,
+        data: databaseDataFormated,
         zones: [
           {
             value: lowerLimit,
@@ -43,6 +91,24 @@ function HistoryGraph({ data, unit, name, loading, lowerLimit, higherLimit }) {
             color: "#ff0000",
           },
         ],
+        states: {
+          inactive: {
+            opacity: 1,
+          },
+        },
+      },
+      {
+        name: "test values",
+        data: blockchainData,
+        type: "line",
+        lineWidth: 0,
+        states: {
+          hover: {
+            // enabled: false,
+            lineWidthPlus: 0,
+            lineWidth: 0,
+          },
+        },
       },
     ],
   };
@@ -50,17 +116,22 @@ function HistoryGraph({ data, unit, name, loading, lowerLimit, higherLimit }) {
   return (
     <Container className="text-center">
       <h1>Check history data as a chart</h1>
-      {loading ? (
+
+      {formatLoading ? (
         <Spinner animation="border" />
       ) : (
         <Container>
+          <Alert variant="info">
+            {" "}
+            <FaInfoCircle /> Select an area in the chart to zoom in
+          </Alert>
           <HighchartsReact
             highcharts={Highcharts}
             options={options}
             constructorType={"chart"}
           />
           <br />
-          <Button variant="info" onClick={() => console.log(data)}>
+          <Button variant="info" onClick={() => formatDatabase(databaseData)}>
             Log values to console
           </Button>
         </Container>

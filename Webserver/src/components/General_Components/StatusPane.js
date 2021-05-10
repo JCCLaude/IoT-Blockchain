@@ -39,11 +39,11 @@ function StatusPane() {
       }`}
     >
       {error ? (
-        <Link to="/detail">Check alarm(s)</Link>
+        <Link to="/">Check alarm(s)</Link>
       ) : co2Loading || humidityLoading || temperatureLoading ? (
-        <Link to="/verified">Loading data</Link>
+        <Link to="/loading">Loading data</Link>
       ) : (
-        <Link to="/verified">Currently {totalCritical} alarm(s)</Link>
+        <Link to="/">Currently {totalCritical} alarm(s)</Link>
       )}
     </div>
   );
