@@ -94,7 +94,8 @@ function Temperature() {
       </Container>
       <hr />
       <HistoryTable
-        data={temperatureEventsTable}
+        blockchainData={temperatureEventsTable}
+        databaseData={temperatureEventdb}
         loading={temperatureLoading}
         lowerLimit={lowerEmissionLimit}
         higherLimit={higherEmissionLimit}

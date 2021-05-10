@@ -96,7 +96,8 @@ function Carbondioxide() {
       </Container>
       <hr />
       <HistoryTable
-        data={co2EventsTable}
+        blockchainData={co2EventsTable}
+        databaseData={co2Eventdb}
         loading={co2Loading}
         lowerLimit={lowerEmissionLimit}
         higherLimit={higherEmissionLimit}
