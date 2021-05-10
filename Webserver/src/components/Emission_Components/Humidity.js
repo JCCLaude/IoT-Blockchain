@@ -93,7 +93,8 @@ function Humidity() {
       </Container>
       <hr />
       <HistoryTable
-        data={humidityEventsTable}
+        blockchainData={humidityEventsTable}
+        databaseData={airhumidityEventdb}
         loading={humidityLoading}
         lowerLimit={lowerEmissionLimit}
         higherLimit={higherEmissionLimit}

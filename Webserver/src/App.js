@@ -30,6 +30,9 @@ function App() {
           <Route path="/blockchain" component={BlockchainExplanation} />
           <Route component={ErrorPage} />
         </Switch>
+        <br />
+        <br />
+        <br />
       </Router>
     </>
   );

@@ -1,19 +1,53 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import { Container, Button, Row, Col, Modal, Table } from "react-bootstrap";
+import { FaRegCheckCircle } from "react-icons/fa";
+import "react-datepicker/dist/react-datepicker.css";
 
-function HistoryTable({ data, loading, lowerLimit, higherLimit }) {
+function HistoryTable({
+  blockchainData,
+  databaseData,
+  loading,
+  lowerLimit,
+  higherLimit,
+}) {
   const [show, setShow] = useState(false);
   const [tableData, setTableData] = useState([]);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
   const filterData = (startDate, endDate) => {
-    const displayData = data.filter(
+    const displayDataBlockchain = blockchainData.filter(
       (item) => startDate.getTime() <= item[0] && item[0] <= endDate.getTime()
     );
-    console.log(startDate.getTime(), endDate.getTime(), "test:", displayData);
-    setTableData(displayData);
+    const displayDataDatabase = [];
+    for (let i = 0; i < databaseData.timestamp.length; i++) {
+      console.log("test: ", databaseData.timestamp[i]);
+      if (
+        startDate.getTime() <= new Date(databaseData.timestamp[i]).getTime() &&
+        new Date(databaseData.timestamp[i]).getTime() <= endDate.getTime()
+      ) {
+        displayDataDatabase.push([
+          new Date(databaseData.timestamp[i]).getTime(),
+          databaseData.measurement[i],
+          databaseData.geolocation[i],
+        ]);
+      }
+    }
+    console.log(displayDataBlockchain, displayDataDatabase);
+    console.log(displayDataBlockchain[0]);
+    const sharedValues = displayDataDatabase.map((dbEntry) => {
+      let confirmed = false;
+      for (let i = 0; i < displayDataBlockchain.length; i++) {
+        if (dbEntry[0] === displayDataBlockchain[i][0]) {
+          confirmed = true;
+          break;
+        }
+      }
+      return [...dbEntry, confirmed];
+    });
+    console.log("shared: ", sharedValues);
+    setTableData(sharedValues);
     setShow(true);
   };
 
@@ -115,6 +149,7 @@ function HistoryTable({ data, loading, lowerLimit, higherLimit }) {
                   <th>Timestamp</th>
                   <th>Measured Value</th>
                   <th>Geolocation</th>
+                  <th>Confirmed by Blockchain?</th>
                 </tr>
               </thead>
               <tbody>
@@ -132,13 +167,16 @@ function HistoryTable({ data, loading, lowerLimit, higherLimit }) {
                         {item[1]}
                       </td>
                       <td>{item[2]}</td>
+                      <td style={{ textAlign: "center", color: "green" }}>
+                        {item[3] && <FaRegCheckCircle />}
+                      </td>
                     </tr>
                   );
                 })}
               </tbody>
             </Table>
           )}
-          <Button onClick={() => console.log(data[0][0])}>log</Button>
+          <Button onClick={() => console.log(blockchainData[0][0])}>log</Button>
         </Modal.Body>
       </Modal>
     </Container>
