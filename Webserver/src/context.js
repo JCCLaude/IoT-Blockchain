@@ -27,12 +27,19 @@ export const AppProvider = ({ children }) => {
 
   const [errordb, setErrordb] = useState(false);
   const [co2Eventdb, setCo2Eventdb] = useState();
+  const [co2Loadingdb, setCo2Loadingdb] = useState(true);
   const [airhumidityEventdb, setAirHumidityEventdb] = useState();
+  const [airhumidityLoadingdb, setAirHumidityLoadingdb] = useState(true);
   const [temperatureEventdb, setTemperatureEventdb] = useState();
+  const [temperatureLoadingdb, setTemperatureLoadingdb] = useState(true);
   const [nitrogendioxideEventdb, setNitrogenDioxideEventdb] = useState();
+  const [nitrogendioxideLoadingdb, setNitrogenDioxideLoadingdb] = useState(true);
   const [particularmatter2Eventdb, setParticularMatter2Eventdb] = useState();
+  const [particularmatter2Loadingdb, setParticularMatter2Loadingdb] = useState(true);
   const [particularmatter10Eventdb, setParticularMatter10Eventdb] = useState();
+  const [particularmatter10Loadingdb, setParticularMatter10Loadingdb] = useState(true);
   const [sulfurdioxideEventdb, setSulfurDioxideEventdb] = useState();
+  const [sulfurdioxideLoadingdb, setSulfurDioxideLoadingdb] = useState(true);
 
   const formatEventsToChart = (events) => {
     const timeAndMeasurement = events.map((event) => {
@@ -76,6 +83,7 @@ export const AppProvider = ({ children }) => {
             geolocation: cogeos,
           };
           setCo2Eventdb(CO2message);
+          setCo2Loadingdb(false);
         })
         .catch((error) => {
           console.log(error);
@@ -101,6 +109,7 @@ export const AppProvider = ({ children }) => {
           };
 
           setAirHumidityEventdb(AHmessage);
+          setAirHumidityLoadingdb(false);
         })
         .catch((error) => {
           console.log(error);
@@ -125,6 +134,7 @@ export const AppProvider = ({ children }) => {
             geolocation: tempgeos,
           };
           setTemperatureEventdb(TEMPmessage);
+          setTemperatureLoadingdb(false);
         })
         .catch((error) => {
           console.log(error);
@@ -149,6 +159,7 @@ export const AppProvider = ({ children }) => {
             geolocation: nogeos,
           };
           setNitrogenDioxideEventdb(NOmessage);
+          setNitrogenDioxideLoadingdb(false);
         })
         .catch((error) => {
           console.log(error);
@@ -173,6 +184,7 @@ export const AppProvider = ({ children }) => {
             geolocation: pm2geos,
           };
           setParticularMatter2Eventdb(PM2message);
+          setParticularMatter2Loadingdb(false);
         })
         .catch((error) => {
           console.log(error);
@@ -197,6 +209,7 @@ export const AppProvider = ({ children }) => {
             geolocation: pm10geos,
           };
           setParticularMatter10Eventdb(PM10message);
+          setParticularMatter10Loadingdb(false);
         })
         .catch((error) => {
           console.log(error);
@@ -221,6 +234,7 @@ export const AppProvider = ({ children }) => {
             geolocation: sogeos,
           };
           setSulfurDioxideEventdb(SOmessage);
+          setSulfurDioxideLoadingdb(false);
         })
         .catch((error) => {
           console.log(error);
@@ -306,14 +320,12 @@ export const AppProvider = ({ children }) => {
         temperatureEvents: temperatureEvents,
         temperatureEventsChart: temperatureEventsChart,
         temperatureEventsTable: temperatureEventsTable,
-        co2Eventdb,
-        airhumidityEventdb,
-        temperatureEventdb,
-        nitrogendioxideEventdb,
-        particularmatter2Eventdb,
-        particularmatter10Eventdb,
-        sulfurdioxideEventdb,
+        co2Eventdb, airhumidityEventdb, temperatureEventdb, nitrogendioxideEventdb, 
+        particularmatter2Eventdb, particularmatter10Eventdb, sulfurdioxideEventdb,
         errordb,
+        co2Loadingdb: co2Loading, airhumidityLoadingdb: airhumidityLoadingdb, temperatureLoadingdb: temperatureLoadingdb,
+        nitrogendioxideLoadingdb: nitrogendioxideLoadingdb, particularmatter2Loadingdb: particularmatter2Loadingdb,
+        particularmatter10Loadingdb: particularmatter10Loadingdb, sulfurdioxideLoadingdb: sulfurdioxideLoadingdb,
       }}
     >
       {children}

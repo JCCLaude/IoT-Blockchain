@@ -38,17 +38,17 @@ function Navigation() {
               About other emissions
             </NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item as={Link} to="/emissions/one">
+            <NavDropdown.Item as={Link} to="/emissions/nitrogendioxide">
               Nitrogen Dioxide
             </NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/emissions/two">
-              Sulfur Dioxide
-            </NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/emissions/three">
+            <NavDropdown.Item as={Link} to="/emissions/particularmatter2">
               Particular Matter 2,5
             </NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/emissions/three">
+            <NavDropdown.Item as={Link} to="/emissions/particularmatter10">
               Particular Matter 10
+            </NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/emissions/sulfurdioxide">
+              Sulfur Dioxide
             </NavDropdown.Item>
           </NavDropdown>
         </Nav>

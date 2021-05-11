@@ -40,8 +40,12 @@ function Overview() {
 
     co2Eventdb, airhumidityEventdb, temperatureEventdb, nitrogendioxideEventdb, 
     particularmatter2Eventdb, particularmatter10Eventdb, sulfurdioxideEventdb,
+    co2Loadingdb, airhumidityLoadingdb, temperatureLoadingdb, nitrogendioxideLoadingdb,
+    particularmatter2Loadingdb, particularmatter10Loadingdb, sulfurdioxideLoadingdb,
 
   } = useGlobalContext();
+
+  console.log("kkk: "+co2Loadingdb)
 
 var lastCO2 = {
   timestamp: new Date(new Date(co2Eventdb.timestamp[co2Eventdb.timestamp.length-1]).getTime() + 3600000).toUTCString(),
@@ -85,8 +89,7 @@ var sodates = []; var sovals = [];
 
 
 //604800000 = 1 week
-// replace v with time range like 1 week (7 days)
-var v = new Date().getTime() - new Date("March 21, 2021 01:00:00").getTime();
+var v = new Date().getTime() - 604800000;
 for (i = 0; i < co2Eventdb.timestamp.length - 1; i++) {
   if (new Date(co2Eventdb.timestamp[i]).getTime() > new Date().getTime() - v) {
       codates.push(co2Eventdb.timestamp[i]);
@@ -181,13 +184,13 @@ var COStr = ""; var AHStr = ""; var TEMPStr=""; var NOStr=""; var PM2Str=""; var
 
         <Container className="dark rounded text-center">
             <Row>
-              <CurrentStatus name={"Carbon Dioxide"} {...lastCO2} unit="ppm" demoCritical={"0"} />
-              <CurrentStatus name={"Air Humidity"} {...lastAH} unit="%" demoCritical={"1"}/>
-              <CurrentStatus name={"Temperature"} {...lastTEMP} unit="°C" demoCritical={"2"}/>
-              <CurrentStatus name={"Nitrogen Dioxide"} {...lastNO} unit="ppm" />
-              <CurrentStatus name={"Particular Matter 2.5"} {...lastPM2} unit="ppm" />
-              <CurrentStatus name={"Particular Matter 10"} {...lastPM10} unit="ppm" />
-              <CurrentStatus name={"Sulfur Dioxdie"} {...lastSO} unit="ppm"/>
+              <CurrentStatus name={"Carbon Dioxide"} {...lastCO2} unit="ppm" loading={co2Loadingdb}/>
+              <CurrentStatus name={"Air Humidity"} {...lastAH} unit="%" loading={airhumidityLoadingdb}/>
+              <CurrentStatus name={"Temperature"} {...lastTEMP} unit="°C" loading={temperatureLoadingdb}/>
+              <CurrentStatus name={"Nitrogen Dioxide"} {...lastNO} unit="ppm" loading={nitrogendioxideLoadingdb}/>
+              <CurrentStatus name={"Particular Matter 2.5"} {...lastPM2} unit="ppm" loading={particularmatter2Loadingdb}/>
+              <CurrentStatus name={"Particular Matter 10"} {...lastPM10} unit="ppm" loading={particularmatter10Loadingdb}/>
+              <CurrentStatus name={"Sulfur Dioxdie"} {...lastSO} unit="ppm" loading={sulfurdioxideLoadingdb}/>
             </Row>
           </Container>
 

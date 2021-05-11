@@ -72,7 +72,7 @@ function HistoryGraph({
       shared: true,
     },
     credits: {
-      text: "made with ❤ by Johannes",
+      text: "made with ❤ by Johannes and Alex",
     },
     series: [
       {
