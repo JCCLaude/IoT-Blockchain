@@ -10,10 +10,10 @@ import CertificateBanner from "../Core_components/CertificateBanner";
 
 function ParticularMatter2() {
   const {
-    co2Loading,
-    co2EventsTable,
-    co2EventsChart,
-    co2Eventdb,
+    particularmatter2Loading,
+    particularmatter2EventsTable,
+    particularmatter2EventsChart,
+    particularmatter2Eventdb,
   } = useGlobalContext();
   const [key, setKey] = useState("about");
 
@@ -25,21 +25,21 @@ function ParticularMatter2() {
       <Jumbotron fluid className="jumboco2">
         <div className="overlay "> </div>
         <Container className="d-none d-lg-block">
-          <h1>Carbon Dioxide (CO2)</h1>
-          <p>Find verified information about all measured CO2 emissions!</p>
+          <h1>Particular Matter 2,5 (PM 2,5)</h1>
+          <p>Find verified information about all measured PM 2,5 emissions!</p>
         </Container>
       </Jumbotron>
       <CertificateBanner
-        data={co2EventsChart}
+        data={particularmatter2EventsChart}
         limit={higherEmissionLimit}
-        loading={co2Loading}
+        loading={particularmatter2Loading}
       />
       <hr />
       <HistoryGraph
-        blockchainData={co2EventsChart}
-        databaseData={co2Eventdb}
-        loading={co2Loading}
-        name="CO2"
+        blockchainData={particularmatter2EventsChart}
+        databaseData={particularmatter2Eventdb}
+        loading={particularmatter2Loading}
+        name="PM 2,5"
         unit="ppm"
         lowerLimit={lowerEmissionLimit}
         higherLimit={higherEmissionLimit}
@@ -51,12 +51,12 @@ function ParticularMatter2() {
           activeKey={key}
           onSelect={(k) => setKey(k)}
         >
-          <Tab eventKey="about" title="About CO2">
+          <Tab eventKey="about" title="About PM 2,5">
             <Card>
               <Card.Body>
                 <Card.Title>The Survivor</Card.Title>
                 <Card.Text>
-                  CO2 is the most common greenhouse gas. Even though it enters
+                  PM 2,5 is the most common greenhouse gas. Even though it enters
                   the atmosphere naturally, the concentration has been massively
                   increased by humans. Through natural biochemical processes,
                   carbon dioxide is only degraded very slowly (60-85% in 1000
@@ -70,10 +70,10 @@ function ParticularMatter2() {
               <Card.Body>
                 <Card.Title>Most regulated</Card.Title>
                 <Card.Text>
-                  Reducing CO2 emissions is a high priority for many countries.
+                  Reducing PM 2,5 emissions is a high priority for many countries.
                   The Kyoto climate agreement stipulated that emissions should
                   be reduced by 5.8% compared to 1990. Many countries are also
-                  implementing their own rules to reduce CO2 emissions
+                  implementing their own rules to reduce PM 2,5 emissions
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -83,7 +83,7 @@ function ParticularMatter2() {
               <Card.Body>
                 <Card.Title>Danger in closed Rooms</Card.Title>
                 <Card.Text>
-                  An increased concentration of CO2 in the air we breathe can
+                  An increased concentration of PM 2,5 in the air we breathe can
                   lead to poor concentration, decreased performance, increased
                   risk of infection, and increased breathing rate. As the
                   concentration of carbon dioxide naturally increases in closed
@@ -96,9 +96,9 @@ function ParticularMatter2() {
       </Container>
       <hr />
       <HistoryTable
-        blockchainData={co2EventsTable}
-        databaseData={co2Eventdb}
-        loading={co2Loading}
+        blockchainData={particularmatter2EventsTable}
+        databaseData={particularmatter2Eventdb}
+        loading={particularmatter2Loading}
         lowerLimit={lowerEmissionLimit}
         higherLimit={higherEmissionLimit}
       />
