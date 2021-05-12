@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useCallback } from "react";
 import axios from "axios";
 
 const Web3 = require("web3");
@@ -18,19 +18,13 @@ export const AppProvider = ({ children }) => {
   const [humidityEvents, setHumidityEvents] = useState([{ returnValues: "" }]);
   const [humidityEventsTable, setHumidityEventsTable] = useState([]);
   const [humidityEventsChart, setHumidityEventsChart] = useState([]);
+
   const [temperatureLoading, setTemperatureLoading] = useState(true);
-  const [temperatureEvents, setTemperatureEvents] = useState([{ returnValues: "" },]);
+  const [temperatureEvents, setTemperatureEvents] = useState([
+    { returnValues: "" },
+  ]);
   const [temperatureEventsTable, setTemperatureEventsTable] = useState([]);
   const [temperatureEventsChart, setTemperatureEventsChart] = useState([]);
-
-  const [nitrogendioxideEventsTable, setnitrogendioxideTable] = useState([]);
-  const [nitrogendioxideEventsChart, setnitrogendioxideEventsChart] = useState([]);
-  const [particularmatter2EventsTable, setparticularmatter2Table] = useState([]);
-  const [particularmatter2EventsChart, setparticularmatter2EventsChart] = useState([]);
-  const [particularmatter10EventsTable, setparticularmatter10Table] = useState([]);
-  const [particularmatter10EventsChart, setparticularmatter10EventsChart] = useState([]);
-  const [sulfurdioxideEventsTable, setsulfurdioxideTable] = useState([]);
-  const [sulfurdioxideEventsChart, setsulfurdioxideEventsChart] = useState([]);
 
   const [errordb, setErrordb] = useState(false);
   const [co2Eventdb, setCo2Eventdb] = useState();
@@ -40,11 +34,14 @@ export const AppProvider = ({ children }) => {
   const [temperatureEventdb, setTemperatureEventdb] = useState();
   const [temperatureLoadingdb, setTemperatureLoadingdb] = useState(true);
   const [nitrogendioxideEventdb, setNitrogenDioxideEventdb] = useState();
-  const [nitrogendioxideLoadingdb, setNitrogenDioxideLoadingdb] = useState(true);
+  const [nitrogendioxideLoadingdb, setNitrogenDioxideLoadingdb] =
+    useState(true);
   const [particularmatter2Eventdb, setParticularMatter2Eventdb] = useState();
-  const [particularmatter2Loadingdb, setParticularMatter2Loadingdb] = useState(true);
+  const [particularmatter2Loadingdb, setParticularMatter2Loadingdb] =
+    useState(true);
   const [particularmatter10Eventdb, setParticularMatter10Eventdb] = useState();
-  const [particularmatter10Loadingdb, setParticularMatter10Loadingdb] = useState(true);
+  const [particularmatter10Loadingdb, setParticularMatter10Loadingdb] =
+    useState(true);
   const [sulfurdioxideEventdb, setSulfurDioxideEventdb] = useState();
   const [sulfurdioxideLoadingdb, setSulfurDioxideLoadingdb] = useState(true);
 
@@ -69,7 +66,7 @@ export const AppProvider = ({ children }) => {
     return timeMeasurementLocation;
   };
 
-  const fetchEvents = async () => {
+  const fetchEvents = useCallback(async () => {
     try {
       axios
         .get("http://localhost:5000/co/")
@@ -302,34 +299,45 @@ export const AppProvider = ({ children }) => {
       console.log("No blockchain connection possible", error);
       setError(true);
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchEvents();
-    return () => {
-      //cleanup
-    };
-  }, []);
+  }, [fetchEvents]);
 
   return (
     <AppContext.Provider
       value={{
         error: error,
-        co2Loading: co2Loading, co2Events: co2Events, co2EventsChart: co2EventsChart, co2EventsTable: co2EventsTable,
-        humidityLoading: humidityLoading, humidityEvents: humidityEvents, humidityEventsChart: humidityEventsChart, humidityEventsTable: humidityEventsTable,
-        temperatureLoading: temperatureLoading, temperatureEvents: temperatureEvents, temperatureEventsChart: temperatureEventsChart, temperatureEventsTable: temperatureEventsTable,
-        
-        nitrogendioxideLoadingdb: nitrogendioxideLoadingdb, nitrogendioxideEventdb: nitrogendioxideEventdb, nitrogendioxideEventsChart: nitrogendioxideEventsChart, nitrogendioxideEventsTable: nitrogendioxideEventsTable,
-        particularmatter2Loadingdb: particularmatter2Loadingdb, particularmatter2Eventdb: particularmatter2Eventdb, particularmatter2EventsChart: particularmatter2EventsChart, particularmatter2EventsTable: particularmatter2EventsTable,
-        particularmatter10Loadingdb: particularmatter10Loadingdb, particularmatter10Eventdb: particularmatter10Eventdb, particularmatter10EventsChart: particularmatter10EventsChart, particularmatter10EventsTable: particularmatter10EventsTable,
-        sulfurdioxideLoadingdb: sulfurdioxideLoadingdb, sulfurdioxideEventdb: sulfurdioxideEventdb, sulfurdioxideEventsChart: sulfurdioxideEventsChart, sulfurdioxideEventsTable: sulfurdioxideEventsTable,
+        co2Loading: co2Loading,
+        co2Events: co2Events,
+        co2EventsChart: co2EventsChart,
+        co2EventsTable: co2EventsTable,
+        humidityLoading: humidityLoading,
+        humidityEvents: humidityEvents,
+        humidityEventsChart: humidityEventsChart,
+        humidityEventsTable: humidityEventsTable,
+        temperatureLoading: temperatureLoading,
+        temperatureEvents: temperatureEvents,
+        temperatureEventsChart: temperatureEventsChart,
+        temperatureEventsTable: temperatureEventsTable,
 
-        co2Eventdb, airhumidityEventdb, temperatureEventdb, nitrogendioxideEventdb, 
-        particularmatter2Eventdb, particularmatter10Eventdb, sulfurdioxideEventdb,
+        co2Eventdb: co2Eventdb,
+        co2Loadingdb: co2Loadingdb,
+        airhumidityEventdb: airhumidityEventdb,
+        airhumidityLoadingdb: airhumidityLoadingdb,
+        temperatureEventdb: temperatureEventdb,
+        temperatureLoadingdb: temperatureLoadingdb,
+        nitrogendioxideEventdb: nitrogendioxideEventdb,
+        nitrogendioxideLoadingdb: nitrogendioxideLoadingdb,
+        particularmatter2Eventdb: particularmatter2Eventdb,
+        particularmatter2Loadingdb: particularmatter2Loadingdb,
+        particularmatter10Eventdb: particularmatter10Eventdb,
+        particularmatter10Loadingdb: particularmatter10Loadingdb,
+        sulfurdioxideEventdb: sulfurdioxideEventdb,
+        sulfurdioxideLoadingdb: sulfurdioxideLoadingdb,
+
         errordb,
-        co2Loadingdb: co2Loadingdb, airhumidityLoadingdb: airhumidityLoadingdb, temperatureLoadingdb: temperatureLoadingdb,
-        nitrogendioxideLoadingdb: nitrogendioxideLoadingdb, particularmatter2Loadingdb: particularmatter2Loadingdb,
-        particularmatter10Loadingdb: particularmatter10Loadingdb, sulfurdioxideLoadingdb: sulfurdioxideLoadingdb,
       }}
     >
       {children}

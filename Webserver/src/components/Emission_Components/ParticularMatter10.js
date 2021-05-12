@@ -6,15 +6,11 @@ import "./emissions.css";
 
 import HistoryTable from "../Core_components/HistoryTable";
 import HistoryGraph from "../Core_components/HistoryGraph";
-import CertificateBanner from "../Core_components/CertificateBanner";
+// import CertificateBanner from "../Core_components/CertificateBanner";
 
 function ParticularMatter10() {
-  const {
-    particularmatter10Loading,
-    particularmatter10EventsTable,
-    particularmatter10EventsChart,
-    particularmatter10Eventdb,
-  } = useGlobalContext();
+  const { particularmatter10Loadingdb, particularmatter10Eventdb } =
+    useGlobalContext();
   const [key, setKey] = useState("about");
 
   const lowerEmissionLimit = 1000;
@@ -29,16 +25,16 @@ function ParticularMatter10() {
           <p>Find verified information about all measured PM 10 emissions!</p>
         </Container>
       </Jumbotron>
-      <CertificateBanner
+      {/* <CertificateBanner
         data={particularmatter10EventsChart}
         limit={higherEmissionLimit}
-        loading={particularmatter10Loading}
-      />
+        loading={particularmatter10Loadingdb}
+      /> */}
       <hr />
       <HistoryGraph
-        blockchainData={particularmatter10EventsChart}
+        blockchainData={[]}
         databaseData={particularmatter10Eventdb}
-        loading={particularmatter10Loading}
+        loading={particularmatter10Loadingdb}
         name="PM 10"
         unit="ppm"
         lowerLimit={lowerEmissionLimit}
@@ -70,10 +66,11 @@ function ParticularMatter10() {
               <Card.Body>
                 <Card.Title>Most regulated</Card.Title>
                 <Card.Text>
-                  Reducing PM 10 emissions is a high priority for many countries.
-                  The Kyoto climate agreement stipulated that emissions should
-                  be reduced by 5.8% compared to 1990. Many countries are also
-                  implementing their own rules to reduce PM 10 emissions
+                  Reducing PM 10 emissions is a high priority for many
+                  countries. The Kyoto climate agreement stipulated that
+                  emissions should be reduced by 5.8% compared to 1990. Many
+                  countries are also implementing their own rules to reduce PM
+                  10 emissions
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -96,9 +93,9 @@ function ParticularMatter10() {
       </Container>
       <hr />
       <HistoryTable
-        blockchainData={particularmatter10EventsTable}
+        blockchainData={[]}
         databaseData={particularmatter10Eventdb}
-        loading={particularmatter10Loading}
+        loading={particularmatter10Loadingdb}
         lowerLimit={lowerEmissionLimit}
         higherLimit={higherEmissionLimit}
       />
