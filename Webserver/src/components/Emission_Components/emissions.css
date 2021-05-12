@@ -34,6 +34,43 @@
   z-index: -2;
   background-position: 0 50%;
 }
+.jumbono2 {
+  background: url("../../assets/images/no2.jpg") no-repeat fixed bottom;
+  background-size: cover;
+  color: #ccc;
+  height: 200px;
+  position: relative;
+  z-index: -2;
+  background-position: 0 50%;
+}
+.jumbopm2 {
+  background: url("../../assets/images/pm2.jpg") no-repeat fixed bottom;
+  background-size: cover;
+  color: #ccc;
+  height: 200px;
+  position: relative;
+  z-index: -2;
+  background-position: 0 50%;
+}
+.jumbopm10 {
+  background: url("../../assets/images/pm10.jpg") no-repeat fixed bottom;
+  background-size: cover;
+  color: #ccc;
+  height: 200px;
+  position: relative;
+  z-index: -2;
+  background-position: 0 50%;
+}
+.jumboso2 {
+  background: url("../../assets/images/so2.jpg") no-repeat fixed bottom;
+  background-size: cover;
+  color: #ccc;
+  height: 200px;
+  position: relative;
+  z-index: -2;
+  background-position: 0 50%;
+}
+
 .overlay {
   background-color: #000;
   opacity: 0.6;

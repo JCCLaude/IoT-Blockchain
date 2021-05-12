@@ -19,7 +19,7 @@ function NitrogenDioxide() {
 
   return (
     <>
-      <Jumbotron fluid className="jumboco2">
+      <Jumbotron fluid className="jumbono2">
         <div className="overlay "> </div>
         <Container className="d-none d-lg-block">
           <h1>Nitrogen Dioxide (NO2)</h1>

@@ -4,7 +4,10 @@ import Container from "react-bootstrap/Container";
 import Spinner from "react-bootstrap/Spinner";
 import Image from "react-bootstrap/Image";
 import greenCertificate from "../../assets/images/greencert.png";
+import greenThumbUp from "../../assets/images/greenthumbup.png";
+import redCertificate from "../../assets/images/redcert.png";
 import redThumbDown from "../../assets/images/redthumbdown.png";
+
 
 function Last7Days() {
   const {
@@ -19,21 +22,12 @@ function Last7Days() {
 
   const [loading, setLoading] = useState(true);
   const [co2Exceeded, setCo2Exceeded] = useState(["CO2", false]);
-  const [humidityExceeded, setHumiditytExceeded] = useState([
-    "Humidity",
-    false,
-  ]);
-  const [temperatureExceeded, setTemperatureExceeded] = useState([
-    "Temperature",
-    false,
-  ]);
+  const [humidityExceeded, setHumiditytExceeded] = useState(["Air Humidity", false,]);
+  const [temperatureExceeded, setTemperatureExceeded] = useState(["Temperature",false,]);
   const [nitrogenExceeded, setNitrogenExceeded] = useState(["NO2", false]);
   const [pm2Exceeded, setPm2Exceeded] = useState(["PM 2,5", false]);
   const [pm10Exceeded, setPm10Exceeded] = useState(["PM 10", false]);
-  const [sulfurdioxideExceeded, setSulfurdioxideExceeded] = useState([
-    "SO2",
-    false,
-  ]);
+  const [sulfurdioxideExceeded, setSulfurdioxideExceeded] = useState(["SO2",false,]);
 
   const CheckValuesByTime = useCallback(
     (dbEvents, limit, name, setCertificate) => {
@@ -75,12 +69,12 @@ function Last7Days() {
   useEffect(() => {
     checkAllValues([
       [co2Eventdb, 2000, "CO2", setCo2Exceeded],
-      [airhumidityEventdb, 95, "Airhumidity", setHumiditytExceeded],
+      [airhumidityEventdb, 95, "Air Humidity", setHumiditytExceeded],
       [temperatureEventdb, 30, "Temperature", setTemperatureExceeded],
-      [nitrogendioxideEventdb, 12345, "NO2", setNitrogenExceeded],
-      [particularmatter2Eventdb, 12345, "PM 2,5", setPm2Exceeded],
-      [particularmatter10Eventdb, 12345, "PM 10", setPm10Exceeded],
-      [sulfurdioxideEventdb, 12345, "SO2", setSulfurdioxideExceeded],
+      [nitrogendioxideEventdb, 200, "NO2", setNitrogenExceeded],
+      [particularmatter2Eventdb, 25, "PM 2,5", setPm2Exceeded],
+      [particularmatter10Eventdb, 50, "PM 10", setPm10Exceeded],
+      [sulfurdioxideEventdb, 20, "SO2", setSulfurdioxideExceeded],
     ]);
   }, [
     co2Eventdb,
@@ -107,13 +101,19 @@ function Last7Days() {
           sulfurdioxideExceeded,
         ].filter((item) => item[1] !== false).length === 0 ? (
         <Container>
-          <Image src={greenCertificate} alt="green certificate" />
-          <h1>no worries</h1>
+          <Image src={greenCertificate} alt="green certificate" width={170} height={160} />
+          <div className="text-center">The emissions are <b>IN COMPLIANCE</b> with government emission limits in the last 7 days.</div>
+          <br></br>
+          <Image src={greenThumbUp} alt="green thumb up" width={140} height={140} />
+          <h5>The air quality is great!</h5>
         </Container>
       ) : (
         <Container>
-          <Image src={redThumbDown} alt="red thumb down" />
-          <p>exceeded values:</p>
+          <Image src={redCertificate} alt="red certificate" width={170} height={160} />
+          <div className="text-center">The emissions are <b>NOT IN COMPLIANCE</b> with government emission limits in the last 7 days.</div>
+          <br></br>
+          <Image src={redThumbDown} alt="red thumb down" width={140} height={140}/>
+          <p>The following emissions were exceeded the last 7 days:</p>
           {[
             co2Exceeded,
             humidityExceeded,
@@ -125,7 +125,7 @@ function Last7Days() {
           ]
             .filter((item) => item[1] !== false)
             .map((item) => {
-              return <h1>{item[0]} </h1>;
+              return <h5>{item[0]} </h5>;
             })}
         </Container>
       )}

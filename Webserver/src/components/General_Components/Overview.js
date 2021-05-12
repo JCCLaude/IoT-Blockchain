@@ -42,13 +42,14 @@ function Overview() {
           <p>Get a quick overview of the emission values in your area!</p>
         </Container>
       </Jumbotron>
-      <br></br>
-      <br></br>
       <Container>
         <Last7Days />
       </Container>
       <br></br> <br></br>
       <Container>
+      <br></br>
+        <h2>Last measured values:</h2>
+        <br></br>
         <Container className="dark rounded text-center">
           <Row>
             <CurrentStatus

@@ -18,7 +18,7 @@ function ParticularMatter10() {
 
   return (
     <>
-      <Jumbotron fluid className="jumboco2">
+      <Jumbotron fluid className="jumbopm10">
         <div className="overlay "> </div>
         <Container className="d-none d-lg-block">
           <h1>Particular Matter 10 (PM 10)</h1>

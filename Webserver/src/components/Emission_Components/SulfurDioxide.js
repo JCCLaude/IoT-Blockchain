@@ -17,7 +17,7 @@ function SulfurDioxide() {
 
   return (
     <>
-      <Jumbotron fluid className="jumboco2">
+      <Jumbotron fluid className="jumboso2">
         <div className="overlay "> </div>
         <Container className="d-none d-lg-block">
           <h1>Sulfur Dioxide (SO2)</h1>

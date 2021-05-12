@@ -20,7 +20,7 @@ function ParticularMatter2() {
 
   return (
     <>
-      <Jumbotron fluid className="jumboco2">
+      <Jumbotron fluid className="jumbopm2">
         <div className="overlay "> </div>
         <Container className="d-none d-lg-block">
           <h1>Particular Matter 2,5 (PM 2,5)</h1>
