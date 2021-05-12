@@ -19,11 +19,18 @@ export const AppProvider = ({ children }) => {
   const [humidityEventsTable, setHumidityEventsTable] = useState([]);
   const [humidityEventsChart, setHumidityEventsChart] = useState([]);
   const [temperatureLoading, setTemperatureLoading] = useState(true);
-  const [temperatureEvents, setTemperatureEvents] = useState([
-    { returnValues: "" },
-  ]);
+  const [temperatureEvents, setTemperatureEvents] = useState([{ returnValues: "" },]);
   const [temperatureEventsTable, setTemperatureEventsTable] = useState([]);
   const [temperatureEventsChart, setTemperatureEventsChart] = useState([]);
+
+  const [nitrogendioxideEventsTable, setnitrogendioxideTable] = useState([]);
+  const [nitrogendioxideEventsChart, setnitrogendioxideEventsChart] = useState([]);
+  const [particularmatter2EventsTable, setparticularmatter2Table] = useState([]);
+  const [particularmatter2EventsChart, setparticularmatter2EventsChart] = useState([]);
+  const [particularmatter10EventsTable, setparticularmatter10Table] = useState([]);
+  const [particularmatter10EventsChart, setparticularmatter10EventsChart] = useState([]);
+  const [sulfurdioxideEventsTable, setsulfurdioxideTable] = useState([]);
+  const [sulfurdioxideEventsChart, setsulfurdioxideEventsChart] = useState([]);
 
   const [errordb, setErrordb] = useState(false);
   const [co2Eventdb, setCo2Eventdb] = useState();
@@ -308,22 +315,19 @@ export const AppProvider = ({ children }) => {
     <AppContext.Provider
       value={{
         error: error,
-        co2Loading: co2Loading,
-        co2Events: co2Events,
-        co2EventsChart: co2EventsChart,
-        co2EventsTable: co2EventsTable,
-        humidityLoading: humidityLoading,
-        humidityEvents: humidityEvents,
-        humidityEventsChart: humidityEventsChart,
-        humidityEventsTable: humidityEventsTable,
-        temperatureLoading: temperatureLoading,
-        temperatureEvents: temperatureEvents,
-        temperatureEventsChart: temperatureEventsChart,
-        temperatureEventsTable: temperatureEventsTable,
+        co2Loading: co2Loading, co2Events: co2Events, co2EventsChart: co2EventsChart, co2EventsTable: co2EventsTable,
+        humidityLoading: humidityLoading, humidityEvents: humidityEvents, humidityEventsChart: humidityEventsChart, humidityEventsTable: humidityEventsTable,
+        temperatureLoading: temperatureLoading, temperatureEvents: temperatureEvents, temperatureEventsChart: temperatureEventsChart, temperatureEventsTable: temperatureEventsTable,
+        
+        nitrogendioxideLoadingdb: nitrogendioxideLoadingdb, nitrogendioxideEventdb: nitrogendioxideEventdb, nitrogendioxideEventsChart: nitrogendioxideEventsChart, nitrogendioxideEventsTable: nitrogendioxideEventsTable,
+        particularmatter2Loadingdb: particularmatter2Loadingdb, particularmatter2Eventdb: particularmatter2Eventdb, particularmatter2EventsChart: particularmatter2EventsChart, particularmatter2EventsTable: particularmatter2EventsTable,
+        particularmatter10Loadingdb: particularmatter10Loadingdb, particularmatter10Eventdb: particularmatter10Eventdb, particularmatter10EventsChart: particularmatter10EventsChart, particularmatter10EventsTable: particularmatter10EventsTable,
+        sulfurdioxideLoadingdb: sulfurdioxideLoadingdb, sulfurdioxideEventdb: sulfurdioxideEventdb, sulfurdioxideEventsChart: sulfurdioxideEventsChart, sulfurdioxideEventsTable: sulfurdioxideEventsTable,
+
         co2Eventdb, airhumidityEventdb, temperatureEventdb, nitrogendioxideEventdb, 
         particularmatter2Eventdb, particularmatter10Eventdb, sulfurdioxideEventdb,
         errordb,
-        co2Loadingdb: co2Loading, airhumidityLoadingdb: airhumidityLoadingdb, temperatureLoadingdb: temperatureLoadingdb,
+        co2Loadingdb: co2Loadingdb, airhumidityLoadingdb: airhumidityLoadingdb, temperatureLoadingdb: temperatureLoadingdb,
         nitrogendioxideLoadingdb: nitrogendioxideLoadingdb, particularmatter2Loadingdb: particularmatter2Loadingdb,
         particularmatter10Loadingdb: particularmatter10Loadingdb, sulfurdioxideLoadingdb: sulfurdioxideLoadingdb,
       }}

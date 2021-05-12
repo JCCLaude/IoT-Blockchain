@@ -1,15 +1,15 @@
-import React from "react";
 import redthumbdown from "../../assets/images/redthumbdown.png";
 import greenthumbup from "../../assets/images/greenthumbup.png";
 import greencert from "../../assets/images/greencert.png";
 import redcert from "../../assets/images/redcert.png";
 import Overview_structure from "../../assets/images/Overview_structure.png";
 import { Card, CardGroup, Container, Jumbotron, Row } from "react-bootstrap";
-
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../Database_components/style.components.css";
 import { useGlobalContext } from "../../context";
 import CurrentStatus from "../Database_components/CurrentStatus";
+import Last7Days from "./Last7Days";
 
 import co2img from "../../assets/images/CO2.jpg";
 import airhumidityimg from "../../assets/images/airhumidity.jpg";
@@ -19,10 +19,6 @@ import pm2img from "../../assets/images/pm2.jpg";
 import pm10img from "../../assets/images/pm10.jpg";
 import so2img from "../../assets/images/so2.jpg";
 
-var colimitred=2000; var ahlimitred=95; var templimitred=30; var nolimitred=200; 
-var pm2limitred=25; var pm10limitred=50; var solimitred=20;
-
-var textyesorno = "IN COMPLIANCE ";
 
 function Overview() {
   var certificateboolOverview = true;
@@ -36,6 +32,13 @@ function Overview() {
   var certboolCO2=true; var certboolAH=true; var certboolTEMP=true; var certboolNO=true;
   var certboolPM2=true; var certboolPM10=true; var certboolSO=true; 
 
+  var colimitred=2000; var ahlimitred=95; var templimitred=30; var nolimitred=200; 
+  var pm2limitred=25; var pm10limitred=50; var solimitred=20;
+
+var textyesorno = "IN COMPLIANCE ";
+
+
+
   const {
 
     co2Eventdb, airhumidityEventdb, temperatureEventdb, nitrogendioxideEventdb, 
@@ -45,115 +48,6 @@ function Overview() {
 
   } = useGlobalContext();
 
-  console.log("kkk: "+co2Loadingdb)
-
-var lastCO2 = {
-  timestamp: new Date(new Date(co2Eventdb.timestamp[co2Eventdb.timestamp.length-1]).getTime() + 3600000).toUTCString(),
-  measurement: co2Eventdb.measurement[co2Eventdb.measurement.length-1],
-}
-var lastAH = {
-  timestamp: new Date(new Date(airhumidityEventdb.timestamp[airhumidityEventdb.timestamp.length-1]).getTime() + 3600000).toUTCString(),
-  measurement: airhumidityEventdb.measurement[airhumidityEventdb.measurement.length-1],
-}
-var lastTEMP = {
-  timestamp: new Date(new Date(temperatureEventdb.timestamp[temperatureEventdb.timestamp.length-1]).getTime() + 3600000).toUTCString(),
-  measurement: temperatureEventdb.measurement[temperatureEventdb.measurement.length-1],
-}
-var lastNO = {
-  timestamp: new Date(new Date(nitrogendioxideEventdb.timestamp[nitrogendioxideEventdb.timestamp.length-1]).getTime() + 3600000).toUTCString(),
-  measurement: nitrogendioxideEventdb.measurement[nitrogendioxideEventdb.measurement.length-1],
-}
-var lastPM2 = {
-  timestamp: new Date(new Date(particularmatter2Eventdb.timestamp[particularmatter2Eventdb.timestamp.length-1]).getTime() + 3600000).toUTCString(),
-  measurement: particularmatter2Eventdb.measurement[particularmatter2Eventdb.measurement.length-1],
-}
-var lastPM10 = {
-  timestamp: new Date(new Date(particularmatter10Eventdb.timestamp[particularmatter10Eventdb.timestamp.length-1]).getTime() + 3600000).toUTCString(),
-  measurement: particularmatter10Eventdb.measurement[particularmatter10Eventdb.measurement.length-1],
-}
-var lastSO = {
-  timestamp: new Date(new Date(sulfurdioxideEventdb.timestamp[sulfurdioxideEventdb.timestamp.length-1]).getTime() + 3600000).toUTCString(),
-  measurement: sulfurdioxideEventdb.measurement[sulfurdioxideEventdb.measurement.length-1],
-}
-
-var i = 0; 
-
-var codates = []; var covals = []; 
-var ahdates = []; var ahvals = [];
-var tempdates = []; var tempvals = [];
-var nodates = []; var novals = [];
-var pm2dates = []; var pm2vals = [];
-var pm10dates = []; var pm10vals = [];
-var sodates = []; var sovals = [];
-
-
-
-//604800000 = 1 week
-var v = new Date().getTime() - 604800000;
-for (i = 0; i < co2Eventdb.timestamp.length - 1; i++) {
-  if (new Date(co2Eventdb.timestamp[i]).getTime() > new Date().getTime() - v) {
-      codates.push(co2Eventdb.timestamp[i]);
-      covals.push(co2Eventdb.measurement[i]);
-      if(parseInt(co2Eventdb.measurement[i]) >= colimitred){certboolCO2 = false;}  
-    }
-  } 
-for (i = 0; i < airhumidityEventdb.timestamp.length - 1; i++) {
-  if (new Date(airhumidityEventdb.timestamp[i]).getTime() > new Date().getTime() - v) {
-      ahdates.push(airhumidityEventdb.timestamp[i]);
-      ahvals.push(airhumidityEventdb.measurement[i]);
-      if(parseInt(airhumidityEventdb.measurement[i]) >= ahlimitred){certboolAH = false;}  
-    }
-  if (new Date(temperatureEventdb.timestamp[i]).getTime() > new Date().getTime() - v) {
-      tempdates.push(temperatureEventdb.timestamp[i]);
-      tempvals.push(temperatureEventdb.measurement[i]);
-      if(parseInt(temperatureEventdb.measurement[i]) >= templimitred){certboolTEMP = false;}  
-    }  
-  } 
-for (i = 0; i < nitrogendioxideEventdb.timestamp.length - 1; i++) {
-  if (new Date(nitrogendioxideEventdb.timestamp[i]).getTime() > new Date().getTime() - v) {
-      nodates.push(nitrogendioxideEventdb.timestamp[i]);
-      novals.push(nitrogendioxideEventdb.measurement[i]);
-      if(parseInt(nitrogendioxideEventdb.measurement[i]) >= nolimitred){certboolNO = false;}  
-    }
-  if (new Date(particularmatter2Eventdb.timestamp[i]).getTime() > new Date().getTime() - v) {
-      pm2dates.push(particularmatter2Eventdb.timestamp[i]);
-      pm2vals.push(particularmatter2Eventdb.measurement[i]);
-      if(parseInt(particularmatter2Eventdb.measurement[i]) >= pm2limitred){certboolPM2 = false;}  
-    }
-  if (new Date(particularmatter10Eventdb.timestamp[i]).getTime() > new Date().getTime() - v) {
-      pm10dates.push(particularmatter10Eventdb.timestamp[i]);
-      pm10vals.push(particularmatter10Eventdb.measurement[i]);
-      if(parseInt(particularmatter10Eventdb.measurement[i]) >= pm10limitred){certboolPM10 = false;}  
-    }
-  if (new Date(sulfurdioxideEventdb.timestamp[i]).getTime() > new Date().getTime() - v) {
-      sodates.push(sulfurdioxideEventdb.timestamp[i]);
-      sovals.push(sulfurdioxideEventdb.measurement[i]);
-      if(parseInt(sulfurdioxideEventdb.measurement[i]) >= solimitred){certboolSO = false;}  
-    }      
-  } 
-    
-var COStr = ""; var AHStr = ""; var TEMPStr=""; var NOStr=""; var PM2Str=""; var PM10Str=""; var SOStr="";
-
-
-  if (certboolCO2 === false) {certificateboolOverview = false; COStr = "Carbon Dioxide (CO2)";}
-  if (certboolAH === false) {certificateboolOverview = false; AHStr = "Air Humidity";}
-  if (certboolTEMP === false) {certificateboolOverview = false; TEMPStr = "Temperature";}
-  if (certboolNO === false) {certificateboolOverview = false; NOStr = "Nitrogen Dioxide (NO2)";}
-  if (certboolPM2 === false) {certificateboolOverview = false; PM2Str = "Particular Matter 2.5 (PM2.5)";}
-  if (certboolPM10 === false) {certificateboolOverview = false; PM10Str = "Particular Matter 10 (PM10)";}
-  if (certboolSO === false) {certificateboolOverview = false; SOStr = "Sulfur Dioxide (SO2)";}
-
-  if (certificateboolOverview === false) {
-    thumb_img = redcert;
-    thumb_alt = "Red Thumb Down";
-    textyesorno = "NOT IN COMPLIANCE ";
-    notext1 = "The following greenhouse gases in your area are ";
-    notext2 = "NOT IN COMPLIANCE ";
-    notext3 = "with the government emission limits:";
-    noimg = redthumbdown;
-    noalt = "Red Thumb Down";
-    noemissions = COStr+", "+AHStr+", "+TEMPStr+", "+NOStr+", "+PM2Str+", "+PM10Str+", "+SOStr;
-  } 
 
   return (
     <>
@@ -164,33 +58,31 @@ var COStr = ""; var AHStr = ""; var TEMPStr=""; var NOStr=""; var PM2Str=""; var
           <p>Get a quick overview of the emission values in your area!</p>
         </Container>
       </Jumbotron>
-      <img className="mx-auto d-block" src={thumb_img} width="145" height="135" alt={thumb_alt} ></img>
-      <div className="container text-center">
-        <p>The greenhouse gas emissions in your area are <b>{textyesorno}</b> with government emission limits the last 7 days.</p>  
-      </div>  
-
+    
       <br></br><br></br>
 
-      <div className="container">
-        <p>{notext1}<b>{notext2}</b>{notext3}</p>
-        <div className="container" id="Overview_red_img_list">
-          <img src={noimg} width="100" height="90" alt={noalt}></img>
-          <figcaption>
-            {" "}
-            <b>{COStr}<br></br>{AHStr}<br></br>{TEMPStr}<br></br>{NOStr}<br></br>{PM2Str}<br></br>{PM10Str}<br></br>{SOStr}</b>
-          </figcaption>
-        </div>
-        <br></br> <br></br>
+      <Container>
+        <Last7Days co2Eventdb={co2Eventdb} name={"Carb"} colimitred={colimitred}/> 
+        {/*co2pack={[co2Eventdb, colimitred, co2Loadingdb, "Carbon Dioxide222"]}*/}
+        {/*<Last7Days name={"Air Humidity"} data={airhumidityEventdb} loading={airhumidityLoadingdb} limitred={ahlimitred}/>
+        <Last7Days name={"Temperature"} data={temperatureEventdb} loading={temperatureLoadingdb} limitred={templimitred}/>
+        <Last7Days name={"Nitrogen Dioxide"} data={nitrogendioxideEventdb} loading={nitrogendioxideLoadingdb} limitred={nolimitred}/>
+        <Last7Days name={"Particular Matter 2.5"} data={particularmatter2Eventdb} loading={particularmatter2Loadingdb} limitred={pm2limitred}/>
+        <Last7Days name={"Particular Matter 10"} data={particularmatter10Eventdb} loading={particularmatter10Loadingdb} limitred={pm10limitred}/>
+  <Last7Days name={"Sulfur Dioxdie"} data={sulfurdioxideEventdb} loading={sulfurdioxideLoadingdb} limitred={solimitred}/>*/}
+      </Container>
 
+      <br></br> <br></br>
+<Container>
         <Container className="dark rounded text-center">
             <Row>
-              <CurrentStatus name={"Carbon Dioxide"} {...lastCO2} unit="ppm" loading={co2Loadingdb}/>
-              <CurrentStatus name={"Air Humidity"} {...lastAH} unit="%" loading={airhumidityLoadingdb}/>
-              <CurrentStatus name={"Temperature"} {...lastTEMP} unit="°C" loading={temperatureLoadingdb}/>
-              <CurrentStatus name={"Nitrogen Dioxide"} {...lastNO} unit="ppm" loading={nitrogendioxideLoadingdb}/>
-              <CurrentStatus name={"Particular Matter 2.5"} {...lastPM2} unit="ppm" loading={particularmatter2Loadingdb}/>
-              <CurrentStatus name={"Particular Matter 10"} {...lastPM10} unit="ppm" loading={particularmatter10Loadingdb}/>
-              <CurrentStatus name={"Sulfur Dioxdie"} {...lastSO} unit="ppm" loading={sulfurdioxideLoadingdb}/>
+              <CurrentStatus name={"Carbon Dioxide"} data={co2Eventdb} unit="ppm" loading={co2Loadingdb}/>
+              <CurrentStatus name={"Air Humidity"} data={airhumidityEventdb} unit="%" loading={airhumidityLoadingdb}/>
+              <CurrentStatus name={"Temperature"} data={temperatureEventdb} unit="°C" loading={temperatureLoadingdb}/>
+              <CurrentStatus name={"Nitrogen Dioxide"} data={nitrogendioxideEventdb} unit="ppm" loading={nitrogendioxideLoadingdb}/>
+              <CurrentStatus name={"Particular Matter 2.5"} data={particularmatter2Eventdb} unit="ppm" loading={particularmatter2Loadingdb}/>
+              <CurrentStatus name={"Particular Matter 10"} data={particularmatter10Eventdb} unit="ppm" loading={particularmatter10Loadingdb}/>
+              <CurrentStatus name={"Sulfur Dioxdie"} data={sulfurdioxideEventdb} unit="ppm" loading={sulfurdioxideLoadingdb}/>
             </Row>
           </Container>
 
@@ -200,11 +92,11 @@ var COStr = ""; var AHStr = ""; var TEMPStr=""; var NOStr=""; var PM2Str=""; var
           <h2>Measured values - History Data</h2>
           <p>Click on a picture to get more information.</p>
           <div className="row">
-            <div class="col-sm-4">
+            <div className="col-sm-4">
               <Card>
               <Link to="/carbondioxide">
 
-                <img class="card-img-top" src={co2img} width="150" height="150" alt="CO2" ></img>
+                <img className="card-img-top" src={co2img} width="150" height="150" alt="CO2" ></img>
                 <Card.Header>
                   <b>Carbon Dioxide</b>
                 </Card.Header>
@@ -216,10 +108,10 @@ var COStr = ""; var AHStr = ""; var TEMPStr=""; var NOStr=""; var PM2Str=""; var
               </Card>
             </div>
 
-            <div class="col-sm-4">
+            <div className="col-sm-4">
               <Card>
               <Link to="/airhumidity">
-                <img class="card-img-top" src={airhumidityimg} width="150" height="150" alt="Air Humidity" ></img>
+                <img className="card-img-top" src={airhumidityimg} width="150" height="150" alt="Air Humidity" ></img>
                 <Card.Header>
                   <b>Air Humidity</b>
                 </Card.Header>
@@ -231,10 +123,10 @@ var COStr = ""; var AHStr = ""; var TEMPStr=""; var NOStr=""; var PM2Str=""; var
               </Card>
             </div>
 
-            <div class="col-sm-4">
+            <div className="col-sm-4">
               <Card>
               <Link to="/temperature">
-                <img class="card-img-top" src={temperatureimg} width="150" height="150" alt="Temperature" ></img>
+                <img className="card-img-top" src={temperatureimg} width="150" height="150" alt="Temperature" ></img>
                 <Card.Header>
                   <b>Temperature</b>
                 </Card.Header>
@@ -246,10 +138,10 @@ var COStr = ""; var AHStr = ""; var TEMPStr=""; var NOStr=""; var PM2Str=""; var
               </Card>
             </div>
 
-            <div class="col-sm-4">
+            <div className="col-sm-4">
               <Card>
               <Link to="/nitrogendioxide">
-                <img class="card-img-top" src={no2img} width="150" height="150" alt="NO2" ></img>
+                <img className="card-img-top" src={no2img} width="150" height="150" alt="NO2" ></img>
                 <Card.Header>
                   <b>Nitrogen Dioxide</b>
                 </Card.Header>
@@ -261,10 +153,10 @@ var COStr = ""; var AHStr = ""; var TEMPStr=""; var NOStr=""; var PM2Str=""; var
               </Card>
             </div>
 
-            <div class="col-sm-4">
+            <div className="col-sm-4">
               <Card>
               <Link to="/particularmatter2">
-                <img class="card-img-top" src={pm2img} width="150" height="150" alt="PM2.5" ></img>
+                <img className="card-img-top" src={pm2img} width="150" height="150" alt="PM2.5" ></img>
                 <Card.Header>
                   <b>Particular Matter 2.5</b>
                 </Card.Header>
@@ -276,10 +168,10 @@ var COStr = ""; var AHStr = ""; var TEMPStr=""; var NOStr=""; var PM2Str=""; var
                 </Card>
             </div>
 
-            <div class="col-sm-4">
+            <div className="col-sm-4">
               <Card>
               <Link to="/particularmatter10">
-                <img class="card-img-top" src={pm10img} width="150" height="150"  alt="PM10" ></img>
+                <img className="card-img-top" src={pm10img} width="150" height="150"  alt="PM10" ></img>
                 <Card.Header>
                   <b>Particular Matter 10</b>
                 </Card.Header>
@@ -291,10 +183,10 @@ var COStr = ""; var AHStr = ""; var TEMPStr=""; var NOStr=""; var PM2Str=""; var
               </Card>
             </div>
 
-            <div class="col-sm-4 mx-auto">
+            <div className="col-sm-4 mx-auto">
               <Card>
               <Link to="/sulfurdioxdie">
-                <img class="card-img-top" src={so2img} width="150" height="150" alt="SO2" ></img>
+                <img className="card-img-top" src={so2img} width="150" height="150" alt="SO2" ></img>
                 <Card.Header>
                   <b>Sulfur Dioxdie</b>
                 </Card.Header>
@@ -408,7 +300,7 @@ var COStr = ""; var AHStr = ""; var TEMPStr=""; var NOStr=""; var PM2Str=""; var
           </Card.Body>
         </Card>
         <br />
-      </div>
+      </Container>
     </>
   );
 }
