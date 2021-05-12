@@ -6,15 +6,10 @@ import "./emissions.css";
 
 import HistoryTable from "../Core_components/HistoryTable";
 import HistoryGraph from "../Core_components/HistoryGraph";
-import CertificateBanner from "../Core_components/CertificateBanner";
+// import CertificateBanner from "../Core_components/CertificateBanner";
 
 function SulfurDioxide() {
-  const {
-    sulfurdioxideLoading,
-    sulfurdioxideEventsTable,
-    sulfurdioxideEventsChart,
-    sulfurdioxideEventdb,
-  } = useGlobalContext();
+  const { sulfurdioxideLoadingdb, sulfurdioxideEventdb } = useGlobalContext();
   const [key, setKey] = useState("about");
 
   const lowerEmissionLimit = 1000;
@@ -29,16 +24,16 @@ function SulfurDioxide() {
           <p>Find verified information about all measured SO2 emissions!</p>
         </Container>
       </Jumbotron>
-      <CertificateBanner
+      {/* <CertificateBanner
         data={sulfurdioxideEventsChart}
         limit={higherEmissionLimit}
         loading={sulfurdioxideLoading}
-      />
+      /> */}
       <hr />
       <HistoryGraph
-        blockchainData={sulfurdioxideEventsChart}
+        blockchainData={[]}
         databaseData={sulfurdioxideEventdb}
-        loading={sulfurdioxideLoading}
+        loading={sulfurdioxideLoadingdb}
         name="SO2"
         unit="ppm"
         lowerLimit={lowerEmissionLimit}
@@ -96,9 +91,9 @@ function SulfurDioxide() {
       </Container>
       <hr />
       <HistoryTable
-        blockchainData={sulfurdioxideEventsTable}
+        blockchainData={[]}
         databaseData={sulfurdioxideEventdb}
-        loading={sulfurdioxideLoading}
+        loading={sulfurdioxideLoadingdb}
         lowerLimit={lowerEmissionLimit}
         higherLimit={higherEmissionLimit}
       />

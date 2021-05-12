@@ -5,7 +5,7 @@ function ErrorPage() {
     <div className="container">
       <h2 style={{ color: "red" }}>Error</h2>
       <h1 style={{ color: "red" }}>404</h1>
-      <p>Under construction</p>
+      <p>Page not found</p>
     </div>
   );
 }

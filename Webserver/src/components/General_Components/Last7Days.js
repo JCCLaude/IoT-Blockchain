@@ -1,144 +1,136 @@
-import Card from "react-bootstrap/Card";
-import Badge from "react-bootstrap/Badge";
+import React, { useCallback, useEffect, useState } from "react";
+import { useGlobalContext } from "../../context";
+import Container from "react-bootstrap/Container";
 import Spinner from "react-bootstrap/Spinner";
-import React, { useState, useEffect } from "react";
-import redthumbdown from "../../assets/images/redthumbdown.png";
-import greenthumbup from "../../assets/images/greenthumbup.png";
-import greencert from "../../assets/images/greencert.png";
-import redcert from "../../assets/images/redcert.png";
-import { Container } from "react-bootstrap";
+import Image from "react-bootstrap/Image";
+import greenCertificate from "../../assets/images/greencert.png";
+import redThumbDown from "../../assets/images/redthumbdown.png";
 
-//einzelne Werte als props
-//use context
-function Last7Days({
+function Last7Days() {
+  const {
     co2Eventdb,
-    colimitred,
-    name,
-    co2pack,
-    loading,
-    certbool,
-    timestamp,
-    measurement,
-    critical,
-    demoCritical,
-    data
-}) {
+    airhumidityEventdb,
+    temperatureEventdb,
+    nitrogendioxideEventdb,
+    particularmatter2Eventdb,
+    particularmatter10Eventdb,
+    sulfurdioxideEventdb,
+  } = useGlobalContext();
 
-  var certificateboolOverview = true;
-  var thumb_img = greencert;
-  var thumb_alt = "Green Thumb Up";
-  var notext1 = ""; var notext2 = ""; var notext3 = "";
-  var noimg = greenthumbup;
-  var noalt = "Green Thumb Up";
-  var noemissions = "";
+  const [loading, setLoading] = useState(true);
+  const [co2Exceeded, setCo2Exceeded] = useState(["CO2", false]);
+  const [humidityExceeded, setHumiditytExceeded] = useState([
+    "Humidity",
+    false,
+  ]);
+  const [temperatureExceeded, setTemperatureExceeded] = useState([
+    "Temperature",
+    false,
+  ]);
+  const [nitrogenExceeded, setNitrogenExceeded] = useState(["NO2", false]);
+  const [pm2Exceeded, setPm2Exceeded] = useState(["PM 2,5", false]);
+  const [pm10Exceeded, setPm10Exceeded] = useState(["PM 10", false]);
+  const [sulfurdioxideExceeded, setSulfurdioxideExceeded] = useState([
+    "SO2",
+    false,
+  ]);
 
-  var certboolCO2=true; var certboolAH=true; var certboolTEMP=true; var certboolNO=true;
-  var certboolPM2=true; var certboolPM10=true; var certboolSO=true; 
-
-  var colimitred=2000; var ahlimitred=95; var templimitred=30; var nolimitred=200; 
-  var pm2limitred=25; var pm10limitred=50; var solimitred=20;
-
-var textyesorno = "IN COMPLIANCE ";
-
-var COStr = ""; var AHStr = ""; var TEMPStr=""; var NOStr=""; var PM2Str=""; var PM10Str=""; var SOStr="";
- 
-
-//604800000 = 1 week
-var v = new Date().getTime() - 604800000;
-var i = 0;     
-
-  const [Last7Events, setLast7Events] = useState([0]); 
-
-  const [formatLoading, setFormatLoading] = useState(true);
-
-  const formatDatabase = (dbEvents, limitred, name) => {
-    console.log("qqq: "+dbEvents)
-    if (typeof dbEvents !== "undefined") {
-
-      console.log("lll: "+dbEvents)
-
-      for (i = 0; i < dbEvents.timestamp.length - 1; i++) {
-        if (new Date(dbEvents.timestamp[i]).getTime() > new Date().getTime() - v) {
-            if(parseInt(dbEvents.measurement[i]) >= limitred){
-              certificateboolOverview = false; 
-              COStr = name;}
-              console.log("kkk: "+name)
-
-  /*    for (i = 0; i < dbEvents[0].timestamp.length - 1; i++) {
-        if (new Date(dbEvents[0].timestamp[i]).getTime() > new Date().getTime() - v) {
-            if(parseInt(dbEvents[0].measurement[i]) >= dbEvents[1]){
-              certificateboolOverview = false; 
-              COStr = dbEvents[3];}
-              console.log("kkk: "+dbEvents[3]) */
-
-
- /* if (certboolAH === false) {certificateboolOverview = false; AHStr = "Air Humidity";}
-  if (certboolTEMP === false) {certificateboolOverview = false; TEMPStr = "Temperature";}
-  if (certboolNO === false) {certificateboolOverview = false; NOStr = "Nitrogen Dioxide (NO2)";}
-  if (certboolPM2 === false) {certificateboolOverview = false; PM2Str = "Particular Matter 2.5 (PM2.5)";}
-  if (certboolPM10 === false) {certificateboolOverview = false; PM10Str = "Particular Matter 10 (PM10)";}
-  if (certboolSO === false) {certificateboolOverview = false; SOStr = "Sulfur Dioxide (SO2)";}*/
-
-  if (certificateboolOverview === false) {
-    thumb_img = redcert;
-    thumb_alt = "Red Thumb Down";
-    textyesorno = "NOT IN COMPLIANCE ";
-    notext1 = "The following greenhouse gases in your area are ";
-    notext2 = "NOT IN COMPLIANCE ";
-    notext3 = "with the government emission limits:";
-    noimg = redthumbdown;
-    noalt = "Red Thumb Down";
-    noemissions = COStr+", "+AHStr+", "+TEMPStr+", "+NOStr+", "+PM2Str+", "+PM10Str+", "+SOStr;
-            }
-              
+  const CheckValuesByTime = useCallback(
+    (dbEvents, limit, name, setCertificate) => {
+      // 604800000 = 1 week = 7 days
+      // 259200000 = 3 days
+      const aWeekAgo = Date.now() - 604800000;
+      if (typeof dbEvents !== "undefined") {
+        const weekIndex = dbEvents.timestamp.findIndex((item) => {
+          if (new Date(item).getTime() >= aWeekAgo) {
+            return true;
           }
-        } 
-      
-      setLast7Events([certbool])
-      
-      setFormatLoading(false);
-    }
-  };
+          return false;
+        });
+        if (weekIndex !== -1) {
+          for (
+            let index = weekIndex;
+            index < dbEvents.measurement.length;
+            index++
+          ) {
+            if (dbEvents.measurement[index] >= limit) {
+              console.log("exceeded", name, dbEvents.measurement[index]);
+              setCertificate([name, true]);
+            }
+          }
+        }
+      }
+    },
+    []
+  );
+
+  const checkAllValues = useCallback(
+    (ArrayToCheck) => {
+      ArrayToCheck.map((DataSet) => CheckValuesByTime(...DataSet));
+      setLoading(false);
+    },
+    [CheckValuesByTime]
+  );
 
   useEffect(() => {
-    formatDatabase(co2Eventdb, colimitred, name)
-  }, [co2Eventdb, colimitred, name]);
-
+    checkAllValues([
+      [co2Eventdb, 2000, "CO2", setCo2Exceeded],
+      [airhumidityEventdb, 95, "Airhumidity", setHumiditytExceeded],
+      [temperatureEventdb, 30, "Temperature", setTemperatureExceeded],
+      [nitrogendioxideEventdb, 12345, "NO2", setNitrogenExceeded],
+      [particularmatter2Eventdb, 12345, "PM 2,5", setPm2Exceeded],
+      [particularmatter10Eventdb, 12345, "PM 10", setPm10Exceeded],
+      [sulfurdioxideEventdb, 12345, "SO2", setSulfurdioxideExceeded],
+    ]);
+  }, [
+    co2Eventdb,
+    airhumidityEventdb,
+    temperatureEventdb,
+    nitrogendioxideEventdb,
+    particularmatter2Eventdb,
+    particularmatter10Eventdb,
+    sulfurdioxideEventdb,
+    checkAllValues,
+  ]);
 
   return (
-    <Container>
-        <img className="mx-auto d-block" src={thumb_img} width="145" height="135" alt={thumb_alt}/>  
+    <Container className="text-center">
+      {loading ? (
+        <Spinner animation="grow" />
+      ) : [
+          co2Exceeded,
+          humidityExceeded,
+          temperatureExceeded,
+          nitrogenExceeded,
+          pm2Exceeded,
+          pm10Exceeded,
+          sulfurdioxideExceeded,
+        ].filter((item) => item[1] !== false).length === 0 ? (
         <Container>
-        <p>The greenhouse gas emissions in your area are <b>{textyesorno}</b> with government emission limits the last 7 days.</p>
+          <Image src={greenCertificate} alt="green certificate" />
+          <h1>no worries</h1>
         </Container>
-
-        <p className={`${certbool === false ? notext1="" : notext1="The following greenhouse gases in your area are <b>NOT IN COMPLIANCE </b> with the government emission limits:"}`}>{notext1}</p>
-        
-        <div className="container" id="Overview_red_img_list">
-        <img src={noimg} width="100" height="90" alt={noalt}></img>
-        <figcaption>
-            <b>{COStr}<br></br>{AHStr}<br></br>{TEMPStr}<br></br>{NOStr}<br></br>{PM2Str}<br></br>{PM10Str}<br></br>{SOStr}</b>
-        </figcaption>
-        </div>   
+      ) : (
+        <Container>
+          <Image src={redThumbDown} alt="red thumb down" />
+          <p>exceeded values:</p>
+          {[
+            co2Exceeded,
+            humidityExceeded,
+            temperatureExceeded,
+            nitrogenExceeded,
+            pm2Exceeded,
+            pm10Exceeded,
+            sulfurdioxideExceeded,
+          ]
+            .filter((item) => item[1] !== false)
+            .map((item) => {
+              return <h1>{item[0]} </h1>;
+            })}
+        </Container>
+      )}
     </Container>
-  )
+  );
 }
-
-/* 
-  <img className="mx-auto d-block" src={thumb_img} width="145" height="135" alt={thumb_alt} ></img>
-      <div className="container text-center">
-        <p>The greenhouse gas emissions in your area are <b>{textyesorno}</b> with government emission limits the last 7 days.</p>  
-      </div>  
-
-    <p>{notext1}<b>{notext2}</b>{notext3}</p>
-        <div className="container" id="Overview_red_img_list">
-        <img src={noimg} width="100" height="90" alt={noalt}></img>
-        <figcaption>
-            {" "}
-            <b>{COStr}<br></br>{AHStr}<br></br>{TEMPStr}<br></br>{NOStr}<br></br>{PM2Str}<br></br>{PM10Str}<br></br>{SOStr}</b>
-        </figcaption>
-        </div>
-        
-*/
 
 export default Last7Days;

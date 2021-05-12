@@ -6,13 +6,11 @@ import "./emissions.css";
 
 import HistoryTable from "../Core_components/HistoryTable";
 import HistoryGraph from "../Core_components/HistoryGraph";
-import CertificateBanner from "../Core_components/CertificateBanner";
+// import CertificateBanner from "../Core_components/CertificateBanner";
 
 function ParticularMatter2() {
   const {
-    particularmatter2Loading,
-    particularmatter2EventsTable,
-    particularmatter2EventsChart,
+    particularmatter2Loading: particularmatter2Loadingdb,
     particularmatter2Eventdb,
   } = useGlobalContext();
   const [key, setKey] = useState("about");
@@ -29,16 +27,16 @@ function ParticularMatter2() {
           <p>Find verified information about all measured PM 2,5 emissions!</p>
         </Container>
       </Jumbotron>
-      <CertificateBanner
+      {/* <CertificateBanner
         data={particularmatter2EventsChart}
         limit={higherEmissionLimit}
-        loading={particularmatter2Loading}
-      />
+        loading={particularmatter2Loadingdb}
+      /> */}
       <hr />
       <HistoryGraph
-        blockchainData={particularmatter2EventsChart}
+        blockchainData={[]}
         databaseData={particularmatter2Eventdb}
-        loading={particularmatter2Loading}
+        loading={particularmatter2Loadingdb}
         name="PM 2,5"
         unit="ppm"
         lowerLimit={lowerEmissionLimit}
@@ -56,11 +54,11 @@ function ParticularMatter2() {
               <Card.Body>
                 <Card.Title>The Survivor</Card.Title>
                 <Card.Text>
-                  PM 2,5 is the most common greenhouse gas. Even though it enters
-                  the atmosphere naturally, the concentration has been massively
-                  increased by humans. Through natural biochemical processes,
-                  carbon dioxide is only degraded very slowly (60-85% in 1000
-                  years)
+                  PM 2,5 is the most common greenhouse gas. Even though it
+                  enters the atmosphere naturally, the concentration has been
+                  massively increased by humans. Through natural biochemical
+                  processes, carbon dioxide is only degraded very slowly (60-85%
+                  in 1000 years)
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -70,10 +68,11 @@ function ParticularMatter2() {
               <Card.Body>
                 <Card.Title>Most regulated</Card.Title>
                 <Card.Text>
-                  Reducing PM 2,5 emissions is a high priority for many countries.
-                  The Kyoto climate agreement stipulated that emissions should
-                  be reduced by 5.8% compared to 1990. Many countries are also
-                  implementing their own rules to reduce PM 2,5 emissions
+                  Reducing PM 2,5 emissions is a high priority for many
+                  countries. The Kyoto climate agreement stipulated that
+                  emissions should be reduced by 5.8% compared to 1990. Many
+                  countries are also implementing their own rules to reduce PM
+                  2,5 emissions
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -96,9 +95,9 @@ function ParticularMatter2() {
       </Container>
       <hr />
       <HistoryTable
-        blockchainData={particularmatter2EventsTable}
+        blockchainData={[]}
         databaseData={particularmatter2Eventdb}
-        loading={particularmatter2Loading}
+        loading={particularmatter2Loadingdb}
         lowerLimit={lowerEmissionLimit}
         higherLimit={higherEmissionLimit}
       />

@@ -6,15 +6,10 @@ import "./emissions.css";
 
 import HistoryTable from "../Core_components/HistoryTable";
 import HistoryGraph from "../Core_components/HistoryGraph";
-import CertificateBanner from "../Core_components/CertificateBanner";
+// import CertificateBanner from "../Core_components/CertificateBanner";
 
 function NitrogenDioxide() {
-  const {
-    nitrogendioxideLoading,
-    nitrogendioxideEventsTable,
-    nitrogendioxideEventsChart,
-    nitrogendioxideEventdb,
-  } = useGlobalContext();
+  const { nitrogendioxideLoading, nitrogendioxideEventdb } = useGlobalContext();
   const [key, setKey] = useState("about");
 
   //blockchain gleiches wie db oder leeres array (besser)
@@ -31,14 +26,14 @@ function NitrogenDioxide() {
           <p>Find verified information about all measured NO2 emissions!</p>
         </Container>
       </Jumbotron>
-      <CertificateBanner
+      {/* <CertificateBanner
         data={nitrogendioxideEventsChart}
         limit={higherEmissionLimit}
         loading={nitrogendioxideLoading}
-      />
+      /> */}
       <hr />
       <HistoryGraph
-        blockchainData={nitrogendioxideEventsChart}
+        blockchainData={[]}
         databaseData={nitrogendioxideEventdb}
         loading={nitrogendioxideLoading}
         name="NO2"
@@ -98,7 +93,7 @@ function NitrogenDioxide() {
       </Container>
       <hr />
       <HistoryTable
-        blockchainData={nitrogendioxideEventsTable}
+        blockchainData={[]}
         databaseData={nitrogendioxideEventdb}
         loading={nitrogendioxideLoading}
         lowerLimit={lowerEmissionLimit}

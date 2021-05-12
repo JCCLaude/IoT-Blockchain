@@ -33,11 +33,11 @@ function App() {
           <Route path="/temperature" component={Temperature} />
           <Route path="/about" component={About} />
           <Route path="/blockchain" component={BlockchainExplanation} />
-          <Route path="/emissions" component={OtherEmissions} />
-          <Route path="/nitrogendioxide" component={NitrogenDioxide} />
-          <Route path="/particularmatter2" component={ParticularMatter2} />
-          <Route path="/particularmatter10" component={ParticularMatter10} />
-          <Route path="/sulfurdioxide" component={SulfurDioxide} />
+          <Route exact path="/emissions" component={OtherEmissions} />
+          <Route path="/emissions/nitrogendioxide" component={NitrogenDioxide} />
+          <Route path="/emissions/particularmatter2" component={ParticularMatter2} />
+          <Route path="/emissions/particularmatter10" component={ParticularMatter10} />
+          <Route path="/emissions/sulfurdioxide" component={SulfurDioxide} />
           <Route component={ErrorPage} />
         </Switch>
         <br />

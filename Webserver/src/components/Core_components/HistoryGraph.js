@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import HighchartsReact from "highcharts-react-official";
 import Highcharts from "highcharts/highstock";
-import { Container, Button, Spinner, Alert } from "react-bootstrap";
+import { Container, Spinner, Alert } from "react-bootstrap";
 import { FaInfoCircle } from "react-icons/fa";
 
 function HistoryGraph({
@@ -28,7 +28,6 @@ function HistoryGraph({
   };
 
   useEffect(() => {
-    console.log(databaseData);
     formatDatabase(databaseData);
   }, [databaseData]);
 
@@ -104,7 +103,6 @@ function HistoryGraph({
         lineWidth: 0,
         states: {
           hover: {
-            // enabled: false,
             lineWidthPlus: 0,
             lineWidth: 0,
           },
@@ -131,9 +129,6 @@ function HistoryGraph({
             constructorType={"chart"}
           />
           <br />
-          <Button variant="info" onClick={() => formatDatabase(databaseData)}>
-            Log values to console
-          </Button>
         </Container>
       )}
       <br />
