@@ -49,13 +49,12 @@ function SulfurDioxide() {
           <Tab eventKey="about" title="About SO2">
             <Card>
               <Card.Body>
-                <Card.Title>The Survivor</Card.Title>
+                <Card.Title>T</Card.Title>
                 <Card.Text>
-                  SO2 is the most common greenhouse gas. Even though it enters
-                  the atmosphere naturally, the concentration has been massively
-                  increased by humans. Through natural biochemical processes,
-                  carbon dioxide is only degraded very slowly (60-85% in 1000
-                  years)
+                SO2 is a colorless gas with a pungent odor. It is produced during the combustion 
+                of fossil fuels (coal and oil) and during the smelting of mineral ores containing 
+                sulfur. The main anthropogenic source of SO2 is the combustion of sulfur-containing 
+                fossil fuels for domestic heating, electricity generation, and motor vehicles.
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -63,12 +62,10 @@ function SulfurDioxide() {
           <Tab eventKey="limits" title="Limits">
             <Card>
               <Card.Body>
-                <Card.Title>Most regulated</Card.Title>
+                <Card.Title>M</Card.Title>
                 <Card.Text>
-                  Reducing SO2 emissions is a high priority for many countries.
-                  The Kyoto climate agreement stipulated that emissions should
-                  be reduced by 5.8% compared to 1990. Many countries are also
-                  implementing their own rules to reduce SO2 emissions
+                The World Health Organization (WHO) has set a limit of a 24-hour mean of <b>50 μg/m3</b>
+                and a 10-minute mean of 500 μg/m3.  
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -76,13 +73,15 @@ function SulfurDioxide() {
           <Tab eventKey="health" title="Health-Impact">
             <Card>
               <Card.Body>
-                <Card.Title>Danger in closed Rooms</Card.Title>
+                <Card.Title>D</Card.Title>
                 <Card.Text>
-                  An increased concentration of SO2 in the air we breathe can
-                  lead to poor concentration, decreased performance, increased
-                  risk of infection, and increased breathing rate. As the
-                  concentration of carbon dioxide naturally increases in closed
-                  rooms, good ventilation with clean air should be provided.
+                SO2 can affect the respiratory tract and the functions of the lungs, 
+                and causes irritation to the eyes. Inflammation of the respiratory 
+                tract causes coughing, mucus secretion, aggravation of asthma and chronic 
+                bronchitis, and makes people more susceptible to respiratory infections. 
+                Hospitalizations for heart disease and mortality rates increase on days 
+                with higher SO2 levels. When SO2 combines with water, it forms sulfuric acid; 
+                this is the main component of acid rain, which is a cause of deforestation.
                 </Card.Text>
               </Card.Body>
             </Card>

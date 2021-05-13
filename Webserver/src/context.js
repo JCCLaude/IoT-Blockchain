@@ -85,6 +85,9 @@ export const AppProvider = ({ children }) => {
             timestamp: codates,
             measurement: covals,
             geolocation: cogeos,
+            critical: 0,
+            limitred: 2000,
+            limitorange: 1000,
           };
           setCo2Eventdb(CO2message);
           setCo2Loadingdb(false);
@@ -110,6 +113,9 @@ export const AppProvider = ({ children }) => {
             timestamp: ahdates,
             measurement: ahvals,
             geolocation: ahgeos,
+            critical: 0,
+            limitred: 95,
+            limitorange: 70,
           };
 
           setAirHumidityEventdb(AHmessage);
@@ -136,6 +142,9 @@ export const AppProvider = ({ children }) => {
             timestamp: tempdates,
             measurement: tempvals,
             geolocation: tempgeos,
+            critical: 0,
+            limitred: 30,
+            limitorange: 28,
           };
           setTemperatureEventdb(TEMPmessage);
           setTemperatureLoadingdb(false);
@@ -161,6 +170,9 @@ export const AppProvider = ({ children }) => {
             timestamp: nodates,
             measurement: novals,
             geolocation: nogeos,
+            critical: 0,
+            limitred: 200,
+            limitorange: 100,
           };
           setNitrogenDioxideEventdb(NOmessage);
           setNitrogenDioxideLoadingdb(false);
@@ -186,6 +198,9 @@ export const AppProvider = ({ children }) => {
             timestamp: pm2dates,
             measurement: pm2vals,
             geolocation: pm2geos,
+            critical: 0,
+            limitred: 25,
+            limitorange: 13,
           };
           setParticularMatter2Eventdb(PM2message);
           setParticularMatter2Loadingdb(false);
@@ -211,6 +226,9 @@ export const AppProvider = ({ children }) => {
             timestamp: pm10dates,
             measurement: pm10vals,
             geolocation: pm10geos,
+            critical: 0,
+            limitred: 50,
+            limitorange: 25,
           };
           setParticularMatter10Eventdb(PM10message);
           setParticularMatter10Loadingdb(false);
@@ -236,6 +254,9 @@ export const AppProvider = ({ children }) => {
             timestamp: sodates,
             measurement: sovals,
             geolocation: sogeos,
+            critical: 0,
+            limitred: 20,
+            limitorange: 10,
           };
           setSulfurDioxideEventdb(SOmessage);
           setSulfurDioxideLoadingdb(false);

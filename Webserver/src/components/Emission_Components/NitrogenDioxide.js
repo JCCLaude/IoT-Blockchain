@@ -51,13 +51,13 @@ function NitrogenDioxide() {
           <Tab eventKey="about" title="About NO2">
             <Card>
               <Card.Body>
-                <Card.Title>The Survivor</Card.Title>
+                <Card.Title>The Highly Toxic Gas</Card.Title>
                 <Card.Text>
-                  NO2 is the most common greenhouse gas. Even though it enters
-                  the atmosphere naturally, the concentration has been massively
-                  increased by humans. Through natural biochemical processes,
-                  nitrogen dioxide is only degraded very slowly (60-85% in 1000
-                  years)
+                Nitrogen  dioxide  is  an  important  atmospheric  trace  gas,  not  only  because  
+                of  its  health  effects  but  also  because it  absorbs  visible  solar  radiation  
+                and  contributes  to  impaired  atmospheric  visibility and because as an absorber 
+                of visible radiation it could have a potential direct role in global climate change 
+                if its  concentrations  were  to  become  high  enough.
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -67,10 +67,8 @@ function NitrogenDioxide() {
               <Card.Body>
                 <Card.Title>Most regulated</Card.Title>
                 <Card.Text>
-                  Reducing NO2 emissions is a high priority for many countries.
-                  The Kyoto climate agreement stipulated that emissions should
-                  be reduced by 5.8% compared to 1990. Many countries are also
-                  implementing their own rules to reduce CO2 emissions
+                A 1-hour limit value of <b>200 µg/m³</b> has been set for nitrogen dioxide in outdoor air throughout Europe,
+                in the USA, the limit is 191 µg/m³. 
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -78,13 +76,14 @@ function NitrogenDioxide() {
           <Tab eventKey="health" title="Health-Impact">
             <Card>
               <Card.Body>
-                <Card.Title>Danger in closed Rooms</Card.Title>
+                <Card.Title>A Gas With Significant Health Risk </Card.Title>
                 <Card.Text>
-                  An increased concentration of NO2 in the air we breathe can
-                  lead to poor concentration, decreased performance, increased
-                  risk of infection, and increased breathing rate. As the
-                  concentration of carbon dioxide naturally increases in closed
-                  rooms, good ventilation with clean air should be provided.
+                Air pollutants are absorbed with the air we breathe and develop 
+                their adverse effects in the respiratory tract. NO2 hardly reacts 
+                with the mucous membrane of the upper respiratory tract, but rather 
+                damages the tissues in the bronchi and alveoli. This is particularly 
+                problematic in pre-damaged airways, as bronchial constriction or inflammation 
+                can occur.
                 </Card.Text>
               </Card.Body>
             </Card>
