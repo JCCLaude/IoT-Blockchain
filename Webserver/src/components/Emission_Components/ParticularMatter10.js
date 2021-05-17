@@ -50,13 +50,15 @@ function ParticularMatter10() {
           <Tab eventKey="about" title="About PM 10">
             <Card>
               <Card.Body>
-                <Card.Title>The Survivor</Card.Title>
+                <Card.Title>The Big Particular Matter</Card.Title>
                 <Card.Text>
-                  PM 10 is the most common greenhouse gas. Even though it enters
-                  the atmosphere naturally, the concentration has been massively
-                  increased by humans. Through natural biochemical processes,
-                  carbon dioxide is only degraded very slowly (60-85% in 1000
-                  years)
+                Dusts are solid particles of outdoor air that do not immediately 
+                sink to the ground, but remain in the atmosphere for a certain time. 
+                Dust particles are divided into different classes according to their 
+                size. Particulate matter (PM10) is defined as particles with an 
+                aerodynamic diameter of less than 10 micrometers (µm). Of these particles, 
+                a fraction has an aerodynamic diameter smaller than 2.5 µm (PM2.5). This 
+                also includes the fraction of ultrafine particles (less than 0.1µm).
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -64,13 +66,10 @@ function ParticularMatter10() {
           <Tab eventKey="limits" title="Limits">
             <Card>
               <Card.Body>
-                <Card.Title>Most regulated</Card.Title>
+                <Card.Title>M</Card.Title>
                 <Card.Text>
-                  Reducing PM 10 emissions is a high priority for many
-                  countries. The Kyoto climate agreement stipulated that
-                  emissions should be reduced by 5.8% compared to 1990. Many
-                  countries are also implementing their own rules to reduce PM
-                  10 emissions
+                The World Health Organization (WHO) has set a limit of 10 μg/m3 annual
+                mean and a 24-hour mean of <b>25 μg/m3</b>.  
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -78,13 +77,16 @@ function ParticularMatter10() {
           <Tab eventKey="health" title="Health-Impact">
             <Card>
               <Card.Body>
-                <Card.Title>Danger in closed Rooms</Card.Title>
+                <Card.Title>D </Card.Title>
                 <Card.Text>
-                  An increased concentration of PM 10 in the air we breathe can
-                  lead to poor concentration, decreased performance, increased
-                  risk of infection, and increased breathing rate. As the
-                  concentration of carbon dioxide naturally increases in closed
-                  rooms, good ventilation with clean air should be provided.
+                Particulate matter thus consists of a complex mixture of solid and liquid 
+                particles and is divided into different fractions. PM10 has a maximum 
+                diameter of 10 µm and can penetrate the nasal cavity in humans.
+                Depending on the size and penetration depth of the particles, the health effects 
+                of particulate matter vary. They range from mucosal irritation and local inflammation 
+                in the trachea and bronchi or pulmonary alveoli to increased plaque formation in the 
+                blood vessels, an increased tendency to thrombosis, or changes in the regulatory 
+                function of the autonomic nervous system (heart rate variability).
                 </Card.Text>
               </Card.Body>
             </Card>

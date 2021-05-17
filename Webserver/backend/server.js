@@ -39,22 +39,6 @@ app.use('/pm10', pm10Router);
 app.use('/ah', ahRouter);
 app.use('/temp', tempRouter);
 
-//var MongoClient = require('mongodb').MongoClient;
-//var x = new Date('March 21, 2021 01:00:00');
-//var y = new Date('March 21, 2021 04:00:00');
-//var y = 1616295600;
-
-/*MongoClient.connect(uri, function(err, db) {
-  if (err) throw err;
-  var dbo = db.db("myFirstDatabase");
-  var query = { codate: {$gte:x, $lte:y}};
-  dbo.collection("co2").find(query).toArray(function(err, result) {
-    if (err) throw err;
-    console.log(result);
-    db.close();
-  });
-}); */
-
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
 });

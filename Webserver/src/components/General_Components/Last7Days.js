@@ -4,9 +4,8 @@ import Container from "react-bootstrap/Container";
 import Spinner from "react-bootstrap/Spinner";
 import Image from "react-bootstrap/Image";
 import greenCertificate from "../../assets/images/greencert.png";
-import greenThumbUp from "../../assets/images/greenthumbup.png";
 import redCertificate from "../../assets/images/redcert.png";
-import redThumbDown from "../../assets/images/redthumbdown.png";
+
 
 
 function Last7Days() {
@@ -104,7 +103,6 @@ function Last7Days() {
           <Image src={greenCertificate} alt="green certificate" width={170} height={160} />
           <div className="text-center">The emissions are <b>IN COMPLIANCE</b> with government emission limits in the last 7 days.</div>
           <br></br>
-          <Image src={greenThumbUp} alt="green thumb up" width={140} height={140} />
           <h5>The air quality is great!</h5>
         </Container>
       ) : (
@@ -112,7 +110,6 @@ function Last7Days() {
           <Image src={redCertificate} alt="red certificate" width={170} height={160} />
           <div className="text-center">The emissions are <b>NOT IN COMPLIANCE</b> with government emission limits in the last 7 days.</div>
           <br></br>
-          <Image src={redThumbDown} alt="red thumb down" width={140} height={140}/>
           <p>The following emissions were exceeded the last 7 days:</p>
           {[
             co2Exceeded,

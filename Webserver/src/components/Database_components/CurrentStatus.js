@@ -11,10 +11,12 @@ function CurrentStatus({
   measurement,
   critical,
   demoCritical,
-  data
+  data,
+  limitred,
+  limitorange,
 }) {
 
-  const [LastEvent, setLastEvent] = useState([0,0]); 
+  const [LastEvent, setLastEvent] = useState([0,0,0]); 
 
   const [formatLoading, setFormatLoading] = useState(true);
 
@@ -22,8 +24,12 @@ function CurrentStatus({
     if (typeof dbEvents !== "undefined") {
       const timestamp = new Date(new Date(dbEvents.timestamp[dbEvents.timestamp.length-1]).getTime() + 3600000).toUTCString();
       const measurement = dbEvents.measurement[dbEvents.measurement.length-1];
-      setLastEvent([timestamp, measurement])
-      
+      const limitred = dbEvents.limitred; const limitorange = dbEvents.limitorange; 
+      if(measurement >= limitred){critical = 2;} 
+      console.log("kkk: "+limitred)
+      if(measurement < limitred && measurement >= limitorange) {critical = 1} 
+      setLastEvent([timestamp, measurement, critical])
+
       setFormatLoading(false);
     }
   };
@@ -34,10 +40,10 @@ function CurrentStatus({
 
   
   return (
-  <div className="card col-md-4" style={{width: 18 + 'em'}}>
+  <div className="card col-md-4 mx-auto" style={{width: 18 + 'em'}}>
       <Card.Header>Dating back to: {LastEvent[0]}</Card.Header>
       <Card.Body
-        className={`${demoCritical === "2" ? "extreme": demoCritical === "1" ? "medium" : "low"}`}>
+        className={`${LastEvent[2] === 2 ? "extreme": LastEvent[2] === 1 ? "medium" : "low"}`}>
         <Card.Title>Latest {name} measurement:</Card.Title>
         {formatLoading ? (
           <Spinner animation="grow" />
