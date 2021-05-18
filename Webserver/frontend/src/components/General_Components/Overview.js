@@ -43,6 +43,28 @@ function Overview() {
       </Jumbotron>
       <Container>
         <h2>Last measured values</h2>
+
+        {/*</Container><Container className="container-fluid fixed-bottom">*/}
+        <Container className="container-fluid fixed-bottom">
+          <Row>
+            <Card bg="danger" sm-4>
+                <Card.Header>
+                  <b>Limit exceeded!</b>
+                </Card.Header>
+            </Card>
+            <Card bg="warning" sm-4>
+                <Card.Header>
+                  <b>Limit still accaptable.</b>
+                </Card.Header>
+            </Card>
+            <Card bg="success" sm-4>
+                <Card.Header>
+                  <b>Everything fine!</b>
+                </Card.Header>
+            </Card>
+          </Row>
+        </Container>
+
         <Container className="dark rounded text-center">
           <Row>
             <CurrentStatus

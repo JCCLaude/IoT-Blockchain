@@ -49,6 +49,25 @@ function HistoryGraph({
       title: {
         text: "Measured Values",
       },
+      plotLines: [
+        {
+          value: higherLimit,
+          color: "red",
+          dashStyle: "shortdash",
+          width: 2,
+          label: {
+            text: "Dangerous Limit " + higherLimit + unit,
+          },
+        },
+        {
+          value: lowerLimit,
+          color: "orange",
+          dashStyle: "shortdash",
+          width: 2,
+          label: {
+            text: "Still accaptable Limit " + lowerLimit + unit,
+          },
+      }]
     },
     tooltip: {
       formatter: function () {
@@ -126,7 +145,7 @@ function HistoryGraph({
           <HighchartsReact
             highcharts={Highcharts}
             options={options}
-            constructorType={"chart"}
+            constructorType={"stockChart"} //chart 
           />
           <br />
         </Container>
