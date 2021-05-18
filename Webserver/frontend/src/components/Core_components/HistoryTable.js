@@ -162,7 +162,7 @@ function HistoryTable({
                       >
                         {item[1]}
                       </td>
-                      <td>{item[2]}</td>
+                      <td><a href={"https://maps.google.com/?q=" + item[2]} target="_blank" rel="noopener noreferrer">{item[2]}</a></td>
                       <td style={{ textAlign: "center", color: "green" }}>
                         {item[3] && <FaRegCheckCircle />}
                       </td>

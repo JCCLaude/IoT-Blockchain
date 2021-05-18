@@ -12,8 +12,6 @@ function NitrogenDioxide() {
   const { nitrogendioxideLoading, nitrogendioxideEventdb } = useGlobalContext();
   const [key, setKey] = useState("about");
 
-  //blockchain gleiches wie db oder leeres array (besser)
-
   const lowerEmissionLimit = 1000;
   const higherEmissionLimit = 2000;
 
@@ -37,7 +35,7 @@ function NitrogenDioxide() {
         databaseData={nitrogendioxideEventdb}
         loading={nitrogendioxideLoading}
         name="NO2"
-        unit="ppm"
+        unit="μg/m3"
         lowerLimit={lowerEmissionLimit}
         higherLimit={higherEmissionLimit}
       />
@@ -65,7 +63,7 @@ function NitrogenDioxide() {
           <Tab eventKey="limits" title="Limits">
             <Card>
               <Card.Body>
-                <Card.Title>Most regulated</Card.Title>
+                <Card.Title>The Gas From Power Plants And Cars</Card.Title>
                 <Card.Text>
                 A 1-hour limit value of <b>200 µg/m³</b> has been set for nitrogen dioxide in outdoor air throughout Europe,
                 in the USA, the limit is 191 µg/m³. 

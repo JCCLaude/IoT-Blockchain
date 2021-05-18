@@ -1,9 +1,9 @@
 import { Card, Container, Jumbotron, Row } from "react-bootstrap";
 import React from "react";
 import { Link } from "react-router-dom";
-import "../Database_components/style.components.css";
+import "./style.components.css";
 import { useGlobalContext } from "../../context";
-import CurrentStatus from "../Database_components/CurrentStatus";
+import CurrentStatus from "./CurrentStatus";
 import Last7Days from "./Last7Days";
 
 import co2img from "../../assets/images/CO2.jpg";
@@ -169,7 +169,7 @@ function Overview() {
 
           <div className="col-sm-4">
             <Card>
-              <Link to="/nitrogendioxide">
+              <Link to="/emissions/nitrogendioxide">
                 <img
                   className="card-img-top"
                   src={no2img}
@@ -191,7 +191,7 @@ function Overview() {
 
           <div className="col-sm-4">
             <Card>
-              <Link to="/particularmatter2">
+              <Link to="/emissions/particularmatter2">
                 <img
                   className="card-img-top"
                   src={pm2img}
@@ -214,7 +214,7 @@ function Overview() {
 
           <div className="col-sm-4">
             <Card>
-              <Link to="/particularmatter10">
+              <Link to="/emissions/particularmatter10">
                 <img
                   className="card-img-top"
                   src={pm10img}
@@ -237,7 +237,7 @@ function Overview() {
 
           <div className="col-sm-4 mx-auto">
             <Card>
-              <Link to="/sulfurdioxdie">
+              <Link to="/emissions/sulfurdioxide">
                 <img
                   className="card-img-top"
                   src={so2img}

@@ -36,7 +36,7 @@ function ParticularMatter10() {
         databaseData={particularmatter10Eventdb}
         loading={particularmatter10Loadingdb}
         name="PM 10"
-        unit="ppm"
+        unit="μg/m3"
         lowerLimit={lowerEmissionLimit}
         higherLimit={higherEmissionLimit}
       />
@@ -66,7 +66,7 @@ function ParticularMatter10() {
           <Tab eventKey="limits" title="Limits">
             <Card>
               <Card.Body>
-                <Card.Title>M</Card.Title>
+                <Card.Title>A Big Bag Of Dust</Card.Title>
                 <Card.Text>
                 The World Health Organization (WHO) has set a limit of 10 μg/m3 annual
                 mean and a 24-hour mean of <b>25 μg/m3</b>.  
@@ -77,7 +77,7 @@ function ParticularMatter10() {
           <Tab eventKey="health" title="Health-Impact">
             <Card>
               <Card.Body>
-                <Card.Title>D </Card.Title>
+                <Card.Title>Respiratory Blockage</Card.Title>
                 <Card.Text>
                 Particulate matter thus consists of a complex mixture of solid and liquid 
                 particles and is divided into different fractions. PM10 has a maximum 

@@ -24,10 +24,10 @@ function Navigation() {
           <Nav.Link as={Link} to="/">
             Overview
           </Nav.Link>
-          <Nav.Link as={Link} to="/co2">
+          <Nav.Link as={Link} to="/carbondioxide">
             Carbondioxide
           </Nav.Link>
-          <Nav.Link as={Link} to="/humidity">
+          <Nav.Link as={Link} to="/airhumidity">
             Airhumidity
           </Nav.Link>
           <Nav.Link as={Link} to="/temperature">
