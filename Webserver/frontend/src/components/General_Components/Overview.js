@@ -1,4 +1,4 @@
-import { Card, Container, Jumbotron, Row } from "react-bootstrap";
+import { Card, Container, Jumbotron, Row, Badge } from "react-bootstrap";
 import React from "react";
 import { Link } from "react-router-dom";
 import "./style.components.css";
@@ -41,30 +41,20 @@ function Overview() {
           <p>Get a quick overview of the emission values in your area!</p>
         </Container>
       </Jumbotron>
-      <Container>
-        <h2>Last measured values</h2>
-
-        {/*</Container><Container className="container-fluid fixed-bottom">*/}
-        <Container className="container-fluid fixed-bottom">
-          <Row>
-            <Card bg="danger" sm-4>
-                <Card.Header>
-                  <b>Limit exceeded!</b>
-                </Card.Header>
-            </Card>
-            <Card bg="warning" sm-4>
-                <Card.Header>
-                  <b>Limit still accaptable.</b>
-                </Card.Header>
-            </Card>
-            <Card bg="success" sm-4>
-                <Card.Header>
-                  <b>Everything fine!</b>
-                </Card.Header>
-            </Card>
-          </Row>
+      <Container className="text-center">
+        <Container className="text-center">
+          <h1>Last measured values</h1>
+          <Badge pill variant="success">
+            Everything okay
+          </Badge>
+          <Badge pill variant="warning">
+            Still acceptable
+          </Badge>
+          <Badge pill variant="danger">
+            Critical limit surpassed
+          </Badge>
         </Container>
-
+        <br />
         <Container className="dark rounded text-center">
           <Row>
             <CurrentStatus
@@ -113,11 +103,13 @@ function Overview() {
         </Container>
         <br></br>
         <br></br>
+        <hr />
         <h2>Measured values - Summary of the last 7 days</h2>
         <br></br>
         <Container>
-        <Last7Days />
-      </Container>
+          <Last7Days />
+        </Container>
+        <hr />
         <br></br>
         <br></br>
         <h2>Measured values - All History Data</h2>
@@ -279,7 +271,7 @@ function Overview() {
             </Card>
           </div>
         </div>
-     </Container>
+      </Container>
     </>
   );
 }

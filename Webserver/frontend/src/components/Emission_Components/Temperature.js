@@ -56,9 +56,13 @@ function Temperature() {
               <Card.Body>
                 <Card.Title>Getting Hot</Card.Title>
                 <Card.Text>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Labore animi distinctio libero quia repellat porro ratione
-                  exercitationem, fugiat voluptatem asperiores.
+                  Population exposure to heat is increasing due to climate
+                  change, and this trend will continue. Globally, extreme
+                  temperature events are observed to be increasing in their
+                  frequency, duration, and magnitude.Exposure to excessive heat
+                  has wide ranging physiological impacts for all humans, often
+                  amplifying existing conditions and resulting in premature
+                  death and disability.
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -66,12 +70,11 @@ function Temperature() {
           <Tab eventKey="limits" title="Limits">
             <Card>
               <Card.Body>
-                <Card.Title>Most Regulated</Card.Title>
                 <Card.Text>
-                  Reducing CO2 emissions is a high priority for many countries.
-                  The Kyoto climate agreement stipulated that emissions should
-                  be reduced by 5.8% compared to 1990. Many countries are also
-                  implementing their own rules to reduce CO2 emissions
+                  Above <b>26 °C: </b>Productivity decreases noticeably Above{" "}
+                  <br />
+                  <b>30 °C: </b>Cooling measures must be taken (drinks,
+                  ventilation, light clothing)
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -79,13 +82,14 @@ function Temperature() {
           <Tab eventKey="health" title="Health-Impact">
             <Card>
               <Card.Body>
-                <Card.Title>Danger In Closed Rooms</Card.Title>
+                <Card.Title>Risks (not only) for certain groups</Card.Title>
                 <Card.Text>
-                  An increased concentration of CO2 in the air we breathe can
-                  lead to poor concentration, decreased performance, increased
-                  risk of infection, and increased breathing rate. As the
-                  concentration of carbon dioxide naturally increases in closed
-                  rooms, good ventilation with clean air should be provided.
+                  High temperatures are affecting everyone. However, certain
+                  populations are prone to risks. These include the elderly,
+                  infants and children, pregnant women, outdoor and manual
+                  workers and athletes. Health impacts caused by a higher
+                  temperature can happen immediately or lagged and include heat
+                  strokes, heat cramps, hyperthermia and heat exhaustion.
                 </Card.Text>
               </Card.Body>
             </Card>

@@ -1,4 +1,3 @@
-
 h3 {
   font-weight: bold;
 }
@@ -24,8 +23,7 @@ h4 {
 }
 
 .jumboco2 {
-  background: url("../../assets/images/CO2.jpg") no-repeat fixed
-    bottom;
+  background: url("../../assets/images/CO2.jpg") no-repeat fixed bottom;
   background-size: cover;
   color: #ccc;
   height: 200px;
@@ -35,8 +33,7 @@ h4 {
 }
 
 .jumbotemp {
-  background: url("../../assets/images/temperature.jpg") no-repeat fixed
-    bottom;
+  background: url("../../assets/images/temperature.jpg") no-repeat fixed bottom;
   background-size: cover;
   color: #ccc;
   height: 200px;
@@ -46,8 +43,7 @@ h4 {
 }
 
 .jumboah {
-  background: url("../../assets/images/airhumidity.jpg") no-repeat fixed
-    bottom;
+  background: url("../../assets/images/airhumidity.jpg") no-repeat fixed bottom;
   background-size: cover;
   color: #ccc;
   height: 200px;
@@ -153,4 +149,8 @@ h4 {
     width: 80%;
     height: 80%;
   }
+}
+.badge {
+  font-size: 100%;
+  margin: 2px;
 }

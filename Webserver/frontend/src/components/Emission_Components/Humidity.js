@@ -55,9 +55,10 @@ function Humidity() {
               <Card.Body>
                 <Card.Title>Getting Wet</Card.Title>
                 <Card.Text>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Labore animi distinctio libero quia repellat porro ratione
-                  exercitationem, fugiat voluptatem asperiores.
+                  Increased humidity occurs particularly often in conjunction
+                  with increased temperatures. Due to global warming, more and
+                  more humid, hot days occur, especially in the summer months.
+                  These days present the body with great challenges
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -65,12 +66,14 @@ function Humidity() {
           <Tab eventKey="limits" title="Limits">
             <Card>
               <Card.Body>
-                <Card.Title>Most Regulated</Card.Title>
                 <Card.Text>
-                  Reducing CO2 emissions is a high priority for many countries.
-                  The Kyoto climate agreement stipulated that emissions should
-                  be reduced by 5.8% compared to 1990. Many countries are also
-                  implementing their own rules to reduce CO2 emissions
+                  <b>35-50%: </b> Ideal conditions in closed rooms
+                  <br />
+                  Above
+                  <b>70 %: </b> Increased respiratory rate and heavy load on the
+                  cardiovascular system <br />
+                  Above <b>95 %: </b> Acute threat from lack of water and
+                  nutrients leads to heat stroke, heat cramps and fainting
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -78,13 +81,16 @@ function Humidity() {
           <Tab eventKey="health" title="Health-Impact">
             <Card>
               <Card.Body>
-                <Card.Title>Danger In Closed Rooms</Card.Title>
+                <Card.Title>Challenge for the body</Card.Title>
                 <Card.Text>
-                  An increased concentration of CO2 in the air we breathe can
-                  lead to poor concentration, decreased performance, increased
-                  risk of infection, and increased breathing rate. As the
-                  concentration of carbon dioxide naturally increases in closed
-                  rooms, good ventilation with clean air should be provided.
+                  The higher the humidity rises, the harder it is for the body
+                  to regulate its own temperature. As soon as the cooling
+                  function of perspiration is no longer effective above 70%, the
+                  body starts to take care of all internal organs at full speed.
+                  This leads to a massive strain on the cardiovascular system
+                  and demands huge amounts of nutrients and water from the body.
+                  If replenishment is lacking, the results can include symptoms
+                  from exhaustion up to collapsing.
                 </Card.Text>
               </Card.Body>
             </Card>
