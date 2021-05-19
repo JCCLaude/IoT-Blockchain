@@ -69,7 +69,7 @@ export const AppProvider = ({ children }) => {
   const fetchEvents = useCallback(async () => {
     try {
       axios
-        .get("http://localhost:5000/co/")
+        .get("http://svj753.de:5000/co/")
         .then((response) => {
           var co = response.data;
           var covals = co.map(function (item) {
@@ -97,7 +97,7 @@ export const AppProvider = ({ children }) => {
         });
 
       axios
-        .get("http://localhost:5000/ah/")
+        .get("http://svj753.de:5000/ah/")
         .then((response) => {
           var ah = response.data;
           var ahvals = ah.map(function (item) {
@@ -126,7 +126,7 @@ export const AppProvider = ({ children }) => {
         });
 
       axios
-        .get("http://localhost:5000/temp/")
+        .get("http://svj753.de:5000/temp/")
         .then((response) => {
           var temp = response.data;
           var tempvals = temp.map(function (item) {
@@ -154,7 +154,7 @@ export const AppProvider = ({ children }) => {
         });
 
       axios
-        .get("http://localhost:5000/no/")
+        .get("http://svj753.de:5000/no/")
         .then((response) => {
           var no = response.data;
           var novals = no.map(function (item) {
@@ -182,7 +182,7 @@ export const AppProvider = ({ children }) => {
         });
 
       axios
-        .get("http://localhost:5000/pm2/")
+        .get("http://svj753.de:5000/pm2/")
         .then((response) => {
           var pm2 = response.data;
           var pm2vals = pm2.map(function (item) {
@@ -210,7 +210,7 @@ export const AppProvider = ({ children }) => {
         });
 
       axios
-        .get("http://localhost:5000/pm10/")
+        .get("http://svj753.de:5000/pm10/")
         .then((response) => {
           var pm10 = response.data;
           var pm10vals = pm10.map(function (item) {
@@ -238,7 +238,7 @@ export const AppProvider = ({ children }) => {
         });
 
       axios
-        .get("http://localhost:5000/so/")
+        .get("http://svj753.de:5000/so/")
         .then((response) => {
           var so = response.data;
           var sovals = so.map(function (item) {
