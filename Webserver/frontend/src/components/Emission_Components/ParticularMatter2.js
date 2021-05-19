@@ -38,7 +38,7 @@ function ParticularMatter2() {
         databaseData={particularmatter2Eventdb}
         loading={particularmatter2Loadingdb}
         name="PM 2,5"
-        unit="ppm"
+        unit="μg/m3"
         lowerLimit={lowerEmissionLimit}
         higherLimit={higherEmissionLimit}
       />
@@ -68,7 +68,7 @@ function ParticularMatter2() {
           <Tab eventKey="limits" title="Limits">
             <Card>
               <Card.Body>
-                <Card.Title>M</Card.Title>
+                <Card.Title>A Small Bag Of Dust</Card.Title>
                 <Card.Text>
                 The World Health Organization (WHO) has set a limit of 20 μg/m3 
                 annual mean and a 24-hour mean of <b>50 μg/m3</b>.  
@@ -79,7 +79,7 @@ function ParticularMatter2() {
           <Tab eventKey="health" title="Health-Impact">
             <Card>
               <Card.Body>
-                <Card.Title>D</Card.Title>
+                <Card.Title>Respiratory Blockage</Card.Title>
                 <Card.Text>
                 PM2.5 has a maximum diameter of 2.5 µm and can penetrate into 
                 the bronchi and alveoli. Ultrafine particles with a diameter of less than 0.1 µm 

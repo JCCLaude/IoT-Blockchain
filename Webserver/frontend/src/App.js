@@ -28,8 +28,8 @@ function App() {
         <StatusPane />
         <Switch>
           <Route exact path="/" component={Overview} />
-          <Route path="/co2" component={Carbondioxide} />
-          <Route path="/humidity" component={Humidity} />
+          <Route path="/carbondioxide" component={Carbondioxide} />
+          <Route path="/airhumidity" component={Humidity} />
           <Route path="/temperature" component={Temperature} />
           <Route path="/about" component={About} />
           <Route path="/blockchain" component={BlockchainExplanation} />

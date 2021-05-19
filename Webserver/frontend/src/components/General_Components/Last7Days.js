@@ -114,7 +114,7 @@ function Last7Days() {
           />
           <div className="text-center">
             The emissions are <b>IN COMPLIANCE</b> with government emission
-            limits in the last 7 days.
+            limits in the <b>last 7 days</b>.
           </div>
           <br></br>
           <h5>The air quality is great!</h5>
@@ -129,7 +129,7 @@ function Last7Days() {
           />
           <div className="text-center">
             The emissions are <b>NOT IN COMPLIANCE</b> with government emission
-            limits in the last 7 days.
+            limits in the <b>last 7 days</b>.
           </div>
           <br></br>
           <p>The following emissions were exceeded the last 7 days:</p>

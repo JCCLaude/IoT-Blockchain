@@ -35,7 +35,7 @@ function SulfurDioxide() {
         databaseData={sulfurdioxideEventdb}
         loading={sulfurdioxideLoadingdb}
         name="SO2"
-        unit="ppm"
+        unit="μg/m3"
         lowerLimit={lowerEmissionLimit}
         higherLimit={higherEmissionLimit}
       />
@@ -49,7 +49,7 @@ function SulfurDioxide() {
           <Tab eventKey="about" title="About SO2">
             <Card>
               <Card.Body>
-                <Card.Title>T</Card.Title>
+                <Card.Title>The Environment And Human Health Harmful Gas</Card.Title>
                 <Card.Text>
                 SO2 is a colorless gas with a pungent odor. It is produced during the combustion 
                 of fossil fuels (coal and oil) and during the smelting of mineral ores containing 
@@ -62,9 +62,9 @@ function SulfurDioxide() {
           <Tab eventKey="limits" title="Limits">
             <Card>
               <Card.Body>
-                <Card.Title>M</Card.Title>
+                <Card.Title>Regulated For The Environment And People's Well-Being</Card.Title>
                 <Card.Text>
-                The World Health Organization (WHO) has set a limit of a 24-hour mean of <b>50 μg/m3</b>
+                The World Health Organization (WHO) has set a limit of a 24-hour mean of <b>50 μg/m3 </b>
                 and a 10-minute mean of 500 μg/m3.  
                 </Card.Text>
               </Card.Body>
@@ -73,7 +73,7 @@ function SulfurDioxide() {
           <Tab eventKey="health" title="Health-Impact">
             <Card>
               <Card.Body>
-                <Card.Title>D</Card.Title>
+                <Card.Title>The Acid Rain Creator</Card.Title>
                 <Card.Text>
                 SO2 can affect the respiratory tract and the functions of the lungs, 
                 and causes irritation to the eyes. Inflammation of the respiratory 

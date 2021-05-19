@@ -54,7 +54,7 @@ function Temperature() {
           <Tab eventKey="about" title="About Temperature">
             <Card>
               <Card.Body>
-                <Card.Title>Getting hot</Card.Title>
+                <Card.Title>Getting Hot</Card.Title>
                 <Card.Text>
                   Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                   Labore animi distinctio libero quia repellat porro ratione
@@ -66,7 +66,7 @@ function Temperature() {
           <Tab eventKey="limits" title="Limits">
             <Card>
               <Card.Body>
-                <Card.Title>Most regulated</Card.Title>
+                <Card.Title>Most Regulated</Card.Title>
                 <Card.Text>
                   Reducing CO2 emissions is a high priority for many countries.
                   The Kyoto climate agreement stipulated that emissions should
@@ -79,7 +79,7 @@ function Temperature() {
           <Tab eventKey="health" title="Health-Impact">
             <Card>
               <Card.Body>
-                <Card.Title>Danger in closed Rooms</Card.Title>
+                <Card.Title>Danger In Closed Rooms</Card.Title>
                 <Card.Text>
                   An increased concentration of CO2 in the air we breathe can
                   lead to poor concentration, decreased performance, increased
