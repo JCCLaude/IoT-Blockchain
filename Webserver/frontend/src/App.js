@@ -29,7 +29,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Overview} />
           <Route path="/carbondioxide" component={Carbondioxide} />
-          <Route path="/airhumidity" component={Humidity} />
+          <Route path="/humidity" component={Humidity} />
           <Route path="/temperature" component={Temperature} />
           <Route path="/about" component={About} />
           <Route path="/blockchain" component={BlockchainExplanation} />

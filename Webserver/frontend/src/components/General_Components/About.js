@@ -1,6 +1,8 @@
 import React from "react";
 import { Container, Card, CardGroup, Jumbotron } from "react-bootstrap";
 import Overview_structure from "../../assets/images/Overview_structure.png";
+import columbia_logo from "../../assets/images/Columbia_logo.png";
+import unibw_logo from "../../assets/images/unibw_logo.png";
 
 function About() {
   return (
@@ -131,6 +133,21 @@ function About() {
         Florian Alt: Department of Computer Science, Universität der Bundeswehr München, Munich, Germany <br></br>
         Henning Schulzrinne: Department of Computer Science, Columbia University, New York, USA<br></br>
         </p>
+
+        <br></br>
+
+    <Container className="text-center">
+          <div>
+              <a href="https://www.unibw.de/" target="_blank" rel="noopener noreferrer">
+                <img src={unibw_logo} width="330" height="80" alt="UniBwM" id="unibw"></img>
+              </a>
+              <a href="https://www.columbia.edu/" target="_blank" rel="noopener noreferrer">
+                <img src={columbia_logo} width="280" height="140" alt="CU" id="cu"></img>
+              </a>
+          </div>
+          </Container>
+
+
       </Container>
       </>
   )

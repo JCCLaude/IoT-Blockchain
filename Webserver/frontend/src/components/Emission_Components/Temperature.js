@@ -79,10 +79,10 @@ function Temperature() {
               </Card.Body>
             </Card>
           </Tab>
-          <Tab eventKey="health" title="Health-Impact">
+          <Tab eventKey="health" title="Health Impact">
             <Card>
               <Card.Body>
-                <Card.Title>Risks (not only) for certain groups</Card.Title>
+                <Card.Title>Risks (Not Only) For Certain Groups</Card.Title>
                 <Card.Text>
                   High temperatures are affecting everyone. However, certain
                   populations are prone to risks. These include the elderly,

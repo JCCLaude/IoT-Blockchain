@@ -15,16 +15,16 @@ function ParticularMatter2() {
   } = useGlobalContext();
   const [key, setKey] = useState("about");
 
-  const lowerEmissionLimit = 1000;
-  const higherEmissionLimit = 2000;
+  const lowerEmissionLimit = 13;
+  const higherEmissionLimit = 25;
 
   return (
     <>
       <Jumbotron fluid className="jumbopm2">
         <div className="overlay "> </div>
         <Container className="d-none d-lg-block">
-          <h1>Particular Matter 2,5 (PM 2,5)</h1>
-          <p>Find verified information about all measured PM 2,5 emissions!</p>
+          <h1>Particular Matter 2.5 (PM 2.5)</h1>
+          <p>Find verified information about all measured PM 2.5 emissions!</p>
         </Container>
       </Jumbotron>
       {/* <CertificateBanner
@@ -37,7 +37,7 @@ function ParticularMatter2() {
         blockchainData={[]}
         databaseData={particularmatter2Eventdb}
         loading={particularmatter2Loadingdb}
-        name="PM 2,5"
+        name="PM 2.5"
         unit="μg/m3"
         lowerLimit={lowerEmissionLimit}
         higherLimit={higherEmissionLimit}
@@ -49,7 +49,7 @@ function ParticularMatter2() {
           activeKey={key}
           onSelect={(k) => setKey(k)}
         >
-          <Tab eventKey="about" title="About PM 2,5">
+          <Tab eventKey="about" title="About PM 2.5">
             <Card>
               <Card.Body>
                 <Card.Title>The Small Particular Matter</Card.Title>
@@ -68,15 +68,17 @@ function ParticularMatter2() {
           <Tab eventKey="limits" title="Limits">
             <Card>
               <Card.Body>
-                <Card.Title>A Small Bag Of Dust</Card.Title>
                 <Card.Text>
-                The World Health Organization (WHO) has set a limit of 20 μg/m3 
-                annual mean and a 24-hour mean of <b>50 μg/m3</b>.  
+                Above <b>13 μg/m3: </b>Fine particles (PM2.5) can pass from the alveoli 
+                into the bloodstream and thus be distributed throughout the body and reach other organs.{" "}
+                  <br />
+                  <b>25 μg/m3: </b>Increasing amount of particulate matter can enter the lungs and cause 
+                  long-term damage. Leave area immediately or protect mouth and nose.
                 </Card.Text>
               </Card.Body>
             </Card>
           </Tab>
-          <Tab eventKey="health" title="Health-Impact">
+          <Tab eventKey="health" title="Health Impact">
             <Card>
               <Card.Body>
                 <Card.Title>Respiratory Blockage</Card.Title>

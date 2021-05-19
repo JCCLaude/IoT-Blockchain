@@ -41,9 +41,12 @@ function OtherEmissions() {
               by the WHO to be responsible for numerous human illnesses and deaths, so regulating them should 
               be a top priority. 
               <br></br><br></br>
-              For development reasons, we have also included the values of temperature and air humidity in the 
+              For development reasons, we have also included the values of temperature and humidity in the 
               project, as we were able to measure real-time data here with a sensor. According to the WHO, these 
-              values can be harmful to human health if they are too high or too low.  
+              values can be harmful to human health if they are too high or too low. 
+              Furthermore, the measurement accuracy of emission measurement sensors such as for CO2, SO2 or 
+              NO2 depends on the conditions such as humidity and temperature, which is why these values can 
+              therefore also provide information about the measurement accuracy of the placed sensors. 
             </Card.Text>
           </Card.Body>
         </Card>

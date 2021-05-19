@@ -9,7 +9,7 @@ import redCertificate from "../../assets/images/redcert.png";
 function Last7Days() {
   const {
     co2Eventdb,
-    airhumidityEventdb,
+    humidityEventdb,
     temperatureEventdb,
     nitrogendioxideEventdb,
     particularmatter2Eventdb,
@@ -20,7 +20,7 @@ function Last7Days() {
   const [loading, setLoading] = useState(true);
   const [co2Exceeded, setCo2Exceeded] = useState(["CO2", false]);
   const [humidityExceeded, setHumiditytExceeded] = useState([
-    "Air Humidity",
+    "Humidity",
     false,
   ]);
   const [temperatureExceeded, setTemperatureExceeded] = useState([
@@ -28,7 +28,7 @@ function Last7Days() {
     false,
   ]);
   const [nitrogenExceeded, setNitrogenExceeded] = useState(["NO2", false]);
-  const [pm2Exceeded, setPm2Exceeded] = useState(["PM 2,5", false]);
+  const [pm2Exceeded, setPm2Exceeded] = useState(["PM 2.5", false]);
   const [pm10Exceeded, setPm10Exceeded] = useState(["PM 10", false]);
   const [sulfurdioxideExceeded, setSulfurdioxideExceeded] = useState([
     "SO2",
@@ -74,16 +74,16 @@ function Last7Days() {
   useEffect(() => {
     checkAllValues([
       [co2Eventdb, 2000, "CO2", setCo2Exceeded],
-      [airhumidityEventdb, 95, "Air Humidity", setHumiditytExceeded],
+      [humidityEventdb, 95, "Humidity", setHumiditytExceeded],
       [temperatureEventdb, 30, "Temperature", setTemperatureExceeded],
       [nitrogendioxideEventdb, 200, "NO2", setNitrogenExceeded],
-      [particularmatter2Eventdb, 25, "PM 2,5", setPm2Exceeded],
+      [particularmatter2Eventdb, 25, "PM 2.5", setPm2Exceeded],
       [particularmatter10Eventdb, 50, "PM 10", setPm10Exceeded],
       [sulfurdioxideEventdb, 20, "SO2", setSulfurdioxideExceeded],
     ]);
   }, [
     co2Eventdb,
-    airhumidityEventdb,
+    humidityEventdb,
     temperatureEventdb,
     nitrogendioxideEventdb,
     particularmatter2Eventdb,

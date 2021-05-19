@@ -13,8 +13,8 @@ function ParticularMatter10() {
     useGlobalContext();
   const [key, setKey] = useState("about");
 
-  const lowerEmissionLimit = 1000;
-  const higherEmissionLimit = 2000;
+  const lowerEmissionLimit = 25;
+  const higherEmissionLimit = 50;
 
   return (
     <>
@@ -66,15 +66,17 @@ function ParticularMatter10() {
           <Tab eventKey="limits" title="Limits">
             <Card>
               <Card.Body>
-                <Card.Title>A Big Bag Of Dust</Card.Title>
                 <Card.Text>
-                The World Health Organization (WHO) has set a limit of 10 μg/m3 annual
-                mean and a 24-hour mean of <b>25 μg/m3</b>.  
+                Above <b>25 μg/m3: </b>They enter the lungs through the nose and mouth, where 
+                they can be transported to the main bronchi or alveoli, depending on their size.{" "}
+                  <br />
+                  <b>50 μg/m3: </b>Increasing amount of particulate matter can enter the lungs and cause 
+                  long-term damage. Leave area immediately or protect mouth and nose.
                 </Card.Text>
               </Card.Body>
             </Card>
           </Tab>
-          <Tab eventKey="health" title="Health-Impact">
+          <Tab eventKey="health" title="Health Impact">
             <Card>
               <Card.Body>
                 <Card.Title>Respiratory Blockage</Card.Title>

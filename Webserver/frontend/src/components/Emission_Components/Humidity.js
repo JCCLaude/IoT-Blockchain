@@ -12,7 +12,7 @@ function Humidity() {
     humidityLoading,
     humidityEventsChart,
     humidityEventsTable,
-    airhumidityEventdb,
+    humidityEventdb,
   } = useGlobalContext();
 
   const [key, setKey] = useState("about");
@@ -36,7 +36,7 @@ function Humidity() {
       <hr />
       <HistoryGraph
         blockchainData={humidityEventsChart}
-        databaseData={airhumidityEventdb}
+        databaseData={humidityEventdb}
         loading={humidityLoading}
         name="Humidity"
         unit="%"
@@ -78,7 +78,7 @@ function Humidity() {
               </Card.Body>
             </Card>
           </Tab>
-          <Tab eventKey="health" title="Health-Impact">
+          <Tab eventKey="health" title="Health Impact">
             <Card>
               <Card.Body>
                 <Card.Title>Challenge for the body</Card.Title>
@@ -100,7 +100,7 @@ function Humidity() {
       <hr />
       <HistoryTable
         blockchainData={humidityEventsTable}
-        databaseData={airhumidityEventdb}
+        databaseData={humidityEventdb}
         loading={humidityLoading}
         lowerLimit={lowerEmissionLimit}
         higherLimit={higherEmissionLimit}

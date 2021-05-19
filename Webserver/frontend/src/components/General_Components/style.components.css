@@ -12,6 +12,14 @@ h4 {
   justify-content: center;
 }
 
+#unibw {
+  margin: 3%;
+}
+
+#cu {
+  margin: 3%;
+}
+
 .jumbo {
   background: url("../../assets/images/LeafWithWater.jpeg") no-repeat fixed
     bottom;
