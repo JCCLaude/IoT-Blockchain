@@ -27,8 +27,8 @@ function Navigation() {
           <Nav.Link as={Link} to="/carbondioxide">
             Carbondioxide
           </Nav.Link>
-          <Nav.Link as={Link} to="/airhumidity">
-            Airhumidity
+          <Nav.Link as={Link} to="/humidity">
+            Humidity
           </Nav.Link>
           <Nav.Link as={Link} to="/temperature">
             Temperature
@@ -42,7 +42,7 @@ function Navigation() {
               Nitrogen Dioxide
             </NavDropdown.Item>
             <NavDropdown.Item as={Link} to="/emissions/particularmatter2">
-              Particular Matter 2,5
+              Particular Matter 2.5
             </NavDropdown.Item>
             <NavDropdown.Item as={Link} to="/emissions/particularmatter10">
               Particular Matter 10

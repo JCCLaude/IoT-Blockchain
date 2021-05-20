@@ -18,8 +18,8 @@ function Overview() {
   const {
     co2Eventdb,
     co2Loadingdb,
-    airhumidityEventdb,
-    airhumidityLoadingdb,
+    humidityEventdb,
+    humidityLoadingdb,
     temperatureEventdb,
     temperatureLoadingdb,
     nitrogendioxideEventdb,
@@ -38,7 +38,7 @@ function Overview() {
         <div className="overlay "> </div>
         <Container className="d-none d-lg-block">
           <h1>Overview</h1>
-          <p>Get a quick overview of the emission values in your area!</p>
+          <p>Get a quick overview of the outdoor air emission values in your area!</p>
         </Container>
       </Jumbotron>
       <Container className="text-center">
@@ -64,10 +64,10 @@ function Overview() {
               loading={co2Loadingdb}
             />
             <CurrentStatus
-              name={"Air Humidity"}
-              data={airhumidityEventdb}
+              name={"Humidity"}
+              data={humidityEventdb}
               unit="%"
-              loading={airhumidityLoadingdb}
+              loading={humidityLoadingdb}
             />
             <CurrentStatus
               name={"Temperature"}
@@ -78,25 +78,25 @@ function Overview() {
             <CurrentStatus
               name={"Nitrogen Dioxide"}
               data={nitrogendioxideEventdb}
-              unit="ppm"
+              unit="μg/m3"
               loading={nitrogendioxideLoadingdb}
             />
             <CurrentStatus
               name={"Particular Matter 2.5"}
               data={particularmatter2Eventdb}
-              unit="ppm"
+              unit="μg/m3"
               loading={particularmatter2Loadingdb}
             />
             <CurrentStatus
               name={"Particular Matter 10"}
               data={particularmatter10Eventdb}
-              unit="ppm"
+              unit="μg/m3"
               loading={particularmatter10Loadingdb}
             />
             <CurrentStatus
               name={"Sulfur Dioxdie"}
               data={sulfurdioxideEventdb}
-              unit="ppm"
+              unit="μg/m3"
               loading={sulfurdioxideLoadingdb}
             />
           </Row>
@@ -139,20 +139,20 @@ function Overview() {
 
           <div className="col-sm-4">
             <Card>
-              <Link to="/airhumidity">
+              <Link to="/humidity">
                 <img
                   className="card-img-top"
                   src={airhumidityimg}
                   width="150"
                   height="150"
-                  alt="Air Humidity"
+                  alt="Humidity"
                 ></img>
                 <Card.Header>
-                  <b>Air Humidity</b>
+                  <b>Humidity</b>
                 </Card.Header>
               </Link>
               <Card.Body>
-                Here you will find a link to the Air Humidity website.
+                Here you will find a link to the Humidity website.
                 <br></br>
                 <br></br>
               </Card.Body>

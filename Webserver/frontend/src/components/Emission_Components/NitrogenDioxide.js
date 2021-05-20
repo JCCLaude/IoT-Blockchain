@@ -12,8 +12,8 @@ function NitrogenDioxide() {
   const { nitrogendioxideLoading, nitrogendioxideEventdb } = useGlobalContext();
   const [key, setKey] = useState("about");
 
-  const lowerEmissionLimit = 1000;
-  const higherEmissionLimit = 2000;
+  const lowerEmissionLimit = 100;
+  const higherEmissionLimit = 200;
 
   return (
     <>
@@ -63,15 +63,18 @@ function NitrogenDioxide() {
           <Tab eventKey="limits" title="Limits">
             <Card>
               <Card.Body>
-                <Card.Title>The Gas From Power Plants And Cars</Card.Title>
                 <Card.Text>
-                A 1-hour limit value of <b>200 µg/m³</b> has been set for nitrogen dioxide in outdoor air throughout Europe,
-                in the USA, the limit is 191 µg/m³. 
+                Above <b>100 μg/m3: </b>Shortness of breath, cough{" "}
+                  <br />
+                  <b>200 μg/m3: </b>At high NO2 concentrations, more people are hospitalized 
+                  with respiratory and lung diseases, as well as cardiovascular diseases 
+                  (for example, asthma, heart attacks and strokes). An increase in mortality 
+                  can also be observed.
                 </Card.Text>
               </Card.Body>
             </Card>
           </Tab>
-          <Tab eventKey="health" title="Health-Impact">
+          <Tab eventKey="health" title="Health Impact">
             <Card>
               <Card.Body>
                 <Card.Title>A Gas With Significant Health Risk </Card.Title>

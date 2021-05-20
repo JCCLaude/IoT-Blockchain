@@ -12,8 +12,8 @@ function SulfurDioxide() {
   const { sulfurdioxideLoadingdb, sulfurdioxideEventdb } = useGlobalContext();
   const [key, setKey] = useState("about");
 
-  const lowerEmissionLimit = 1000;
-  const higherEmissionLimit = 2000;
+  const lowerEmissionLimit = 10;
+  const higherEmissionLimit = 20;
 
   return (
     <>
@@ -62,15 +62,16 @@ function SulfurDioxide() {
           <Tab eventKey="limits" title="Limits">
             <Card>
               <Card.Body>
-                <Card.Title>Regulated For The Environment And People's Well-Being</Card.Title>
                 <Card.Text>
-                The World Health Organization (WHO) has set a limit of a 24-hour mean of <b>50 μg/m3 </b>
-                and a 10-minute mean of 500 μg/m3.  
+                Above <b>10 μg/m3: </b>Heavy coughing and irritation to the eyes{" "}
+                  <br />
+                  <b>20 μg/m3: </b>Painful conjunctivitis, increased nasal secretions, 
+                  cough and increased expectoration (sputum). Leave area immediately or remove contaminants.
                 </Card.Text>
               </Card.Body>
             </Card>
           </Tab>
-          <Tab eventKey="health" title="Health-Impact">
+          <Tab eventKey="health" title="Health Impact">
             <Card>
               <Card.Body>
                 <Card.Title>The Acid Rain Creator</Card.Title>

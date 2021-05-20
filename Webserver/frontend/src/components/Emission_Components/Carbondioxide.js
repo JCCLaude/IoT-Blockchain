@@ -80,7 +80,7 @@ function Carbondioxide() {
               </Card.Body>
             </Card>
           </Tab>
-          <Tab eventKey="health" title="Health-Impact">
+          <Tab eventKey="health" title="Health Impact">
             <Card>
               <Card.Body>
                 <Card.Title>Danger In Closed Rooms</Card.Title>

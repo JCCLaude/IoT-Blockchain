@@ -29,8 +29,8 @@ export const AppProvider = ({ children }) => {
   const [errordb, setErrordb] = useState(false);
   const [co2Eventdb, setCo2Eventdb] = useState();
   const [co2Loadingdb, setCo2Loadingdb] = useState(true);
-  const [airhumidityEventdb, setAirHumidityEventdb] = useState();
-  const [airhumidityLoadingdb, setAirHumidityLoadingdb] = useState(true);
+  const [humidityEventdb, setHumidityEventdb] = useState();
+  const [humidityLoadingdb, setHumidityLoadingdb] = useState(true);
   const [temperatureEventdb, setTemperatureEventdb] = useState();
   const [temperatureLoadingdb, setTemperatureLoadingdb] = useState(true);
   const [nitrogendioxideEventdb, setNitrogenDioxideEventdb] = useState();
@@ -118,8 +118,8 @@ export const AppProvider = ({ children }) => {
             limitorange: 70,
           };
 
-          setAirHumidityEventdb(AHmessage);
-          setAirHumidityLoadingdb(false);
+          setHumidityEventdb(AHmessage);
+          setHumidityLoadingdb(false);
         })
         .catch((error) => {
           console.log(error);
@@ -345,8 +345,8 @@ export const AppProvider = ({ children }) => {
 
         co2Eventdb: co2Eventdb,
         co2Loadingdb: co2Loadingdb,
-        airhumidityEventdb: airhumidityEventdb,
-        airhumidityLoadingdb: airhumidityLoadingdb,
+        humidityEventdb: humidityEventdb,
+        humidityLoadingdb: humidityLoadingdb,
         temperatureEventdb: temperatureEventdb,
         temperatureLoadingdb: temperatureLoadingdb,
         nitrogendioxideEventdb: nitrogendioxideEventdb,
