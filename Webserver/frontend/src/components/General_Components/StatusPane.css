@@ -31,17 +31,13 @@
 
 .non-critical a {
   background-color: #4d1;
-  opacity: 80%;
 }
 .non-critical a:hover {
   background-color: #4a1;
-  opacity: 100%;
 }
 .critical a {
   background-color: #e11;
-  opacity: 80%;
 }
 .critical a:hover {
   background-color: #d22;
-  opacity: 100%;
 }

@@ -3,6 +3,7 @@ import HighchartsReact from "highcharts-react-official";
 import Highcharts from "highcharts/highstock";
 import { Container, Spinner, Alert } from "react-bootstrap";
 import { FaInfoCircle } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function HistoryGraph({
   blockchainData,
@@ -67,7 +68,8 @@ function HistoryGraph({
           label: {
             text: "Still accaptable Limit " + lowerLimit + unit,
           },
-      }]
+        },
+      ],
     },
     tooltip: {
       formatter: function () {
@@ -90,7 +92,7 @@ function HistoryGraph({
       shared: true,
     },
     credits: {
-      text: "made with ❤ by Johannes and Alex",
+      text: "made with ❤ by IBES",
     },
     series: [
       {
@@ -138,16 +140,16 @@ function HistoryGraph({
         <Spinner animation="border" />
       ) : (
         <Container>
-          <Alert variant="info">
-            {" "}
-            <FaInfoCircle /> Select an area in the chart to zoom in
-          </Alert>
           <HighchartsReact
             highcharts={Highcharts}
             options={options}
-            constructorType={"stockChart"} //chart 
+            constructorType={"stockChart"} //chart
           />
           <br />
+          <Alert variant="info">
+            <FaInfoCircle /> What does "verified by Blockchain" mean?{" "}
+            <Link to="/blockchain">Find out more</Link>
+          </Alert>
         </Container>
       )}
       <br />

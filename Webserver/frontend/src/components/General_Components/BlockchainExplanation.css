@@ -1,0 +1,61 @@
+.btn {
+  border-width: 2px;
+  margin: 5px;
+}
+.card-header {
+  text-align: center;
+}
+.btn-danger {
+  background-color: #b00;
+  color: whitesmoke;
+  border-color: #444;
+  border-width: 2px;
+  width: 200px;
+}
+.btn-danger:hover {
+  background-color: #a00;
+  color: whitesmoke;
+  border-color: #444;
+  border-width: 2px;
+}
+.btn-danger:active:focus {
+  background-color: #800 !important;
+  color: whitesmoke;
+  border-color: #333 !important;
+  border-width: 2px !important;
+}
+.icon-header {
+  color: #b00;
+  text-align: center;
+}
+.explanation-icon {
+  width: 50px;
+  height: 50px;
+  color: #b00;
+  margin-right: 1em;
+  margin-left: 1em;
+}
+.quote-icon {
+  text-align: center;
+  margin-left: 2em;
+}
+.dialogue-box {
+  border: 3px solid #b00;
+  border-radius: 5px;
+}
+/* .dialogue-description p {
+  background-color: #aaa;
+  color: #222;
+} */
+.dialogue-description {
+  padding-top: 2em;
+  background-color: #aaa;
+  color: #222;
+  font-size: small;
+  font-weight: bold;
+  font-style: italic;
+}
+.dialogue-box-icon {
+  color: #b00;
+  margin: 2px;
+}

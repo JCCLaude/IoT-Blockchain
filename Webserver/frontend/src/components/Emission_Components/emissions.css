@@ -70,7 +70,16 @@
   z-index: -2;
   background-position: 0 50%;
 }
-
+.jumbo-blockchain {
+  background: url("../../assets/images/Technology_RedLights.jpg") no-repeat
+    fixed bottom;
+  background-size: cover;
+  color: #ccc;
+  height: 200px;
+  position: relative;
+  z-index: -2;
+  background-position: 0 50%;
+}
 .overlay {
   background-color: #000;
   opacity: 0.6;

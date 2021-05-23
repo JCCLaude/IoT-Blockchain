@@ -100,64 +100,11 @@ h4 {
   align-items: center;
 }
 
-/* Change the color of links on hover */
-.navbar a:hover {
-  background-color: #ddd;
-  color: black;
+.navbar-dark .navbar-nav .nav-link:hover {
+  background-color: #ccc;
+  color: #000;
 }
 
-.navbar #linkem:hover {
-  color: black;
-}
-
-.navbar #linkco2:hover {
-  color: black;
-}
-
-.navbar #linkno2:hover {
-  color: black;
-}
-
-.navbar #linkch4:hover {
-  color: black;
-}
-
-.navbar #linkhfc:hover {
-  color: black;
-}
-
-.navbar #linkpfc:hover {
-  color: black;
-}
-
-.navbar #linksf6:hover {
-  color: black;
-}
-
-.navbar #linkairhumidity:hover {
-  color: black;
-}
-
-.navbar #linktemperature:hover {
-  color: black;
-}
-
-/* Add a color to the active/current link */
-.navbar a.active {
-  background-color: #4caf50;
-  color: white;
-}
-
-@media (max-width: 1200px) {
-  #Help_navbar_item {
-    margin: 4px 2px;
-  }
-
-  #overview_structure {
-    width: 80%;
-    height: 80%;
-  }
-}
 .badge {
   font-size: 100%;
   margin: 2px;

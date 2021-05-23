@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import { Container, Button, Row, Col, Modal, Table } from "react-bootstrap";
-import { FaRegCheckCircle } from "react-icons/fa";
+import { FaRegCheckCircle, FaInfoCircle } from "react-icons/fa";
+import { Link } from "react-router-dom";
+
 import "react-datepicker/dist/react-datepicker.css";
 
 function HistoryTable({
@@ -141,11 +143,16 @@ function HistoryTable({
           ) : (
             <Table striped bordered hover responsive>
               <thead>
-                <tr>
+                <tr className="text-center">
                   <th>Timestamp</th>
                   <th>Measured Value</th>
                   <th>Geolocation</th>
-                  <th>Confirmed by Blockchain?</th>
+                  <th>
+                    Confirmed by Blockchain? <br />
+                    <Link to="/blockchain">
+                      <FaInfoCircle /> What does this mean?
+                    </Link>
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -162,7 +169,15 @@ function HistoryTable({
                       >
                         {item[1]}
                       </td>
-                      <td><a href={"https://maps.google.com/?q=" + item[2]} target="_blank" rel="noopener noreferrer">{item[2]}</a></td>
+                      <td>
+                        <a
+                          href={"https://maps.google.com/?q=" + item[2]}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {item[2]}
+                        </a>
+                      </td>
                       <td style={{ textAlign: "center", color: "green" }}>
                         {item[3] && <FaRegCheckCircle />}
                       </td>
