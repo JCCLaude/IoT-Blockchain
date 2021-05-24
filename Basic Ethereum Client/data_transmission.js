@@ -1,5 +1,5 @@
-// setInterval(all, 15000); //15s, for every hour input: 3600000
-setInterval(all, 30000); //for every hour input: 3600000
+setInterval(all, 15000); //15s, for every hour input: 3600000
+// setInterval(all, 30000); //for every hour input: 3600000
 
 var cnt_blockchain_send_temp = 0;
 var cnt_blockchain_send_air = 0;
@@ -65,10 +65,7 @@ and then used in this script.*/
       const web3 = new Web3("ws://81.169.221.233:8545");
 
       // get the contract information from the build folder
-      const id = await web3.eth.net.getId();
 
-      const accounts = await web3.eth.getAccounts();
-      const deployedNetwork = 5777;
       const temperatureEvent = new web3.eth.Contract(
         [
           {
@@ -137,6 +134,7 @@ and then used in this script.*/
         "0x58d754AcdA19075097b40F926c22A870Aaa8e4Ee"
       );
       if (cnt_blockchain_send_temp >= 1 || tempvalue >= temp_limit) {
+        const accounts = await web3.eth.getAccounts();
         cnt_blockchain_send_temp = 0; //so every two loops
         const receipt = await temperatureEvent.methods
           .submit(date, tempvalue, geo)
