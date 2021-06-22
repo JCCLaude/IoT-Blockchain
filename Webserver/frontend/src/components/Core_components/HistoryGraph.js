@@ -20,8 +20,11 @@ function HistoryGraph({
     if (typeof dbEvents !== "undefined") {
       const newData = [];
       for (let i = 0; i < dbEvents.timestamp.length; i++) {
-        const formatedDate = new Date(dbEvents.timestamp[i]).getTime();
-        newData.push([formatedDate, dbEvents.measurement[i]]);
+        const formatedDate = dbEvents.timestamp[i];
+        var a = formatedDate.split(/[^0-9]/);
+        var d = new Date(a[0], a[1] - 1, a[2], a[3], a[4], a[5]);
+        console.log(a, d, formatedDate);
+        newData.push([d.getTime(), dbEvents.measurement[i]]);
       }
       setDatabaseDataFormated(newData);
       setFormatLoading(false);
