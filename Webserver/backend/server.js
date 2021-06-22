@@ -21,7 +21,6 @@ connection.once('open', () => {
 const api = new express.Router()
 app.use('/api',api)
 
-const ovRouter = require('./routes/ov');
 const coRouter = require('./routes/co');
 const noRouter = require('./routes/no');
 const soRouter = require('./routes/so');
@@ -30,7 +29,6 @@ const pm10Router = require('./routes/pm10');
 const ahRouter = require('./routes/ah');
 const tempRouter = require('./routes/temp');
 
-app.use('/ov', ovRouter);
 app.use('/co', coRouter);
 app.use('/no', noRouter);
 app.use('/so', soRouter);
