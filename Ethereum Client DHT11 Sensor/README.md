@@ -3,7 +3,7 @@
 | Task                           | Command                                      |
 |--------------------------------|:--------------------------------------------:|
 | 1. Pyhton 3:                   | sudo apt install python3                     |
-| 2. pip3:                       | sudo apt install python-pip                  |
+| 2. pip3:                       | sudo apt install python3-pip                  |
 | 3. Adafruit:                   | sudo pip3 install adafruit-circuitpython-dht |
 | 4. DHT11 Library:              | sudo apt-get install libgpiod2               |
 | 5. time:                       | sudo pip3 install time                       |
