@@ -57,4 +57,4 @@ _Plattform Visual Studio Code:_ https://code.visualstudio.com/download
 - [x] Connect IoT client to blockchain 
 - [x] Set up webserver and connect it to database
 - [x] Connect IoT client to database
-- [ ] Connect blockchain to webserver
+- [x] Connect blockchain to webserver
