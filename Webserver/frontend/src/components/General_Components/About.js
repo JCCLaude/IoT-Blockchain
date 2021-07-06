@@ -22,10 +22,9 @@ function About() {
       </p>
     <div className="flex-container">
           <img
+            class="img-fluid"
             id="overview_structure"
             src={Overview_structure}
-            width="750"
-            height="470"
             alt=""
           ></img>
         </div>
