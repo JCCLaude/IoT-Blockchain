@@ -24,7 +24,7 @@ timestamp = timestamp[:-7]
 d = datetime.strptime(timestamp, "%Y-%m-%d %H:%M:%S")
 
 ahval = randint(20,95)
-tempval = randint(10,50)
+tempval = randint(10,35)
 
 datatemp = {'tempval': tempval, 'tempdate':d, 'tempgeo':"48.078277212171514, 11.644345861438955"}
 dataah = {'ahval': ahval, 'ahdate':d, 'ahgeo':"48.078277212171514, 11.644345861438955"}

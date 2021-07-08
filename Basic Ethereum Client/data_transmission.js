@@ -1,4 +1,4 @@
-setInterval(all, 15000); //15s, for every hour input: 3600000
+setInterval(all, 3543210); // for every hour input: 3600000
 // setInterval(all, 30000); //for every hour input: 3600000
 
 var cnt_blockchain_send_temp = 0;
@@ -12,7 +12,7 @@ const Web3 = require("web3");
 function all() {
   /*function to determine a value between realistic upper and
         lower limit value*/
-  var tempvalue = Math.round(Math.random() * (50 - 10) + 10);
+  var tempvalue = Math.round(Math.random() * (40 - 10) + 10);
   var airvalue = Math.round(Math.random() * (95 - 20) + 20);
 
   var date = "";
@@ -27,7 +27,7 @@ to get random values. Values of the Python script are piped to stdout
 and then used in this script.*/
   function pycall() {
     const { exec } = require("child_process");
-    const script = exec("python3 measure.py", (error, stdout, stderr) => {
+    const script = exec("python measure.py", (error, stdout, stderr) => {
       if (error) {
         console.error(`error: ${error.message}`);
         return;
@@ -63,6 +63,7 @@ and then used in this script.*/
     const init = async () => {
       //connect to the local running blockchain (ganache)
       const web3 = new Web3("ws://81.169.221.233:8545");
+      const accounts = await web3.eth.getAccounts();
 
       // get the contract information from the build folder
 
@@ -133,8 +134,8 @@ and then used in this script.*/
         ],
         "0x58d754AcdA19075097b40F926c22A870Aaa8e4Ee"
       );
-      if (cnt_blockchain_send_temp >= 1 || tempvalue >= temp_limit) {
-        const accounts = await web3.eth.getAccounts();
+      if (cnt_blockchain_send_temp >= 4 || tempvalue >= temp_limit) {
+        console.log("sending temperature value to blockchain");
         cnt_blockchain_send_temp = 0; //so every two loops
         const receipt = await temperatureEvent.methods
           .submit(date, tempvalue, geo)
@@ -209,7 +210,8 @@ and then used in this script.*/
         "0x8dE8A9677E4890f36bE037D0BaB5a6c5e614Fd6F"
       );
 
-      if (cnt_blockchain_send_air >= 1 || airvalue >= air_limit) {
+      if (cnt_blockchain_send_air >= 4 || airvalue >= air_limit) {
+        console.log("sending air value to blockchain");
         cnt_blockchain_send_air = 0; //so every two loops
         const receipt1 = await humidityEvent.methods
           .submit(date, airvalue, geo)
