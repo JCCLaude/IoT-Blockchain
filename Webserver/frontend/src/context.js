@@ -146,7 +146,7 @@ export const AppProvider = ({ children }) => {
             geolocation: tempgeos,
             critical: 0,
             limitred: 30,
-            limitorange: 28,
+            limitorange: 20,
           };
           setTemperatureEventdb(TEMPmessage);
           setTemperatureLoadingdb(false);

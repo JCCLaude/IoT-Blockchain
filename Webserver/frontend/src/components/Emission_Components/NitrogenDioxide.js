@@ -6,7 +6,7 @@ import "./emissions.css";
 
 import HistoryTable from "../Core_components/HistoryTable";
 import HistoryGraph from "../Core_components/HistoryGraph";
-// import CertificateBanner from "../Core_components/CertificateBanner";
+import CertificateBanner from "../Core_components/CertificateBanner";
 
 function NitrogenDioxide() {
   const { nitrogendioxideLoading, nitrogendioxideEventdb } = useGlobalContext();
@@ -24,11 +24,11 @@ function NitrogenDioxide() {
           <p>Find verified information about all measured NO2 emissions!</p>
         </Container>
       </Jumbotron>
-      {/* <CertificateBanner
-        data={nitrogendioxideEventsChart}
+      <CertificateBanner
+        data={[0,0]}
         limit={higherEmissionLimit}
         loading={nitrogendioxideLoading}
-      /> */}
+      /> 
       <hr />
       <HistoryGraph
         blockchainData={[]}

@@ -6,7 +6,7 @@ import "./emissions.css";
 
 import HistoryTable from "../Core_components/HistoryTable";
 import HistoryGraph from "../Core_components/HistoryGraph";
-// import CertificateBanner from "../Core_components/CertificateBanner";
+import CertificateBanner from "../Core_components/CertificateBanner";
 
 function ParticularMatter10() {
   const { particularmatter10Loadingdb, particularmatter10Eventdb } =
@@ -25,11 +25,11 @@ function ParticularMatter10() {
           <p>Find verified information about all measured PM 10 emissions!</p>
         </Container>
       </Jumbotron>
-      {/* <CertificateBanner
-        data={particularmatter10EventsChart}
+      <CertificateBanner
+        data={[0,0]}
         limit={higherEmissionLimit}
         loading={particularmatter10Loadingdb}
-      /> */}
+      />
       <hr />
       <HistoryGraph
         blockchainData={[]}

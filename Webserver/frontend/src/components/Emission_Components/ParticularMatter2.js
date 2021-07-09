@@ -6,7 +6,7 @@ import "./emissions.css";
 
 import HistoryTable from "../Core_components/HistoryTable";
 import HistoryGraph from "../Core_components/HistoryGraph";
-// import CertificateBanner from "../Core_components/CertificateBanner";
+import CertificateBanner from "../Core_components/CertificateBanner";
 
 function ParticularMatter2() {
   const {
@@ -27,11 +27,11 @@ function ParticularMatter2() {
           <p>Find verified information about all measured PM 2.5 emissions!</p>
         </Container>
       </Jumbotron>
-      {/* <CertificateBanner
-        data={particularmatter2EventsChart}
+      <CertificateBanner
+        data={[0,0]}
         limit={higherEmissionLimit}
         loading={particularmatter2Loadingdb}
-      /> */}
+      />
       <hr />
       <HistoryGraph
         blockchainData={[]}

@@ -5,7 +5,7 @@ import { useGlobalContext } from "../../context";
 
 import HistoryGraph from "../Core_components/HistoryGraph";
 import HistoryTable from "../Core_components/HistoryTable";
-import AlarmBanner from "../Core_components/CertificateBanner";
+import CertificateBanner from "../Core_components/CertificateBanner";
 
 function Humidity() {
   const {
@@ -28,9 +28,9 @@ function Humidity() {
           <p>Find verified information about humidity measurements!</p>
         </Container>
       </Jumbotron>
-      <AlarmBanner
+      <CertificateBanner
         data={humidityEventsChart}
-        limit={lowerEmissionLimit}
+        limit={higherEmissionLimit}
         loading={humidityLoading}
       />
       <hr />
