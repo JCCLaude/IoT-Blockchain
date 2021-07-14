@@ -50,7 +50,6 @@ export const AppProvider = ({ children }) => {
       const timevalue = event.returnValues.timestamp;
       var a = timevalue.split(/[^0-9]/);
       var d = new Date(a[0], a[1] - 1, a[2], a[3], a[4], a[5]);
-      console.log(a, d, timevalue);
       const value = parseInt(event.returnValues.measurement);
       return [d.getTime(), value];
     });

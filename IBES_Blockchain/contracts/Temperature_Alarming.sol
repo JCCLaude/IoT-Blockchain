@@ -63,7 +63,7 @@ contract Temperature_Alarming {
                 measurement, 
                 geolocation,
                 danger_level,
-                higher_limit_message
+                lower_limit_message
             );
         }
         else{
@@ -73,7 +73,7 @@ contract Temperature_Alarming {
                 measurement, 
                 geolocation,
                 danger_level,
-                higher_limit_message
+                no_limit_message
             );
         }            
     }

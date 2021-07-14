@@ -38,7 +38,10 @@ function Overview() {
         <div className="overlay "> </div>
         <Container className="d-none d-lg-block">
           <h1>Overview</h1>
-          <p>Get a quick overview of the outdoor air emission values in your area!</p>
+          <p>
+            Get a quick overview of the outdoor air emission values in your
+            area!
+          </p>
         </Container>
       </Jumbotron>
       <Container className="text-center">

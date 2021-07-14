@@ -25,10 +25,10 @@ function StatusPane() {
     latestHumidityEvent,
     latestTemperatureEvent,
   ].reduce((total, event) => {
-    if (parseInt(event.critical) === 0) {
-      return total;
+    if (parseInt(event.critical) === 2) {
+      return total + 1;
     }
-    return total + 1;
+    return total;
   }, 0);
   return (
     <div
