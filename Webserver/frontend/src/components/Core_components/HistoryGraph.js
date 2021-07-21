@@ -69,7 +69,7 @@ function HistoryGraph({
           dashStyle: "shortdash",
           width: 2,
           label: {
-            text: "Still accaptable Limit " + lowerLimit + unit,
+            text: "Still acceptable Limit " + lowerLimit + unit,
           },
         },
       ],
