@@ -50,11 +50,3 @@ _Plattform Visual Studio Code:_ https://code.visualstudio.com/download
 | 2.2. install highcharts:         | npm install highcharts (^9.0.1) && npm install highcharts-react-official (^3.0.1)  |
 | 2.3. install bootstrap:          | npm install bootstrap (^4.3.1)                                                     |
 
-
-
-## TODO
-- [x] Create blockchain 
-- [x] Connect IoT client to blockchain 
-- [x] Set up webserver and connect it to database
-- [x] Connect IoT client to database
-- [x] Connect blockchain to webserver
