@@ -50,3 +50,7 @@ _Plattform Visual Studio Code:_ https://code.visualstudio.com/download
 | 2.2. install highcharts:         | npm install highcharts (^9.0.1) && npm install highcharts-react-official (^3.0.1)  |
 | 2.3. install bootstrap:          | npm install bootstrap (^4.3.1)                                                     |
 
+
+
+The current prototype can be found here:
+http://www.svj753.de/
